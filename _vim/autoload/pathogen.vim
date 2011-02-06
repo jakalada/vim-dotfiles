@@ -1,0 +1,1 @@
+/home/hot_coffee/config/vim/_vim/bundle/vim-pathogen/autoload/pathogen.vim

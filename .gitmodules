@@ -1,0 +1,51 @@
+[submodule "_vim/bundle/vim-pathogen"]
+	path = _vim/bundle/vim-pathogen
+	url = git://github.com/tpope/vim-pathogen.git
+[submodule "_vim/bundle/current-func-info"]
+	path = _vim/bundle/current-func-info
+	url = git://github.com/tyru/current-func-info.vim.git
+[submodule "_vim/bundle/unite"]
+	path = _vim/bundle/unite
+	url = git://github.com/Shougo/unite.vim.git
+[submodule "_vim/bundle/neocomplcache"]
+	path = _vim/bundle/neocomplcache
+	url = git://github.com/Shougo/neocomplcache.git
+[submodule "_vim/bundle/vim-quickrun"]
+	path = _vim/bundle/vim-quickrun
+	url = git://github.com/thinca/vim-quickrun.git
+[submodule "_vim/bundle/vim-ref"]
+	path = _vim/bundle/vim-ref
+	url = git://github.com/thinca/vim-ref.git
+[submodule "_vim/bundle/unite-help"]
+	path = _vim/bundle/unite-help
+	url = git://github.com/tsukkee/unite-help.git
+[submodule "_vim/bundle/unite-outline"]
+	path = _vim/bundle/unite-outline
+	url = git://github.com/h1mesuke/unite-outline.git
+[submodule "_vim/bundle/unite-colorscheme"]
+	path = _vim/bundle/unite-colorscheme
+	url = git://github.com/ujihisa/unite-colorscheme.git
+[submodule "_vim/bundle/unite-font"]
+	path = _vim/bundle/unite-font
+	url = git://github.com/ujihisa/unite-font.git
+[submodule "_vim/bundle/unite-locate"]
+	path = _vim/bundle/unite-locate
+	url = git://github.com/ujihisa/unite-locate.git
+[submodule "_vim/bundle/unite-mark"]
+	path = _vim/bundle/unite-mark
+	url = git://github.com/tacroe/unite-mark.git
+[submodule "_vim/bundle/unite-git_grep"]
+	path = _vim/bundle/unite-git_grep
+	url = git://github.com/sgur/unite-git_grep.git
+[submodule "_vim/bundle/vim-unite-history"]
+	path = _vim/bundle/vim-unite-history
+	url = git://github.com/thinca/vim-unite-history.git
+[submodule "_vim/bundle/unite-grep"]
+	path = _vim/bundle/unite-grep
+	url = git://github.com/Sixeight/unite-grep.git
+[submodule "_vim/bundle/git-vim"]
+	path = _vim/bundle/git-vim
+	url = git://github.com/motemen/git-vim.git
+[submodule "_vim/bundle/vim-surround"]
+	path = _vim/bundle/vim-surround
+	url = git://github.com/tpope/vim-surround.git
