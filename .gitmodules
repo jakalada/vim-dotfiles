@@ -49,3 +49,9 @@
 [submodule "_vim/bundle/vim-surround"]
 	path = _vim/bundle/vim-surround
 	url = git://github.com/tpope/vim-surround.git
+[submodule "_vim/bundle/vimshell"]
+	path = _vim/bundle/vimshell
+	url = git://github.com/Shougo/vimshell.git
+[submodule "_vim/bundle/vimproc"]
+	path = _vim/bundle/vimproc
+	url = git://github.com/Shougo/vimproc.git
