@@ -346,7 +346,7 @@ nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
 nmap f [unite]
 xmap f [unite]
-nnoremap <silent> [unite]f :<C-u>Unite -buffer-name=files file bookmark file_mru<CR>
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file bookmark file_mru<CR>
 nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=buffer buffer<CR>
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> [unite]t :<C-u>Unite -buffer-name=tab tab<CR>
