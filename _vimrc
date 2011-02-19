@@ -270,6 +270,9 @@ set helplang=ja
 "
 set linespace=3
 
+set number
+set numberwidth=3
+
 set showcmd
 set cmdheight=2
 
