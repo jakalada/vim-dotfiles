@@ -55,3 +55,6 @@
 [submodule "_vim/bundle/vimproc"]
 	path = _vim/bundle/vimproc
 	url = git://github.com/Shougo/vimproc.git
+[submodule "_vim/bundle/Textile-for-VIM"]
+	path = _vim/bundle/Textile-for-VIM
+	url = git://github.com/vim-scripts/Textile-for-VIM.git
