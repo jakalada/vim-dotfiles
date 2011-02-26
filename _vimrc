@@ -341,7 +341,6 @@ let g:unite_enable_ignore_case=1
 let g:unite_enable_smart_case=1
 let g:unite_enable_split_vertically=1
 
-autocmd FileType unite imap <buffer> <CR> <Plug>(unite_insert_leave)
 nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
 nmap f [unite]
@@ -387,8 +386,8 @@ call unite#define_source(s:unite_source)
 " https://github.com/Shougo/neocomplcache
 "
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_auto_completion_start_length = 6
-let g:neocomplcache_manual_completion_start_length = 6
+let g:neocomplcache_auto_completion_start_length = 3
+let g:neocomplcache_manual_completion_start_length = 3
 let g:neocomplcache_min_syntax_length = 2
 let g:neocomplcache_min_keyword_length = 2
 let g:neocomplcache_enable_ignore_case = 1
@@ -403,7 +402,7 @@ inoremap <expr><C-l> neocomplcache#complete_common_string()
 inoremap <expr><C-f> neocomplcache#manual_filename_complete()
 inoremap <expr><C-o> neocomplcache#manual_omni_complete()
 inoremap <expr><C-k> neocomplcache#manual_keyword_complete()
-inoremap <expr><C-CR> pumvisible() ? neocomplcache#close_popup() : "\<C-CR>"
+inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 
 " for rsense.vim
 let g:rsenseUseOmniFunc = 1
@@ -470,10 +469,6 @@ let g:rsenseHome = $RSENSE_HOME
 " Key-mappings: "{{{
 "
 " basic mapping {{{
-inoremap <CR> <ESC>
-vnoremap <CR> <ESC>
-onoremap <CR> <ESC>
-
 noremap j gj
 noremap k gk
 noremap <C-j> <C-d>
