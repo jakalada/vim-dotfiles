@@ -455,7 +455,7 @@ function! s:define_surround_keymappings()
   nmap <buffer>         s   <Plug>Ysurround
   nmap <buffer>         S   <Plug>YSurround
   nmap <buffer>         ss  <Plug>Yssurround
-  nmap <buffer>         Ss  <Plug>YSsurround
+  nmap <buffer>         SS  <Plug>YSsurround
 endfunction
 " }}}
 
