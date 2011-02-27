@@ -587,7 +587,10 @@ noremap <silent> Ak :call AddEmptyLineAbove()<CR>
 "-------------------------------------------------------------------------
 " Commands: "{{{
 "
-
+command!
+\   -nargs=* -complete=mapping
+\   AllMaps
+\   map <args> | map! <args> | lmap <args>
 " }}}
 
 "-------------------------------------------------------------------------
