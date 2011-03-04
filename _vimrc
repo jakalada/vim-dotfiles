@@ -492,6 +492,9 @@ inoremap ) 0
 
 inoremap <S-Space> _
 
+inoremap ; :
+inoremap : ;
+
 noremap j gj
 noremap k gk
 noremap <C-j> <C-d>
