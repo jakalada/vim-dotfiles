@@ -396,14 +396,13 @@ let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_snippets_dir = '~/.vim/snippets'
 
 nnoremap <silent> <leader>.s :<C-u>NeoComplCacheEditSnippets<CR>
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<TAB>"
 inoremap <S-TAB> <C-p>
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 inoremap <expr><C-f> neocomplcache#manual_filename_complete()
 inoremap <expr><C-o> neocomplcache#manual_omni_complete()
 inoremap <expr><C-k> neocomplcache#manual_keyword_complete()
-inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 
 " for rsense.vim
 let g:rsenseUseOmniFunc = 1
