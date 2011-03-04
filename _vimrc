@@ -469,6 +469,27 @@ let g:rsenseHome = $RSENSE_HOME
 " Key-mappings: "{{{
 "
 " basic mapping {{{
+inoremap 1 !
+inoremap ! 1
+inoremap 2 @
+inoremap @ 2
+inoremap 3 #
+inoremap # 3
+inoremap 4 $
+inoremap $ 4
+inoremap 5 %
+inoremap % 5
+inoremap 6 ^
+inoremap ^ 6
+inoremap 7 &
+inoremap & 7
+inoremap 8 *
+inoremap * 8
+inoremap 9 (
+inoremap ( 9
+inoremap 0 )
+inoremap ) 0
+
 noremap j gj
 noremap k gk
 noremap <C-j> <C-d>
