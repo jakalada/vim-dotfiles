@@ -58,3 +58,6 @@
 [submodule "_vim/bundle/Textile-for-VIM"]
 	path = _vim/bundle/Textile-for-VIM
 	url = git://github.com/vim-scripts/Textile-for-VIM.git
+[submodule "_vim/bundle/vim-rails"]
+	path = _vim/bundle/vim-rails
+	url = git://github.com/tpope/vim-rails.git
