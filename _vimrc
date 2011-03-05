@@ -495,6 +495,8 @@ inoremap <S-Space> _
 inoremap ; :
 inoremap : ;
 
+inoremap jj <Esc>
+
 noremap j gj
 noremap k gk
 noremap <C-j> <C-d>
