@@ -314,6 +314,9 @@ augroup MyAutoCmd "{{{
 augroup END
 " }}}
 
+" Ruby
+let ruby_operators = 1
+
 " Java
 let g:java_highlight_functions = 'style'
 let g:java_highlight_all = 1
