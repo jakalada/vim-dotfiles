@@ -621,6 +621,20 @@ command!
 \   -nargs=* -complete=mapping
 \   AllMaps
 \   map <args> | map! <args> | lmap <args>
+
+" for rails.vim
+if s:iswin
+  command!
+\   -bar -nargs=1
+\   OpenURL
+\   :!start cmd /cstart /b <args>
+else
+  command!
+\   -bar -nargs=1
+\   OpenURL
+\   :!firefox <args>
+endif
+
 " }}}
 
 "-------------------------------------------------------------------------
