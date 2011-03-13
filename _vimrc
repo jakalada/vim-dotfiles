@@ -519,6 +519,9 @@ noremap gk H
 
 nnoremap <TAB> <C-w>w
 
+nnoremap <Backspace> <C-o>
+nnoremap <S-Backspace> <C-i>
+
 nnoremap <silent> <leader>, :<C-u>write<CR>
 " }}}
 
