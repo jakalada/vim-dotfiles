@@ -262,6 +262,8 @@ endif
 
 set virtualedit=block
 
+set scrolloff=10
+
 set helplang=ja
 " }}}
 
