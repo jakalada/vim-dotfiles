@@ -265,6 +265,13 @@ set virtualedit=block
 set scrolloff=10
 
 set helplang=ja
+
+set autoread
+
+augroup VimrcChecktime
+  autocmd!
+  autocmd WinEnter * checktime
+augroup END
 " }}}
 
 "-------------------------------------------------------------------------
