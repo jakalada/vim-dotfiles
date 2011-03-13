@@ -205,7 +205,7 @@ command! -bang -complete=file -nargs=? WDos write<bang> ++fileformat=dos <args> 
 "-------------------------------------------------------------------------
 " Search: "{{{
 "
-set noincsearch
+set incsearch
 set ignorecase
 set smartcase
 set wrapscan
