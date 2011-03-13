@@ -523,6 +523,10 @@ nnoremap <Backspace> <C-o>
 nnoremap <S-Backspace> <C-i>
 
 nnoremap <silent> <leader>, :<C-u>write<CR>
+
+nnoremap <C-Up> <C-a>
+nnoremap <C-Down> <C-x>
+
 " }}}
 
 " tab page mapping {{{
