@@ -509,6 +509,8 @@ noremap <C-k> <C-u>
 noremap <C-l> <C-e>
 noremap <C-h> <C-y>
 
+noremap vv V
+
 noremap L $
 noremap H ^
 noremap gj L
