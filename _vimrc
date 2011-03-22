@@ -351,7 +351,6 @@ let g:vimsyntax_noerror = 1
 " https://github.com/Shougo/unite.vim
 let g:unite_enable_ignore_case=1
 let g:unite_enable_smart_case=1
-let g:unite_enable_split_vertically=1
 let g:unite_enable_start_insert=1
 
 nnoremap [unite] <Nop>
