@@ -399,10 +399,6 @@ call unite#define_source(s:unite_source)
 " https://github.com/Shougo/neocomplcache
 "
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_auto_completion_start_length = 3
-let g:neocomplcache_manual_completion_start_length = 3
-let g:neocomplcache_min_syntax_length = 2
-let g:neocomplcache_min_keyword_length = 2
 let g:neocomplcache_enable_ignore_case = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_snippets_dir = '~/.vim/snippets'
