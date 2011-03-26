@@ -347,6 +347,10 @@ let g:vimsyntax_noerror = 1
 "-------------------------------------------------------------------------
 " Plugin: "{{{
 "
+" vimfiler.vim "{{{
+nnoremap <silent> F :<C-u>VimFiler<CR>
+" }}}
+
 " unite.vim "{{{
 " https://github.com/Shougo/unite.vim
 let g:unite_enable_ignore_case=1
