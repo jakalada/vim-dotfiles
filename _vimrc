@@ -475,6 +475,14 @@ endfunction
 let g:rsenseHome = $RSENSE_HOME
 " }}}
 
+" quickrun.vim "{{{
+let g:quickrun_config = {}
+let g:quickrun_config['markdown'] = {
+\ 'command': 'bluecloth',
+\ 'exec': '%c -f %s'
+\ }
+" }}}
+
 " }}}
 
 "-------------------------------------------------------------------------
