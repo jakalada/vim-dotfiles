@@ -70,3 +70,6 @@
 [submodule "_vim/bundle/vimfiler"]
 	path = _vim/bundle/vimfiler
 	url = https://github.com/Shougo/vimfiler.git
+[submodule "_vim/bundle/zencoding-vim"]
+	path = _vim/bundle/zencoding-vim
+	url = git://github.com/mattn/zencoding-vim.git
