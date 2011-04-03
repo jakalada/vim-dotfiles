@@ -371,6 +371,14 @@ nnoremap <silent> [unite]m :<C-u>Unite -buffer-name=mark mark<CR>
 nnoremap <silent> [unite]h :<C-u>Unite -buffer-name=help help<CR>
 nnoremap <silent> <leader>b :<C-u>UniteBookmarkAdd<CR>
 
+" zen-coding {{{
+let g:user_zen_settings = {
+      \ 'html' : {
+      \   'indentation' : '  '
+      \ },
+      \}
+" }}}
+
 " unite-neco {{{
 let s:unite_source = {'name': 'neco'}
 
