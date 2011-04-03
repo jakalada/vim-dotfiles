@@ -669,6 +669,27 @@ else
 \   :!firefox <args>
 endif
 
+" requires metarw-git
+nnoremap <silent> <Leader>gw :silent call GitHighlightLastChange()<CR>
+function! GitHighlightLastChange()
+  if &diff
+    diffoff
+    return
+  endif
+
+  let log = system('git log -1 --pretty=oneline ' . expand('%'))
+  if v:shell_error
+    echoerr log
+    return
+  endif
+  let [ sha1, message ] = matchlist(log, '\v(\x{40}) (.*)\n')[1:2]
+  execute 'vertical diffsplit' 'git:' . sha1 . '^:%'
+  quit
+
+  redrawstatus
+  unsilent echo "highlighting diff of '" . message . "'"
+endfunction
+
 " }}}
 
 "-------------------------------------------------------------------------
