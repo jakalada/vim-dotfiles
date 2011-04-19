@@ -499,6 +499,7 @@ let g:quickrun_config['markdown'] = {
 " basic mapping {{{
 
 inoremap <S-Space> _
+inoremap ;; <Space>=><Space>
 
 inoremap jj <Esc>
 
