@@ -17,17 +17,17 @@ endif
 
 " Use ',' instead of '\'.
 " It is not mapped with respect well unless I set it before setting for plug in.
-let mapleader = ','
+let mapleader = ' '
 " Use <Leader> in global plugin.
-let g:mapleader = ','
+let g:mapleader = ' '
 " Use <LocalLeader> in filetype plugin.
 let g:maplocalleader = '\'
 
 " Release keymappings for plug-in.
 nnoremap ; <Nop>
 xnoremap ; <Nop>
-nnoremap , <Nop>
-xnoremap , <Nop>
+nnoremap <Space> <Nop>
+xnoremap <Space> <Nop>
 nnoremap \ <Nop>
 xnoremap \ <Nop>
 
@@ -497,31 +497,8 @@ let g:quickrun_config['markdown'] = {
 " Key-mappings: "{{{
 "
 " basic mapping {{{
-inoremap 1 !
-inoremap ! 1
-inoremap 2 @
-inoremap @ 2
-inoremap 3 #
-inoremap # 3
-inoremap 4 $
-inoremap $ 4
-inoremap 5 %
-inoremap % 5
-inoremap 6 ^
-inoremap ^ 6
-inoremap 7 &
-inoremap & 7
-inoremap 8 *
-inoremap * 8
-inoremap 9 (
-inoremap ( 9
-inoremap 0 )
-inoremap ) 0
 
 inoremap <S-Space> _
-
-inoremap ; :
-inoremap : ;
 
 inoremap jj <Esc>
 
@@ -531,8 +508,6 @@ noremap <C-j> <C-d>
 noremap <C-k> <C-u>
 noremap <C-l> <C-e>
 noremap <C-h> <C-y>
-
-noremap vv V
 
 noremap L $
 noremap H ^
