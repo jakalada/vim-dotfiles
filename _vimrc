@@ -520,7 +520,7 @@ nnoremap <TAB> <C-w>w
 nnoremap <Backspace> <C-o>
 nnoremap <S-Backspace> <C-i>
 
-nnoremap <silent> <leader>, :<C-u>write<CR>
+nnoremap <silent> <leader><leader> :<C-u>write<CR>
 
 nnoremap <C-Up> <C-a>
 nnoremap <C-Down> <C-x>
