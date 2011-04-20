@@ -351,6 +351,10 @@ let g:vimsyntax_noerror = 1
 nnoremap <silent> F :<C-u>VimFiler<CR>
 " }}}
 
+"nerdtree.vim "{{{
+nnoremap <silent> <leader>; :<C-u>NERDTreeToggle<CR>
+" }}}
+
 " unite.vim "{{{
 " https://github.com/Shougo/unite.vim
 let g:unite_enable_ignore_case=1
