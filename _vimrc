@@ -211,13 +211,13 @@ set smartcase
 set wrapscan
 
 " hlsearch only searching."{{{
-nnoremap <silent> / :<C-u>setlocal hlsearch<CR>/
-nnoremap <silent> ? :<C-u>setlocal hlsearch<CR>?
-nnoremap <silent> n :<C-u>setlocal hlsearch<CR>n
-nnoremap <silent> N :<C-u>setlocal hlsearch<CR>N
-nnoremap <silent> v :<C-u>setlocal nohlsearch<CR>v
-nnoremap <silent> <C-v> :<C-u>setlocal nohlsearch<CR><C-v>
-nnoremap <silent> V :<C-u>setlocal nohlsearch<CR>V
+nnoremap <silent> / :<C-U>setlocal hlsearch<CR>/
+nnoremap <silent> ? :<C-U>setlocal hlsearch<CR>?
+nnoremap <silent> n :<C-U>setlocal hlsearch<CR>n
+nnoremap <silent> N :<C-U>setlocal hlsearch<CR>N
+nnoremap <silent> v :<C-U>setlocal nohlsearch<CR>v
+nnoremap <silent> <C-V> :<C-U>setlocal nohlsearch<CR><C-V>
+nnoremap <silent> V :<C-U>setlocal nohlsearch<CR>V
 autocmd MyAutoCmd InsertEnter * setlocal nohlsearch
 " }}}
 
@@ -318,8 +318,8 @@ syntax enable
 
 augroup MyAutoCmd "{{{
   " Close help and git window by pressing q.
-  autocmd FileType help,git-status,git-log,qf,gitcommit,quickrun,qfreplace,ref,simpletap-summary nnoremap <buffer><silent> q :<C-u>close<CR>
-  autocmd FileType * if &readonly |  nnoremap <buffer><silent> q :<C-u>close<CR> | endif
+  autocmd FileType help,git-status,git-log,qf,gitcommit,quickrun,qfreplace,ref,simpletap-summary nnoremap <buffer><silent> q :<C-U>close<CR>
+  autocmd FileType * if &readonly |  nnoremap <buffer><silent> q :<C-U>close<CR> | endif
 augroup END
 " }}}
 
@@ -348,11 +348,14 @@ let g:vimsyntax_noerror = 1
 " Plugin: "{{{
 "
 " vimfiler.vim "{{{
-nnoremap <silent> F :<C-u>VimFiler<CR>
+nnoremap <silent> F :<C-U>VimFiler<CR>
 " }}}
 
 "nerdtree.vim "{{{
-nnoremap <silent> <leader>; :<C-u>NERDTreeToggle<CR>
+let g:NERDTreeChDirMode=1
+
+nnoremap <silent> <leader>A :<C-U>NERDTree<CR>
+nnoremap <silent> <leader>a :<C-U>NERDTreeToggle<CR>
 " }}}
 
 " unite.vim "{{{
@@ -365,15 +368,15 @@ nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
 nmap f [unite]
 xmap f [unite]
-nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file bookmark file_mru<CR>
-nnoremap <silent> [unite]F :<C-u>Unite -buffer-name=files file<CR>
-nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=buffer buffer<CR>
-nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> [unite]t :<C-u>Unite -buffer-name=tab tab<CR>
-nnoremap <silent> [unite]o :<C-u>Unite -buffer-name=outline outline<CR>
-nnoremap <silent> [unite]m :<C-u>Unite -buffer-name=mark mark<CR>
-nnoremap <silent> [unite]h :<C-u>Unite -buffer-name=help help<CR>
-nnoremap <silent> <leader>b :<C-u>UniteBookmarkAdd<CR>
+nnoremap <silent> [unite]f :<C-U>UniteWithBufferDir -buffer-name=files file bookmark file_mru<CR>
+nnoremap <silent> [unite]F :<C-U>Unite -buffer-name=files file<CR>
+nnoremap <silent> [unite]b :<C-U>Unite -buffer-name=buffer buffer<CR>
+nnoremap <silent> [unite]r :<C-U>Unite -buffer-name=register register<CR>
+nnoremap <silent> [unite]t :<C-U>Unite -buffer-name=tab tab<CR>
+nnoremap <silent> [unite]o :<C-U>Unite -buffer-name=outline outline<CR>
+nnoremap <silent> [unite]m :<C-U>Unite -buffer-name=mark mark<CR>
+nnoremap <silent> [unite]h :<C-U>Unite -buffer-name=help help<CR>
+nnoremap <silent> <leader>b :<C-U>UniteBookmarkAdd<CR>
 
 " zen-coding {{{
 let g:user_zen_settings = {
@@ -419,14 +422,11 @@ let g:neocomplcache_enable_ignore_case = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_snippets_dir = '~/.vim/snippets'
 
-nnoremap <silent> <leader>.s :<C-u>NeoComplCacheEditSnippets<CR>
+nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
 imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<TAB>"
-inoremap <S-TAB> <C-p>
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-inoremap <expr><C-f> neocomplcache#manual_filename_complete()
-inoremap <expr><C-o> neocomplcache#manual_omni_complete()
-inoremap <expr><C-k> neocomplcache#manual_keyword_complete()
+inoremap <S-TAB> <C-P>
+inoremap <expr><C-G> neocomplcache#undo_completion()
+inoremap <expr><C-L> neocomplcache#complete_common_string()
 
 " for rsense.vim
 let g:rsenseUseOmniFunc = 1
@@ -500,80 +500,88 @@ let g:quickrun_config['markdown'] = {
 "-------------------------------------------------------------------------
 " Key-mappings: "{{{
 "
-" basic mapping {{{
-
-inoremap <S-Space> _
-inoremap ;; <Space>=><Space>
-
-inoremap jj <Esc>
-
+" mapmode-nvo "{{{
 noremap j gj
 noremap k gk
-noremap <C-j> <C-d>
-noremap <C-k> <C-u>
-noremap <C-l> <C-e>
-noremap <C-h> <C-y>
+noremap <C-J> <C-D>
+noremap <C-K> <C-U>
+noremap <C-L> <C-E>
+noremap <C-H> <C-Y>
 
 noremap L $
 noremap H ^
 noremap gj L
 noremap gm M
 noremap gk H
+" }}}
 
-nnoremap <TAB> <C-w>w
+" mapmode-n "{{{
+nnoremap <TAB> <C-W>w
 
-nnoremap <Backspace> <C-o>
-nnoremap <S-Backspace> <C-i>
+nnoremap <Backspace> <C-O>
+nnoremap <S-Backspace> <C-I>
 
-nnoremap <silent> <leader><leader> :<C-u>write<CR>
+nnoremap <silent> <leader><leader> :<C-U>write<CR>
 
-nnoremap <C-Up> <C-a>
-nnoremap <C-Down> <C-x>
+nnoremap <C-Up> <C-A>
+nnoremap <C-Down> <C-X>
 
+nnoremap <C-Q> :<C-U>close<CR>
+" }}}
+
+" mapmode-i "{{{
+inoremap jj <Esc>
+inoremap <C-J> <Esc>o
+inoremap <C-K> <Esc>O
+
+inoremap <S-Space> _
+inoremap ; :
+inoremap ;; <Space>=><Space>
+inoremap ;% <%  %><Esc>hhi
+inoremap ;= <%=  %><Esc>hhi
+inoremap ;e <% end %><Esc>
 " }}}
 
 " tab page mapping {{{
 nnoremap <SID>[tab] <Nop>
 nmap t <SID>[tab]
 
-nnoremap <silent> <SID>[tab]l :<C-u>tabnext<CR>
-nnoremap <silent> <SID>[tab]h :<C-u>tabprev<CR>
-nnoremap <silent> <SID>[tab]q :<C-u>tabclose<CR>
-nnoremap <silent> <SID>[tab]t :<C-u>tabnew<CR>
+nnoremap <silent> <SID>[tab]l :<C-U>tabnext<CR>
+nnoremap <silent> <SID>[tab]h :<C-U>tabprev<CR>
+nnoremap <silent> <SID>[tab]q :<C-U>tabclose<CR>
+nnoremap <silent> <SID>[tab]t :<C-U>tabnew<CR>
 " }}}
 
 " split mapping {{{
 nnoremap <SID>[split] <Nop>
-nmap <C-w>s <SID>[split]
+nmap <C-W>s <SID>[split]
 
 nmap <SID>[split]j <SID>(split-to-j)
 nmap <SID>[split]k <SID>(split-to-k)
 nmap <SID>[split]h <SID>(split-to-h)
 nmap <SID>[split]l <SID>(split-to-l)
 
-nnoremap <silent> <SID>(split-to-j) :<C-u>execute 'belowright' (v:count == 0 ? '' : v:count) 'split'<CR>
-nnoremap <silent> <SID>(split-to-k) :<C-u>execute 'aboveleft'  (v:count == 0 ? '' : v:count) 'split'<CR>
-nnoremap <silent> <SID>(split-to-h) :<C-u>execute 'topleft'    (v:count == 0 ? '' : v:count) 'vsplit'<CR>
-nnoremap <silent> <SID>(split-to-l) :<C-u>execute 'botright'   (v:count == 0 ? '' : v:count) 'vsplit'<CR>
+nnoremap <silent> <SID>(split-to-j) :<C-U>execute 'belowright' (v:count == 0 ? '' : v:count) 'split'<CR>
+nnoremap <silent> <SID>(split-to-k) :<C-U>execute 'aboveleft'  (v:count == 0 ? '' : v:count) 'split'<CR>
+nnoremap <silent> <SID>(split-to-h) :<C-U>execute 'topleft'    (v:count == 0 ? '' : v:count) 'vsplit'<CR>
+nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '' : v:count) 'vsplit'<CR>
 " }}}
 
 " Hack #161: Command-line windowを使いこなす "{{{
 " http://vim-users.jp/2010/07/hack161/
 nnoremap <SID>(command-line-enter) q:
 xnoremap <SID>(command-line-enter) q:
-nnoremap <SID>(command-line-norange) q:<C-u>
+nnoremap <SID>(command-line-norange) q:<C-U>
 
 nmap ; <SID>(command-line-enter)
 xmap ; <SID>(command-line-enter)
 
 nmap <leader>h <SID>(command-line-enter)help<Space>
-nnoremap <leader>hh :<C-u>help<Space><C-r><C-w><CR>
+nnoremap <leader>hh :<C-U>help<Space><C-R><C-W><CR>
 
 autocmd MyAutoCmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin()
-  nnoremap <silent> <buffer> q :<C-u>quit<CR>
-  nnoremap <silent> <buffer> <TAB> :<C-u>quit<CR>
-  startinsert!
+  nnoremap <silent> <buffer> q :<C-U>quit<CR>
 endfunction
 " }}}
 
@@ -589,7 +597,7 @@ function! AddEmptyLineAbove()
   set scrolloff=0
   call append(line(".") - 1, "")
   if winline() != winheight(0)
-    silent normal! <C-e>
+    silent normal! <C-E>
   end
   let &scrolloff = l:scrolloffsave
 endfunction
@@ -615,7 +623,7 @@ function! DelEmptyLineAbove()
   if l:line =~ '^\s*$'
     let l:colsave = col(".")
     .-1d
-    silent normal! <C-y>
+    silent normal! <C-Y>
     call cursor(line("."), l:colsave)
   end
 endfunction
