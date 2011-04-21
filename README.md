@@ -5,7 +5,7 @@ install
 -------
 
 ``` sh
-repos='The name of a new directory to clone into.'
+dir='The name of a new directory to clone into.'
 
 git clone git://github.com/jakalada/vim-dotfiles.git $dir
 
