@@ -362,14 +362,13 @@ nnoremap <silent> <leader>a :<C-U>NERDTreeToggle<CR>
 " https://github.com/Shougo/unite.vim
 let g:unite_enable_ignore_case=1
 let g:unite_enable_smart_case=1
-let g:unite_enable_start_insert=1
 
 nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
 nmap f [unite]
 xmap f [unite]
-nnoremap <silent> [unite]f :<C-U>UniteWithBufferDir -buffer-name=files file bookmark file_mru<CR>
-nnoremap <silent> [unite]F :<C-U>Unite -buffer-name=files file<CR>
+nnoremap <silent> [unite]F :<C-U>Unite -input=/ -buffer-name=files file bookmark file_mru<CR>
+nnoremap <silent> [unite]f :<C-U>Unite -buffer-name=files file<CR>
 nnoremap <silent> [unite]b :<C-U>Unite -buffer-name=buffer buffer<CR>
 nnoremap <silent> [unite]r :<C-U>Unite -buffer-name=register register<CR>
 nnoremap <silent> [unite]t :<C-U>Unite -buffer-name=tab tab<CR>
