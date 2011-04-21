@@ -28,7 +28,7 @@ add vim plugin
 git submodule add git://github.com/tpope/vim-pathogen.git _vim/bundle/vim-pathogen
 ```
 
-remove modules
+remove vim plugin
 -----------------
 
 ``` sh
