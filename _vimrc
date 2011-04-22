@@ -659,7 +659,7 @@ else
   command!
 \   -bar -nargs=1
 \   OpenURL
-\   :!firefox <args>
+\   :VimProcBang firefox <args>
 endif
 
 " requires metarw-git
