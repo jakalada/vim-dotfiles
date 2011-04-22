@@ -528,7 +528,7 @@ nnoremap <silent> <leader><leader> :<C-U>write<CR>
 nnoremap <C-Up> <C-A>
 nnoremap <C-Down> <C-X>
 
-nnoremap <C-Q> :<C-U>close<CR>
+nnoremap <silent> <C-Q> :<C-U>close<CR>
 
 nnoremap <silent> <C-O> :<C-U>OpenURL <cfile><CR>
 " }}}
@@ -581,7 +581,7 @@ nmap ; <SID>(command-line-enter)
 xmap ; <SID>(command-line-enter)
 
 nmap <leader>h <SID>(command-line-enter)help<Space>
-nnoremap <leader>hh :<C-U>help<Space><C-R><C-W><CR>
+nnoremap <silent> <leader>hh :<C-U>help<Space><C-R><C-W><CR>
 
 autocmd MyAutoCmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin()
