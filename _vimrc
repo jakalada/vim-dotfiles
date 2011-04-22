@@ -529,6 +529,8 @@ nnoremap <C-Up> <C-A>
 nnoremap <C-Down> <C-X>
 
 nnoremap <C-Q> :<C-U>close<CR>
+
+nnoremap <silent> <C-O> :<C-U>OpenURL <cfile><CR>
 " }}}
 
 " mapmode-i "{{{
