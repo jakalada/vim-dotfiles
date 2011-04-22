@@ -581,6 +581,7 @@ nnoremap <leader>hh :<C-U>help<Space><C-R><C-W><CR>
 autocmd MyAutoCmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin()
   nnoremap <silent> <buffer> q :<C-U>quit<CR>
+  startinsert!
 endfunction
 " }}}
 
