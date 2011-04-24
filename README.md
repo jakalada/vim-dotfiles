@@ -18,6 +18,10 @@ cd $dir
 # install plugins
 git submodule init
 git submodule update
+
+# install vimproc
+cd bundle/vimproc
+make -f make_gcc.mak # Linux
 ```
 
 Add plugin
