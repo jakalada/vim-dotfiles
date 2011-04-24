@@ -1,7 +1,7 @@
-vim dotfiles
+Vim dotfiles
 ============
 
-install
+Install
 -------
 
 ``` sh
@@ -20,7 +20,7 @@ git submodule init
 git submodule update
 ```
 
-add vim plugin
+Add plugin
 -----------------
 
 ``` sh
@@ -28,7 +28,7 @@ add vim plugin
 git submodule add git://github.com/tpope/vim-pathogen.git _vim/bundle/vim-pathogen
 ```
 
-remove vim plugin
+Remove plugin
 -----------------
 
 ``` sh
