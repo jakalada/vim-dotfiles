@@ -531,6 +531,8 @@ nnoremap <C-Down> <C-X>
 nnoremap <silent> <C-Q> :<C-U>close<CR>
 
 nnoremap <silent> <C-O> :<C-U>OpenURL <cfile><CR>
+
+nnoremap <silent> <leader>; :<C-U>OpenRightWindow $HOME/Dropbox/GTD/inbox.md<CR>
 " }}}
 
 " mapmode-i "{{{
@@ -648,6 +650,12 @@ command!
 \   -nargs=* -complete=mapping
 \   AllMaps
 \   map <args> | map! <args> | lmap <args>
+
+
+command!
+\   -nargs=* -complete=mapping
+\   OpenRightWindow
+\   set splitright | vsplit <args> | set nosplitright
 
 " for rails.vim
 if s:iswin
