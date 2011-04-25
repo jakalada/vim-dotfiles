@@ -44,10 +44,6 @@ if !exists($MYGVIMRC)
   let $MYGVIMRC = expand('~/.gvimrc')
 endif
 
-
-filetype plugin on
-filetype indent on
-
 augroup MyAutoCmd
   autocmd!
 augroup END
@@ -58,7 +54,13 @@ if s:iswin
 endif
 
 " Load bundles.
+filetype off
+
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
+filetype plugin on
+filetype indent on
 " }}}
 
 "-------------------------------------------------------------------------
