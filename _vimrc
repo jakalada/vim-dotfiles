@@ -452,7 +452,12 @@ if s:iswin
   let g:ref_refe_encoding = 'cp932'
 else
   let g:ref_refe_encoding = 'euc-jp'
+  let g:ref_refe_rsense_cmd = ['ruby', expand('$RSENSE_HOME/bin/rsense')]
 endif
+
+let g:ref_detect_filetype = {
+      \ 'c': 'man', 'clojure': 'clojure', 'perl': 'perldoc', 'php': 'phpmanual', 'ruby': 'refe', 'erlang': 'erlang', 'python': 'pydoc'
+      \}
 
 autocmd FileType ref call s:initialize_ref_viewer()
 function! s:initialize_ref_viewer()
