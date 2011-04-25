@@ -381,6 +381,11 @@ nnoremap <silent> [unite]m :<C-U>Unite -buffer-name=mark mark<CR>
 nnoremap <silent> [unite]h :<C-U>Unite -buffer-name=help help<CR>
 nnoremap <silent> <leader>b :<C-U>UniteBookmarkAdd<CR>
 
+" for unite-grep
+let g:unite_source_grep_default_opts = '-iRHn'
+
+" }}}
+
 " zen-coding {{{
 let g:user_zen_settings = {
       \ 'html' : {
@@ -413,8 +418,6 @@ endfunction
 "  return executable('locate') ? s:unite_source : []
 "endfunction
 call unite#define_source(s:unite_source)
-" }}}
-
 " }}}
 
 " neocomplcache.vim "{{{
