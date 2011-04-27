@@ -360,7 +360,6 @@ let g:NERDTreeChDirMode=1
 
 nnoremap <silent> <leader>A :<C-U>NERDTree<CR>
 nnoremap <silent> <leader>a :<C-U>NERDTreeToggle<CR>
-nnoremap <silent> <leader>n :<C-U>NERDTreeToggle $HOME/Dropbox/Notes<CR>
 " }}}
 
 " unite.vim "{{{
@@ -372,7 +371,6 @@ nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
 nmap f [unite]
 xmap f [unite]
-nnoremap <silent> [unite]n :<C-U>call unite#start(['file'], {'input': $HOME.'/Dropbox/Notes/', 'buffer_name': 'files'})<CR>
 nnoremap <silent> [unite]F :<C-U>Unite -input=/ -buffer-name=files file bookmark file_mru<CR>
 nnoremap <silent> [unite]f :<C-U>Unite -buffer-name=files file<CR>
 nnoremap <silent> [unite]b :<C-U>Unite -buffer-name=buffer buffer<CR>
@@ -545,7 +543,6 @@ nnoremap <silent> <C-Q> :<C-U>close<CR>
 
 nnoremap <silent> <C-O> :<C-U>OpenURL <cfile><CR>
 
-nnoremap <silent> <leader>; :<C-U>OpenRightWindow $HOME/Dropbox/GTD/inbox.md<CR>
 nnoremap <silent> <Leader>n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
 nnoremap <silent> <Leader>g :<C-U>tabnew \| lcd $DROPBOXDIR/GTD<CR>
 " }}}
@@ -666,11 +663,6 @@ command!
 \   AllMaps
 \   map <args> | map! <args> | lmap <args>
 
-
-command!
-\   -nargs=* -complete=mapping
-\   OpenRightWindow
-\   set splitright | vsplit <args> | set nosplitright
 
 " for rails.vim
 if s:iswin
