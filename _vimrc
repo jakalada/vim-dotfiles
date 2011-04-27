@@ -6,63 +6,95 @@
 
 let s:iswin = has('win32') || has('win64')
 
-let $DROPBOXDIR = expand('~/Dropbox')
-
-" Use English interface.
 if s:iswin
-  " For Windows.
+  " For Windows "{{{
   language message en
-else
-  " For Linux.
-  language mes C
-endif
 
-" Use ',' instead of '\'.
-" It is not mapped with respect well unless I set it before setting for plug in.
-let mapleader = ' '
-" Use <Leader> in global plugin.
-let g:mapleader = ' '
-" Use <LocalLeader> in filetype plugin.
-let g:maplocalleader = '\'
-
-" Release keymappings for plug-in.
-nnoremap ; <Nop>
-xnoremap ; <Nop>
-nnoremap <Space> <Nop>
-xnoremap <Space> <Nop>
-nnoremap \ <Nop>
-xnoremap \ <Nop>
-
-if s:iswin
-  " Exchange path separator.
+  " すでに読み込まれているファイル名には影響がないので注意する
   set shellslash
+
+  let $DOTVIMDIR = expand('~/vimfiles')
+
+  let $DROPBOXDIR = expand('~/Dropbox')
+  " }}}
+else
+  " For Linux "{{{
+  language mes C
+
+  let $DOTVIMDIR = expand('~/.vim')
+
+  let $DROPBOXDIR = expand('~/Dropbox')
+  " }}}
 endif
 
-" In Windows/Linux, take in a difference of ".vim" and "$VIM/vimfiles".
-let $DOTVIM = expand('~/.vim')
+" pathogen "{{{
 
-" Because a value is not set in $MYGVIMRC with the console, set it.
-if !exists($MYGVIMRC)
-  let $MYGVIMRC = expand('~/.gvimrc')
-endif
-
-augroup MyAutoCmd
-  autocmd!
-augroup END
-
-" Set runtimepath.
-if s:iswin
-  let &runtimepath = join([expand('~/.vim'), expand('$VIM/runtime'), expand('~/.vim/after')], ',')
-endif
-
-" Load bundles.
-filetype off
+"filetype off "デフォルトのファイル判定が利かない？filetype=gitcommitが設定されない
 
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+filetype on
 filetype plugin on
 filetype indent on
+" }}}
+
+" }}}
+
+"-------------------------------------------------------------------------
+" Commands: "{{{
+"
+" from tyru's .vimrc {{{
+" https://github.com/tyru
+augroup vimrc
+    autocmd!
+augroup END
+
+command!
+\   -bang -nargs=*
+\   MyAutocmd
+\   autocmd<bang> vimrc <args>
+" }}}
+ 
+" Vim-users.jp - Hack #203: 定義されているマッピングを調べる {{{
+" http://vim-users.jp/2011/02/hack203/
+command!
+\   -nargs=* -complete=mapping
+\   AllMaps
+\   map <args> | map! <args> | lmap <args>
+" }}}
+
+" for rails.vim {{{
+if s:iswin
+  command!
+\   -bar -nargs=1
+\   OpenURL
+\   :!start cmd /cstart /b <args>
+else
+  command!
+\   -bar -nargs=1
+\   OpenURL
+\   :VimProcBang firefox <args>
+endif
+" }}}
+
+" }}}
+
+"-------------------------------------------------------------------------
+" Functions: "{{{
+"
+function! SnipMid(str, len, mask) "{{{
+  if a:len >= len(a:str)
+    return a:str
+  elseif a:len <= len(a:mask)
+    return a:mask
+  endif
+
+  let len_head = (a:len - len(a:mask)) / 2
+  let len_tail = a:len - len(a:mask) - len_head
+
+  return (len_head > 0 ? a:str[: len_head - 1] : '') . a:mask . (len_tail > 0 ? a:str[-len_tail :] : '')
+endfunction " }}}
 " }}}
 
 "-------------------------------------------------------------------------
@@ -150,7 +182,7 @@ function! AU_ReCheck_FENC()
   endif
 endfunction
 
-autocmd MyAutoCmd BufReadPost * call AU_ReCheck_FENC()
+MyAutocmd BufReadPost * call AU_ReCheck_FENC()
 
 " Default fileformat.
 set fileformat=unix
@@ -207,125 +239,9 @@ command! -bang -complete=file -nargs=? WDos write<bang> ++fileformat=dos <args> 
 " }}}" }}}
 
 "-------------------------------------------------------------------------
-" Search: "{{{
-"
-set incsearch
-set ignorecase
-set smartcase
-set wrapscan
-
-" hlsearch only searching."{{{
-nnoremap <silent> / :<C-U>setlocal hlsearch<CR>/
-nnoremap <silent> ? :<C-U>setlocal hlsearch<CR>?
-nnoremap <silent> n :<C-U>setlocal hlsearch<CR>n
-nnoremap <silent> N :<C-U>setlocal hlsearch<CR>N
-nnoremap <silent> v :<C-U>setlocal nohlsearch<CR>v
-nnoremap <silent> <C-V> :<C-U>setlocal nohlsearch<CR><C-V>
-nnoremap <silent> V :<C-U>setlocal nohlsearch<CR>V
-autocmd MyAutoCmd InsertEnter * setlocal nohlsearch
-" }}}
-
-" }}}
-
-"-------------------------------------------------------------------------
-" Edit: "{{{
-"
-set nocompatible
-set smarttab expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set shiftround
-
-set modeline
-
-set clipboard& clipboard+=unnamed
-
-autocmd MyAutoCmd FileType * set textwidth=0
-
-set backspace=indent,eol,start
-
-set showmatch
-set cpoptions-=m
-set matchtime=3
-" Highlight <>.
-set matchpairs+=<:>
-
-set hidden
-
-set infercase
-
-set cdpath+=~
-
-set directory-=.
-
-if v:version >= 703
-  set undofile
-  let &undodir=&directory
-endif
-
-set virtualedit=block
-
-set scrolloff=10
-
-set helplang=ja
-
-set autoread
-
-augroup VimrcChecktime
-  autocmd!
-  autocmd WinEnter * checktime
-augroup END
-" }}}
-
-"-------------------------------------------------------------------------
-" View: "{{{
-"
-set linespace=3
-
-set number
-set numberwidth=3
-
-set showcmd
-set cmdheight=2
-
-set noequalalways
-
-set list
-set listchars=tab:>-,trail:-,extends:>,precedes:<
-
-set linebreak
-set showbreak=>\
-set breakat=\ \	;:,!?
-
-colorscheme wombat256mod
-
-" statusline "{{{
-set laststatus=2
-let &statusline="%{winnr('$')>1?'['.winnr().'/'.winnr('$').(winnr('#')==winnr()?'#':'').']':''}\ %{expand('%:p:.')}\ %<\(%{SnipMid(getcwd(),80-len(expand('%:p:.')),'...')}\)\ %{cfi#format('(%s())', '(no function)')}\ %=%m%y%{'['.(&fenc!=''?&fenc:&enc).','.&ff.']'}\ %3p%%"
-" }}}
-
-" window title "{{{
-set title
-" Title length.
-set titlelen=95
-" Title string.
-let &titlestring="%{expand('%:p:.')}%(%m%r%w%) %<\(%{SnipMid(getcwd(),80-len(expand('%:p:.')),'...')}\) - Vim"
-" }}}
-
-" }}}
-
-"-------------------------------------------------------------------------
 " Syntax: "{{{
 "
 syntax enable
-
-augroup MyAutoCmd "{{{
-  " Close help and git window by pressing q.
-  autocmd FileType help,git-status,git-log,qf,gitcommit,quickrun,qfreplace,ref,simpletap-summary nnoremap <buffer><silent> q :<C-U>close<CR>
-  autocmd FileType * if &readonly |  nnoremap <buffer><silent> q :<C-U>close<CR> | endif
-augroup END
-" }}}
 
 " Ruby
 let ruby_operators = 1
@@ -346,6 +262,278 @@ let g:xml_syntax_folding = 1
 
 " Vim
 let g:vimsyntax_noerror = 1
+
+" Bash
+let g:is_bash = 1
+
+" Scheme
+let g:is_gauche = 1
+" }}}
+
+"-------------------------------------------------------------------------
+" Options: "{{{
+"
+" from tyru's .vimrc {{{
+" https://github.com/tyru
+let s:tmp = &runtimepath
+set all&
+let &runtimepath = s:tmp
+unlet s:tmp
+" }}}
+
+set autoindent
+set smartindent
+set smarttab
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set shiftround
+
+set clipboard=unnamed
+
+set backspace=indent,eol,start
+
+set matchpairs+=<:>
+
+set hidden
+
+set directory-=.
+if v:version >= 703
+  set undofile
+  let &undodir=&directory
+endif
+
+if has('virtualedit')
+  set virtualedit=all
+endif
+
+set scrolloff=10
+
+set helplang=ja
+
+augroup VimrcChecktime
+  autocmd!
+   MyAutocmd WinEnter * checktime
+augroup END
+
+" tags
+if has('path_extra')
+    set tags+=.;
+    set tags+=tags;
+endif
+set showfulltag
+set notagbsearch
+
+if has('unix')
+  set nofsync
+  set swapsync=
+endif
+
+" search
+set incsearch
+set ignorecase
+set smartcase
+set wrapscan
+
+nnoremap <silent> / :<C-U>setlocal hlsearch<CR>/
+nnoremap <silent> ? :<C-U>setlocal hlsearch<CR>?
+nnoremap <silent> n :<C-U>setlocal hlsearch<CR>n
+nnoremap <silent> N :<C-U>setlocal hlsearch<CR>N
+nnoremap <silent> v :<C-U>setlocal nohlsearch<CR>v
+nnoremap <silent> <C-V> :<C-U>setlocal nohlsearch<CR><C-V>
+nnoremap <silent> V :<C-U>setlocal nohlsearch<CR>V
+MyAutocmd InsertEnter * setlocal nohlsearch
+
+set linespace=3
+
+set number
+
+set showcmd
+
+set noequalalways
+
+set list
+set listchars=tab:>-,trail:-,extends:>,precedes:<
+
+set linebreak
+set showbreak=>\
+set breakat=\ \	;:,!?
+
+colorscheme wombat256mod
+
+" statusline "{{{
+set laststatus=2
+let &statusline="%{winnr('$')>1?'['.winnr().'/'.winnr('$').(winnr('#')==winnr()?'#':'').']':''}\ %{expand('%:p:.')}\ %<\(%{SnipMid(getcwd(),80-len(expand('%:p:.')),'...')}\)\ %{cfi#format('(%s())', '(no function)')}\ %=%m%y%{'['.(&fenc!=''?&fenc:&enc).','.&ff.']'}\ %3p%%"
+" }}}
+
+" }}}
+
+"-------------------------------------------------------------------------
+" Key-mappings: "{{{
+"
+" Use ',' instead of '\'.
+"
+" Leader " {{{
+let mapleader = ' '
+let g:mapleader = ' '
+let g:maplocalleader = '\'
+
+nnoremap ; <Nop>
+xnoremap ; <Nop>
+nnoremap <Space> <Nop>
+xnoremap <Space> <Nop>
+nnoremap \ <Nop>
+xnoremap \ <Nop>
+" }}}
+
+" mapmode-nvo "{{{
+noremap j gj
+noremap k gk
+noremap <C-J> <C-D>
+noremap <C-K> <C-U>
+noremap <C-L> <C-E>
+noremap <C-H> <C-Y>
+
+noremap L $
+noremap H ^
+noremap gj L
+noremap gm M
+noremap gk H
+" }}}
+
+" mapmode-n "{{{
+nnoremap <Leader>- yypVr-
+nnoremap <Leader>= yypVr=
+
+nnoremap <TAB> <C-W>w
+
+nnoremap <Backspace> <C-O>
+nnoremap <S-Backspace> <C-I>
+
+nnoremap <silent> <leader><leader> :<C-U>write<CR>
+
+nnoremap <C-Up> <C-A>
+nnoremap <C-Down> <C-X>
+
+nnoremap <silent> <C-Q> :<C-U>close<CR>
+
+nnoremap <silent> <C-O> :<C-U>OpenURL <cfile><CR>
+
+nnoremap <silent> <Leader>n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
+nnoremap <silent> <Leader>g :<C-U>tabnew \| lcd $DROPBOXDIR/GTD<CR>
+
+" }}}
+
+" mapmode-i "{{{
+inoremap jj <Esc>
+inoremap <C-J> <Esc>o
+inoremap <C-K> <Esc>O
+
+inoremap <S-Space> _
+inoremap ; :
+inoremap ;; <Space>=><Space>
+inoremap ;% <%  %><Esc>hhi
+inoremap ;= <%=  %><Esc>hhi
+inoremap ;e <% end %><Esc>
+" }}}
+
+" tab page mapping {{{
+nnoremap <SID>[tab] <Nop>
+nmap t <SID>[tab]
+
+nnoremap <silent> <SID>[tab]l :<C-U>tabnext<CR>
+nnoremap <silent> <SID>[tab]h :<C-U>tabprev<CR>
+nnoremap <silent> <SID>[tab]q :<C-U>tabclose<CR>
+nnoremap <silent> <SID>[tab]t :<C-U>tabnew<CR>
+" }}}
+
+" split mapping {{{
+nnoremap <SID>[split] <Nop>
+nmap <C-W>s <SID>[split]
+
+nmap <SID>[split]j <SID>(split-to-j)
+nmap <SID>[split]k <SID>(split-to-k)
+nmap <SID>[split]h <SID>(split-to-h)
+nmap <SID>[split]l <SID>(split-to-l)
+
+nnoremap <silent> <SID>(split-to-j) :<C-U>execute 'belowright' (v:count == 0 ? '' : v:count) 'split'<CR>
+nnoremap <silent> <SID>(split-to-k) :<C-U>execute 'aboveleft'  (v:count == 0 ? '' : v:count) 'split'<CR>
+nnoremap <silent> <SID>(split-to-h) :<C-U>execute 'topleft'    (v:count == 0 ? '' : v:count) 'vsplit'<CR>
+nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '' : v:count) 'vsplit'<CR>
+" }}}
+
+MyAutocmd FileType help,git-status,git-log,qf,gitcommit,quickrun,qfreplace,ref,simpletap-summary nnoremap <buffer><silent> q :<C-U>close<CR>
+MyAutocmd FileType * if &readonly |  nnoremap <buffer><silent> q :<C-U>close<CR> | endif
+
+" Hack #161: Command-line windowを使いこなす "{{{
+" http://vim-users.jp/2010/07/hack161/
+nnoremap <SID>(command-line-enter) q:
+xnoremap <SID>(command-line-enter) q:
+nnoremap <SID>(command-line-norange) q:<C-U>
+
+nmap ; <SID>(command-line-enter)
+xmap ; <SID>(command-line-enter)
+
+nmap <leader>h <SID>(command-line-enter)help<Space>
+nnoremap <silent> <leader>hh :<C-U>help<Space><C-R><C-W><CR>
+
+MyAutocmd CmdwinEnter * call s:init_cmdwin()
+function! s:init_cmdwin()
+  nnoremap <silent> <buffer> q :<C-U>quit<CR>
+  startinsert!
+endfunction
+" }}}
+
+" Quickly adding and deleting empty lines - Vim Tips Wiki "{{{
+" http://vim.wikia.com/wiki/Quickly_adding_and_deleting_empty_lines
+function! AddEmptyLineBelow()
+  call append(line("."), "")
+endfunction
+
+function! AddEmptyLineAbove()
+  let l:scrolloffsave = &scrolloff
+  " Avoid jerky scrolling with ^E at top of window
+  set scrolloff=0
+  call append(line(".") - 1, "")
+  if winline() != winheight(0)
+    silent normal! <C-E>
+  end
+  let &scrolloff = l:scrolloffsave
+endfunction
+
+function! DelEmptyLineBelow()
+  if line(".") == line("$")
+    return
+  end
+  let l:line = getline(line(".") + 1)
+  if l:line =~ '^\s*$'
+    let l:colsave = col(".")
+    .+1d
+    ''
+    call cursor(line("."), l:colsave)
+  end
+endfunction
+
+function! DelEmptyLineAbove()
+  if line(".") == 1
+    return
+  end
+  let l:line = getline(line(".") - 1)
+  if l:line =~ '^\s*$'
+    let l:colsave = col(".")
+    .-1d
+    silent normal! <C-Y>
+    call cursor(line("."), l:colsave)
+  end
+endfunction
+
+noremap <silent> Dj :call DelEmptyLineBelow()<CR>
+noremap <silent> Dk :call DelEmptyLineAbove()<CR>
+noremap <silent> Aj :call AddEmptyLineBelow()<CR>
+noremap <silent> Ak :call AddEmptyLineAbove()<CR>
+" }}}
+
 " }}}
 
 "-------------------------------------------------------------------------
@@ -470,14 +658,14 @@ endfunction
 " }}}
 
 " changelog.vim "{{{
-autocmd MyAutoCmd BufNewFile,BufRead *.changelog setf changelog
+MyAutocmd BufNewFile,BufRead *.changelog setf changelog
 let g:changelog_timeformat = "%Y-%m-%d"
 let g:changelog_username = "hot_coffee"
 " }}}
 
 " surround.vim "{{{
 let g:surround_no_mappings = 1
-autocmd MyAutoCmd FileType * call s:define_surround_keymappings()
+MyAutocmd FileType * call s:define_surround_keymappings()
 
 function! s:define_surround_keymappings()
   if !&modifiable
@@ -506,241 +694,5 @@ let g:quickrun_config['markdown'] = {
 " }}}
 
 " }}}
-
-"-------------------------------------------------------------------------
-" Key-mappings: "{{{
-"
-" mapmode-nvo "{{{
-noremap j gj
-noremap k gk
-noremap <C-J> <C-D>
-noremap <C-K> <C-U>
-noremap <C-L> <C-E>
-noremap <C-H> <C-Y>
-
-noremap L $
-noremap H ^
-noremap gj L
-noremap gm M
-noremap gk H
-" }}}
-
-" mapmode-n "{{{
-nnoremap <Leader>- yypVr-
-nnoremap <Leader>= yypVr=
-
-nnoremap <TAB> <C-W>w
-
-nnoremap <Backspace> <C-O>
-nnoremap <S-Backspace> <C-I>
-
-nnoremap <silent> <leader><leader> :<C-U>write<CR>
-
-nnoremap <C-Up> <C-A>
-nnoremap <C-Down> <C-X>
-
-nnoremap <silent> <C-Q> :<C-U>close<CR>
-
-nnoremap <silent> <C-O> :<C-U>OpenURL <cfile><CR>
-
-nnoremap <silent> <Leader>n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
-nnoremap <silent> <Leader>g :<C-U>tabnew \| lcd $DROPBOXDIR/GTD<CR>
-" }}}
-
-" mapmode-i "{{{
-inoremap jj <Esc>
-inoremap <C-J> <Esc>o
-inoremap <C-K> <Esc>O
-
-inoremap <S-Space> _
-inoremap ; :
-inoremap ;; <Space>=><Space>
-inoremap ;% <%  %><Esc>hhi
-inoremap ;= <%=  %><Esc>hhi
-inoremap ;e <% end %><Esc>
-" }}}
-
-" tab page mapping {{{
-nnoremap <SID>[tab] <Nop>
-nmap t <SID>[tab]
-
-nnoremap <silent> <SID>[tab]l :<C-U>tabnext<CR>
-nnoremap <silent> <SID>[tab]h :<C-U>tabprev<CR>
-nnoremap <silent> <SID>[tab]q :<C-U>tabclose<CR>
-nnoremap <silent> <SID>[tab]t :<C-U>tabnew<CR>
-" }}}
-
-" split mapping {{{
-nnoremap <SID>[split] <Nop>
-nmap <C-W>s <SID>[split]
-
-nmap <SID>[split]j <SID>(split-to-j)
-nmap <SID>[split]k <SID>(split-to-k)
-nmap <SID>[split]h <SID>(split-to-h)
-nmap <SID>[split]l <SID>(split-to-l)
-
-nnoremap <silent> <SID>(split-to-j) :<C-U>execute 'belowright' (v:count == 0 ? '' : v:count) 'split'<CR>
-nnoremap <silent> <SID>(split-to-k) :<C-U>execute 'aboveleft'  (v:count == 0 ? '' : v:count) 'split'<CR>
-nnoremap <silent> <SID>(split-to-h) :<C-U>execute 'topleft'    (v:count == 0 ? '' : v:count) 'vsplit'<CR>
-nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '' : v:count) 'vsplit'<CR>
-" }}}
-
-" Hack #161: Command-line windowを使いこなす "{{{
-" http://vim-users.jp/2010/07/hack161/
-nnoremap <SID>(command-line-enter) q:
-xnoremap <SID>(command-line-enter) q:
-nnoremap <SID>(command-line-norange) q:<C-U>
-
-nmap ; <SID>(command-line-enter)
-xmap ; <SID>(command-line-enter)
-
-nmap <leader>h <SID>(command-line-enter)help<Space>
-nnoremap <silent> <leader>hh :<C-U>help<Space><C-R><C-W><CR>
-
-autocmd MyAutoCmd CmdwinEnter * call s:init_cmdwin()
-function! s:init_cmdwin()
-  nnoremap <silent> <buffer> q :<C-U>quit<CR>
-  startinsert!
-endfunction
-" }}}
-
-" Quickly adding and deleting empty lines - Vim Tips Wiki "{{{
-" http://vim.wikia.com/wiki/Quickly_adding_and_deleting_empty_lines
-function! AddEmptyLineBelow()
-  call append(line("."), "")
-endfunction
-
-function! AddEmptyLineAbove()
-  let l:scrolloffsave = &scrolloff
-  " Avoid jerky scrolling with ^E at top of window
-  set scrolloff=0
-  call append(line(".") - 1, "")
-  if winline() != winheight(0)
-    silent normal! <C-E>
-  end
-  let &scrolloff = l:scrolloffsave
-endfunction
-
-function! DelEmptyLineBelow()
-  if line(".") == line("$")
-    return
-  end
-  let l:line = getline(line(".") + 1)
-  if l:line =~ '^\s*$'
-    let l:colsave = col(".")
-    .+1d
-    ''
-    call cursor(line("."), l:colsave)
-  end
-endfunction
-
-function! DelEmptyLineAbove()
-  if line(".") == 1
-    return
-  end
-  let l:line = getline(line(".") - 1)
-  if l:line =~ '^\s*$'
-    let l:colsave = col(".")
-    .-1d
-    silent normal! <C-Y>
-    call cursor(line("."), l:colsave)
-  end
-endfunction
-
-noremap <silent> Dj :call DelEmptyLineBelow()<CR>
-noremap <silent> Dk :call DelEmptyLineAbove()<CR>
-noremap <silent> Aj :call AddEmptyLineBelow()<CR>
-noremap <silent> Ak :call AddEmptyLineAbove()<CR>
-" }}}
-
-" }}}
-
-"-------------------------------------------------------------------------
-" Commands: "{{{
-"
-command!
-\   -nargs=* -complete=mapping
-\   AllMaps
-\   map <args> | map! <args> | lmap <args>
-
-
-" for rails.vim
-if s:iswin
-  command!
-\   -bar -nargs=1
-\   OpenURL
-\   :!start cmd /cstart /b <args>
-else
-  command!
-\   -bar -nargs=1
-\   OpenURL
-\   :VimProcBang firefox <args>
-endif
-
-" requires metarw-git
-nnoremap <silent> <Leader>gw :silent call GitHighlightLastChange()<CR>
-function! GitHighlightLastChange()
-  if &diff
-    diffoff
-    return
-  endif
-
-  let log = system('git log -1 --pretty=oneline ' . expand('%'))
-  if v:shell_error
-    echoerr log
-    return
-  endif
-  let [ sha1, message ] = matchlist(log, '\v(\x{40}) (.*)\n')[1:2]
-  execute 'vertical diffsplit' 'git:' . sha1 . '^:%'
-  quit
-
-  redrawstatus
-  unsilent echo "highlighting diff of '" . message . "'"
-endfunction
-
-" }}}
-
-"-------------------------------------------------------------------------
-" Functions: "{{{
-"
-function! SnipMid(str, len, mask) "{{{
-  if a:len >= len(a:str)
-    return a:str
-  elseif a:len <= len(a:mask)
-    return a:mask
-  endif
-
-  let len_head = (a:len - len(a:mask)) / 2
-  let len_tail = a:len - len(a:mask) - len_head
-
-  return (len_head > 0 ? a:str[: len_head - 1] : '') . a:mask . (len_tail > 0 ? a:str[-len_tail :] : '')
-endfunction " }}}
-
-" }}}
-
-"-------------------------------------------------------------------------
-" Platform depends: "{{{
-"
-if s:iswin
-  " For Windows "{{{
-
-  " }}}
-else
-  " For Linux "{{{
-
-  " }}}
-endif
-" }}}
-
-"-------------------------------------------------------------------------
-" Finish:  "{{{1
-" https://github.com/kana/config/blob/master/vim/personal/dot.vimrc
-if !exists('s:loaded_my_vimrc')
-  let s:loaded_my_vimrc = 1
-  " autocmd MyAutoCmd VimEnter *
-  " \ doautocmd MyAutoCmd User DelayedSettings
-else
-  " doautocmd MyAutoCmd User DelayedSettings
-endif
 
 set secure  " must be written at the last.  see :help 'secure'.
