@@ -615,7 +615,7 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_ignore_case = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_snippets_dir = '~/.vim/snippets'
-let g:neocomplcache_enable_cursor_hold_i = 1
+" let g:neocomplcache_enable_cursor_hold_i = 1 " 改行字、空行が削除されないので一旦無効にした
 let g:neocomplcache_enable_auto_delimiter = 1
 
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
