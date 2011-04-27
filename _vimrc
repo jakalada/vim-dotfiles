@@ -6,6 +6,8 @@
 
 let s:iswin = has('win32') || has('win64')
 
+let $DROPBOXDIR = expand('~/Dropbox')
+
 " Use English interface.
 if s:iswin
   " For Windows.
@@ -544,6 +546,8 @@ nnoremap <silent> <C-Q> :<C-U>close<CR>
 nnoremap <silent> <C-O> :<C-U>OpenURL <cfile><CR>
 
 nnoremap <silent> <leader>; :<C-U>OpenRightWindow $HOME/Dropbox/GTD/inbox.md<CR>
+nnoremap <silent> <Leader>n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
+nnoremap <silent> <Leader>g :<C-U>tabnew \| lcd $DROPBOXDIR/GTD<CR>
 " }}}
 
 " mapmode-i "{{{
