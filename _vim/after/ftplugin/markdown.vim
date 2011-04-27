@@ -1,7 +1,8 @@
 setlocal smartindent autoindent smarttab expandtab
-setlocal tabstop=2
-setlocal shiftwidth=2
-setlocal softtabstop=2
+setlocal tabstop=4
+setlocal shiftwidth=4
+setlocal softtabstop=4
+setlocal shiftround=4
 
 if !exists('b:undo_ftplugin')
   let b:undo_ftplugin = ''
@@ -13,4 +14,5 @@ let b:undo_ftplugin .= '
 \ | setlocal shiftwidth<
 \ | setlocal softtabstop<
 \ | setlocal keywordprg<
+\ | setlocal shiftround<
 \'
