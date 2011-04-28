@@ -621,14 +621,10 @@ let g:neocomplcache_enable_auto_delimiter = 1
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
 imap <expr><C-l> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
 
-" for rsense.vim
-let g:rsenseUseOmniFunc = 1
-
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-
+" if !exists('g:neocomplcache_omni_patterns')
+"   let g:neocomplcache_omni_patterns = {}
+" endif
+" let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 " }}}
 
 " vim-quickrun "{{{
@@ -642,7 +638,6 @@ if s:iswin
   let g:ref_refe_encoding = 'cp932'
 else
   let g:ref_refe_encoding = 'euc-jp'
-  let g:ref_refe_rsense_cmd = ['ruby', expand('$RSENSE_HOME/bin/rsense')]
 endif
 
 let g:ref_detect_filetype = {
@@ -679,10 +674,6 @@ function! s:define_surround_keymappings()
   nmap <buffer>         ss  <Plug>Yssurround
   nmap <buffer>         SS  <Plug>YSsurround
 endfunction
-" }}}
-
-" rsense.vim "{{{
-let g:rsenseHome = $RSENSE_HOME
 " }}}
 
 " quickrun.vim "{{{
