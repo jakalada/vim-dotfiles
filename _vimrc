@@ -630,11 +630,6 @@ inoremap <expr><C-L>  neocomplcache#complete_common_string()
 " let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 " }}}
 
-" vim-quickrun "{{{
-let g:quickrun_config = {}
-let g:quickrun_config['markdown'] = { 'command': 'kramdown'}
-" }}}
-
 " vim-ref "{{{
 if s:iswin
   let g:ref_pydoc_cmd = 'pydoc.bat'
