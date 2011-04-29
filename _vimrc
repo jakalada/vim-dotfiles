@@ -407,9 +407,6 @@ noremap gk H
 " }}}
 
 " mapmode-n "{{{
-nnoremap <Leader>- yypVr-
-nnoremap <Leader>= yypVr=
-
 nnoremap <TAB> <C-W>w
 
 nnoremap <Backspace> <C-O>
