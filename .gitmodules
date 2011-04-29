@@ -88,3 +88,6 @@
 [submodule "_vim/vim-endwise"]
 	path = _vim/vim-endwise
 	url = git://github.com/tpope/vim-endwise.git
+[submodule "_vim/bundle/vim-smartchr"]
+	path = _vim/bundle/vim-smartchr
+	url = git://github.com/kana/vim-smartchr.git
