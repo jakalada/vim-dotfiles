@@ -16,6 +16,8 @@ if s:iswin
   let $DOTVIMDIR = expand('~/vimfiles')
 
   let $DROPBOXDIR = expand('~/Dropbox')
+
+  let $VIMCONFIGDIR = expand('~/environment/vim')
   " }}}
 else
   " For Linux "{{{
@@ -24,6 +26,8 @@ else
   let $DOTVIMDIR = expand('~/.vim')
 
   let $DROPBOXDIR = expand('~/Dropbox')
+
+  let $VIMCONFIGDIR = expand('~/environment/vim')
   " }}}
 endif
 
@@ -422,6 +426,7 @@ nnoremap <silent> <C-O> :<C-U>OpenURL <cfile><CR>
 
 nnoremap <silent> <Leader>n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
 nnoremap <silent> <Leader>g :<C-U>tabnew \| lcd $DROPBOXDIR/GTD<CR>
+nnoremap <silent> <Leader>v :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
 
 " }}}
 
