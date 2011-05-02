@@ -566,7 +566,7 @@ nnoremap <silent> [unite]f :<C-U>Unite -buffer-name=files file<CR>
 nnoremap <silent> [unite]b :<C-U>Unite -buffer-name=buffer buffer<CR>
 nnoremap <silent> [unite]r :<C-U>Unite -buffer-name=register register<CR>
 nnoremap <silent> [unite]t :<C-U>Unite -buffer-name=tab tab<CR>
-nnoremap <silent> [unite]o :<C-U>Unite -buffer-name=outline outline<CR>
+nnoremap <silent> [unite]o :<C-U>Unite -vertical -buffer-name=outline outline<CR>
 nnoremap <silent> [unite]m :<C-U>Unite -buffer-name=mark mark<CR>
 nnoremap <silent> [unite]h :<C-U>Unite -buffer-name=help help<CR>
 nnoremap <silent> <leader>b :<C-U>UniteBookmarkAdd<CR>
