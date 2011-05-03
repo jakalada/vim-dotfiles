@@ -64,9 +64,6 @@
 [submodule "_vim/bundle/caw.vim"]
 	path = _vim/bundle/caw.vim
 	url = git://github.com/tyru/caw.vim.git
-[submodule "_vim/bundle/neco-look"]
-	path = _vim/bundle/neco-look
-	url = git://github.com/ujihisa/neco-look.git
 [submodule "_vim/bundle/vimfiler"]
 	path = _vim/bundle/vimfiler
 	url = https://github.com/Shougo/vimfiler.git
