@@ -619,11 +619,6 @@ let g:neocomplcache_enable_auto_delimiter = 1
 let g:neocomplcache_text_mode_filetypes = {}
 let g:neocomplcache_text_mode_filetypes.markdown = 1
 
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\v\h\w*'
-
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
 imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
 imap <expr><C-L>  neocomplcache#complete_common_string()
