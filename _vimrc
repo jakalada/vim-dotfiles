@@ -294,8 +294,6 @@ set shiftwidth=2
 set softtabstop=2
 set shiftround
 
-set clipboard=unnamed
-
 set backspace=indent,eol,start
 
 set matchpairs+=<:>
