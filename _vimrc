@@ -426,7 +426,6 @@ nnoremap <silent> <Leader>v :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
 " }}}
 
 " mapmode-i "{{{
-inoremap jj <Esc>
 inoremap <C-J> <Esc>o
 inoremap <C-K> <Esc>O
 
