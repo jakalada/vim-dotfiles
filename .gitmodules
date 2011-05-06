@@ -94,3 +94,6 @@
 [submodule "_vim/bundle/shadow.vim"]
 	path = _vim/bundle/shadow.vim
 	url = git://github.com/ujihisa/shadow.vim.git
+[submodule "_vim/bundle/vim-rdoc"]
+	path = _vim/bundle/vim-rdoc
+	url = git://github.com/hallison/vim-rdoc.git
