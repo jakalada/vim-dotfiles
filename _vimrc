@@ -32,8 +32,7 @@ else
 endif
 
 " pathogen "{{{
-
-"filetype off "デフォルトのファイル判定が利かない？filetype=gitcommitが設定されない
+filetype off
 
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
