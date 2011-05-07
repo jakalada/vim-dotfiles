@@ -550,8 +550,14 @@ nnoremap <silent> <leader>a :<C-U>NERDTreeToggle<CR>
 
 " unite.vim "{{{
 " https://github.com/Shougo/unite.vim
-let g:unite_enable_ignore_case=1
-let g:unite_enable_smart_case=1
+
+" unite-variables
+let g:unite_split_rule = 'botright'
+let g:unite_enable_split_vertically = 1
+let g:unite_winwidth = 60
+
+" unite-source-variables
+let g:unite_source_file_mru_time_format = '(%F %R)'
 
 nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
