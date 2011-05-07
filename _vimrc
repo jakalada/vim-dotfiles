@@ -297,6 +297,8 @@ set backspace=indent,eol,start
 
 set matchpairs+=<:>
 
+set iskeyword+=-
+
 set hidden
 
 set directory-=.
