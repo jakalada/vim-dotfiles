@@ -557,6 +557,12 @@ nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
 nmap f [unite]
 xmap f [unite]
+
+nnoremap [unite-no-quite] <Nop>
+xnoremap [unite-no-quite] <Nop>
+nmap F [unite-no-quite]
+xmap F [unite-no-quite]
+
 nnoremap <silent> [unite]F :<C-U>Unite -input=/ -buffer-name=files file bookmark file_mru<CR>
 nnoremap <silent> [unite]f :<C-U>Unite -buffer-name=files file<CR>
 nnoremap <silent> [unite]b :<C-U>Unite -buffer-name=buffer buffer<CR>
@@ -565,6 +571,16 @@ nnoremap <silent> [unite]t :<C-U>Unite -buffer-name=tab tab<CR>
 nnoremap <silent> [unite]o :<C-U>Unite -vertical -buffer-name=outline outline<CR>
 nnoremap <silent> [unite]m :<C-U>Unite -buffer-name=mark mark<CR>
 nnoremap <silent> [unite]h :<C-U>Unite -buffer-name=help help<CR>
+
+nnoremap <silent> [unite-no-quite]F :<C-U>Unite -no-quite -input=/ -buffer-name=files file bookmark file_mru<CR>
+nnoremap <silent> [unite-no-quite]f :<C-U>Unite -no-quite -buffer-name=files file<CR>
+nnoremap <silent> [unite-no-quite]b :<C-U>Unite -no-quite -buffer-name=buffer buffer<CR>
+nnoremap <silent> [unite-no-quite]r :<C-U>Unite -no-quite -buffer-name=register register<CR>
+nnoremap <silent> [unite-no-quite]t :<C-U>Unite -no-quite -buffer-name=tab tab<CR>
+nnoremap <silent> [unite-no-quite]o :<C-U>Unite -no-quite -vertical -buffer-name=outline outline<CR>
+nnoremap <silent> [unite-no-quite]m :<C-U>Unite -no-quite -buffer-name=mark mark<CR>
+nnoremap <silent> [unite-no-quite]h :<C-U>Unite -no-quite -buffer-name=help help<CR>
+
 nnoremap <silent> <leader>b :<C-U>UniteBookmarkAdd<CR>
 
 " for unite-grep
