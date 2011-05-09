@@ -547,7 +547,6 @@ nnoremap <silent> <leader>a :<C-U>VimFiler<CR>
 let g:NERDTreeChDirMode=1
 
 nnoremap <silent> <leader>A :<C-U>NERDTree<CR>
-nnoremap <silent> <leader>a :<C-U>NERDTreeToggle<CR>
 " }}}
 
 " unite.vim "{{{
