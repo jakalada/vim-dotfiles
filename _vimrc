@@ -540,13 +540,14 @@ noremap <silent> Ak :call AddEmptyLineAbove()<CR>
 " Plugin: "{{{
 "
 " vimfiler.vim "{{{
-nnoremap <silent> <leader>a :<C-U>VimFiler<CR>
+"nnoremap <silent> <leader>a :<C-U>VimFiler<CR>
 " }}}
 
 "nerdtree.vim "{{{
 let g:NERDTreeChDirMode=1
 
 nnoremap <silent> <leader>A :<C-U>NERDTree<CR>
+nnoremap <silent> <leader>a :<C-U>NERDTreeToggle<CR>
 " }}}
 
 " unite.vim "{{{
@@ -713,6 +714,31 @@ nmap <silent> [fugitive]g <SID>(command-line-enter)Git<Space>
 nnoremap <silent> [fugitive]b :<C-U>Gblame<CR>
 nnoremap <silent> [fugitive]c :<C-U>Gcommit<CR>
 nnoremap <silent> [fugitive]s :<C-U>Gstatus<CR>
+" }}}
+
+" vim-coffee-script " {{{
+augroup MyCoffeeScriptAutoMake
+    autocmd!
+augroup END
+
+command!
+\   -bang -nargs=*
+\   ToggleCoffeeScriptAutoMake
+\   call s:toggle_coffee_script_auto_make()
+
+
+let g:my_coffee_script_auto_make = 0
+function! s:toggle_coffee_script_auto_make()
+  if g:my_coffee_script_auto_make == 1
+    augroup MyCoffeeScriptAutoMake
+        autocmd!
+    augroup END
+    let g:my_coffee_script_auto_make = 0
+  else
+    autocmd MyCoffeeScriptAutoMake BufWritePost *.coffee silent CoffeeMake!
+    let g:my_coffee_script_auto_make = 1
+  endif
+endfunction
 " }}}
 
 " }}}
