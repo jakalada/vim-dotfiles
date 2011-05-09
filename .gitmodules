@@ -43,9 +43,6 @@
 [submodule "_vim/bundle/unite-grep"]
 	path = _vim/bundle/unite-grep
 	url = git://github.com/Sixeight/unite-grep.git
-[submodule "_vim/bundle/git-vim"]
-	path = _vim/bundle/git-vim
-	url = git://github.com/motemen/git-vim.git
 [submodule "_vim/bundle/vim-surround"]
 	path = _vim/bundle/vim-surround
 	url = git://github.com/tpope/vim-surround.git
