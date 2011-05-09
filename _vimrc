@@ -421,7 +421,7 @@ nnoremap <silent> <C-Q> :<C-U>close<CR>
 nnoremap <silent> <C-O> :<C-U>OpenURL <cfile><CR>
 
 nnoremap <silent> <Leader>n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
-nnoremap <silent> <Leader>g :<C-U>tabnew \| lcd $DROPBOXDIR/GTD<CR>
+nnoremap <silent> <Leader>t :<C-U>tabnew \| lcd $DROPBOXDIR/GTD<CR>
 nnoremap <silent> <Leader>v :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
 
 " }}}
@@ -702,6 +702,18 @@ let g:quickrun_config['markdown'] = {
 \ 'command': 'redcarpet_ext',
 \ 'exec': '%c %s'
 \ }
+" }}}
+
+" vim-fugitive "{{{
+nnoremap [fugitive] <Nop>
+xnoremap [fugitive] <Nop>
+nmap <Leader>g [fugitive]
+xmap <Leader>g [fugitive]
+
+nmap <silent> [fugitive]g <SID>(command-line-enter)Git<Space>
+nnoremap <silent> [fugitive]b :<C-U>Gblame<CR>
+nnoremap <silent> [fugitive]c :<C-U>Gcommit<CR>
+nnoremap <silent> [fugitive]s :<C-U>Gstatus<CR>
 " }}}
 
 " }}}
