@@ -540,7 +540,7 @@ noremap <silent> Ak :call AddEmptyLineAbove()<CR>
 " Plugin: "{{{
 "
 " vimfiler.vim "{{{
-nnoremap <silent> F :<C-U>VimFiler<CR>
+nnoremap <silent> <leader>a :<C-U>VimFiler<CR>
 " }}}
 
 "nerdtree.vim "{{{
