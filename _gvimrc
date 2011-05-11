@@ -6,5 +6,4 @@ set guitablabel=%-30.30t
 set mouse=a
 set mousehide
 set mousefocus
-colorscheme wombat
-
+colorscheme zenburn
