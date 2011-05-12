@@ -414,7 +414,8 @@ nnoremap <silent> <leader><leader> :<C-U>write<CR>
 nnoremap <C-Up> <C-A>
 nnoremap <C-Down> <C-X>
 
-nnoremap <silent> <C-Q> :<C-U>close<CR>
+nnoremap Q q
+nnoremap <silent> q :<C-U>close<CR>
 
 nnoremap <silent> <Leader>n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
 nnoremap <silent> <Leader>t :<C-U>tabnew \| lcd $DROPBOXDIR/GTD<CR>
@@ -458,9 +459,6 @@ nnoremap <silent> <SID>(split-to-k) :<C-U>execute 'aboveleft'  (v:count == 0 ? '
 nnoremap <silent> <SID>(split-to-h) :<C-U>execute 'topleft'    (v:count == 0 ? '' : v:count) 'vsplit'<CR>
 nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '' : v:count) 'vsplit'<CR>
 " }}}
-
-MyAutocmd FileType help,git-status,git-log,qf,gitcommit,quickrun,qfreplace,ref,simpletap-summary nnoremap <buffer><silent> q :<C-U>close<CR>
-MyAutocmd FileType * if &readonly |  nnoremap <buffer><silent> q :<C-U>close<CR> | endif
 
 " Hack #161: Command-line windowを使いこなす "{{{
 " http://vim-users.jp/2010/07/hack161/
