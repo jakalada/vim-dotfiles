@@ -416,8 +416,6 @@ nnoremap <C-Down> <C-X>
 
 nnoremap <silent> <C-Q> :<C-U>close<CR>
 
-nnoremap <silent> <C-O> :<C-U>OpenURL <cfile><CR>
-
 nnoremap <silent> <Leader>n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
 nnoremap <silent> <Leader>t :<C-U>tabnew \| lcd $DROPBOXDIR/GTD<CR>
 nnoremap <silent> <Leader>v :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
