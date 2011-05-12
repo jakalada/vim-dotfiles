@@ -100,3 +100,6 @@
 [submodule "_vim/bundle/vim-colors-solarized"]
 	path = _vim/bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "_vim/bundle/open-browser.vim"]
+	path = _vim/bundle/open-browser.vim
+	url = git://github.com/tyru/open-browser.vim.git
