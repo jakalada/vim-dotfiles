@@ -357,11 +357,9 @@ set showcmd
 set noequalalways
 
 set list
-set listchars=tab:>-,trail:-,extends:>,precedes:<
+set listchars=tab:>-,trail:-
 
-set linebreak
-set showbreak=>\
-set breakat=\ \	;:,!?
+set nowrap
 
 colorscheme wombat256mod
 
