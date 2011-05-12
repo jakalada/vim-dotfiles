@@ -741,6 +741,28 @@ function! s:toggle_coffee_script_auto_make()
 endfunction
 " }}}
 
+" open-browser.vim " {{{
+if !exists('g:openbrowser_open_commands')
+  let g:openbrowser_open_commands = ['google-chrome', 'firefox']
+endif
+
+if !exists('g:openbrowser_open_rules')
+  let g:openbrowser_open_rules = {
+        \ 'google-chrome': '{browser} {shellescape(uri)}',
+        \ 'firefox': '{browser} {shellescape(uri)}',
+        \ }
+endif
+
+if !exists('g:openbrowser_search_engines')
+    let g:openbrowser_search_engines = {
+    \   'google': 'http://google.co.jp/search?q={query}',
+    \}
+endif
+
+nmap <Leader>o <Plug>(openbrowser-smart-search)
+vmap <Leader>o <Plug>(openbrowser-smart-search)
+" }}}
+
 " }}}
 
 set secure  " must be written at the last.  see :help 'secure'.
