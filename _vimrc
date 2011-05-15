@@ -284,20 +284,21 @@ let &runtimepath = s:tmp
 unlet s:tmp
 " }}}
 
-set autoindent
-set smartindent
-set smarttab
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set shiftround
+setlocal autoindent
+setlocal smartindent
+setlocal smarttab
+setlocal expandtab
+
+setlocal tabstop=2
+setlocal shiftwidth=2
+setlocal softtabstop=2
+setlocal shiftround
 
 set backspace=indent,eol,start
 
-set matchpairs+=<:>
+setlocal matchpairs+=<:>
 
-set iskeyword+=-
+setlocal iskeyword+=-
 
 set hidden
 
