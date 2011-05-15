@@ -398,14 +398,13 @@ noremap <C-H> <C-Y>
 
 noremap L $
 noremap H ^
+noremap HH <Home>
 noremap gj L
 noremap gm M
 noremap gk H
 " }}}
 
 " mapmode-n "{{{
-nnoremap <TAB> <C-W>w
-
 nnoremap <Backspace> <C-O>
 nnoremap <S-Backspace> <C-I>
 
@@ -416,10 +415,6 @@ nnoremap <C-Down> <C-X>
 
 nnoremap Q q
 nnoremap <silent> q :<C-U>close<CR>
-
-nnoremap <silent> <Leader>n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
-nnoremap <silent> <Leader>t :<C-U>tabnew \| lcd $DROPBOXDIR/GTD<CR>
-nnoremap <silent> <Leader>v :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
 
 " }}}
 
@@ -443,16 +438,22 @@ nnoremap <silent> <SID>[tab]l :<C-U>tabnext<CR>
 nnoremap <silent> <SID>[tab]h :<C-U>tabprev<CR>
 nnoremap <silent> <SID>[tab]q :<C-U>tabclose<CR>
 nnoremap <silent> <SID>[tab]t :<C-U>tabnew<CR>
+nnoremap <silent> <SID>[tab]tn :<C-U>tabnew $DROPBOXDIR/Notes<CR>
+nnoremap <silent> <SID>[tab]tg :<C-U>tabnew $DROPBOXDIR/GTD<CR>
+nnoremap <silent> <SID>[tab]tv :<C-U>tabnew $VIMCONFIGDIR<CR>
 " }}}
 
-" split mapping {{{
-nnoremap <SID>[split] <Nop>
-nmap <C-W>s <SID>[split]
+" window mapping {{{
+nnoremap <SID>[window] <Nop>
+nmap $ <SID>[window]
 
-nmap <SID>[split]j <SID>(split-to-j)
-nmap <SID>[split]k <SID>(split-to-k)
-nmap <SID>[split]h <SID>(split-to-h)
-nmap <SID>[split]l <SID>(split-to-l)
+nnoremap <Tab> <C-W>w
+nnoremap <S-Tab> <C-W>W
+
+nmap <SID>[window]sj <SID>(split-to-j)
+nmap <SID>[window]sk <SID>(split-to-k)
+nmap <SID>[window]sh <SID>(split-to-h)
+nmap <SID>[window]sl <SID>(split-to-l)
 
 nnoremap <silent> <SID>(split-to-j) :<C-U>execute 'belowright' (v:count == 0 ? '' : v:count) 'split'<CR>
 nnoremap <silent> <SID>(split-to-k) :<C-U>execute 'aboveleft'  (v:count == 0 ? '' : v:count) 'split'<CR>
@@ -555,33 +556,33 @@ let g:unite_winwidth = 60
 " unite-source-variables
 let g:unite_source_file_mru_time_format = '(%F %R)'
 
-nnoremap [unite] <Nop>
-xnoremap [unite] <Nop>
-nmap f [unite]
-xmap f [unite]
+nnoremap <SID>[unite] <Nop>
+xnoremap <SID>[unite] <Nop>
+nmap f <SID>[unite]
+xmap f <SID>[unite]
 
-nnoremap [unite-no-quite] <Nop>
-xnoremap [unite-no-quite] <Nop>
-nmap F [unite-no-quite]
-xmap F [unite-no-quite]
+nnoremap <SID>[unite-no-quite] <Nop>
+xnoremap <SID>[unite-no-quite] <Nop>
+nmap F <SID>[unite-no-quite]
+xmap F <SID>[unite-no-quite]
 
-nnoremap <silent> [unite]F :<C-U>Unite -input=/ -buffer-name=files file bookmark file_mru<CR>
-nnoremap <silent> [unite]f :<C-U>Unite -buffer-name=files file<CR>
-nnoremap <silent> [unite]b :<C-U>Unite -buffer-name=buffer buffer<CR>
-nnoremap <silent> [unite]r :<C-U>Unite -buffer-name=register register<CR>
-nnoremap <silent> [unite]t :<C-U>Unite -buffer-name=tab tab<CR>
-nnoremap <silent> [unite]o :<C-U>Unite -vertical -buffer-name=outline outline<CR>
-nnoremap <silent> [unite]m :<C-U>Unite -buffer-name=mark mark<CR>
-nnoremap <silent> [unite]h :<C-U>Unite -buffer-name=help help<CR>
+nnoremap <silent> <SID>[unite]F :<C-U>Unite -input=/ -buffer-name=files file bookmark file_mru<CR>
+nnoremap <silent> <SID>[unite]f :<C-U>Unite -buffer-name=files file<CR>
+nnoremap <silent> <SID>[unite]b :<C-U>Unite -buffer-name=buffer buffer<CR>
+nnoremap <silent> <SID>[unite]r :<C-U>Unite -buffer-name=register register<CR>
+nnoremap <silent> <SID>[unite]t :<C-U>Unite -buffer-name=tab tab<CR>
+nnoremap <silent> <SID>[unite]o :<C-U>Unite -vertical -buffer-name=outline outline<CR>
+nnoremap <silent> <SID>[unite]m :<C-U>Unite -buffer-name=mark mark<CR>
+nnoremap <silent> <SID>[unite]h :<C-U>Unite -buffer-name=help help<CR>
 
-nnoremap <silent> [unite-no-quite]F :<C-U>Unite -no-quite -input=/ -buffer-name=files file bookmark file_mru<CR>
-nnoremap <silent> [unite-no-quite]f :<C-U>Unite -no-quite -buffer-name=files file<CR>
-nnoremap <silent> [unite-no-quite]b :<C-U>Unite -no-quite -buffer-name=buffer buffer<CR>
-nnoremap <silent> [unite-no-quite]r :<C-U>Unite -no-quite -buffer-name=register register<CR>
-nnoremap <silent> [unite-no-quite]t :<C-U>Unite -no-quite -buffer-name=tab tab<CR>
-nnoremap <silent> [unite-no-quite]o :<C-U>Unite -no-quite -vertical -buffer-name=outline outline<CR>
-nnoremap <silent> [unite-no-quite]m :<C-U>Unite -no-quite -buffer-name=mark mark<CR>
-nnoremap <silent> [unite-no-quite]h :<C-U>Unite -no-quite -buffer-name=help help<CR>
+nnoremap <silent> <SID>[unite-no-quite]F :<C-U>Unite -no-quite -input=/ -buffer-name=files file bookmark file_mru<CR>
+nnoremap <silent> <SID>[unite-no-quite]f :<C-U>Unite -no-quite -buffer-name=files file<CR>
+nnoremap <silent> <SID>[unite-no-quite]b :<C-U>Unite -no-quite -buffer-name=buffer buffer<CR>
+nnoremap <silent> <SID>[unite-no-quite]r :<C-U>Unite -no-quite -buffer-name=register register<CR>
+nnoremap <silent> <SID>[unite-no-quite]t :<C-U>Unite -no-quite -buffer-name=tab tab<CR>
+nnoremap <silent> <SID>[unite-no-quite]o :<C-U>Unite -no-quite -vertical -buffer-name=outline outline<CR>
+nnoremap <silent> <SID>[unite-no-quite]m :<C-U>Unite -no-quite -buffer-name=mark mark<CR>
+nnoremap <silent> <SID>[unite-no-quite]h :<C-U>Unite -no-quite -buffer-name=help help<CR>
 
 nnoremap <silent> <leader>b :<C-U>UniteBookmarkAdd<CR>
 
@@ -671,25 +672,14 @@ endfunction
 " changelog.vim "{{{
 MyAutocmd BufNewFile,BufRead *.changelog setf changelog
 let g:changelog_timeformat = "%Y-%m-%d"
-let g:changelog_username = "hot_coffee"
+let g:changelog_username = "Hideki Hamada (jakalada)"
 " }}}
 
 " surround.vim "{{{
-let g:surround_no_mappings = 1
-MyAutocmd FileType * call s:define_surround_keymappings()
-
-function! s:define_surround_keymappings()
-  if !&modifiable
-    return
-  endif
-
-  nmap <buffer>         ds   <Plug>Dsurround
-  nmap <buffer>         cs   <Plug>Csurround
-  nmap <buffer>         s   <Plug>Ysurround
-  nmap <buffer>         S   <Plug>YSurround
-  nmap <buffer>         ss  <Plug>Yssurround
-  nmap <buffer>         SS  <Plug>YSsurround
-endfunction
+nmap s ys
+nmap S yS
+nmap ss yss
+nmap SS ySS
 " }}}
 
 " quickrun.vim "{{{
@@ -701,15 +691,15 @@ let g:quickrun_config['markdown'] = {
 " }}}
 
 " vim-fugitive "{{{
-nnoremap [fugitive] <Nop>
-xnoremap [fugitive] <Nop>
-nmap <Leader>g [fugitive]
-xmap <Leader>g [fugitive]
+nnoremap <SID>[fugitive] <Nop>
+xnoremap <SID>[fugitive] <Nop>
+nmap <Leader>g <SID>[fugitive]
+xmap <Leader>g <SID>[fugitive]
 
-nmap <silent> [fugitive]g <SID>(command-line-enter)Git<Space>
-nnoremap <silent> [fugitive]b :<C-U>Gblame<CR>
-nnoremap <silent> [fugitive]c :<C-U>Gcommit<CR>
-nnoremap <silent> [fugitive]s :<C-U>Gstatus<CR>
+nmap <silent> <SID>[fugitive]g <SID>(command-line-enter)Git<Space>
+nnoremap <silent> <SID>[fugitive]b :<C-U>Gblame<CR>
+nnoremap <silent> <SID>[fugitive]c :<C-U>Gcommit<CR>
+nnoremap <silent> <SID>[fugitive]s :<C-U>Gstatus<CR>
 " }}}
 
 " vim-coffee-script " {{{
