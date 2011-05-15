@@ -103,3 +103,15 @@
 [submodule "_vim/bundle/open-browser.vim"]
 	path = _vim/bundle/open-browser.vim
 	url = git://github.com/tyru/open-browser.vim.git
+[submodule "_vim/bundle/eskk.vim"]
+	path = _vim/bundle/eskk.vim
+	url = git://github.com/tyru/eskk.vim.git
+[submodule "_vim/bundle/skkdict.vim"]
+	path = _vim/bundle/skkdict.vim
+	url = git://github.com/tyru/skkdict.vim.git
+[submodule "_vim/bundle/savemap.vim"]
+	path = _vim/bundle/savemap.vim
+	url = git://github.com/tyru/savemap.vim.git
+[submodule "_vim/bundle/vice.vim"]
+	path = _vim/bundle/vice.vim
+	url = git://github.com/tyru/vice.vim.git
