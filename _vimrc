@@ -750,6 +750,18 @@ nmap <Leader>o <Plug>(openbrowser-smart-search)
 vmap <Leader>o <Plug>(openbrowser-smart-search)
 " }}}
 
+" eskk.vim " {{{
+let g:eskk#large_dictionary = {
+      \ 'path': '~/.dict/SKK-JISYO.L',
+      \ 'sorted': 0,
+      \ 'encoding': 'euc-jp'
+      \}
+let g:eskk#show_candidates_count = 1
+let g:eskk#marker_henkan = '+'
+let g:eskk#marker_henkan_select = '-'
+imap <C-u> <Plug>(eskk:toggle)
+" }}}
+
 " }}}
 
 set secure  " must be written at the last.  see :help 'secure'.
