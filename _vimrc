@@ -681,7 +681,7 @@ nmap SS ySS
 " quickrun.vim "{{{
 let g:quickrun_config = {}
 let g:quickrun_config['markdown'] = {
-\ 'command': 'redcarpet_ext',
+\ 'command': 'kramdown',
 \ 'exec': '%c %s'
 \ }
 " }}}
