@@ -424,11 +424,6 @@ inoremap <C-J> <Esc>o
 inoremap <C-K> <Esc>O
 
 inoremap <S-Space> _
-inoremap ; :
-inoremap ;; <Space>=><Space>
-inoremap ;% <%  %><Esc>hhi
-inoremap ;= <%=  %><Esc>hhi
-inoremap ;e <% end %><Esc>
 " }}}
 
 " tab page mapping {{{
