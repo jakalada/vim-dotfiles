@@ -759,31 +759,24 @@ let g:eskk#marker_jisyo_touroku = '#'
 let g:eskk#dictionary_save_count = 1
 imap <C-u> <Plug>(eskk:toggle)
 
-" from tyru's .vimrc {{{
-" https://github.com/tyru
-if has('vim_starting')
-    MyAutocmd User eskk-initialize-pre call s:eskk_initial_pre()
-    function! s:eskk_initial_pre() "{{{
-        " User can be allowed to modify
-        " eskk global variables (`g:eskk#...`)
-        " until `User eskk-initialize-pre` event.
-        " So user can do something heavy process here.
-        " (I'm a paranoia, eskk#table#new() is not so heavy.
-        " But it loads autoload/vice.vim recursively)
-        let t = eskk#table#new('rom_to_hira*', 'rom_to_hira')
-        call t.add_map('z~', '〜')
-        call t.add_map('va', 'ゔぁ')
-        call t.add_map('vi', 'ゔぃ')
-        call t.add_map('vu', 'ゔ')
-        call t.add_map('ve', 'ゔぇ')
-        call t.add_map('vo', 'ゔぉ')
-        call t.add_map('z ', '　')
-        " It is better to register the word "Exposé" than to register this map :)
-        " call t.add_map('qe', 'é')
-        call eskk#register_mode_table('hira', t)
-    endfunction "}}}
-endif
-
+MyAutocmd User eskk-initialize-pre call s:eskk_initial_pre()
+function! s:eskk_initial_pre()
+    " User can be allowed to modify
+    " eskk global variables (`g:eskk#...`)
+    " until `User eskk-initialize-pre` event.
+    " So user can do something heavy process here.
+    " (I'm a paranoia, eskk#table#new() is not so heavy.
+    " But it loads autoload/vice.vim recursively)
+  let t = eskk#table#new('rom_to_hira*', 'rom_to_hira')
+  call t.add_map('z~', '〜')
+  call t.add_map('va', 'ゔぁ')
+  call t.add_map('vi', 'ゔぃ')
+  call t.add_map('vu', 'ゔ')
+  call t.add_map('ve', 'ゔぇ')
+  call t.add_map('vo', 'ゔぉ')
+  call t.add_map('z ', '　')
+  call eskk#register_mode_table('hira', t)
+endfunction
 " }}}
 
 " }}}
