@@ -115,6 +115,3 @@
 [submodule "_vim/bundle/vice.vim"]
 	path = _vim/bundle/vice.vim
 	url = git://github.com/tyru/vice.vim.git
-[submodule "_vim/bundle/vim-ft-vim_fold"]
-	path = _vim/bundle/vim-ft-vim_fold
-	url = git://github.com/thinca/vim-ft-vim_fold.git
