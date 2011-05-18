@@ -399,7 +399,6 @@ noremap <C-H> <C-Y>
 
 noremap L $
 noremap H ^
-noremap HH <Home>
 noremap gj L
 noremap gm M
 noremap gk H
