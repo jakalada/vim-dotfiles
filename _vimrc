@@ -753,10 +753,10 @@ let g:eskk#large_dictionary = {
 let g:eskk#show_candidates_count = 1
 let g:eskk#show_annotation = 1
 
-let g:eskk#marker_henkan = '__'
+let g:eskk#marker_henkan = '_'
 let g:eskk#marker_henkan_select = '?'
 let g:eskk#marker_jisyo_touroku = '#'
-let g:eskk#dictionary_save_count = 5
+let g:eskk#dictionary_save_count = 1
 imap <C-u> <Plug>(eskk:toggle)
 
 " from tyru's .vimrc {{{
