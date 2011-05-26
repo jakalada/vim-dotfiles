@@ -662,7 +662,7 @@ let g:ref_detect_filetype = {
       \ 'c': 'man', 'clojure': 'clojure', 'perl': 'perldoc', 'php': 'phpmanual', 'ruby': 'refe', 'erlang': 'erlang', 'python': 'pydoc'
       \}
 
-autocmd FileType ref call s:initialize_ref_viewer()
+MyAutocmd FileType ref call s:initialize_ref_viewer()
 function! s:initialize_ref_viewer()
   nmap <buffer> <Backspace> <Plug>(ref-back)
   nmap <buffer> <S-Backspace> <Plug>(ref-forward)
