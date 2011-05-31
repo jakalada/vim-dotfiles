@@ -754,6 +754,7 @@ let g:eskk#large_dictionary = {
       \ 'encoding': 'euc-jp'
       \}
 let g:eskk#show_candidates_count = 1
+let g:eskk#kakutei_when_unique_candidate = 1
 
 let g:eskk#marker_henkan = '_'
 let g:eskk#marker_henkan_select = '?'
