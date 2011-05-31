@@ -698,6 +698,7 @@ nmap <silent> <SID>[fugitive]g <SID>(command-line-enter)Git<Space>
 nnoremap <silent> <SID>[fugitive]b :<C-U>Gblame<CR>
 nnoremap <silent> <SID>[fugitive]c :<C-U>Gcommit<CR>
 nnoremap <silent> <SID>[fugitive]s :<C-U>Gstatus<CR>
+nnoremap <silent> <SID>[fugitive]d :<C-U>Gdiff<CR>
 " }}}
 
 " vim-coffee-script " {{{
