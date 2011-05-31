@@ -425,10 +425,6 @@ nnoremap <silent> q :<C-U>close<CR>
 " }}}
 
 " mapmode-i "{{{
-inoremap <C-J> <Esc>o
-inoremap <C-K> <Esc>O
-
-inoremap <S-Space> _
 " }}}
 
 " tab page mapping {{{
@@ -764,7 +760,6 @@ let g:eskk#marker_henkan = '_'
 let g:eskk#marker_henkan_select = '?'
 let g:eskk#marker_jisyo_touroku = '#'
 let g:eskk#dictionary_save_count = 1
-imap <C-u> <Plug>(eskk:toggle)
 
 MyAutocmd User eskk-initialize-pre call s:eskk_initial_pre()
 function! s:eskk_initial_pre()
