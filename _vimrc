@@ -755,11 +755,11 @@ let g:eskk#large_dictionary = {
       \}
 let g:eskk#show_candidates_count = 1
 let g:eskk#kakutei_when_unique_candidate = 1
+let g:eskk#dictionary_save_count = 1
 
 let g:eskk#marker_henkan = '_'
 let g:eskk#marker_henkan_select = '?'
 let g:eskk#marker_jisyo_touroku = '#'
-let g:eskk#dictionary_save_count = 1
 
 MyAutocmd User eskk-initialize-pre call s:eskk_initial_pre()
 function! s:eskk_initial_pre()
