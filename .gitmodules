@@ -115,3 +115,6 @@
 [submodule "_vim/bundle/vice.vim"]
 	path = _vim/bundle/vice.vim
 	url = git://github.com/tyru/vice.vim.git
+[submodule "_vim/bundle/vim-json"]
+	path = _vim/bundle/vim-json
+	url = git://github.com/leshill/vim-json.git
