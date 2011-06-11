@@ -6,6 +6,8 @@
 
 let s:iswin = has('win32') || has('win64')
 
+let s:isgui = has("gui_running")
+
 if s:iswin
   " For Windows "{{{
   language message en
