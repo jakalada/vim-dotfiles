@@ -371,6 +371,7 @@ set nowrap
 set textwidth=72
 if exists('&colorcolumn')
   set colorcolumn=+1,+2,+3
+  hi ColorColumn ctermbg=black
 endif
 
 " statusline "{{{
