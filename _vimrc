@@ -367,8 +367,6 @@ if exists('&colorcolumn')
   set colorcolumn=+1,+2,+3
 endif
 
-colorscheme wombat256mod
-
 " statusline "{{{
 set laststatus=2
 let &statusline="%{winnr('$')>1?'['.winnr().'/'.winnr('$').(winnr('#')==winnr()?'#':'').']':''}\ %{expand('%:p:.')}\ %<\(%{SnipMid(getcwd(),80-len(expand('%:p:.')),'...')}\)\  %=%m%y%{'['.(&fenc!=''?&fenc:&enc).','.&ff.']'}\ %3p%%"
