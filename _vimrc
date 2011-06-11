@@ -362,10 +362,9 @@ set listchars=tab:>-,trail:-
 
 set nowrap
 
-set textwidth=0
+set textwidth=72
 if exists('&colorcolumn')
-  set colorcolumn=+1
-  MyAutocmd FileType sh,cpp,perl,vim,ruby,python,haskell,scheme,lua,markdown setlocal textwidth=80
+  set colorcolumn=+1,+2,+3
 endif
 
 colorscheme wombat256mod
