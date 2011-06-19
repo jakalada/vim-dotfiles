@@ -368,11 +368,7 @@ set listchars=tab:>-,trail:-
 
 set nowrap
 
-set textwidth=72
-if exists('&colorcolumn')
-  set colorcolumn=+1,+2,+3
-  hi ColorColumn ctermbg=black
-endif
+set textwidth=0
 
 " statusline "{{{
 set laststatus=2
@@ -438,7 +434,7 @@ nmap t <SID>[tab]
 nnoremap <silent> <SID>[tab]l :<C-U>tabnext<CR>
 nnoremap <silent> <SID>[tab]h :<C-U>tabprev<CR>
 nnoremap <silent> <SID>[tab]q :<C-U>tabclose<CR>
-nnoremap <silent> <SID>[tab]t :<C-U>tabnew<CR>
+nnoremap <silent> <SID>[tab]tt :<C-U>tabnew<CR>
 
 nnoremap <silent> <SID>[tab]tn :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
 nnoremap <silent> <SID>[tab]tg :<C-U>tabnew \| lcd $DROPBOXDIR/GTD<CR>
@@ -699,10 +695,13 @@ nmap <Leader>g <SID>[fugitive]
 xmap <Leader>g <SID>[fugitive]
 
 nmap <silent> <SID>[fugitive]g <SID>(command-line-enter)Git<Space>
-nnoremap <silent> <SID>[fugitive]b :<C-U>Gblame<CR>
-nnoremap <silent> <SID>[fugitive]c :<C-U>Gcommit<CR>
-nnoremap <silent> <SID>[fugitive]s :<C-U>Gstatus<CR>
-nnoremap <silent> <SID>[fugitive]d :<C-U>Gdiff<CR>
+nnoremap <silent> <SID>[fugitive]d :<C-u>Gdiff<Enter>
+nnoremap <silent> <SID>[fugitive]s :<C-u>Gstatus<Enter>
+nnoremap <silent> <SID>[fugitive]l :<C-u>Glog<Enter>
+nnoremap <silent> <SID>[fugitive]a :<C-u>Gwrite<Enter>
+nnoremap <silent> <SID>[fugitive]c :<C-u>Gcommit<Enter>
+nnoremap <silent> <SID>[fugitive]C :<C-u>Git commit --amend<Enter>
+nnoremap <silent> <SID>[fugitive]b :<C-u>Gblame<Enter>
 " }}}
 
 " vim-coffee-script " {{{

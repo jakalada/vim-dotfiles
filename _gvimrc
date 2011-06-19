@@ -7,7 +7,3 @@ set mouse=a
 set mousehide
 set mousefocus
 colorscheme zenburn
-if exists('&colorcolumn')
-  set colorcolumn=+1,+2,+3
-  hi ColorColumn guibg=black
-endif
