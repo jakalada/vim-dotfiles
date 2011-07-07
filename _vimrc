@@ -589,6 +589,11 @@ let g:unite_source_grep_default_opts = '-iRHn'
 
 " }}}
 
+" altr {{{
+nmap <Leader>n  <Plug>(altr-forward)
+nmap <Leader>p  <Plug>(altr-back)
+" }}}
+
 " unite-neco {{{
 let s:unite_source = {'name': 'neco'}
 
