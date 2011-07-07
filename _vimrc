@@ -589,14 +589,6 @@ let g:unite_source_grep_default_opts = '-iRHn'
 
 " }}}
 
-" zen-coding {{{
-let g:user_zen_settings = {
-      \ 'html' : {
-      \   'indentation' : '  '
-      \ },
-      \}
-" }}}
-
 " unite-neco {{{
 let s:unite_source = {'name': 'neco'}
 
