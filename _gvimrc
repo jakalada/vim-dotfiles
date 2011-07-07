@@ -1,7 +1,7 @@
 set nocursorline
 set cmdheight=3
 set guioptions=gae
-set guifont=Ricty\ 12
+set guifont=Ricty\ 13.5
 set guitablabel=%-30.30t
 set mouse=a
 set mousehide
