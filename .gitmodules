@@ -124,3 +124,6 @@
 [submodule "_vim/bundle/vim-indent-guides"]
 	path = _vim/bundle/vim-indent-guides
 	url = git://github.com/nathanaelkane/vim-indent-guides.git
+[submodule "_vim/bundle/vim-altr"]
+	path = _vim/bundle/vim-altr
+	url = git://github.com/kana/vim-altr.git
