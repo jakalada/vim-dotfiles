@@ -1,7 +1,8 @@
-setlocal smartindent autoindent smarttab expandtab
+setlocal smarttab expandtab
 setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal softtabstop=2
+setlocal shiftround
 
 setlocal keywordprg=:help
 
@@ -14,5 +15,6 @@ let b:undo_ftplugin .= '
 \ | setlocal tabstop<
 \ | setlocal shiftwidth<
 \ | setlocal softtabstop<
+\ | setlocal shiftround<
 \ | setlocal keywordprg<
 \'
