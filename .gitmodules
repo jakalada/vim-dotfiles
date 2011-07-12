@@ -124,3 +124,6 @@
 [submodule "_vim/bundle/vim-altr"]
 	path = _vim/bundle/vim-altr
 	url = git://github.com/kana/vim-altr.git
+[submodule "_vim/bundle/vim-javascript"]
+	path = _vim/bundle/vim-javascript
+	url = git://github.com/pangloss/vim-javascript.git
