@@ -4,6 +4,14 @@
 " Initialize: "{{{
 "
 
+" from tyru's .vimrc {{{
+" https://github.com/tyru
+let s:tmp = &runtimepath
+set all&
+let &runtimepath = s:tmp
+unlet s:tmp
+" }}}
+
 let s:iswin = has('win32') || has('win64')
 
 let s:isgui = has("gui_running")
@@ -282,14 +290,6 @@ let g:is_gauche = 1
 "-------------------------------------------------------------------------
 " Options: "{{{
 "
-" from tyru's .vimrc {{{
-" https://github.com/tyru
-let s:tmp = &runtimepath
-set all&
-let &runtimepath = s:tmp
-unlet s:tmp
-" }}}
-
 setlocal autoindent
 setlocal smartindent
 setlocal smarttab
