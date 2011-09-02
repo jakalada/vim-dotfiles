@@ -109,9 +109,6 @@
 [submodule "_vim/bundle/vim-json"]
 	path = _vim/bundle/vim-json
 	url = git://github.com/leshill/vim-json.git
-[submodule "_vim/bundle/vim-easymotion"]
-	path = _vim/bundle/vim-easymotion
-	url = git://github.com/Lokaltog/vim-easymotion.git
 [submodule "_vim/bundle/vim-indent-guides"]
 	path = _vim/bundle/vim-indent-guides
 	url = git://github.com/nathanaelkane/vim-indent-guides.git
