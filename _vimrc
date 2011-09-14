@@ -622,9 +622,22 @@ endfunction
 call unite#define_source(s:unite_source)
 " }}}
 
+" rsense.vim " {{{
+let g:rsenseHome = expand('$RSENSE_HOME')
+let g:rsenseUseOmniFunc = 1
+" }}}
+
 " neocomplcache.vim "{{{
 " https://github.com/Shougo/neocomplcache
 "
+
+" for rsense.vim " {{{
+if !exists('g:neocomplcache_omni_patterns')
+let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+" }}}
+
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_ignore_case = 1
 let g:neocomplcache_enable_smart_case = 1
