@@ -366,7 +366,7 @@ set noequalalways
 set list
 set listchars=tab:>-,trail:-
 
-set nowrap
+set wrap
 
 set textwidth=0
 
