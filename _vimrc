@@ -639,8 +639,6 @@ let g:neocomplcache_text_mode_filetypes.markdown = 1
 
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
 imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
-inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr><C-L>  neocomplcache#complete_common_string()
 
 " if !exists('g:neocomplcache_omni_patterns')
