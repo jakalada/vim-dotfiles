@@ -535,14 +535,11 @@ noremap <silent> Ak :call AddEmptyLineAbove()<CR>
 " Plugin: "{{{
 "
 " vimfiler.vim "{{{
-"nnoremap <silent> <leader>a :<C-U>VimFiler<CR>
-" }}}
+let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_split_action = "split"
+let g:vimfiler_time_format = "%Y/%m/%d %H:%M"
 
-"nerdtree.vim "{{{
-let g:NERDTreeChDirMode=1
-
-nnoremap <silent> <leader>A :<C-U>NERDTree<CR>
-nnoremap <silent> <leader>a :<C-U>NERDTreeToggle<CR>
+nnoremap <silent> <leader>a :<C-U>VimFiler<CR>
 " }}}
 
 " unite.vim "{{{
