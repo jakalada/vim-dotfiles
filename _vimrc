@@ -552,6 +552,7 @@ let g:unite_winwidth = 60
 
 " unite-source-variables
 let g:unite_source_file_mru_time_format = '(%F %R)'
+let g:unite_source_grep_max_candidates = 1000
 
 nnoremap <SID>[unite] <Nop>
 xnoremap <SID>[unite] <Nop>
@@ -563,29 +564,25 @@ xnoremap <SID>[unite-no-quite] <Nop>
 nmap F <SID>[unite-no-quite]
 xmap F <SID>[unite-no-quite]
 
-nnoremap <silent> <SID>[unite]F :<C-U>Unite -input=/ -buffer-name=files file bookmark file_mru<CR>
-nnoremap <silent> <SID>[unite]f :<C-U>Unite -buffer-name=files file<CR>
+nnoremap <silent> <SID>[unite]F :<C-U>UniteWithBufferDir -buffer-name=files bookmark file_mru file<CR>
+nnoremap <silent> <SID>[unite]f :<C-U>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> <SID>[unite]b :<C-U>Unite -buffer-name=buffer buffer<CR>
 nnoremap <silent> <SID>[unite]r :<C-U>Unite -buffer-name=register register<CR>
 nnoremap <silent> <SID>[unite]t :<C-U>Unite -buffer-name=tab tab<CR>
-nnoremap <silent> <SID>[unite]o :<C-U>Unite -vertical -buffer-name=outline outline<CR>
+nnoremap <silent> <SID>[unite]o :<C-U>Unite -buffer-name=outline outline<CR>
 nnoremap <silent> <SID>[unite]m :<C-U>Unite -buffer-name=mark mark<CR>
 nnoremap <silent> <SID>[unite]h :<C-U>Unite -buffer-name=help help<CR>
 
-nnoremap <silent> <SID>[unite-no-quite]F :<C-U>Unite -no-quite -input=/ -buffer-name=files file bookmark file_mru<CR>
-nnoremap <silent> <SID>[unite-no-quite]f :<C-U>Unite -no-quite -buffer-name=files file<CR>
+nnoremap <silent> <SID>[unite-no-quite]F :<C-U>UniteWithBufferDir -no-quite -buffer-name=files bookmark file_mru file<CR>
+nnoremap <silent> <SID>[unite-no-quite]f :<C-U>UniteWithBufferDir -no-quite -buffer-name=files file<CR>
 nnoremap <silent> <SID>[unite-no-quite]b :<C-U>Unite -no-quite -buffer-name=buffer buffer<CR>
 nnoremap <silent> <SID>[unite-no-quite]r :<C-U>Unite -no-quite -buffer-name=register register<CR>
 nnoremap <silent> <SID>[unite-no-quite]t :<C-U>Unite -no-quite -buffer-name=tab tab<CR>
-nnoremap <silent> <SID>[unite-no-quite]o :<C-U>Unite -no-quite -vertical -buffer-name=outline outline<CR>
+nnoremap <silent> <SID>[unite-no-quite]o :<C-U>Unite -no-quite -buffer-name=outline outline<CR>
 nnoremap <silent> <SID>[unite-no-quite]m :<C-U>Unite -no-quite -buffer-name=mark mark<CR>
 nnoremap <silent> <SID>[unite-no-quite]h :<C-U>Unite -no-quite -buffer-name=help help<CR>
 
 nnoremap <silent> <leader>b :<C-U>UniteBookmarkAdd<CR>
-
-" for unite-grep
-let g:unite_source_grep_default_opts = '-iRHn'
-
 " }}}
 
 " altr {{{
@@ -612,10 +609,6 @@ function! s:unite_source.gather_candidates(args, context)
         \ "action__command": "Neco " . v:key,
         \ }')
 endfunction
-
-"function! unite#sources#locate#define()
-"  return executable('locate') ? s:unite_source : []
-"endfunction
 call unite#define_source(s:unite_source)
 " }}}
 
