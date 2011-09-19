@@ -534,6 +534,10 @@ noremap <silent> Ak :call AddEmptyLineAbove()<CR>
 "-------------------------------------------------------------------------
 " Plugin: "{{{
 "
+" caw.vim " {{{
+nmap gcc <Plug>(caw:wrap:toggle)
+" }}}
+
 " vimfiler.vim "{{{
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_split_action = "split"
