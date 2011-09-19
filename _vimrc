@@ -331,6 +331,7 @@ augroup END
 if has('path_extra')
     set tags+=.;
     set tags+=tags;
+    set tags+=$DOTVIMDIR/systags;
 endif
 set showfulltag
 set notagbsearch
