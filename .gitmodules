@@ -118,3 +118,6 @@
 [submodule "_vim/bundle/jslint.vim"]
 	path = _vim/bundle/jslint.vim
 	url = git://github.com/hallettj/jslint.vim.git
+[submodule "_vim/bundle/pacman.vim"]
+	path = _vim/bundle/pacman.vim
+	url = git://github.com/tyru/pacman.vim.git
