@@ -80,17 +80,17 @@ snippet main
     }
 
 # #include <...>
-snippet inc
-    #include <${1:stdio.h}>${0}
+snippet i
+    #include <${1:}>
 # #include "..."
-snippet Inc
-    #include "${1:}"${0}
+snippet I
+    #include "${1:}"
 
 snippet Def
 abbr #ifndef ... #define ... #endif
     #ifndef $1
     #define ${1:SYMBOL} ${2:value}
-    #endif${0}
+    #endif
 
 snippet def
     #define 
@@ -113,12 +113,11 @@ snippet typedef
     typedef ${1:base_type} ${2:custom_type};
 
 snippet printf
-    printf("${1}\n"${2});${0}
+    printf("${1}\n"${2});
 
 snippet fprintf
-    fprintf(${1:stderr}, "${2}\n"${3});${0}
+    fprintf(${1:stderr}, "${2}\n"${3});
 
 snippet comment
 alias /*
     /* ${1:comment} */
-    ${0}
