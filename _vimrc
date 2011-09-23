@@ -426,8 +426,21 @@ nnoremap <silent> q :<C-U>close<CR>
 " }}}
 
 " mapmode-i "{{{
+inoremap jj <Esc>
+
 inoremap <C-K> <Esc>O
 inoremap <C-J> <Esc>o
+
+inoremap <silent> <C-L> <Esc>/['"()[\]<>{}]<CR>a
+inoremap <silent> <C-H> <Esc>?['"()[\]<>{}]<CR>i
+
+inoremap <silent> '' ''<Esc>i
+inoremap <silent> "" ""<Esc>i
+inoremap <silent> (( ()<Esc>i
+inoremap <silent> [[ []<Esc>i
+inoremap <silent> {{ {}<Esc>i
+
+inoremap <silent> <F7> <Esc>gUiwea
 " }}}
 
 " tab page mapping {{{
@@ -622,6 +635,10 @@ let g:rsenseHome = expand('$RSENSE_HOME')
 let g:rsenseUseOmniFunc = 1
 " }}}
 
+" vimshell " {{{
+
+" }}}
+
 " neocomplcache.vim "{{{
 " https://github.com/Shougo/neocomplcache
 "
@@ -644,7 +661,7 @@ let g:neocomplcache_text_mode_filetypes.markdown = 1
 
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
 imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
-inoremap <expr><C-L>  neocomplcache#complete_common_string()
+imap <expr><C-C>  neocomplcache#complete_common_string()
 
 " if !exists('g:neocomplcache_omni_patterns')
 "   let g:neocomplcache_omni_patterns = {}

@@ -8,6 +8,7 @@ setlocal shiftround
 " plain annotations
 nnoremap <buffer> <silent> <LocalLeader>x V!xmpfilter -a<CR>
 vnoremap <buffer> <silent> <LocalLeader>x !xmpfilter -a<CR>
+inoremap >> <Space>=><Space>
 
 "" Test::Unit assertions; use -s to generate RSpec expectations instead
 "map <silent> <S-F10> !xmpfilter -u<cr>
