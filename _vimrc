@@ -636,7 +636,8 @@ let g:rsenseUseOmniFunc = 1
 " }}}
 
 " vimshell " {{{
-
+let g:vimshell_prompt = '$ '
+let g:vimshell_user_prompt = '"[" . getcwd() ."]"'
 " }}}
 
 " neocomplcache.vim "{{{
