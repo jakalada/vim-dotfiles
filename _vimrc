@@ -31,7 +31,7 @@ if s:iswin
 
   let $DROPBOXDIR = expand('~/Dropbox')
 
-  let $VIMCONFIGDIR = expand('~/environment/vim')
+  let $VIMCONFIGDIR = expand('~/project/vim-dotfiles')
   " }}}
 else
   " For Linux "{{{
@@ -41,7 +41,7 @@ else
 
   let $DROPBOXDIR = expand('~/Dropbox')
 
-  let $VIMCONFIGDIR = expand('~/environment/vim')
+  let $VIMCONFIGDIR = expand('~/project/vim-dotfiles')
   " }}}
 endif
 
