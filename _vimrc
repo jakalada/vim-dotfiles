@@ -240,7 +240,7 @@ if has('path_extra')
     set tags+=$DOTVIMDIR/systags;
 endif
 set showfulltag
-set tagbsearch
+set notagbsearch
 
 if has('unix')
   set nofsync
