@@ -1,9 +1,0 @@
-set nocursorline
-set cmdheight=3
-set guioptions=gae
-set guifont=Ricty\ Discord\ 13.5
-set guitablabel=%-30.30t
-set mouse=a
-set mousehide
-set mousefocus
-colorscheme zenburn

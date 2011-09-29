@@ -1,11 +1,11 @@
-"-------------------------------------------------------------------------
-" hot_coffee's .vimrc
-"-------------------------------------------------------------------------
-" Initialize: "{{{
-"
+" jakalada's .vimrc
 
-" from tyru's .vimrc {{{
-" https://github.com/tyru
+"===============
+" Initialize {{{
+"===============
+
+" .vimrcの再読み込み時にオプションを初期化する {{{
+" 設定されたruntimepathが初期化されないようにする
 let s:tmp = &runtimepath
 set all&
 let &runtimepath = s:tmp
@@ -16,12 +16,8 @@ let s:iswin = has('win32') || has('win64')
 
 let s:isgui = has("gui_running")
 
-if !s:isgui
-  colorscheme wombat256mod
-endif
-
 if s:iswin
-  " For Windows "{{{
+  " For Windows {{{
   language message en
 
   " すでに読み込まれているファイル名には影響がないので注意する
@@ -34,8 +30,8 @@ if s:iswin
   let $VIMCONFIGDIR = expand('~/project/vim-dotfiles')
   " }}}
 else
-  " For Linux "{{{
-  language mes C
+  " For Linux {{{
+  language message C
 
   let $DOTVIMDIR = expand('~/.vim')
 
@@ -45,7 +41,7 @@ else
   " }}}
 endif
 
-" pathogen "{{{
+" pathogen.vim {{{
 filetype off
 
 call pathogen#runtime_append_all_bundles()
@@ -58,11 +54,13 @@ filetype indent on
 
 " }}}
 
-"-------------------------------------------------------------------------
-" Commands: "{{{
-"
-" from tyru's .vimrc {{{
-" https://github.com/tyru
+"=============
+" Commands {{{
+"=============
+
+" .vimrcの再読み込み時に.vimrc内で設定されたautocmdを初期化する
+" MyAutocmdを使用することで漏れなく初期化できる
+" {{{
 augroup vimrc
     autocmd!
 augroup END
@@ -72,16 +70,17 @@ command!
 \   MyAutocmd
 \   autocmd<bang> vimrc <args>
 " }}}
- 
-" Vim-users.jp - Hack #203: 定義されているマッピングを調べる {{{
-" http://vim-users.jp/2011/02/hack203/
+
+" 定義されているマッピングを調べるコマンドを定義する
+" {{{
 command!
 \   -nargs=* -complete=mapping
 \   AllMaps
 \   map <args> | map! <args> | lmap <args>
 " }}}
 
-" for rails.vim {{{
+" For rails.vim
+ " {{{
 if s:iswin
   command!
 \   -bar -nargs=1
@@ -97,10 +96,12 @@ endif
 
 " }}}
 
-"-------------------------------------------------------------------------
-" Functions: "{{{
-"
-function! SnipMid(str, len, mask) "{{{
+"==============
+" Functions {{{
+"==============
+
+" statullineの設定に使用する
+function! SnipMid(str, len, mask) " {{{
   if a:len >= len(a:str)
     return a:str
   elseif a:len <= len(a:mask)
@@ -111,185 +112,93 @@ function! SnipMid(str, len, mask) "{{{
   let len_tail = a:len - len(a:mask) - len_head
 
   return (len_head > 0 ? a:str[: len_head - 1] : '') . a:mask . (len_tail > 0 ? a:str[-len_tail :] : '')
-endfunction " }}}
+endfunction
 " }}}
 
-"-------------------------------------------------------------------------
-" Encoding: "{{{
-"
-" The automatic recognition of the character code.
+" }}}
 
-" Setting of the encoding to use for a save and reading.
-" Make it normal in UTF-8 in Unix.
+"=============
+" Encoding {{{
+"=============
+
+" fileencodingの設定 {{{
+set fileencodings=iso-2022-jp-3,iso-2022-jp,euc-jisx0213,euc-jp,utf-8,ucs-bom,euc-jp,eucjp-ms,cp932
 set encoding=utf-8
 
-" Setting of terminal encoding."{{{
-if !has('gui_running')
-  if &term == 'win32' || &term == 'win64'
-    " Setting when use the non-GUI Japanese console.
-
-    " Garbled unless set this.
-    set termencoding=cp932
-    " Japanese input changes itself unless set this.
-    " Be careful because the automatic recognition of the character code is not possible!
-    set encoding=japan
-  else
-    if $ENV_ACCESS ==# 'linux'
-      set termencoding=euc-jp
-    elseif $ENV_ACCESS ==# 'colinux'
-      set termencoding=utf-8
-    else  " fallback
-      set termencoding=  " same as 'encoding'
-    endif
-  endif
-elseif s:iswin
-  " For system.
-  set termencoding=cp932
-endif
+" マルチバイト文字が含まれていない場合はencodingの値を使用する
+MyAutocmd BufReadPost *
+\   if &modifiable && !search('[^\x00-\x7F]', 'cnw')
+\ |   setlocal fileencoding=
+\ | endif
 " }}}
 
-" The automatic recognition of the character code."{{{
-if !exists('did_encoding_settings') && has('iconv')
-  let s:enc_euc = 'euc-jp'
-  let s:enc_jis = 'iso-2022-jp'
-
-  " Does iconv support JIS X 0213?
-  if iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
-    let s:enc_euc = 'euc-jisx0213,euc-jp'
-    let s:enc_jis = 'iso-2022-jp-3'
-  endif
-
-  " Build encodings.
-  let &fileencodings = 'ucs-bom'
-  if &encoding !=# 'utf-8'
-    let &fileencodings = &fileencodings . ',' . 'ucs-2le'
-    let &fileencodings = &fileencodings . ',' . 'ucs-2'
-  endif
-  let &fileencodings = &fileencodings . ',' . s:enc_jis
-
-  if &encoding ==# 'utf-8'
-    let &fileencodings = &fileencodings . ',' . s:enc_euc
-    let &fileencodings = &fileencodings . ',' . 'cp932'
-  elseif &encoding =~# '^euc-\%(jp\|jisx0213\)$'
-    let &encoding = s:enc_euc
-    let &fileencodings = &fileencodings . ',' . 'utf-8'
-    let &fileencodings = &fileencodings . ',' . 'cp932'
-  else  " cp932
-    let &fileencodings = &fileencodings . ',' . 'utf-8'
-    let &fileencodings = &fileencodings . ',' . s:enc_euc
-  endif
-  let &fileencodings = &fileencodings . ',' . &encoding
-
-  unlet s:enc_euc
-  unlet s:enc_jis
-
-  let did_encoding_settings = 1
-endif
-" }}}
-
-if has('kaoriya')
-  " For Kaoriya only.
-  "set fileencodings=guess
+" fileformatの設定 {{{
+if s:iswin
+  set fileformat=dos
+else
+  set fileformat=unix
 endif
 
-" When do not include Japanese, use encoding for fileencoding.
-function! AU_ReCheck_FENC()
-  if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
-    let &fileencoding=&encoding
-  endif
-endfunction
-
-MyAutocmd BufReadPost * call AU_ReCheck_FENC()
-
-" Default fileformat.
-set fileformat=unix
-" Automatic recognition of a new line cord.
 set fileformats=unix,dos,mac
-" A fullwidth character is displayed in vim properly.
+" }}}
+
+"East Asian Width Class Ambiguous な文字をASCII文字の2倍の幅で扱う
 set ambiwidth=double
 
-" Command group opening with a specific character code again."{{{
-" In particular effective when I am garbled in a terminal.
-" Open in UTF-8 again.
-command! -bang -bar -complete=file -nargs=? Utf8 edit<bang> ++enc=utf-8 <args>
-" Open in iso-2022-jp again.
-command! -bang -bar -complete=file -nargs=? Iso2022jp edit<bang> ++enc=iso-2022-jp <args>
-" Open in Shift_JIS again.
-command! -bang -bar -complete=file -nargs=? Cp932 edit<bang> ++enc=cp932 <args>
-" Open in EUC-jp again.
-command! -bang -bar -complete=file -nargs=? Euc edit<bang> ++enc=euc-jp <args>
-" Open in UTF-16 again.
-command! -bang -bar -complete=file -nargs=? Utf16 edit<bang> ++enc=ucs-2le <args>
-" Open in UTF-16BE again.
-command! -bang -bar -complete=file -nargs=? Utf16be edit<bang> ++enc=ucs-2 <args>
+"===========
+" Syntax {{{
+"===========
 
-" Aliases.
-command! -bang -bar -complete=file -nargs=? Jis  Iso2022jp<bang> <args>
-command! -bang -bar -complete=file -nargs=? Sjis  Cp932<bang> <args>
-command! -bang -bar -complete=file -nargs=? Unicode Utf16<bang> <args>
-" }}}
-
-" Tried to make a file note version."{{{
-" Don't save it because dangerous.
-command! WUtf8 setlocal fenc=utf-8
-command! WIso2022jp setlocal fenc=iso-2022-jp
-command! WCp932 setlocal fenc=cp932
-command! WEuc setlocal fenc=euc-jp
-command! WUtf16 setlocal fenc=ucs-2le
-command! WUtf16be setlocal fenc=ucs-2
-" Aliases.
-command! WJis  WIso2022jp
-command! WSjis  WCp932
-command! WUnicode WUtf16
-" }}}
-
-" Handle it in nkf and open.
-command! Nkf !nkf -g %
-
-" Appoint a line feed."{{{
-command! -bang -bar -complete=file -nargs=? Unix edit<bang> ++fileformat=unix <args>
-command! -bang -bar -complete=file -nargs=? Mac edit<bang> ++fileformat=mac <args>
-command! -bang -bar -complete=file -nargs=? Dos edit<bang> ++fileformat=dos <args>
-command! -bang -complete=file -nargs=? WUnix write<bang> ++fileformat=unix <args> | edit <args>
-command! -bang -complete=file -nargs=? WMac write<bang> ++fileformat=mac <args> | edit <args>
-command! -bang -complete=file -nargs=? WDos write<bang> ++fileformat=dos <args> | edit <args>
-" }}}" }}}
-
-"-------------------------------------------------------------------------
-" Syntax: "{{{
-"
 syntax enable
 
-" Ruby
-let ruby_operators = 1
+if s:isgui
+  colorscheme zenburn
+else
+  colorscheme wombat256mod
+endif
 
-" Java
+" ft-ruby-syntax
+let ruby_operators = 1
+let ruby_fold = 1
+
+" ft-java-syntax
 let g:java_highlight_functions = 'style'
 let g:java_highlight_all = 1
 let g:java_allow_cpp_keywords = 1
 
-" PHP
+" ft-php-syntax
 let g:php_folding = 1
 
-" Python
+" ft-python-syntax
 let g:python_highlight_all = 1
 
-" XML
+" ft-xml-syntax
 let g:xml_syntax_folding = 1
 
-" Vim
+" ft-vim-syntax
 let g:vimsyntax_noerror = 1
 
-" Bash
+" ft-sh-syntax
 let g:is_bash = 1
 
-" Scheme
-let g:is_gauche = 1
 " }}}
 
-"-------------------------------------------------------------------------
-" Options: "{{{
-"
+"============
+" Options {{{
+"============
+
+
+if s:isgui
+  set nocursorline
+  set cmdheight=3
+  set guioptions=gae
+  set guifont=Ricty\ Discord\ 13.5
+  set guitablabel=%-30.30t
+  set mouse=a
+  set mousehide
+  set mousefocus
+endif
+
 setlocal autoindent
 setlocal smartindent
 setlocal smarttab
@@ -322,26 +231,23 @@ set scrolloff=10
 
 set helplang=ja
 
-augroup VimrcChecktime
-  autocmd!
-   MyAutocmd WinEnter * checktime
-augroup END
+MyAutocmd WinEnter * checktime
 
 " tags
 if has('path_extra')
-    set tags+=.;
+    set tags+=./tags;
     set tags+=tags;
     set tags+=$DOTVIMDIR/systags;
 endif
 set showfulltag
-set notagbsearch
+set tagbsearch
 
 if has('unix')
   set nofsync
   set swapsync=
 endif
 
-" search
+" search {{{
 set incsearch
 set ignorecase
 set smartcase
@@ -355,6 +261,7 @@ nnoremap <silent> v :<C-U>setlocal nohlsearch<CR>v
 nnoremap <silent> <C-V> :<C-U>setlocal nohlsearch<CR><C-V>
 nnoremap <silent> V :<C-U>setlocal nohlsearch<CR>V
 MyAutocmd InsertEnter * setlocal nohlsearch
+" }}}
 
 set linespace=3
 
@@ -371,32 +278,35 @@ set wrap
 
 set textwidth=0
 
-" statusline "{{{
+" statusline {{{
 set laststatus=2
 let &statusline="%{winnr('$')>1?'['.winnr().'/'.winnr('$').(winnr('#')==winnr()?'#':'').']':''}\ %{expand('%:p:.')}\ %<\(%{SnipMid(getcwd(),80-len(expand('%:p:.')),'...')}\)\  %=%m%y%{'['.(&fenc!=''?&fenc:&enc).','.&ff.']'}\ %3p%%"
 " }}}
 
 " }}}
 
-"-------------------------------------------------------------------------
-" Key-mappings: "{{{
-"
-" Use ',' instead of '\'.
-"
-" Leader " {{{
+"=================
+" Key-mappings {{{
+"=================
+
+"-----------
+" Leader {{{
+"-----------
+
 let mapleader = ' '
 let g:mapleader = ' '
 let g:maplocalleader = '\'
 
-nnoremap ; <Nop>
-xnoremap ; <Nop>
 nnoremap <Space> <Nop>
 xnoremap <Space> <Nop>
 nnoremap \ <Nop>
 xnoremap \ <Nop>
 " }}}
 
-" mapmode-nvo "{{{
+"----------------
+" mapmode-nvo {{{
+"----------------
+
 noremap j gj
 noremap k gk
 noremap <C-J> <C-D>
@@ -411,7 +321,10 @@ noremap gm M
 noremap gk H
 " }}}
 
-" mapmode-n "{{{
+"--------------
+" mapmode-n {{{
+"--------------
+
 nnoremap <Backspace> <C-O>
 nnoremap <S-Backspace> <C-I>
 
@@ -425,7 +338,10 @@ nnoremap <silent> q :<C-U>close<CR>
 
 " }}}
 
-" mapmode-i "{{{
+"--------------
+" mapmode-i {{{
+"--------------
+
 inoremap jj <Esc>
 
 inoremap <C-K> <Esc>O
@@ -443,7 +359,16 @@ inoremap <silent> {{ {}<Esc>i
 inoremap <silent> <F7> <Esc>gUiwea
 " }}}
 
+" }}}
+
+"===================
+" 少し大きい設定 {{{
+"===================
+
+"---------------------
 " tab page mapping {{{
+"---------------------
+
 nnoremap <SID>[tab] <Nop>
 nmap t <SID>[tab]
 
@@ -457,7 +382,10 @@ nnoremap <silent> <SID>[tab]tg :<C-U>tabnew \| lcd $DROPBOXDIR/GTD<CR>
 nnoremap <silent> <SID>[tab]tv :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
 " }}}
 
+"-------------------
 " window mapping {{{
+"-------------------
+
 nnoremap <SID>[window] <Nop>
 nmap $ <SID>[window]
 
@@ -475,11 +403,16 @@ nnoremap <silent> <SID>(split-to-h) :<C-U>execute 'topleft'    (v:count == 0 ? '
 nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '' : v:count) 'vsplit'<CR>
 " }}}
 
-" Hack #161: Command-line windowを使いこなす "{{{
-" http://vim-users.jp/2010/07/hack161/
+"------------------------
+" Command-line window {{{
+"------------------------
+
 nnoremap <SID>(command-line-enter) q:
 xnoremap <SID>(command-line-enter) q:
 nnoremap <SID>(command-line-norange) q:<C-U>
+
+nnoremap ; <Nop>
+xnoremap ; <Nop>
 
 nmap ; <SID>(command-line-enter)
 xmap ; <SID>(command-line-enter)
@@ -488,19 +421,21 @@ nmap <leader>h <SID>(command-line-enter)help<Space>
 nnoremap <silent> <leader>hh :<C-U>help<Space><C-R><C-W><CR>
 
 MyAutocmd CmdwinEnter * call s:init_cmdwin()
-function! s:init_cmdwin()
+function! s:init_cmdwin() " {{{
   nnoremap <silent> <buffer> q :<C-U>quit<CR>
   startinsert!
-endfunction
+endfunction " }}}
 " }}}
 
-" Quickly adding and deleting empty lines - Vim Tips Wiki "{{{
-" http://vim.wikia.com/wiki/Quickly_adding_and_deleting_empty_lines
-function! AddEmptyLineBelow()
-  call append(line("."), "")
-endfunction
+"---------------------------------
+" 空行を追加と削除を容易にする {{{
+"---------------------------------
 
-function! AddEmptyLineAbove()
+function! AddEmptyLineBelow() " {{{
+  call append(line("."), "")
+endfunction " }}}
+
+function! AddEmptyLineAbove() " {{{
   let l:scrolloffsave = &scrolloff
   " Avoid jerky scrolling with ^E at top of window
   set scrolloff=0
@@ -509,9 +444,9 @@ function! AddEmptyLineAbove()
     silent normal! <C-E>
   end
   let &scrolloff = l:scrolloffsave
-endfunction
+endfunction " }}}
 
-function! DelEmptyLineBelow()
+function! DelEmptyLineBelow() " {{{
   if line(".") == line("$")
     return
   end
@@ -522,9 +457,9 @@ function! DelEmptyLineBelow()
     ''
     call cursor(line("."), l:colsave)
   end
-endfunction
+endfunction " }}}
 
-function! DelEmptyLineAbove()
+function! DelEmptyLineAbove() " {{{
   if line(".") == 1
     return
   end
@@ -535,7 +470,7 @@ function! DelEmptyLineAbove()
     silent normal! <C-Y>
     call cursor(line("."), l:colsave)
   end
-endfunction
+endfunction " }}}
 
 noremap <silent> Dj :call DelEmptyLineBelow()<CR>
 noremap <silent> Dk :call DelEmptyLineAbove()<CR>
@@ -545,14 +480,21 @@ noremap <silent> Ak :call AddEmptyLineAbove()<CR>
 
 " }}}
 
-"-------------------------------------------------------------------------
-" Plugin: "{{{
-"
-" caw.vim " {{{
+"===========
+" Plugin {{{
+"===========
+
+"--------------
+" caw.vim {{{
+"--------------
+
 nmap gcc <Plug>(caw:wrap:toggle)
 " }}}
 
-" vimfiler.vim "{{{
+"-----------------
+" vimfiler.vim {{{
+"-----------------
+
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_split_action = "split"
 let g:vimfiler_time_format = "%Y/%m/%d %H:%M"
@@ -560,8 +502,9 @@ let g:vimfiler_time_format = "%Y/%m/%d %H:%M"
 nnoremap <silent> <leader>a :<C-U>VimFiler<CR>
 " }}}
 
-" unite.vim "{{{
-" https://github.com/Shougo/unite.vim
+"--------------
+" unite.vim {{{
+"--------------
 
 " unite-variables
 let g:unite_split_rule = 'botright'
@@ -603,12 +546,18 @@ nnoremap <silent> <SID>[unite-no-quite]h :<C-U>Unite -no-quite -buffer-name=help
 nnoremap <silent> <leader>b :<C-U>UniteBookmarkAdd<CR>
 " }}}
 
+"---------
 " altr {{{
+"---------
+
 nmap <Leader>n  <Plug>(altr-forward)
 nmap <Leader>p  <Plug>(altr-back)
 " }}}
 
+"---------------
 " unite-neco {{{
+"---------------
+
 let s:unite_source = {'name': 'neco'}
 
 function! s:unite_source.gather_candidates(args, context)
@@ -630,21 +579,27 @@ endfunction
 call unite#define_source(s:unite_source)
 " }}}
 
-" rsense.vim " {{{
+"---------------
+" rsense.vim {{{
+"---------------
+
 let g:rsenseHome = expand('$RSENSE_HOME')
 let g:rsenseUseOmniFunc = 1
 " }}}
 
-" vimshell " {{{
+"-------------
+" vimshell {{{
+"-------------
+
 let g:vimshell_prompt = '$ '
 let g:vimshell_user_prompt = '"[" . getcwd() ."]"'
 " }}}
 
-" neocomplcache.vim "{{{
-" https://github.com/Shougo/neocomplcache
-"
+"----------------------
+" neocomplcache.vim {{{
+"----------------------
 
-" for rsense.vim " {{{
+" for rsense.vim {{{
 if !exists('g:neocomplcache_omni_patterns')
 let g:neocomplcache_omni_patterns = {}
 endif
@@ -670,7 +625,10 @@ imap <expr><C-C>  neocomplcache#complete_common_string()
 " let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 " }}}
 
-" vim-ref "{{{
+"------------
+" vim-ref {{{
+"------------
+
 if s:iswin
   let g:ref_pydoc_cmd = 'pydoc.bat'
   let g:ref_refe_encoding = 'cp932'
@@ -690,20 +648,29 @@ function! s:initialize_ref_viewer()
 endfunction
 " }}}
 
-" changelog.vim "{{{
+"------------------
+" changelog.vim {{{
+"------------------
+
 MyAutocmd BufNewFile,BufRead *.changelog setf changelog
 let g:changelog_timeformat = "%Y-%m-%d"
 let g:changelog_username = "Hideki Hamada (jakalada)"
 " }}}
 
-" surround.vim "{{{
+"-----------------
+" surround.vim {{{
+"-----------------
+
 nmap s ys
 nmap S yS
 nmap ss yss
 nmap SS ySS
 " }}}
 
-" quickrun.vim "{{{
+"-----------------
+" quickrun.vim {{{
+"-----------------
+
 let g:quickrun_config = {}
 let g:quickrun_config['markdown'] = {
 \ 'command': 'kramdown',
@@ -711,7 +678,10 @@ let g:quickrun_config['markdown'] = {
 \ }
 " }}}
 
-" vim-fugitive "{{{
+"-----------------
+" vim-fugitive {{{
+"-----------------
+
 nnoremap <SID>[fugitive] <Nop>
 xnoremap <SID>[fugitive] <Nop>
 nmap <Leader>g <SID>[fugitive]
@@ -727,7 +697,10 @@ nnoremap <silent> <SID>[fugitive]C :<C-u>Git commit --amend<Enter>
 nnoremap <silent> <SID>[fugitive]b :<C-u>Gblame<Enter>
 " }}}
 
-" vim-coffee-script " {{{
+"-----------------------
+" vim-coffee-script  {{{
+"-----------------------
+
 augroup MyCoffeeScriptAutoMake
     autocmd!
 augroup END
@@ -752,7 +725,9 @@ function! s:toggle_coffee_script_auto_make()
 endfunction
 " }}}
 
-" open-browser.vim " {{{
+"----------------------
+" open-browser.vim  {{{
+"----------------------
 if !exists('g:openbrowser_open_commands')
   let g:openbrowser_open_commands = ['google-chrome', 'firefox']
 endif
@@ -774,7 +749,10 @@ nmap <Leader>o <Plug>(openbrowser-smart-search)
 vmap <Leader>o <Plug>(openbrowser-smart-search)
 " }}}
 
-" eskk.vim " {{{
+"--------------
+" eskk.vim  {{{
+"--------------
+
 " let g:eskk#large_dictionary = {
 "       \ 'path': '~/.dict/SKK-JISYO.L',
 "       \ 'sorted': 0,
