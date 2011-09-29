@@ -336,6 +336,8 @@ nnoremap <C-Down> <C-X>
 nnoremap Q q
 nnoremap <silent> q :<C-U>close<CR>
 
+nnoremap <C-Backspace> <C-^>
+
 " }}}
 
 "--------------
