@@ -148,3 +148,6 @@
 [submodule "_vim/bundle/vim-smartword"]
 	path = _vim/bundle/vim-smartword
 	url = git://github.com/kana/vim-smartword.git
+[submodule "_vim/bundle/vim-ruby"]
+	path = _vim/bundle/vim-ruby
+	url = git://github.com/vim-ruby/vim-ruby.git
