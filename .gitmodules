@@ -145,3 +145,6 @@
 [submodule "_vim/bundle/vim-textobj-user"]
 	path = _vim/bundle/vim-textobj-user
 	url = git://github.com/kana/vim-textobj-user.git
+[submodule "_vim/bundle/vim-smartword"]
+	path = _vim/bundle/vim-smartword
+	url = git://github.com/kana/vim-smartword.git
