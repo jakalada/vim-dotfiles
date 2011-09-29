@@ -541,6 +541,12 @@ noremap <silent> Ak :call AddEmptyLineAbove()<CR>
 "===========
 
 "--------------
+" matchit.vim {{{
+"--------------
+
+runtime macros/matchit.vim
+
+"--------------
 " caw.vim {{{
 "--------------
 
