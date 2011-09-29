@@ -191,6 +191,7 @@ let g:is_bash = 1
 if s:isgui
   set nocursorline
   set cmdheight=3
+  set showtabline=2
   set guioptions=gae
   set guifont=Ricty\ Discord\ 13.5
   set guitablabel=%-30.30t
