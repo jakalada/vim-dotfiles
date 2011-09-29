@@ -124,3 +124,6 @@
 [submodule "_vim/bundle/vim-visualstar"]
 	path = _vim/bundle/vim-visualstar
 	url = git://github.com/thinca/vim-visualstar.git
+[submodule "_vim/bundle/chalice"]
+	path = _vim/bundle/chalice
+	url = git://github.com/koron/chalice.git
