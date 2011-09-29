@@ -338,6 +338,8 @@ nnoremap <silent> q :<C-U>close<CR>
 
 nnoremap <C-Backspace> <C-^>
 
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
 " }}}
 
 "--------------
