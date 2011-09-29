@@ -130,3 +130,18 @@
 [submodule "_vim/bundle/Align"]
 	path = _vim/bundle/Align
 	url = git://github.com/vim-scripts/Align.git
+[submodule "_vim/bundle/vim-textobj-fold"]
+	path = _vim/bundle/vim-textobj-fold
+	url = git://github.com/kana/vim-textobj-fold.git
+[submodule "_vim/bundle/vim-textobj-lastpat"]
+	path = _vim/bundle/vim-textobj-lastpat
+	url = git://github.com/kana/vim-textobj-lastpat.git
+[submodule "_vim/bundle/vim-textobj-syntax"]
+	path = _vim/bundle/vim-textobj-syntax
+	url = git://github.com/kana/vim-textobj-syntax.git
+[submodule "_vim/bundle/vim-textobj-indent"]
+	path = _vim/bundle/vim-textobj-indent
+	url = git://github.com/kana/vim-textobj-indent.git
+[submodule "_vim/bundle/vim-textobj-user"]
+	path = _vim/bundle/vim-textobj-user
+	url = git://github.com/kana/vim-textobj-user.git
