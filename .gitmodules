@@ -151,3 +151,6 @@
 [submodule "_vim/bundle/vim-ruby"]
 	path = _vim/bundle/vim-ruby
 	url = git://github.com/vim-ruby/vim-ruby.git
+[submodule "_vim/bundle/calendar-vim"]
+	path = _vim/bundle/calendar-vim
+	url = git://github.com/mattn/calendar-vim.git
