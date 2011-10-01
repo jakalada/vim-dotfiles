@@ -157,3 +157,6 @@
 [submodule "_vim/bundle/vim-toggle"]
 	path = _vim/bundle/vim-toggle
 	url = git://github.com/taku-o/vim-toggle.git
+[submodule "_vim/bundle/unite-tag"]
+	path = _vim/bundle/unite-tag
+	url = git://github.com/tsukkee/unite-tag.git
