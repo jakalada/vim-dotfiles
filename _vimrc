@@ -144,6 +144,7 @@ set fileformats=unix,dos,mac
 
 "East Asian Width Class Ambiguous な文字をASCII文字の2倍の幅で扱う
 set ambiwidth=double
+"}}}
 
 "===========
 " Syntax {{{
@@ -535,11 +536,12 @@ noremap <silent> Ak :call AddEmptyLineAbove()<CR>
 " Plugin {{{
 "===========
 
-"------------------
+"---------------
 " vim-toggle {{{
-"------------------
+"---------------
 
 nmap - <Plug>ToggleN
+" }}}
 
 "------------------
 " vim-smartword {{{
@@ -549,16 +551,18 @@ map w <Plug>(smartword-w)
 map b <Plug>(smartword-b)
 map e <Plug>(smartword-e)
 map ge <Plug>(smartword-ge)
+" }}}
 
-"--------------
+"----------------
 " matchit.vim {{{
-"--------------
+"----------------
 
 runtime macros/matchit.vim
+" }}}
 
-"--------------
+"------------
 " caw.vim {{{
-"--------------
+"------------
 
 nmap gcc <Plug>(caw:wrap:toggle)
 " }}}
@@ -689,11 +693,6 @@ let g:neocomplcache_max_filename_width = 50
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
 imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
 imap <expr><C-C>  neocomplcache#complete_common_string()
-
-" if !exists('g:neocomplcache_omni_patterns')
-"   let g:neocomplcache_omni_patterns = {}
-" endif
-" let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 " }}}
 
 "------------
