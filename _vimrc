@@ -353,13 +353,7 @@ inoremap <C-K> <Esc>O
 inoremap <C-J> <Esc>o
 
 inoremap <silent> <C-L> <Esc>/['"()[\]<>{}]<CR>a
-inoremap <silent> <C-H> <Esc>?['"()[\]<>{}]<CR>i
-
-inoremap <silent> '' ''<Esc>i
-inoremap <silent> "" ""<Esc>i
-inoremap <silent> (( ()<Esc>i
-inoremap <silent> [[ []<Esc>i
-inoremap <silent> {{ {}<Esc>i
+inoremap <silent> <C-H> <Left>
 
 inoremap <silent> <F7> <Esc>gUiwea
 " }}}
@@ -736,6 +730,13 @@ nmap s ys
 nmap S yS
 nmap ss yss
 nmap SS ySS
+
+inoremap <expr> > smartchr#one_of(' => ', ' >> ', '>')
+inoremap <expr> { smartchr#one_of('{}', '{')
+inoremap <expr> [ smartchr#one_of('[]', '[')
+inoremap <expr> < smartchr#one_of('<>', '<')
+inoremap <expr> ( smartchr#one_of('()', '(')
+MyAutocmd FileType ruby inoremap <buffer> <expr> = smartchr#one_of('#{}', '# ', '#')
 " }}}
 
 "-----------------
