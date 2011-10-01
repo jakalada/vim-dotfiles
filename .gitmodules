@@ -160,3 +160,6 @@
 [submodule "_vim/bundle/unite-tag"]
 	path = _vim/bundle/unite-tag
 	url = git://github.com/tsukkee/unite-tag.git
+[submodule "_vim/bundle/unite-qf"]
+	path = _vim/bundle/unite-qf
+	url = git://github.com/sgur/unite-qf.git
