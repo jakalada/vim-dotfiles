@@ -749,12 +749,6 @@ nmap S yS
 nmap ss yss
 nmap SS ySS
 
-inoremap <expr> > smartchr#one_of(' => ', ' >> ', '>')
-inoremap <expr> { smartchr#one_of('{}', '{')
-inoremap <expr> [ smartchr#one_of('[]', '[')
-inoremap <expr> < smartchr#one_of('<>', '<')
-inoremap <expr> ( smartchr#one_of('()', '(')
-MyAutocmd FileType ruby inoremap <buffer> <expr> = smartchr#one_of('#{}', '# ', '#')
 " }}}
 
 "-----------------
