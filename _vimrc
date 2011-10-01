@@ -348,8 +348,6 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 " mapmode-i {{{
 "--------------
 
-inoremap jj <Esc>
-
 inoremap <C-K> <Esc>O
 inoremap <C-J> <Esc>o
 
