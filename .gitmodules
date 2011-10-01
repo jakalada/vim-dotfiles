@@ -40,9 +40,6 @@
 [submodule "_vim/bundle/vim-unite-history"]
 	path = _vim/bundle/vim-unite-history
 	url = git://github.com/thinca/vim-unite-history.git
-[submodule "_vim/bundle/unite-grep"]
-	path = _vim/bundle/unite-grep
-	url = git://github.com/Sixeight/unite-grep.git
 [submodule "_vim/bundle/vim-surround"]
 	path = _vim/bundle/vim-surround
 	url = git://github.com/tpope/vim-surround.git
