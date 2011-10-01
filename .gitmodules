@@ -166,3 +166,6 @@
 [submodule "_vim/bundle/unite-session"]
 	path = _vim/bundle/unite-session
 	url = git://github.com/tungd/unite-session.git
+[submodule "_vim/bundle/unite-rails"]
+	path = _vim/bundle/unite-rails
+	url = git://github.com/basyura/unite-rails.git
