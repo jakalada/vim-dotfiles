@@ -536,6 +536,12 @@ noremap <silent> Ak :call AddEmptyLineAbove()<CR>
 "===========
 
 "------------------
+" vim-toggle {{{
+"------------------
+
+nmap - <Plug>ToggleN
+
+"------------------
 " vim-smartword {{{
 "------------------
 
