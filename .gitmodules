@@ -163,3 +163,6 @@
 [submodule "_vim/bundle/unite-qf"]
 	path = _vim/bundle/unite-qf
 	url = git://github.com/sgur/unite-qf.git
+[submodule "_vim/bundle/unite-session"]
+	path = _vim/bundle/unite-session
+	url = git://github.com/tungd/unite-session.git
