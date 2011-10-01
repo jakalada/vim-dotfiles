@@ -599,25 +599,39 @@ xnoremap <SID>[unite-no-quite] <Nop>
 nmap F <SID>[unite-no-quite]
 xmap F <SID>[unite-no-quite]
 
-nnoremap <silent> <SID>[unite]F :<C-U>Unite -buffer-name=files bookmark file_mru file<CR>
+nnoremap <silent> <SID>[unite]<Space> :<C-U>UniteResume<CR>
+
+nnoremap <silent> <SID>[unite]F :<C-U>Unite -buffer-name=files bookmark directory_mru file_mru<CR>
 nnoremap <silent> <SID>[unite]f :<C-U>Unite -buffer-name=files file<CR>
-nnoremap <silent> <SID>[unite]b :<C-U>Unite -buffer-name=buffer buffer<CR>
+nnoremap <silent> <SID>[unite]b :<C-U>Unite -buffer-name=buffer_tab buffer_tab<CR>
+nnoremap <silent> <SID>[unite]B :<C-U>Unite -buffer-name=buffer buffer<CR>
 nnoremap <silent> <SID>[unite]r :<C-U>Unite -buffer-name=register register<CR>
-nnoremap <silent> <SID>[unite]t :<C-U>Unite -buffer-name=tab tab<CR>
+nnoremap <silent> <SID>[unite]t :<C-U>Unite -buffer-name=tab tab:no-current<CR>
+nnoremap <silent> <SID>[unite]w :<C-U>Unite -buffer-name=window window:no-current<CR>
 nnoremap <silent> <SID>[unite]o :<C-U>Unite -buffer-name=outline outline<CR>
 nnoremap <silent> <SID>[unite]m :<C-U>Unite -buffer-name=mark mark<CR>
 nnoremap <silent> <SID>[unite]h :<C-U>Unite -buffer-name=help help<CR>
+nnoremap <silent> <SID>[unite]l :<C-U>Unite -buffer-name=line line<CR>
+nnoremap <silent> <SID>[unite]H :<C-U>Unite -buffer-name=refe -input=ref source<CR>
+nnoremap <silent> <SID>[unite]R :<C-U>Unite -buffer-name=rails -input=rails source<CR>
+nnoremap <silent> <SID>[unite]s :<C-U>Unite -buffer-name=snippet snippet<CR>
+nnoremap <silent> <SID>[unite]q :<C-U>Unite -buffer-name=qf qf<CR>
 
-nnoremap <silent> <SID>[unite-no-quite]F :<C-U>Unite -no-quite -buffer-name=files bookmark file_mru file<CR>
+nnoremap <silent> <SID>[unite-no-quite]F :<C-U>Unite -no-quite -buffer-name=files bookmark directory_mru file_mru<CR>
 nnoremap <silent> <SID>[unite-no-quite]f :<C-U>Unite -no-quite -buffer-name=files file<CR>
-nnoremap <silent> <SID>[unite-no-quite]b :<C-U>Unite -no-quite -buffer-name=buffer buffer<CR>
+nnoremap <silent> <SID>[unite-no-quite]b :<C-U>Unite -no-quite -buffer-name=buffer_tab buffer_tab<CR>
+nnoremap <silent> <SID>[unite-no-quite]B :<C-U>Unite -no-quite -buffer-name=buffer buffer<CR>
 nnoremap <silent> <SID>[unite-no-quite]r :<C-U>Unite -no-quite -buffer-name=register register<CR>
-nnoremap <silent> <SID>[unite-no-quite]t :<C-U>Unite -no-quite -buffer-name=tab tab<CR>
+nnoremap <silent> <SID>[unite-no-quite]t :<C-U>Unite -no-quite -buffer-name=tab tab:no-current<CR>
+nnoremap <silent> <SID>[unite-no-quite]w :<C-U>Unite -no-quite -buffer-name=window window:no-current<CR>
 nnoremap <silent> <SID>[unite-no-quite]o :<C-U>Unite -no-quite -buffer-name=outline outline<CR>
 nnoremap <silent> <SID>[unite-no-quite]m :<C-U>Unite -no-quite -buffer-name=mark mark<CR>
 nnoremap <silent> <SID>[unite-no-quite]h :<C-U>Unite -no-quite -buffer-name=help help<CR>
-
-nnoremap <silent> <leader>b :<C-U>UniteBookmarkAdd<CR>
+nnoremap <silent> <SID>[unite-no-quite]l :<C-U>Unite -no-quite -buffer-name=line line<CR>
+nnoremap <silent> <SID>[unite-no-quite]H :<C-U>Unite -no-quite -buffer-name=refe -input=ref source<CR>
+nnoremap <silent> <SID>[unite-no-quite]R :<C-U>Unite -no-quite -buffer-name=rails -input=rails source<CR>
+nnoremap <silent> <SID>[unite-no-quite]s :<C-U>Unite -no-quite -buffer-name=snippet snippet<CR>
+nnoremap <silent> <SID>[unite-no-quite]q :<C-U>Unite -no-quite -buffer-name=qf qf<CR>
 " }}}
 
 "---------
@@ -690,7 +704,8 @@ let g:neocomplcache_max_filename_width = 50
 
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
 imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
-imap <expr><C-C>  neocomplcache#complete_common_string()
+inoremap <expr><C-C> neocomplcache#complete_common_string()
+imap <C-f> <Plug>(neocomplcache_start_unite_complete)
 " }}}
 
 "------------
