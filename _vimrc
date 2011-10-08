@@ -199,6 +199,7 @@ if s:isgui
   set mouse=a
   set mousehide
   set mousefocus
+  set visualbell
 endif
 
 setlocal autoindent
@@ -351,7 +352,7 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 inoremap <C-K> <Esc>O
 inoremap <C-J> <Esc>o
 
-inoremap <silent> <C-L> <Esc>/['"()[\]<>{}]<CR>a
+inoremap <silent> <C-L> <Right>
 inoremap <silent> <C-H> <Left>
 
 inoremap <silent> <F7> <Esc>gUiwea
