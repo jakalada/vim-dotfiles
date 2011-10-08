@@ -4,6 +4,19 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal shiftround
 
+inoremap <expr> = smartchr#one_of('=', '==', '=~', '===')
+
+inoremap <expr> < smartchr#one_of('<', '<=', '<<')
+inoremap <expr> > smartchr#one_of('>', '>=', '>>')
+
+inoremap <expr> ( smartchr#one_of('(', '()', '((')
+inoremap <expr> [ smartchr#one_of('[', '[]', '[[')
+inoremap <expr> { smartchr#one_of('{', '{}', '#{}', '{{')
+
+inoremap <expr> # smartchr#one_of('#', '# =>', '##')
+
+
+
 " for xmpfilter in rcodetools "{{{
 " plain annotations
 nnoremap <buffer> <silent> <LocalLeader>x V!xmpfilter -a<CR>
@@ -46,4 +59,11 @@ let b:undo_ftplugin .= '
 \ | setlocal shiftround<
 \ | vunmap <LocalLeader>x
 \ | nunmap <LocalLeader>x
+\ | iunmap =
+\ | iunmap <
+\ | iunmap >
+\ | iunmap (
+\ | iunmap [
+\ | iunmap {
+\ | iunmap #
 \'
