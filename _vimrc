@@ -160,7 +160,6 @@ endif
 
 " ft-ruby-syntax
 let ruby_operators = 1
-let ruby_fold = 1
 
 " ft-java-syntax
 let g:java_highlight_functions = 'style'
