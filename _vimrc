@@ -236,12 +236,6 @@ set helplang=ja
 
 MyAutocmd WinEnter * checktime
 
-" tags
-if has('path_extra')
-    set tags+=./tags;
-    set tags+=tags;
-    set tags+=$DOTVIMDIR/systags;
-endif
 set showfulltag
 set notagbsearch
 
