@@ -158,6 +158,8 @@ else
   colorscheme wombat256mod
 endif
 
+MyAutocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+
 " ft-ruby-syntax
 let ruby_operators = 1
 
@@ -634,6 +636,8 @@ nnoremap <silent> <SID>[unite-no-quite]q :<C-U>Unite -no-quite -buffer-name=qf q
 
 nmap <Leader>n  <Plug>(altr-forward)
 nmap <Leader>p  <Plug>(altr-back)
+
+call altr#define('spec/%_spec.rb', 'lib/%.rb')
 " }}}
 
 "---------------
@@ -750,6 +754,7 @@ nmap SS ySS
 "-----------------
 
 let g:quickrun_config = {}
+let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
 let g:quickrun_config['markdown'] = {
 \ 'command': 'kramdown',
 \ 'exec': '%c %s'
