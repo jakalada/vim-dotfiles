@@ -698,7 +698,7 @@ let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_snippets_dir = '~/.vim/snippets'
 let g:neocomplcache_enable_cursor_hold_i = 1
 let g:neocomplcache_enable_auto_delimiter = 1
-let g:neocomplcache_max_filename_width = 50
+let g:neocomplcache_max_menu_width = 50
 
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
 imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
