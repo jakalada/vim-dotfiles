@@ -189,12 +189,11 @@ let g:is_bash = 1
 " Options {{{
 "============
 
-
 if s:isgui
   set nocursorline
   set cmdheight=3
   set showtabline=2
-  set guioptions=gae
+  set guioptions=aci
   set guifont=Ricty\ Discord\ 13.5
   set guitablabel=%-30.30t
   set mouse=a
