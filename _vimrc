@@ -423,7 +423,7 @@ nnoremap <silent> <SID>[tab]q :<C-U>tabclose<CR>
 nnoremap <silent> <SID>[tab]tt :<C-U>tabnew<CR>
 
 nnoremap <silent> <SID>[tab]tn :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
-nnoremap <silent> <SID>[tab]tg :<C-U>tabnew \| lcd $DROPBOXDIR/GTD<CR>
+nnoremap <silent> <SID>[tab]tl :<C-U>tabnew \| lcd $DROPBOXDIR/Lists<CR>
 nnoremap <silent> <SID>[tab]tv :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
 " }}}
 
