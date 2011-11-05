@@ -1,5 +1,3 @@
-" jakalada's .vimrc
-
 "===============
 " Initialize {{{
 "===============
