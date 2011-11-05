@@ -628,6 +628,27 @@ nnoremap <silent> <SID>[unite-no-quite]s :<C-U>Unite -no-quite -buffer-name=snip
 nnoremap <silent> <SID>[unite-no-quite]q :<C-U>Unite -no-quite -buffer-name=qf qf<CR>
 " }}}
 
+" menu-fugitive
+let g:unite_source_menu_menus = {}
+let g:unite_source_menu_menus.fugitive = {
+      \     'description' : 'fugitive menu',
+      \ }
+let g:unite_source_menu_menus.fugitive.candidates = {
+      \       'add'      : 'Gwrite',
+      \       'blame'      : 'Gblame',
+      \       'diff'      : 'Gdiff',
+      \       'commit'      : 'Gcommit',
+      \       'status'      : 'Gstatus',
+      \       'rm'      : 'Gremove',
+      \     }
+function g:unite_source_menu_menus.fugitive.map(key, value)
+  return {
+        \       'word' : a:key, 'kind' : 'command',
+        \       'action__command' : a:value,
+        \     }
+endfunction
+
+nnoremap <silent> <SID>[unite]g :<C-u>Unite menu:fugitive<CR>
 "---------
 " altr {{{
 "---------
@@ -760,25 +781,6 @@ let g:quickrun_config['markdown'] = {
 \ 'command': 'kramdown',
 \ 'exec': '%c %s'
 \ }
-" }}}
-
-"-----------------
-" vim-fugitive {{{
-"-----------------
-
-nnoremap <SID>[fugitive] <Nop>
-xnoremap <SID>[fugitive] <Nop>
-nmap <Leader>g <SID>[fugitive]
-xmap <Leader>g <SID>[fugitive]
-
-nmap <silent> <SID>[fugitive]g <SID>(command-line-enter)Git<Space>
-nnoremap <silent> <SID>[fugitive]d :<C-u>Gdiff<Enter>
-nnoremap <silent> <SID>[fugitive]s :<C-u>Gstatus<Enter>
-nnoremap <silent> <SID>[fugitive]l :<C-u>Glog<Enter>
-nnoremap <silent> <SID>[fugitive]a :<C-u>Gwrite<Enter>
-nnoremap <silent> <SID>[fugitive]c :<C-u>Gcommit<Enter>
-nnoremap <silent> <SID>[fugitive]C :<C-u>Git commit --amend<Enter>
-nnoremap <silent> <SID>[fugitive]b :<C-u>Gblame<Enter>
 " }}}
 
 "-----------------------
