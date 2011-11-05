@@ -319,6 +319,7 @@ noremap gk H
 "--------------
 " mapmode-n {{{
 "--------------
+nnoremap <Leader>k <C-^>
 
 nnoremap <Backspace> <C-O>
 nnoremap <S-Backspace> <C-I>
