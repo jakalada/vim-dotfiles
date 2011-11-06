@@ -1,4 +1,4 @@
-nnoremap <CR> <C-]>
+nnoremap <buffer> <CR> <C-]>
 
 if !exists('b:undo_ftplugin')
   let b:undo_ftplugin = ''

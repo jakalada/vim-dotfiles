@@ -4,16 +4,16 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal shiftround
 
-inoremap <expr> = smartchr#one_of('=', '==', '=~', '===')
+inoremap <buffer> <expr> = smartchr#one_of('=', '==', '=~', '===')
 
-inoremap <expr> < smartchr#one_of('<', '<=', '<<')
-inoremap <expr> > smartchr#one_of('>', '>=', '>>')
+inoremap <buffer> <expr> < smartchr#one_of('<', '<=', '<<')
+inoremap <buffer> <expr> > smartchr#one_of('>', '>=', '>>')
 
-inoremap <expr> ( smartchr#one_of('(', '()', '((')
-inoremap <expr> [ smartchr#one_of('[', '[]', '[[')
-inoremap <expr> { smartchr#one_of('{', '{}', '#{}', '{{')
+inoremap <buffer> <expr> ( smartchr#one_of('(', '()', '((')
+inoremap <buffer> <expr> [ smartchr#one_of('[', '[]', '[[')
+inoremap <buffer> <expr> { smartchr#one_of('{', '{}', '#{}', '{{')
 
-inoremap <expr> # smartchr#one_of('#', '# =>', '##')
+inoremap <buffer> <expr> # smartchr#one_of('#', '# =>', '##')
 
 
 
