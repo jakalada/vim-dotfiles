@@ -175,3 +175,6 @@
 [submodule "_vim/bundle/unite-build"]
 	path = _vim/bundle/unite-build
 	url = git://github.com/Shougo/unite-build.git
+[submodule "_vim/bundle/learn-vimscript"]
+	path = _vim/bundle/learn-vimscript
+	url = git://github.com/mattn/learn-vimscript.git
