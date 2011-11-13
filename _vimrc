@@ -350,7 +350,39 @@ inoremap <silent> <C-H> <Left>
 
 inoremap <silent> <F7> <Esc>gUiwea
 " }}}
+"
+"--------------
+" mapmode-ic {{{
+"--------------
 
+noremap! ;; ;
+noremap! ;<Space> _
+noremap! ;a A
+noremap! ;b B
+noremap! ;c C
+noremap! ;d D
+noremap! ;e E
+noremap! ;f F
+noremap! ;g G
+noremap! ;h H
+noremap! ;i I
+noremap! ;j J
+noremap! ;k K
+noremap! ;l L
+noremap! ;m M
+noremap! ;n N
+noremap! ;o O
+noremap! ;p p
+noremap! ;q Q
+noremap! ;r R
+noremap! ;s S
+noremap! ;t T
+noremap! ;u U
+noremap! ;v V
+noremap! ;w W
+noremap! ;x X
+noremap! ;y Y
+noremap! ;z Z
 " }}}
 
 "===================
