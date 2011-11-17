@@ -233,6 +233,7 @@ set scrolloff=10
 set helplang=ja
 
 MyAutocmd WinEnter * checktime
+set autoread
 
 set showfulltag
 set notagbsearch
