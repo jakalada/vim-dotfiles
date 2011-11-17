@@ -67,9 +67,6 @@
 [submodule "_vim/bundle/vim-metarw-git"]
 	path = _vim/bundle/vim-metarw-git
 	url = git://github.com/kana/vim-metarw-git.git
-[submodule "_vim/bundle/nerdtree"]
-	path = _vim/bundle/nerdtree
-	url = git://github.com/scrooloose/nerdtree.git
 [submodule "_vim/bundle/vim-markdown"]
 	path = _vim/bundle/vim-markdown
 	url = git://github.com/tpope/vim-markdown.git
