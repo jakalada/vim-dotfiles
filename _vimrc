@@ -151,7 +151,7 @@ set ambiwidth=double
 syntax enable
 
 if s:isgui
-  colorscheme zenburn
+  colorscheme wombat
 else
   colorscheme wombat256mod
 endif
