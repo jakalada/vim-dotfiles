@@ -687,10 +687,18 @@ endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 " }}}
 
+
+if !exists('g:neocomplcache_dictionary_filetype_lists')
+let g:neocomplcache_dictionary_filetype_lists = {
+      \'jasmine': expand('~/.vim/dict/jasmine.dict')
+      \}
+endif
+
+
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_ignore_case = 0
 let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_snippets_dir = '~/.vim/snippets'
+let g:neocomplcache_snippets_dir = expand('~/.vim/snippets')
 let g:neocomplcache_enable_cursor_hold_i = 1
 let g:neocomplcache_enable_auto_delimiter = 1
 let g:neocomplcache_max_menu_width = 50
