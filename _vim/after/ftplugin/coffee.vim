@@ -16,5 +16,5 @@ let b:undo_ftplugin .= '
 \ | setlocal shiftwidth<
 \ | setlocal softtabstop<
 \ | setlocal shiftround<
-\ | iunmap >
+\ | iunmap <buffer> >
 \'

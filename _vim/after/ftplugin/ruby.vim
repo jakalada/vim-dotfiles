@@ -57,13 +57,13 @@ let b:undo_ftplugin .= '
 \ | setlocal shiftwidth<
 \ | setlocal softtabstop<
 \ | setlocal shiftround<
-\ | vunmap <LocalLeader>x
-\ | nunmap <LocalLeader>x
-\ | iunmap =
-\ | iunmap <
-\ | iunmap >
-\ | iunmap (
-\ | iunmap [
-\ | iunmap {
-\ | iunmap #
+\ | vunmap <buffer> <LocalLeader>x
+\ | nunmap <buffer> <LocalLeader>x
+\ | iunmap <buffer> =
+\ | iunmap <buffer> <
+\ | iunmap <buffer> >
+\ | iunmap <buffer> (
+\ | iunmap <buffer> [
+\ | iunmap <buffer> {
+\ | iunmap <buffer> #
 \'

@@ -20,6 +20,6 @@ let b:undo_ftplugin .= '
 \ | setlocal softtabstop<
 \ | setlocal keywordprg<
 \ | setlocal shiftround<
-\ | execute "iunmap <buffer> <expr> ="
-\ | execute "iunmap <buffer> <expr> -"
+\ | iunmap <buffer> <expr> =
+\ | iunmap <buffer> <expr> -
 \'
