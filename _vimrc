@@ -188,17 +188,17 @@ let g:is_bash = 1
 "============
 
 if s:isgui
-  set nocursorline
-  set cmdheight=3
-  set showtabline=2
   set guioptions=aci
   set guifont=Ricty\ Discord\ 13.5
-  set guitablabel=%-30.30t
   set mouse=a
   set mousehide
   set mousefocus
   set visualbell
 endif
+
+set nocursorline
+set cmdheight=3
+set showtabline=2
 
 setlocal autoindent
 setlocal smartindent
