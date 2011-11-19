@@ -163,3 +163,6 @@
 [submodule "_vim/bundle/learn-vimscript"]
 	path = _vim/bundle/learn-vimscript
 	url = git://github.com/mattn/learn-vimscript.git
+[submodule "_vim/bundle/jasmine.vim"]
+	path = _vim/bundle/jasmine.vim
+	url = git://github.com/claco/jasmine.vim.git

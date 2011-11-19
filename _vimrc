@@ -157,6 +157,8 @@ else
 endif
 
 MyAutocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+" overwrite ftdetect of vim-coffee-script and jasmine.vim
+autocmd BufNewFile,BufRead,BufWritePost *[_.][Ss]pec.coffee,*SpecHelper.coffee set filetype=jasmine.coffee syntax=jasmine
 
 " ft-ruby-syntax
 let ruby_operators = 1
