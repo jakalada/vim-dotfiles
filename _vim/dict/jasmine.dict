@@ -1,6 +1,13 @@
 jasmine
 spy
 
+describe
+it
+expect
+
+beforeEach
+afterEach
+
 toBeDefined
 toBeUndefined
 toBeNull
