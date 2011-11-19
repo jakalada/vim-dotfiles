@@ -157,6 +157,7 @@ else
 endif
 
 MyAutocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+MyAutocmd BufWinEnter,BufNewFile *_spec.coffee set filetype=coffee.jasmine
 
 " ft-ruby-syntax
 let ruby_operators = 1
