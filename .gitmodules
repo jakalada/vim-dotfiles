@@ -163,3 +163,12 @@
 [submodule "_vim/bundle/learn-vimscript"]
 	path = _vim/bundle/learn-vimscript
 	url = git://github.com/mattn/learn-vimscript.git
+[submodule "_vim/bundle/unite-vim_hacks"]
+	path = _vim/bundle/unite-vim_hacks
+	url = git://github.com/choplin/unite-vim_hacks.git
+[submodule "_vim/bundle/vim-openbuf"]
+	path = _vim/bundle/vim-openbuf
+	url = git://github.com/thinca/vim-openbuf.git
+[submodule "_vim/bundle/webapi-vim"]
+	path = _vim/bundle/webapi-vim
+	url = git://github.com/mattn/webapi-vim.git
