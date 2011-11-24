@@ -632,7 +632,7 @@ nmap <Leader>n  <Plug>(altr-forward)
 nmap <Leader>p  <Plug>(altr-back)
 
 call altr#define('spec/%_spec.rb', 'lib/%.rb')
-call altr#define('src/lib/coffee/%.coffee', 'spec/coffee/%_spec.coffee')
+call altr#define('src/lib/*/%.coffee', 'spec/%_spec.coffee')
 " }}}
 
 "---------------

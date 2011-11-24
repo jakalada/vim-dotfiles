@@ -4,8 +4,6 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal shiftround
 
-inoremap <buffer> <expr> > smartchr#one_of('->', '=>', '>>', '>')
-
 if !exists('b:undo_ftplugin')
   let b:undo_ftplugin = ''
 endif
@@ -16,5 +14,4 @@ let b:undo_ftplugin .= '
 \ | setlocal shiftwidth<
 \ | setlocal softtabstop<
 \ | setlocal shiftround<
-\ | iunmap <buffer> >
 \'
