@@ -172,3 +172,6 @@
 [submodule "_vim/bundle/webapi-vim"]
 	path = _vim/bundle/webapi-vim
 	url = git://github.com/mattn/webapi-vim.git
+[submodule "_vim/bundle/vim-alignta"]
+	path = _vim/bundle/vim-alignta
+	url = git://github.com/h1mesuke/vim-alignta.git
