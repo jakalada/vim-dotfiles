@@ -552,7 +552,8 @@ let g:vimfiler_time_format = "%Y/%m/%d %H:%M"
 let g:unite_kind_file_delete_file_command = 'trash-put $srcs'
 let g:unite_kind_file_delete_directory_command = 'trash-put -rf $srcs'
 
-nnoremap <silent> <leader>a :<C-U>VimFiler<CR>
+nnoremap <silent> <leader>a :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quite<CR>
+nnoremap <silent> <leader>A :<C-U>VimFiler<CR>
 " }}}
 
 "--------------
