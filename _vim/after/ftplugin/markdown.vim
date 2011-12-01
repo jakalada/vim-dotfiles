@@ -6,6 +6,9 @@ setlocal shiftround
 
 setlocal foldmethod=manual
 
+nnoremap <buffer> = "=repeat('=', strdisplaywidth(getline("."))) . "\n"<CR>p
+nnoremap <buffer> - "=repeat('-', strdisplaywidth(getline("."))) . "\n"<CR>p
+
 if !exists('b:undo_ftplugin')
   let b:undo_ftplugin = ''
 endif
@@ -17,4 +20,6 @@ let b:undo_ftplugin .= '
 \ | setlocal softtabstop<
 \ | setlocal keywordprg<
 \ | setlocal shiftround<
+\ | nunmap <buffer> =
+\ | nunmap <buffer> -
 \'
