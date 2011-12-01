@@ -151,13 +151,15 @@ set ambiwidth=double
 syntax enable
 
 if s:isgui
-  colorscheme wombat
+  colorscheme rdark
 else
+  set t_Co=256
   colorscheme wombat256mod
 endif
 
 MyAutocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 MyAutocmd BufWinEnter,BufNewFile *_spec.coffee set filetype=coffee.jasmine
+MyAutocmd BufWinEnter,BufNewFile *_spec.coffee set filetype=coffee.vows
 
 " ft-ruby-syntax
 let ruby_operators = 1
@@ -349,6 +351,8 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 "--------------
 " mapmode-i {{{
 "--------------
+
+inoremap ii <Esc>
 
 inoremap <C-K> <Esc>O
 inoremap <C-J> <Esc>o
@@ -638,7 +642,8 @@ nmap <Leader>n  <Plug>(altr-forward)
 nmap <Leader>p  <Plug>(altr-back)
 
 call altr#define('spec/%_spec.rb', 'lib/%.rb')
-call altr#define('src/lib/*/%.coffee', 'spec/%_spec.coffee')
+call altr#define('src/lib/*/%.coffee', 'spec/*/%_spec.coffee')
+call altr#define('src/lib/%.coffee', 'spec/%_spec.coffee')
 " }}}
 
 "---------------
@@ -697,6 +702,9 @@ let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 if !exists('g:neocomplcache_dictionary_filetype_lists')
 let g:neocomplcache_dictionary_filetype_lists = {
       \'jasmine': expand('~/.vim/dict/jasmine.dict')
+      \}
+let g:neocomplcache_dictionary_filetype_lists = {
+      \'vows': expand('~/.vim/dict/vows.dict')
       \}
 endif
 
