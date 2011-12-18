@@ -366,6 +366,13 @@ inoremap <silent> <F7> <Esc>gUiwea
 "--------------
 " mapmode-ic {{{
 "--------------
+noremap! (<S-Space> ()<Left>
+noremap! [<S-Space> []<Left>
+noremap! {<S-Space> {}<Left>
+noremap! `<S-Space> ``<Left>
+noremap! #<S-Space> #{}<Left>
+noremap! "<S-Space> ""<Left>
+noremap! '<S-Space> ''<Left>
 
 noremap! ;; ;
 noremap! ;<Space> _
