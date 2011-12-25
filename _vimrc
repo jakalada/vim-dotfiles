@@ -294,6 +294,7 @@ let &statusline="%<\(%{fnamemodify(getcwd(), ':~')}\)\ %{expand('%:p:.')}\%=%m%r
 
 set nomodeline
 
+set foldopen=block,quickfix,search,tag,undo
 " }}}
 
 "=================

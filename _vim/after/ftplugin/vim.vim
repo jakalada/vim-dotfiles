@@ -4,6 +4,8 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal shiftround
 
+setlocal foldmethod=marker
+
 setlocal keywordprg=:help
 
 if !exists('b:undo_ftplugin')
