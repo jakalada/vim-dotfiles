@@ -1,6 +1,7 @@
-"===============
-" Initialize {{{
-"===============
+
+" ========================
+" SECTION: Initialize {{{1
+" ========================
 
 " .vimrcの再読み込み時にオプションを初期化する {{{
 " 設定されたruntimepathが初期化されないようにする
@@ -50,11 +51,9 @@ filetype plugin on
 filetype indent on
 " }}}
 
-" }}}
-
-"=============
-" Commands {{{
-"=============
+" ======================
+" SECTION: Commands {{{1
+" ======================
 
 " .vimrcの再読み込み時に.vimrc内で設定されたautocmdを初期化する
 " MyAutocmdを使用することで漏れなく初期化できる
@@ -92,11 +91,9 @@ else
 endif
 " }}}
 
-" }}}
-
-"==============
-" Functions {{{
-"==============
+" =======================
+" SECTION: Functions {{{1
+" =======================
 
 " statullineの設定に使用する
 function! SnipMid(str, len, mask) " {{{
@@ -113,11 +110,9 @@ function! SnipMid(str, len, mask) " {{{
 endfunction
 " }}}
 
-" }}}
-
-"=============
-" Encoding {{{
-"=============
+" ======================
+" SECTION: Encoding {{{1
+" ======================
 
 " fileencodingの設定 {{{
 set fileencodings=iso-2022-jp-3,iso-2022-jp,euc-jisx0213,euc-jp,utf-8,ucs-bom,euc-jp,eucjp-ms,cp932
@@ -142,11 +137,10 @@ set fileformats=unix,dos,mac
 
 "East Asian Width Class Ambiguous な文字をASCII文字の2倍の幅で扱う
 set ambiwidth=double
-"}}}
 
-"===========
-" Syntax {{{
-"===========
+" ====================
+" SECTION: Syntax {{{1
+" ====================
 
 syntax enable
 
@@ -184,11 +178,9 @@ let g:vimsyntax_noerror = 1
 " ft-sh-syntax
 let g:is_bash = 1
 
-" }}}
-
-"============
-" Options {{{
-"============
+" =====================
+" SECTION: Options {{{1
+" =====================
 
 if s:isgui
   set guioptions=aci
@@ -295,11 +287,10 @@ let &statusline="%<\(%{fnamemodify(getcwd(), ':~')}\)\ %{expand('%:p:.')}\%=%m%r
 set nomodeline
 
 set foldopen=block,quickfix,search,tag,undo
-" }}}
 
-"=================
-" Key-mappings {{{
-"=================
+" ==========================
+" SECTION: Key-mappings {{{1
+" ==========================
 
 "-----------
 " Leader {{{
@@ -411,13 +402,13 @@ noremap! ;y Y
 noremap! ;z Z
 " }}}
 
-"===================
-" 少し大きい設定 {{{
-"===================
+" ============================
+" SECTION: 少し大きい設定 {{{1
+" ============================
 
-"---------------------
-" tab page mapping {{{
-"---------------------
+" ---------------
+" タブページ {{{2
+" ---------------
 
 nnoremap <SID>[tab] <Nop>
 nmap t <SID>[tab]
@@ -431,11 +422,10 @@ nnoremap <silent> <SID>[tab]tn :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
 nnoremap <silent> <SID>[tab]tl :<C-U>tabnew \| lcd $DROPBOXDIR/Lists<CR>
 nnoremap <silent> <SID>[tab]tv :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
 nnoremap <silent> <SID>[tab]tc :<C-U>execute 'tabnew \| lcd ' . $DROPBOXDIR . '/Notes/cheat/filetypes/' . &filetype<CR>
-" }}}
 
-"-------------------
-" window mapping {{{
-"-------------------
+" ---------------
+" ウィンドウ {{{2
+" ---------------
 
 nnoremap <SID>[window] <Nop>
 nmap $ <SID>[window]
@@ -452,11 +442,10 @@ nnoremap <silent> <SID>(split-to-j) :<C-U>execute 'belowright' (v:count == 0 ? '
 nnoremap <silent> <SID>(split-to-k) :<C-U>execute 'aboveleft'  (v:count == 0 ? '' : v:count) 'split'<CR>
 nnoremap <silent> <SID>(split-to-h) :<C-U>execute 'topleft'    (v:count == 0 ? '' : v:count) 'vsplit'<CR>
 nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '' : v:count) 'vsplit'<CR>
-" }}}
 
-"------------------------
-" Command-line window {{{
-"------------------------
+" -----------------------------
+" コマンドラインウィンドウ {{{2
+" -----------------------------
 
 nnoremap <SID>(command-line-enter) q:
 xnoremap <SID>(command-line-enter) q:
@@ -476,11 +465,10 @@ function! s:init_cmdwin() " {{{
   nnoremap <silent> <buffer> q :<C-U>quit<CR>
   startinsert!
 endfunction " }}}
-" }}}
 
-"---------------------------------
-" 空行を追加と削除を容易にする {{{
-"---------------------------------
+" ---------------------------------
+" 空行を追加と削除を容易にする {{{2
+" ---------------------------------
 
 function! AddEmptyLineBelow() " {{{
   call append(line("."), "")
@@ -527,38 +515,34 @@ noremap <silent> Dj :call DelEmptyLineBelow()<CR>
 noremap <silent> Dk :call DelEmptyLineAbove()<CR>
 noremap <silent> Aj :call AddEmptyLineBelow()<CR>
 noremap <silent> Ak :call AddEmptyLineAbove()<CR>
-" }}}
 
-" }}}
+" }}}2
 
-"===========
-" Plugin {{{
-"===========
+" ======================
+" SECTION: Plugins {{{1
+" ======================
 
-"---------------
-" vim-toggle {{{
-"---------------
+" ----------------------
+" PLUGIN: vim-toggle {{{2
+" ----------------------
 
 nmap - <Plug>ToggleN
-" }}}
 
-"----------------
-" matchit.vim {{{
-"----------------
+" ------------------------
+" PLUGIN: matchit.vim {{{2
+" ------------------------
 
 runtime macros/matchit.vim
-" }}}
 
-"------------
-" caw.vim {{{
-"------------
+" --------------------
+" PLUGIN: caw.vim {{{2
+" --------------------
 
 nmap gcc <Plug>(caw:wrap:toggle)
-" }}}
 
-"-----------------
-" vimfiler.vim {{{
-"-----------------
+" -------------------------
+" PLUGIN: vimfiler.vim {{{2
+" -------------------------
 
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_split_action = "split"
@@ -568,11 +552,10 @@ let g:unite_kind_file_delete_directory_command = 'trash-put -rf $srcs'
 
 nnoremap <silent> <leader>a :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quite<CR>
 nnoremap <silent> <leader>A :<C-U>VimFiler<CR>
-" }}}
 
-"--------------
-" unite.vim {{{
-"--------------
+" ---------------------
+" PLUGIN: unite.vim {{{2
+" ----------------------
 
 " unite-variables
 let g:unite_split_rule = 'botright'
@@ -626,7 +609,6 @@ nnoremap <silent> <SID>[unite-no-quite]H :<C-U>Unite -no-quite -buffer-name=refe
 nnoremap <silent> <SID>[unite-no-quite]R :<C-U>Unite -no-quite -buffer-name=rails -input=rails source<CR>
 nnoremap <silent> <SID>[unite-no-quite]s :<C-U>Unite -no-quite -buffer-name=snippet snippet<CR>
 nnoremap <silent> <SID>[unite-no-quite]q :<C-U>Unite -no-quite -buffer-name=qf qf<CR>
-" }}}
 
 " menu-fugitive
 let g:unite_source_menu_menus = {}
@@ -649,9 +631,10 @@ function g:unite_source_menu_menus.fugitive.map(key, value)
 endfunction
 
 nnoremap <silent> <SID>[unite]g :<C-u>Unite menu:fugitive<CR>
-"---------
-" altr {{{
-"---------
+
+" ----------------
+" PLUGIN: altr {{{2
+" ----------------
 
 nmap <Leader>n  <Plug>(altr-forward)
 nmap <Leader>p  <Plug>(altr-back)
@@ -659,11 +642,10 @@ nmap <Leader>p  <Plug>(altr-back)
 call altr#define('spec/%_spec.rb', 'lib/%.rb')
 call altr#define('src/lib/*/%.coffee', 'spec/*/%_spec.coffee')
 call altr#define('src/lib/%.coffee', 'spec/%_spec.coffee')
-" }}}
 
-"---------------
-" unite-neco {{{
-"---------------
+" -----------------------
+" PLUGIN: unite-neco {{{2
+" -----------------------
 
 let s:unite_source = {'name': 'neco'}
 
@@ -684,27 +666,24 @@ function! s:unite_source.gather_candidates(args, context)
         \ }')
 endfunction
 call unite#define_source(s:unite_source)
-" }}}
 
-"---------------
-" rsense.vim {{{
-"---------------
+" -----------------------
+" PLUGIN: rsense.vim {{{2
+" -----------------------
 
 let g:rsenseHome = expand('$RSENSE_HOME')
 let g:rsenseUseOmniFunc = 1
-" }}}
 
-"-------------
-" vimshell {{{
-"-------------
+" --------------------
+" PLUGIN: vimshell {{{2
+" --------------------
 
 let g:vimshell_prompt = '$ '
 let g:vimshell_user_prompt = '"[" . getcwd() ."]"'
-" }}}
 
-"----------------------
-" neocomplcache.vim {{{
-"----------------------
+" -----------------------------
+" PLUGIN: neocomplcache.vim {{{2
+" -----------------------------
 
 " for rsense.vim {{{
 if !exists('g:neocomplcache_omni_patterns')
@@ -736,11 +715,10 @@ nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
 imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
 inoremap <expr><C-C> neocomplcache#complete_common_string()
 imap <C-f> <Plug>(neocomplcache_start_unite_complete)
-" }}}
 
-"------------
-" vim-ref {{{
-"------------
+" --------------------
+" PLUGIN: vim-ref {{{2
+" --------------------
 
 if s:iswin
   let g:ref_pydoc_cmd = 'pydoc.bat'
@@ -759,31 +737,27 @@ function! s:initialize_ref_viewer()
   nmap <buffer> <S-Backspace> <Plug>(ref-forward)
   setlocal nonumber
 endfunction
-" }}}
 
-"------------------
-" changelog.vim {{{
-"------------------
+" --------------------------
+" PLUGIN: changelog.vim {{{2
+" --------------------------
 
 MyAutocmd BufNewFile,BufRead *.changelog setf changelog
 let g:changelog_timeformat = "%Y-%m-%d"
 let g:changelog_username = "Hideki Hamada (jakalada)"
-" }}}
 
-"-----------------
-" surround.vim {{{
-"-----------------
+" ------------------------
+" PLUGIN: surround.vim {{{2
+" ------------------------
 
 nmap s ys
 nmap S yS
 nmap ss yss
 nmap SS ySS
 
-" }}}
-
-"-----------------
-" quickrun.vim {{{
-"-----------------
+" -------------------------
+" PLUGIN: quickrun.vim {{{2
+" -------------------------
 
 let g:quickrun_config = {}
 let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
@@ -791,11 +765,10 @@ let g:quickrun_config['markdown'] = {
 \ 'command': 'kramdown',
 \ 'exec': '%c %s'
 \ }
-" }}}
 
-"-----------------------
-" vim-coffee-script  {{{
-"-----------------------
+" ------------------------------
+" PLUGIN: vim-coffee-script {{{2
+" ------------------------------
 
 augroup MyCoffeeScriptAutoMake
     autocmd!
@@ -819,11 +792,11 @@ function! s:toggle_coffee_script_auto_make()
     let g:my_coffee_script_auto_make = 1
   endif
 endfunction
-" }}}
 
-"----------------------
-" open-browser.vim  {{{
-"----------------------
+" ------------------------------
+" PLUGIN: open-browser.vim  {{{2
+" ------------------------------
+
 if !exists('g:openbrowser_open_commands')
   let g:openbrowser_open_commands = ['google-chrome', 'firefox']
 endif
@@ -843,11 +816,10 @@ endif
 
 nmap <Leader>o <Plug>(openbrowser-smart-search)
 vmap <Leader>o <Plug>(openbrowser-smart-search)
-" }}}
 
-"--------------
-" eskk.vim  {{{
-"--------------
+" ----------------------
+" PLUGIN: eskk.vim  {{{2
+" ----------------------
 
 " let g:eskk#large_dictionary = {
 "       \ 'path': '~/.dict/SKK-JISYO.L',
@@ -880,10 +852,9 @@ vmap <Leader>o <Plug>(openbrowser-smart-search)
 "   call t.add_map('z ', '　')
 "   call eskk#register_mode_table('hira', t)
 " endfunction
-" }}}
 
-" }}}
+" }}}2
 
-" }}}
+" }}}1
 
 set secure  " must be written at the last.  see :help 'secure'.
