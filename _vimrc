@@ -219,6 +219,8 @@ setlocal shiftround
 
 set backspace=indent,eol,start
 
+set nojoinspaces
+
 setlocal matchpairs+=<:>
 
 setlocal iskeyword+=-
@@ -276,6 +278,10 @@ set noequalalways
 
 set list
 set listchars=tab:>-,trail:-
+
+set fillchars=vert:\ ,fold:\ ,diff:\ 
+
+set showbreak=↪
 
 set wrap
 
