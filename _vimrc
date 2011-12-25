@@ -204,7 +204,7 @@ if s:isgui
 endif
 
 set nocursorline
-set cmdheight=3
+set cmdheight=1
 set showtabline=2
 
 setlocal autoindent
