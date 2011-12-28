@@ -175,3 +175,6 @@
 [submodule "_vim/bundle/vim-alignta"]
 	path = _vim/bundle/vim-alignta
 	url = git://github.com/h1mesuke/vim-alignta.git
+[submodule "_vim/bundle/quickfixstatus"]
+	path = _vim/bundle/quickfixstatus
+	url = git://github.com/dannyob/quickfixstatus.git
