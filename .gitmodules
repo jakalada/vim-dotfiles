@@ -178,3 +178,6 @@
 [submodule "_vim/bundle/quickfixstatus"]
 	path = _vim/bundle/quickfixstatus
 	url = git://github.com/dannyob/quickfixstatus.git
+[submodule "_vim/bundle/vim-hier"]
+	path = _vim/bundle/vim-hier
+	url = git://github.com/jceb/vim-hier.git
