@@ -484,6 +484,42 @@ noremap <silent> Dk :call DelEmptyLineAbove()<CR>
 noremap <silent> Aj :call AddEmptyLineBelow()<CR>
 noremap <silent> Ak :call AddEmptyLineAbove()<CR>
 
+" --------------------------------------------------------
+" Vimで静的にシンタックスチェックを行なう {{{2
+" via http://d.hatena.ne.jp/osyo-manga/20110921/1316605254
+" --------------------------------------------------------
+
+
+" for vim-hier {{{
+highlight qf_error_ucurl gui=underline guifg=yellow guibg=NONE
+highlight qf_error_ucurl cterm=underline ctermfg=yellow ctermbg=NONE
+let g:hier_highlight_group_qf  = "qf_error_ucurl"
+" }}}
+
+" outputter/quickfixをquickrunに登録 {{{
+let s:silent_quickfix = quickrun#outputter#quickfix#new()
+function! s:silent_quickfix.finish(session)
+    call call(quickrun#outputter#quickfix#new().finish, [a:session], self)
+    :cclose
+    :HierUpdate
+    :QuickfixStatusEnable
+endfunction
+call quickrun#register_outputter("silent_quickfix", s:silent_quickfix)
+" }}}
+
+" for ruby {{{
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+let g:quickrun_config["RubySyntaxCheck_ruby"] = {
+    \ "exec"      : "%c %o %s:p ",
+    \ "command"   : "ruby",
+    \ "cmdopt"    : "-cw",
+    \ "outputter" : "silent_quickfix",
+    \ "runner"    : "vimproc"
+\ }
+
+autocmd BufWritePost *.rb :QuickRun RubySyntaxCheck_ruby
+" }}}
+
 " }}}2
 
 " ======================
@@ -727,7 +763,7 @@ nmap SS ySS
 " PLUGIN: quickrun.vim {{{2
 " -------------------------
 
-let g:quickrun_config = {}
+let g:quickrun_config = get(g:, 'quickrun_config', {})
 let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
 let g:quickrun_config['markdown'] = {
 \ 'command': 'kramdown',
