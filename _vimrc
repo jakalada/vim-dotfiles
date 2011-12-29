@@ -281,7 +281,7 @@ set textwidth=0
 
 " statusline {{{
 set laststatus=2
-let &statusline="%<\(%{fnamemodify(getcwd(), ':~')}\)\ %{expand('%:p:.')}\%=%m%r%y%{'['.(&fenc!=''?&fenc:&enc).','.&ff.']'}\ %3p%%"
+let &statusline="%<\ %{expand('%:p:.')}\%=%m%r%y%{'['.(&fenc!=''?&fenc:&enc).','.&ff.']'}\ %3p%%"
 " }}}
 
 set nomodeline
