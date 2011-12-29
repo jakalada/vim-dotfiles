@@ -634,6 +634,7 @@ xmap F <SID>[unite-no-quite]
 
 nnoremap <silent> <SID>[unite]<Space> :<C-U>UniteResume<CR>
 
+" simple key mappings {{{
 nnoremap <silent> <SID>[unite]F :<C-U>Unite -buffer-name=files bookmark directory_mru file_mru<CR>
 nnoremap <silent> <SID>[unite]f :<C-U>Unite -buffer-name=files file<CR>
 nnoremap <silent> <SID>[unite]b :<C-U>Unite -buffer-name=buffer_tab buffer_tab<CR>
@@ -644,7 +645,6 @@ nnoremap <silent> <SID>[unite]w :<C-U>Unite -buffer-name=window window:no-curren
 nnoremap <silent> <SID>[unite]o :<C-U>Unite -buffer-name=outline outline<CR>
 nnoremap <silent> <SID>[unite]m :<C-U>Unite -buffer-name=mark mark<CR>
 nnoremap <silent> <SID>[unite]h :<C-U>Unite -buffer-name=help help<CR>
-nnoremap <silent> <SID>[unite]l :<C-U>Unite -buffer-name=line line<CR>
 nnoremap <silent> <SID>[unite]H :<C-U>Unite -buffer-name=refe -input=ref source<CR>
 nnoremap <silent> <SID>[unite]R :<C-U>Unite -buffer-name=rails -input=rails source<CR>
 nnoremap <silent> <SID>[unite]s :<C-U>Unite -buffer-name=snippet snippet<CR>
@@ -660,13 +660,18 @@ nnoremap <silent> <SID>[unite-no-quite]w :<C-U>Unite -no-quite -buffer-name=wind
 nnoremap <silent> <SID>[unite-no-quite]o :<C-U>Unite -no-quite -buffer-name=outline outline<CR>
 nnoremap <silent> <SID>[unite-no-quite]m :<C-U>Unite -no-quite -buffer-name=mark mark<CR>
 nnoremap <silent> <SID>[unite-no-quite]h :<C-U>Unite -no-quite -buffer-name=help help<CR>
-nnoremap <silent> <SID>[unite-no-quite]l :<C-U>Unite -no-quite -buffer-name=line line<CR>
 nnoremap <silent> <SID>[unite-no-quite]H :<C-U>Unite -no-quite -buffer-name=refe -input=ref source<CR>
 nnoremap <silent> <SID>[unite-no-quite]R :<C-U>Unite -no-quite -buffer-name=rails -input=rails source<CR>
 nnoremap <silent> <SID>[unite-no-quite]s :<C-U>Unite -no-quite -buffer-name=snippet snippet<CR>
 nnoremap <silent> <SID>[unite-no-quite]q :<C-U>Unite -no-quite -buffer-name=qf qf<CR>
+" }}}
 
-" menu-fugitive
+" unite-line " {{{
+nnoremap <silent> <SID>[unite]l :<C-U>UniteWithCursorWord -buffer-name=line line<CR>
+nnoremap <silent> <SID>[unite-no-quite]l :<C-U>UniteWithCursorWord -no-quite -buffer-name=line line<CR>
+" }}}
+
+" unite-menu {{{
 let g:unite_source_menu_menus = {}
 let g:unite_source_menu_menus.fugitive = {
       \     'description' : 'fugitive menu',
@@ -687,6 +692,7 @@ function g:unite_source_menu_menus.fugitive.map(key, value)
 endfunction
 
 nnoremap <silent> <SID>[unite]g :<C-u>Unite menu:fugitive<CR>
+" }}}
 
 " ----------------
 " PLUGIN: altr {{{2
