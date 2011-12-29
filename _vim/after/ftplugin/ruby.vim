@@ -4,6 +4,8 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal shiftround
 
+setlocal foldmethod=syntax
+
 " for xmpfilter in rcodetools "{{{
 " plain annotations
 nnoremap <buffer> <silent> <LocalLeader>x V!xmpfilter -a<CR>
@@ -44,6 +46,7 @@ let b:undo_ftplugin .= '
 \ | setlocal shiftwidth<
 \ | setlocal softtabstop<
 \ | setlocal shiftround<
+\ | setlocal foldmethod<
 \ | vunmap <buffer> <LocalLeader>x
 \ | nunmap <buffer> <LocalLeader>x
 \'
