@@ -181,3 +181,6 @@
 [submodule "_vim/bundle/vim-hier"]
 	path = _vim/bundle/vim-hier
 	url = git://github.com/jceb/vim-hier.git
+[submodule "_vim/bundle/textobj-wiw"]
+	path = _vim/bundle/textobj-wiw
+	url = git://github.com/h1mesuke/textobj-wiw.git
