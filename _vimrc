@@ -475,7 +475,6 @@ nmap ; <SID>(command-line-enter)
 xmap ; <SID>(command-line-enter)
 
 nmap <leader>h <SID>(command-line-enter)help<Space>
-nnoremap <silent> <leader>hh :<C-U>help<Space><C-R><C-W><CR>
 
 MyAutocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() " {{{
