@@ -198,7 +198,6 @@ endif
 
 set nocursorline
 set cmdheight=2
-set showtabline=2
 
 setlocal autoindent
 setlocal smartindent
@@ -379,6 +378,7 @@ noremap! : ;
 " タブページ {{{2
 " ---------------
 
+" キーバインド {{{
 nnoremap <SID>[tab] <Nop>
 nmap t <SID>[tab]
 
@@ -391,6 +391,53 @@ nnoremap <silent> <SID>[tab]tn :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
 nnoremap <silent> <SID>[tab]tl :<C-U>tabnew \| lcd $DROPBOXDIR/Lists<CR>
 nnoremap <silent> <SID>[tab]tv :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
 nnoremap <silent> <SID>[tab]tc :<C-U>execute 'tabnew \| lcd ' . $DROPBOXDIR . '/Notes/cheat/filetypes/' . &filetype<CR>
+" }}}
+
+" 表示 {{{
+" via http://d.hatena.ne.jp/thinca/20111204/1322932585
+set showtabline=2
+set tabline=%!MakeTabLine()
+
+function! s:tabpage_label(n)
+  " t:title と言う変数があったらそれを使う
+  let title = gettabvar(a:n, 'title')
+  if title !=# ''
+    return ' #' . title . ' '
+  endif
+
+  " タブページ内のバッファのリスト
+  let bufnrs = tabpagebuflist(a:n)
+
+  " カレントタブページかどうかでハイライトを切り替える
+  let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
+
+  " タブページ内に変更ありのバッファがあったら '+' を付ける
+  let mod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? ' [+]' : ''
+
+  " カレントバッファ
+  let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
+  let fname = bufname(curbufnr)
+  if fname ==# ''
+    let fname = '[No Name]'
+  else
+    let fname = fnamemodify(fname, ':t')
+  end
+
+  let label = mod . ' ' . fname . ' '
+
+  return '%' . a:n . 'T' . hi . label . '%T%#TabLineFill#'
+endfunction
+
+function! MakeTabLine()
+  let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
+  let sep = ' : '
+  let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
+  let info = '(' . fnamemodify(getcwd(), ':~') . ') ' " 好きな情報を入れる
+  return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
+endfunction
+" }}}
+
+
 
 " ---------------
 " ウィンドウ {{{2
