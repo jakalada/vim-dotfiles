@@ -292,9 +292,9 @@ set foldopen=block,quickfix,search,tag,undo
 " SECTION: Key-mappings {{{1
 " ==========================
 
-"-----------
+" ----------
 " Leader {{{
-"-----------
+" ----------
 
 let mapleader = ' '
 let g:mapleader = ' '
@@ -306,9 +306,9 @@ nnoremap \ <Nop>
 xnoremap \ <Nop>
 " }}}
 
-"----------------
+" ---------------
 " mapmode-nvo {{{
-"----------------
+" ---------------
 
 noremap j gj
 noremap k gk
@@ -324,9 +324,9 @@ noremap gm M
 noremap gk H
 " }}}
 
-"--------------
+" -------------
 " mapmode-n {{{
-"--------------
+" -------------
 nnoremap <Leader>k <C-^>
 
 nnoremap <Backspace> <C-O>
@@ -346,9 +346,9 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " }}}
 
-"--------------
+" -------------
 " mapmode-i {{{
-"--------------
+" -------------
 
 inoremap ii <Esc>
 
@@ -359,11 +359,12 @@ inoremap <silent> <C-L> <Right>
 inoremap <silent> <C-H> <Left>
 
 inoremap <silent> <F7> <Esc>gUiwea
+
 " }}}
-"
-"--------------
+
+" --------------
 " mapmode-ic {{{
-"--------------
+" --------------
 
 noremap! ; :
 noremap! : ;
