@@ -466,7 +466,6 @@ nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '
 
 nnoremap <SID>(command-line-enter) q:
 xnoremap <SID>(command-line-enter) q:
-nnoremap <SID>(command-line-norange) q:<C-U>
 
 nnoremap ; <Nop>
 xnoremap ; <Nop>
