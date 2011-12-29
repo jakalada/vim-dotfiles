@@ -747,13 +747,10 @@ let g:vimshell_user_prompt = '"[" . getcwd() ."]"'
 " PLUGIN: neocomplcache.vim {{{2
 " -----------------------------
 
-" for rsense.vim {{{
 if !exists('g:neocomplcache_omni_patterns')
 let g:neocomplcache_omni_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-" }}}
-
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 
 if !exists('g:neocomplcache_dictionary_filetype_lists')
 let g:neocomplcache_dictionary_filetype_lists = {
@@ -764,14 +761,10 @@ let g:neocomplcache_dictionary_filetype_lists = {
       \}
 endif
 
-
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_ignore_case = 0
+let g:neocomplcache_enable_ignore_case = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_snippets_dir = expand('~/.vim/snippets')
-let g:neocomplcache_enable_cursor_hold_i = 1
-let g:neocomplcache_enable_auto_delimiter = 1
-let g:neocomplcache_max_menu_width = 50
 
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
 imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
