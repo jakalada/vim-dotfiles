@@ -389,6 +389,50 @@ noremap! : ;
 " ============================
 
 " ---------------
+" 折りたたみ {{{2
+" ---------------
+
+" キーマッピング {{{
+nnoremap <SID>[fold] <Nop>
+xnoremap <SID>[fold] <Nop>
+nmap z <SID>[fold]
+xmap z <SID>[fold]
+
+noremap <SID>[fold]g [z
+noremap <SID>[fold]G ]z
+noremap <SID>[fold]j zj
+noremap <SID>[fold]k zk
+
+noremap <SID>[fold]l zo
+noremap <SID>[fold]L zO
+noremap <SID>[fold]h zc
+noremap <SID>[fold]H zC
+noremap <SID>[fold]t za
+noremap <SID>[fold]T zA
+
+noremap <SID>[fold]M zM
+noremap <SID>[fold]m zm
+noremap <SID>[fold]R zR
+noremap <SID>[fold]r zr
+" }}}
+
+" 表示 {{{
+set foldtext=MyFoldText()
+
+function MyFoldText()
+  let comment = split(&commentstring, '%s')
+  let markers = split(&foldmarker, ',')
+  let line = getline(v:foldstart)
+
+  for m in markers
+    let line = substitute(line, '\s*' . m . '\s*', '', 'gI')
+  endfor
+
+  return line
+endfunction
+" }}}
+
+" ---------------
 " タブページ {{{2
 " ---------------
 
