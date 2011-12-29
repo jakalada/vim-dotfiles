@@ -1,3 +1,5 @@
+" SECTION
+" PLUGIN
 
 " ========================
 " SECTION: Initialize {{{1
