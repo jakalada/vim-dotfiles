@@ -438,8 +438,6 @@ function! MakeTabLine()
 endfunction
 " }}}
 
-
-
 " ---------------
 " ウィンドウ {{{2
 " ---------------
