@@ -790,8 +790,8 @@ call unite#define_source(s:unite_source)
 " PLUGIN: rsense.vim {{{2
 " -----------------------
 
-let g:rsenseHome = expand('$RSENSE_HOME')
-let g:rsenseUseOmniFunc = 1
+" let g:rsenseHome = expand('$RSENSE_HOME')
+" let g:rsenseUseOmniFunc = 1
 
 " --------------------
 " PLUGIN: vimshell {{{2
@@ -804,10 +804,10 @@ let g:vimshell_user_prompt = '"[" . getcwd() ."]"'
 " PLUGIN: neocomplcache.vim {{{2
 " -----------------------------
 
-if !exists('g:neocomplcache_omni_patterns')
-let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+" if !exists('g:neocomplcache_omni_patterns')
+" let g:neocomplcache_omni_patterns = {}
+" endif
+" let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 
 if !exists('g:neocomplcache_dictionary_filetype_lists')
 let g:neocomplcache_dictionary_filetype_lists = {
