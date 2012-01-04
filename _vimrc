@@ -417,19 +417,7 @@ noremap <SID>[fold]r zr
 " }}}
 
 " 表示 {{{
-set foldtext=MyFoldText()
-
-function MyFoldText()
-  let comment = split(&commentstring, '%s')
-  let markers = split(&foldmarker, ',')
-  let line = getline(v:foldstart)
-
-  for m in markers
-    let line = substitute(line, '\s*' . m . '\s*', '', 'gI')
-  endfor
-
-  return line
-endfunction
+set foldtext=getline(v:foldstart)
 " }}}
 
 " ---------------
