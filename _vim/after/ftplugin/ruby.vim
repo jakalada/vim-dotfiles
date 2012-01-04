@@ -4,7 +4,7 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal shiftround
 
-setlocal foldmethod=syntax
+setlocal foldmethod=indent
 
 " for xmpfilter in rcodetools "{{{
 " plain annotations
