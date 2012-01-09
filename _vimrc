@@ -151,10 +151,10 @@ set ambiwidth=double
 syntax enable
 
 if s:isgui
-  colorscheme zenburn
+  colorscheme molokai
 else
   set t_Co=256
-  colorscheme wombat256mod
+  colorscheme molokai
 endif
 
 MyAutocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
@@ -198,8 +198,8 @@ let g:is_bash = 1
 
 if s:isgui
   set guioptions=aci
-  " set guifont=Ricty\ Discord\ 13.5
-  set guifont=Osaka-Mono\ 13.5
+  set guifont=Ricty\ Discord\ 13.5
+  " set guifont=Osaka-Mono\ 13.5
   set mouse=a
   set mousehide
   set mousefocus
