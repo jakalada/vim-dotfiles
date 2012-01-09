@@ -597,8 +597,9 @@ endfunction
 call quickrun#register_outputter("silent_quickfix", s:silent_quickfix)
 " }}}
 
-" for ruby {{{
 let g:quickrun_config = get(g:, 'quickrun_config', {})
+
+" for ruby {{{
 let g:quickrun_config["RubySyntaxCheck_ruby"] = {
     \ "exec"      : "%c %o %s:p ",
     \ "command"   : "ruby",
@@ -607,7 +608,15 @@ let g:quickrun_config["RubySyntaxCheck_ruby"] = {
     \ "runner"    : "vimproc"
 \ }
 
-autocmd BufWritePost *.rb :QuickRun RubySyntaxCheck_ruby
+function! s:syntax_check_for_filetype()
+  let filetypes = split(&filetype, ',')
+  if index(filetypes, 'ruby') >= 0
+    execute ':QuickRun RubySyntaxCheck_ruby'
+  endif
+endfunction
+
+MyAutocmd BufWritePost * call s:syntax_check_for_filetype()
+MyAutocmd FileType * :HierClear
 " }}}
 
 " }}}2
