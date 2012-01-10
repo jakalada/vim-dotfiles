@@ -152,6 +152,9 @@ syntax enable
 
 if s:isgui
   colorscheme rdark
+  highlight TabLine guibg=#888a85 guifg=#2e3436 gui=NONE
+  highlight TabLineFill guifg=#0a1012 guibg=#babdb6
+  highlight TabLineSel guibg=#babdb6 guifg=#2e3436 gui=NONE
 else
   set t_Co=256
   colorscheme molokai
