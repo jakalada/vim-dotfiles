@@ -151,7 +151,7 @@ set ambiwidth=double
 syntax enable
 
 if s:isgui
-  colorscheme molokai
+  colorscheme rdark
 else
   set t_Co=256
   colorscheme molokai
