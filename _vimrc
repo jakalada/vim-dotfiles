@@ -666,6 +666,8 @@ let g:vimfiler_marked_file_icon = ' *'
 nnoremap <silent> <leader>a :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quite<CR>
 nnoremap <silent> <leader>A :<C-U>VimFiler<CR>
 
+MyAutocmd FileType vimfiler setlocal statusline=\ 
+
 " ---------------------
 " PLUGIN: unite.vim {{{2
 " ----------------------
@@ -750,6 +752,8 @@ endfunction
 
 nnoremap <silent> <SID>[unite]g :<C-u>Unite menu:fugitive<CR>
 " }}}
+
+MyAutocmd FileType unite setlocal statusline=\ 
 
 " ----------------
 " PLUGIN: altr {{{2
