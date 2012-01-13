@@ -193,3 +193,6 @@
 [submodule "_vim/bundle/molokai"]
 	path = _vim/bundle/molokai
 	url = git://github.com/tomasr/molokai.git
+[submodule "_vim/bundle/vim-powerline"]
+	path = _vim/bundle/vim-powerline
+	url = git://github.com/Lokaltog/vim-powerline.git
