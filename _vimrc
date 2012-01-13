@@ -157,7 +157,7 @@ if s:isgui
   highlight TabLineSel guibg=#babdb6 guifg=#2e3436 gui=NONE
 else
   set t_Co=256
-  colorscheme molokai
+  colorscheme distinguished
 endif
 
 MyAutocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
