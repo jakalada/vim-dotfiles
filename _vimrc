@@ -279,7 +279,7 @@ MyAutocmd InsertEnter * setlocal nohlsearch
 
 set linespace=3
 
-set number
+set nonumber
 
 set showcmd
 
