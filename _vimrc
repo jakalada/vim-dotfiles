@@ -281,7 +281,7 @@ nnoremap <silent> V :<C-U>setlocal nohlsearch<CR>V
 MyAutocmd InsertEnter * setlocal nohlsearch
 " }}}
 
-set linespace=3
+set linespace=0
 
 set nonumber
 
