@@ -444,15 +444,18 @@ set foldtext=getline(v:foldstart)
 nnoremap <SID>[tab] <Nop>
 nmap t <SID>[tab]
 
+nnoremap <SID>[tabnew] <Nop>
+nmap T <SID>[tabnew]
+
 nnoremap <silent> <SID>[tab]l :<C-U>tabnext<CR>
 nnoremap <silent> <SID>[tab]h :<C-U>tabprev<CR>
 nnoremap <silent> <SID>[tab]q :<C-U>tabclose<CR>
-nnoremap <silent> <SID>[tab]tt :<C-U>tabnew<CR>
+nnoremap <silent> <SID>[tab]t :<C-U>tabnew<CR>
 
-nnoremap <silent> <SID>[tab]tn :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
-nnoremap <silent> <SID>[tab]tl :<C-U>tabnew \| lcd $DROPBOXDIR/Lists<CR>
-nnoremap <silent> <SID>[tab]tv :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
-nnoremap <silent> <SID>[tab]tc :<C-U>execute 'tabnew \| lcd ' . $DROPBOXDIR . '/Notes/cheat/filetypes/' . &filetype<CR>
+nnoremap <silent> <SID>[tabnew]n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
+nnoremap <silent> <SID>[tabnew]l :<C-U>tabnew \| lcd $DROPBOXDIR/Lists<CR>
+nnoremap <silent> <SID>[tabnew]v :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
+nnoremap <silent> <SID>[tabnew]c :<C-U>execute 'tabnew \| lcd ' . $DROPBOXDIR . '/Notes/cheat/filetypes/' . &filetype<CR>
 " }}}
 
 " 表示 {{{
