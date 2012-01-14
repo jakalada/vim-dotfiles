@@ -1,5 +1,5 @@
 call Pl#Statusline(
-  \ Pl#Match('bufname("%")', '[Command Line]'),
+  \ Pl#Match('bufname("%")', '\[Command Line\]'),
   \
   \ Pl#SegmentGroup(
     \ Pl#HiCurrent(   Pl#BG(240)),
