@@ -199,3 +199,6 @@
 [submodule "_vim/bundle/vim-distinguished"]
 	path = _vim/bundle/vim-distinguished
 	url = git://github.com/Lokaltog/vim-distinguished.git
+[submodule "_vim/bundle/tagbar"]
+	path = _vim/bundle/tagbar
+	url = git://github.com/majutsushi/tagbar.git
