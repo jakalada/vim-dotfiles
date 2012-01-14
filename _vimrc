@@ -201,10 +201,9 @@ let g:is_bash = 1
 
 if s:isgui
   set guioptions=aciM
-  set guifont=Ricty\ Discord\ for\ Powerline\ 13.5
-  let g:Powerline_symbols = 'fancy'
+  let g:Powerline_symbols = 'unicode'
   let g:Powerline_cache_file = ''
-  " set guifont=Ricty\ Discord\ 13.5
+  set guifont=Ricty\ Discord\ 13.5
   " set guifont=Osaka-Mono\ 13.5
   set mouse=a
   set mousehide
@@ -213,7 +212,9 @@ if s:isgui
   set guicursor+=a:blinkon0
   let loaded_matchparen = 1
 else
-  let g:Powerline_symbols = 'unicode'
+  " NOTE: Use '* for Poweline' font in terminal.
+  "       Read *Powerline-symbols-fancy* in help.
+  let g:Powerline_symbols = 'fancy'
   let g:Powerline_cache_file = ''
 endif
 
