@@ -216,15 +216,15 @@ endif
 set nocursorline
 set cmdheight=2
 
-setlocal autoindent
-setlocal smartindent
-setlocal smarttab
-setlocal expandtab
+set autoindent
+set smartindent
 
-setlocal tabstop=2
-setlocal shiftwidth=2
-setlocal softtabstop=2
-setlocal shiftround
+set smarttab
+set expandtab
+set softtabstop=2
+
+set shiftwidth=2
+set shiftround
 
 set backspace=indent,eol,start
 
