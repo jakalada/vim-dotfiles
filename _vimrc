@@ -200,7 +200,7 @@ let g:is_bash = 1
 " =====================
 
 if s:isgui
-  set guioptions=aci
+  set guioptions=aciM
   set guifont=Ricty\ Discord\ 13.5
   " set guifont=Osaka-Mono\ 13.5
   set mouse=a
