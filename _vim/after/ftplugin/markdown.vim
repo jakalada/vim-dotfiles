@@ -6,8 +6,8 @@ setlocal shiftround
 
 setlocal foldmethod=manual
 
-nnoremap <buffer> = "=repeat('=', strdisplaywidth(getline("."))) . "\n"<CR>p
-nnoremap <buffer> - "=repeat('-', strdisplaywidth(getline("."))) . "\n"<CR>p
+nnoremap <buffer> 1 "=repeat('=', strdisplaywidth(getline("."))) . "\n"<CR>p
+nnoremap <buffer> 2 "=repeat('-', strdisplaywidth(getline("."))) . "\n"<CR>p
 
 if !exists('b:undo_ftplugin')
   let b:undo_ftplugin = ''
