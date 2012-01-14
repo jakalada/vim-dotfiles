@@ -283,6 +283,8 @@ set number
 
 set showcmd
 
+set confirm
+
 set noequalalways
 
 set list
