@@ -289,6 +289,10 @@ set report=0
 
 set noequalalways
 
+if has('conceal')
+  set conceallevel=2
+endif
+
 set list
 set listchars=tab:>-,trail:-
 
