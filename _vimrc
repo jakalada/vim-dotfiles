@@ -203,6 +203,7 @@ if s:isgui
   set guioptions=aciM
   set guifont=Ricty\ Discord\ for\ Powerline\ 13.5
   let g:Powerline_symbols = 'fancy'
+  let g:Powerline_cache_file = ''
   " set guifont=Ricty\ Discord\ 13.5
   " set guifont=Osaka-Mono\ 13.5
   set mouse=a
@@ -211,6 +212,9 @@ if s:isgui
   set visualbell
   set guicursor+=a:blinkon0
   let loaded_matchparen = 1
+else
+  let g:Powerline_symbols = 'unicode'
+  let g:Powerline_cache_file = ''
 endif
 
 set nocursorline
