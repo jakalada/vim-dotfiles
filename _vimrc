@@ -207,9 +207,7 @@ if s:isgui
   set mousehide
   set mousefocus
   set visualbell
-  set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,ve:ver35-Cursor-blinkon0,o:hor50-Cursor-blinkon0
-  set guicursor+=i-ci:ver25-Cursor/lCursor-blinkon0,r-cr:hor20-Cursor/lCursor-blinkon0
-  set guicursor+=sm:block-Cursor-blinkon0
+  set guicursor+=a:blinkon0
   let loaded_matchparen = 1
 endif
 
