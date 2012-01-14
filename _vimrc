@@ -283,6 +283,8 @@ set nonumber
 
 set showcmd
 
+set noshowmode
+
 set confirm
 
 set report=0
