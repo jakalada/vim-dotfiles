@@ -201,7 +201,7 @@ let g:is_bash = 1
 
 if s:isgui
   set guioptions=aciM
-  let g:Powerline_symbols = 'unicode'
+  let g:Powerline_symbols = 'compatible'
   let g:Powerline_cache_file = ''
   set guifont=Ricty\ Discord\ 13.5
   " set guifont=Osaka-Mono\ 13.5
