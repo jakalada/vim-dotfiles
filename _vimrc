@@ -201,7 +201,9 @@ let g:is_bash = 1
 
 if s:isgui
   set guioptions=aciM
-  set guifont=Ricty\ Discord\ 13.5
+  set guifont=Ricty\ Discord\ for\ Powerline\ 13.5
+  let g:Powerline_symbols = 'fancy'
+  " set guifont=Ricty\ Discord\ 13.5
   " set guifont=Osaka-Mono\ 13.5
   set mouse=a
   set mousehide
