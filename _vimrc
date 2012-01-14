@@ -285,6 +285,8 @@ set showcmd
 
 set confirm
 
+set report=0
+
 set noequalalways
 
 set list
