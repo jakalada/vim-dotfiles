@@ -453,7 +453,6 @@ nnoremap <silent> <SID>[tab]q :<C-U>tabclose<CR>
 nnoremap <silent> <SID>[tab]t :<C-U>tabnew<CR>
 
 nnoremap <silent> <SID>[tabnew]n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
-nnoremap <silent> <SID>[tabnew]l :<C-U>tabnew \| lcd $DROPBOXDIR/Lists<CR>
 nnoremap <silent> <SID>[tabnew]v :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
 nnoremap <silent> <SID>[tabnew]c :<C-U>execute 'tabnew \| lcd ' . $DROPBOXDIR . '/Notes/cheat/filetypes/' . &filetype<CR>
 " }}}
