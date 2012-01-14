@@ -295,6 +295,7 @@ set showbreak=↪
 set wrap
 
 set textwidth=0
+set colorcolumn=76
 
 " statusline {{{
 set laststatus=2
