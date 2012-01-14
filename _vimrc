@@ -248,7 +248,7 @@ if v:version >= 703
 endif
 
 if has('virtualedit')
-  set virtualedit=all
+  set virtualedit=block,insert
 endif
 
 set scrolloff=10
