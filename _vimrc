@@ -911,6 +911,14 @@ function! s:toggle_coffee_script_auto_make()
 endfunction
 
 " ------------------------------
+" PLUGIN: tagbar  {{{2
+" ------------------------------
+
+let g:tagbar_sort = 0
+
+nnoremap <silent> <Leader>t :<C-U>TagbarToggle<CR>
+
+" ------------------------------
 " PLUGIN: open-browser.vim  {{{2
 " ------------------------------
 
