@@ -347,9 +347,6 @@ noremap <C-K> <C-Y>
 
 noremap L g_
 noremap H ^
-noremap gj L
-noremap gm M
-noremap gk H
 " }}}
 
 " -------------
