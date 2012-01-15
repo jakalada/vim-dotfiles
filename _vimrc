@@ -887,29 +887,6 @@ let g:quickrun_config['markdown'] = {
 " PLUGIN: vim-coffee-script {{{2
 " ------------------------------
 
-augroup MyCoffeeScriptAutoMake
-    autocmd!
-augroup END
-
-command!
-\   -bang -nargs=*
-\   ToggleCoffeeScriptAutoMake
-\   call s:toggle_coffee_script_auto_make()
-
-
-let g:my_coffee_script_auto_make = 0
-function! s:toggle_coffee_script_auto_make()
-  if g:my_coffee_script_auto_make == 1
-    augroup MyCoffeeScriptAutoMake
-        autocmd!
-    augroup END
-    let g:my_coffee_script_auto_make = 0
-  else
-    autocmd MyCoffeeScriptAutoMake BufWritePost *.coffee silent CoffeeMake!
-    let g:my_coffee_script_auto_make = 1
-  endif
-endfunction
-
 " ------------------------------
 " PLUGIN: tagbar  {{{2
 " ------------------------------
