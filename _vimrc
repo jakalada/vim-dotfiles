@@ -342,8 +342,8 @@ xnoremap \ <Nop>
 
 noremap j gj
 noremap k gk
-noremap <C-L> <C-E>
-noremap <C-H> <C-Y>
+noremap <C-J> <C-E>
+noremap <C-K> <C-Y>
 
 noremap L g_
 noremap H ^
