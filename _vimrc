@@ -323,7 +323,7 @@ set foldopen=block,quickfix,search,tag,undo
 " ==========================
 
 " ----------
-" Leader {{{
+" Leader {{{2
 " ----------
 
 let mapleader = ' '
@@ -334,10 +334,9 @@ nnoremap <Space> <Nop>
 xnoremap <Space> <Nop>
 nnoremap \ <Nop>
 xnoremap \ <Nop>
-" }}}
 
 " ---------------
-" mapmode-nvo {{{
+" mapmode-nvo {{{2
 " ---------------
 
 noremap j gj
@@ -347,10 +346,9 @@ noremap <C-K> <C-Y>
 
 noremap L g_
 noremap H ^
-" }}}
 
 " -------------
-" mapmode-n {{{
+" mapmode-n {{{2
 " -------------
 nnoremap <Leader>k <C-^>
 
@@ -369,10 +367,8 @@ nnoremap <C-Backspace> <C-^>
 
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" }}}
-
 " -------------
-" mapmode-i {{{
+" mapmode-i {{{2
 " -------------
 Arpeggio inoremap al <Esc>
 
@@ -384,16 +380,12 @@ inoremap <silent> <C-H> <Left>
 
 inoremap <silent> <F7> <Esc>gUiwea
 
-" }}}
-
 " --------------
-" mapmode-ic {{{
+" mapmode-ic {{{2
 " --------------
 
 noremap! ; :
 noremap! : ;
-
-" }}}
 
 " ============================
 " SECTION: 少し大きい設定 {{{1
@@ -631,8 +623,6 @@ endfunction
 MyAutocmd BufWritePost * call s:syntax_check_for_filetype()
 MyAutocmd FileType * :HierClear
 " }}}
-
-" }}}2
 
 " ======================
 " SECTION: Plugins {{{1
@@ -974,8 +964,6 @@ vmap <Leader>o <Plug>(openbrowser-smart-search)
 "   call t.add_map('z ', '　')
 "   call eskk#register_mode_table('hira', t)
 " endfunction
-
-" }}}2
 
 " }}}1
 
