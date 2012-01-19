@@ -515,7 +515,6 @@ nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '
 nnoremap <silent> <SID>(command-line-enter) q:
 xnoremap <silent> <SID>(command-line-enter) q:
 nnoremap <silent> <SID>(command-line-enter-help) q:help<Space>
-xnoremap <silent> <SID>(command-line-enter-help) q:help<Space>
 
 nnoremap ; <Nop>
 xnoremap ; <Nop>
@@ -524,10 +523,8 @@ nmap ; <SID>(command-line-enter)
 xmap ; <SID>(command-line-enter)
 
 nnoremap <leader>h <Nop>
-xnoremap <leader>h <Nop>
 
 nmap <leader>h <SID>(command-line-enter-help)
-xmap <leader>h <SID>(command-line-enter-help)
 
 MyAutocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() " {{{
