@@ -808,13 +808,9 @@ let g:neocomplcache_dictionary_filetype_lists = {
 endif
 
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_auto_completion_start_length = 5
-let g:neocomplcache_manual_completion_start_length = 5
 let g:neocomplcache_enable_ignore_case = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_auto_delimiter = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_caching_limit_file_size = 100000
 let g:neocomplcache_snippets_dir = expand('~/.vim/snippets')
 let g:neocomplcache_snippets_disable_runtime_snippets = 1
