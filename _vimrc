@@ -271,13 +271,9 @@ set incsearch
 set ignorecase
 set smartcase
 set wrapscan
-set hlsearch
+set nohlsearch
 
-nnoremap <silent> v :<C-U>nohlsearch<CR>v
-nnoremap <silent> <C-V> :<C-U>nohlsearch<CR><C-V>
-nnoremap <silent> V :<C-U>nohlsearch<CR>V
-MyAutocmd InsertEnter * setlocal nohlsearch
-MyAutocmd InsertLeave * setlocal hlsearch
+nnoremap <ESC> :<C-U>set hlsearch!<CR>
 " }}}
 
 set linespace=3
