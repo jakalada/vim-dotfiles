@@ -218,6 +218,8 @@ else
   let g:Powerline_cache_file = ''
 endif
 
+set pumheight=10
+
 set nocursorline
 set cmdheight=2
 
