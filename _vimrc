@@ -802,10 +802,8 @@ let g:vimshell_user_prompt = '"[" . getcwd() ."]"'
 
 if !exists('g:neocomplcache_dictionary_filetype_lists')
 let g:neocomplcache_dictionary_filetype_lists = {
-      \'jasmine': expand('~/.vim/dict/jasmine.dict')
-      \}
-let g:neocomplcache_dictionary_filetype_lists = {
-      \'vows': expand('~/.vim/dict/vows.dict')
+      \ 'jasmine': expand('~/.vim/dict/jasmine.dict'),
+      \ 'vows': expand('~/.vim/dict/vows.dict')
       \}
 endif
 
