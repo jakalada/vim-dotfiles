@@ -800,11 +800,6 @@ let g:vimshell_user_prompt = '"[" . getcwd() ."]"'
 " PLUGIN: neocomplcache.vim {{{2
 " -----------------------------
 
-" if !exists('g:neocomplcache_omni_patterns')
-" let g:neocomplcache_omni_patterns = {}
-" endif
-" let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-
 if !exists('g:neocomplcache_dictionary_filetype_lists')
 let g:neocomplcache_dictionary_filetype_lists = {
       \'jasmine': expand('~/.vim/dict/jasmine.dict')
