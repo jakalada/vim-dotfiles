@@ -822,7 +822,6 @@ let g:neocomplcache_snippets_disable_runtime_snippets = 1
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
 imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
 inoremap <expr><C-C> neocomplcache#complete_common_string()
-imap <C-f> <Plug>(neocomplcache_start_unite_complete)
 
 " --------------------
 " PLUGIN: vim-ref {{{2
