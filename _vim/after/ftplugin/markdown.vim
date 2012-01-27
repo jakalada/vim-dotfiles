@@ -49,7 +49,6 @@ function! s:format_header_n()
 endfunction
 
 MyMarkdownAutocmd CursorMovedI <buffer> call s:format_header_i()
-MyMarkdownAutocmd CursorMoved <buffer> call s:format_header_n()
 " }}}
 
 
