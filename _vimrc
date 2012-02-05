@@ -273,9 +273,25 @@ set incsearch
 set ignorecase
 set smartcase
 set wrapscan
-set nohlsearch
+set hlsearch
 
-nnoremap <ESC> :<C-U>set hlsearch!<CR>
+nnoremap <silent> <SID>[nohlsearch] :<C-U>nohlsearch<CR>
+
+nnoremap <script> / <SID>[nohlsearch]/
+nnoremap <script> ? <SID>[nohlsearch]?
+
+nnoremap <script> v <SID>[nohlsearch]v
+nnoremap <script> <C-V> <SID>[nohlsearch]<C-V>
+nnoremap <script> V <SID>[nohlsearch]V
+
+nnoremap <script> i <SID>[nohlsearch]i
+nnoremap <script> I <SID>[nohlsearch]I
+
+nnoremap <script> a <SID>[nohlsearch]a
+nnoremap <script> A <SID>[nohlsearch]A
+
+nnoremap <script> o <SID>[nohlsearch]o
+nnoremap <script> O <SID>[nohlsearch]O
 " }}}
 
 set linespace=3
