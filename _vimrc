@@ -53,6 +53,10 @@ filetype plugin on
 filetype indent on
 " }}}
 
+" singleton.vim {{{
+call singleton#enable()
+" }}}
+
 " ======================
 " SECTION: Commands {{{1
 " ======================
