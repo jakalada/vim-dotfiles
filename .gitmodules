@@ -184,9 +184,6 @@
 [submodule "_vim/bundle/textobj-wiw"]
 	path = _vim/bundle/textobj-wiw
 	url = git://github.com/h1mesuke/textobj-wiw.git
-[submodule "_vim/bundle/vim-arpeggio"]
-	path = _vim/bundle/vim-arpeggio
-	url = git://github.com/kana/vim-arpeggio.git
 [submodule "_vim/bundle/Vim-Tomorrow-Theme"]
 	path = _vim/bundle/Vim-Tomorrow-Theme
 	url = git://github.com/ChrisKempson/Vim-Tomorrow-Theme.git

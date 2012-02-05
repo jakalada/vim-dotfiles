@@ -53,10 +53,6 @@ filetype plugin on
 filetype indent on
 " }}}
 
-" vim-arpeggio {{{
-call arpeggio#load()
-" }}}
-
 " ======================
 " SECTION: Commands {{{1
 " ======================
@@ -366,8 +362,6 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 " -------------
 " mapmode-i {{{2
 " -------------
-Arpeggio inoremap al <Esc>
-
 inoremap <C-K> <Esc>O
 inoremap <C-J> <Esc>o
 
