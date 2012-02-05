@@ -205,3 +205,6 @@
 [submodule "_vim/bundle/vim-textobj-line"]
 	path = _vim/bundle/vim-textobj-line
 	url = git://github.com/kana/vim-textobj-line.git
+[submodule "_vim/bundle/vim-gf-user"]
+	path = _vim/bundle/vim-gf-user
+	url = git://github.com/kana/vim-gf-user.git
