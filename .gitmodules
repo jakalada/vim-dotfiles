@@ -202,3 +202,6 @@
 [submodule "_vim/bundle/vim-localrc"]
 	path = _vim/bundle/vim-localrc
 	url = git://github.com/thinca/vim-localrc.git
+[submodule "_vim/bundle/vim-textobj-line"]
+	path = _vim/bundle/vim-textobj-line
+	url = git://github.com/kana/vim-textobj-line.git
