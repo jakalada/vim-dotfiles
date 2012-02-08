@@ -334,6 +334,9 @@ set foldopen=block,quickfix,search,tag,undo
 " SECTION: Key-mappings {{{1
 " ==========================
 
+" NOTE: IBusで日本語入力に切り替えるたびにスペースが挿入されてしまう
+inoremap <C-Space> <Nop>
+
 " ----------
 " Leader {{{2
 " ----------
