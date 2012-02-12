@@ -164,7 +164,7 @@ MyAutocmd BufWinEnter,BufNewFile *_spec.coffee set filetype=coffee.vows
 " ft-ruby-syntax
 let ruby_operators = 1
 
-" NOTE: ファイルタイプがvimのときでもfoldmethod=syntaxされてしまう
+" NOTE: ファイルタイプがvimのときでも`set foldmethod=syntax`されてしまう
 " let ruby_fold = 1
 
 let ruby_no_comment_fold = 1
