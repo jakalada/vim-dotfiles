@@ -1,6 +1,4 @@
-" ========================
 " SECTION: Initialize {{{1
-" ========================
 
 " .vimrcの再読み込み時にオプションを初期化する {{{
 " 設定されたruntimepathが初期化されないようにする
@@ -147,16 +145,6 @@ set ambiwidth=double
 
 syntax enable
 
-if s:isgui
-  colorscheme rdark
-  highlight TabLine guibg=#888a85 guifg=#2e3436 gui=NONE
-  highlight TabLineFill guifg=#0a1012 guibg=#babdb6
-  highlight TabLineSel guibg=#babdb6 guifg=#2e3436 gui=NONE
-else
-  set t_Co=256
-  colorscheme distinguished
-endif
-
 MyAutocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 MyAutocmd BufWinEnter,BufNewFile *_spec.coffee set filetype=coffee.jasmine
 MyAutocmd BufWinEnter,BufNewFile *_spec.coffee set filetype=coffee.vows
@@ -197,9 +185,13 @@ let g:is_bash = 1
 " =====================
 
 if s:isgui
+  colorscheme rdark
+
+  highlight TabLine guibg=#888a85 guifg=#2e3436 gui=NONE
+  highlight TabLineFill guifg=#0a1012 guibg=#babdb6
+  highlight TabLineSel guibg=#babdb6 guifg=#2e3436 gui=NONE
+
   set guioptions=aciM
-  let g:Powerline_symbols = 'compatible'
-  let g:Powerline_cache_file = ''
   set guifont=Ricty\ Discord\ 13.5
   " set guifont=Osaka-Mono\ 13.5
   set mouse=a
@@ -209,10 +201,8 @@ if s:isgui
   set guicursor+=a:blinkon0
   let loaded_matchparen = 1
 else
-  " NOTE: Use '* for Poweline' font in terminal.
-  "       Read *Powerline-symbols-fancy* in help.
-  let g:Powerline_symbols = 'fancy'
-  let g:Powerline_cache_file = ''
+  set t_Co=256
+  colorscheme distinguished
 endif
 
 set pumheight=10
@@ -920,6 +910,19 @@ endif
 
 nmap <Leader>o <Plug>(openbrowser-smart-search)
 vmap <Leader>o <Plug>(openbrowser-smart-search)
+
+" ----------------------
+" PLUGIN: Powerline {{{2
+" ----------------------
+
+let g:Powerline_cache_file = ''
+if s:isgui
+  let g:Powerline_symbols = 'compatible'
+else
+  " NOTE: Use '* for Poweline' font in terminal.
+  "       Read *Powerline-symbols-fancy* in help.
+  let g:Powerline_symbols = 'fancy'
+endif
 
 " }}}1
 
