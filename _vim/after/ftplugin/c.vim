@@ -4,6 +4,7 @@ setlocal tabstop=4
 setlocal shiftwidth=4
 setlocal softtabstop=4
 setlocal shiftround
+setlocal completeopt-=preview
 
 if has('path_extra')
   setlocal tags+=~/.tags/c/systags
@@ -20,4 +21,5 @@ let b:undo_ftplugin .= '
 \ | setlocal softtabstop<
 \ | setlocal shiftround<
 \ | setlocal tags-=~/.tags/c/systags
+\ | setlocal completeopt+=preview
 \'
