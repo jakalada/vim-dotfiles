@@ -309,7 +309,6 @@ set showbreak=↪
 set wrap
 
 set textwidth=0
-set colorcolumn=76
 
 set laststatus=2
 
