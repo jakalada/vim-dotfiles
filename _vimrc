@@ -810,14 +810,12 @@ let g:neocomplcache_dictionary_filetype_lists = {
 endif
 
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_ignore_case = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_auto_delimiter = 1
-let g:neocomplcache_caching_limit_file_size = 100000
+let g:neocomplcache_disable_auto_complete = 1
 let g:neocomplcache_snippets_dir = expand('~/.vim/snippets')
-let g:neocomplcache_snippets_disable_runtime_snippets = 1
 
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
+inoremap <expr><C-N> neocomplcache#start_manual_complete()
+inoremap <expr><C-P> neocomplcache#start_manual_complete()
 imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
 inoremap <expr><C-C> neocomplcache#complete_common_string()
 
