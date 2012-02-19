@@ -49,7 +49,7 @@ filetype indent on
 " }}}
 
 " singleton.vim {{{
-call singleton#enable()
+"call singleton#enable()
 " }}}
 
 " ======================
