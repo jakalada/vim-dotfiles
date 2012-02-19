@@ -610,6 +610,7 @@ let g:quickrun_config["RubySyntaxCheck_ruby"] = {
     \ "outputter" : "silent_quickfix",
     \ "runner"    : "vimproc"
 \ }
+" }}}
 
 function! s:syntax_check_for_filetype()
   let filetypes = split(&filetype, ',')
