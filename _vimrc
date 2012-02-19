@@ -612,10 +612,22 @@ let g:quickrun_config["RubySyntaxCheck_ruby"] = {
 \ }
 " }}}
 
+" for c {{{
+let g:quickrun_config["CSyntaxCheck_c"] = {
+    \ "exec"      : "%c %o %s:p ",
+    \ "command"   : "gcc",
+    \ "cmdopt"    : "-Wall -Wextra -pedantic -fsyntax-only",
+    \ "outputter" : "silent_quickfix",
+    \ "runner"    : "vimproc"
+\ }
+" }}}
+
 function! s:syntax_check_for_filetype()
   let filetypes = split(&filetype, ',')
   if index(filetypes, 'ruby') >= 0
     execute ':QuickRun RubySyntaxCheck_ruby'
+  elseif index(filetypes, 'c') >= 0
+    execute ':QuickRun CSyntaxCheck_c'
   endif
 endfunction
 
