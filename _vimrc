@@ -384,9 +384,6 @@ inoremap <silent> <F7> <Esc>gUiwea
 " mapmode-ic {{{2
 " --------------
 
-noremap! ; :
-noremap! : ;
-
 " ============================
 " SECTION: 少し大きい設定 {{{1
 " ============================
