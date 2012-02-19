@@ -6,7 +6,7 @@ setlocal softtabstop=4
 setlocal shiftround
 
 if has('path_extra')
-  setlocal tags+=$DOTVIMDIR/systags
+  setlocal tags+=~/.tags/c/systags
 endif
 
 if !exists('b:undo_ftplugin')
@@ -19,5 +19,5 @@ let b:undo_ftplugin .= '
 \ | setlocal shiftwidth<
 \ | setlocal softtabstop<
 \ | setlocal shiftround<
-\ | setlocal tags-=$DOTVIMDIR/systags
+\ | setlocal tags-=~/.tags/c/systags
 \'
