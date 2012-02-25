@@ -716,6 +716,7 @@ nnoremap <silent> <SID>[unite]h :<C-U>Unite -buffer-name=help help<CR>
 nnoremap <silent> <SID>[unite]H :<C-U>Unite -buffer-name=refe -input=ref source<CR>
 nnoremap <silent> <SID>[unite]R :<C-U>Unite -buffer-name=rails -input=rails source<CR>
 nnoremap <silent> <SID>[unite]s :<C-U>Unite -buffer-name=snippet snippet<CR>
+nnoremap <silent> <SID>[unite]S :<C-U>Unite -buffer-name=source source<CR>
 nnoremap <silent> <SID>[unite]q :<C-U>Unite -buffer-name=qf qf<CR>
 
 nnoremap <silent> <SID>[unite-no-quite]F :<C-U>Unite -no-quite -buffer-name=files bookmark directory_mru file_mru<CR>
@@ -731,6 +732,7 @@ nnoremap <silent> <SID>[unite-no-quite]h :<C-U>Unite -no-quite -buffer-name=help
 nnoremap <silent> <SID>[unite-no-quite]H :<C-U>Unite -no-quite -buffer-name=refe -input=ref source<CR>
 nnoremap <silent> <SID>[unite-no-quite]R :<C-U>Unite -no-quite -buffer-name=rails -input=rails source<CR>
 nnoremap <silent> <SID>[unite-no-quite]s :<C-U>Unite -no-quite -buffer-name=snippet snippet<CR>
+nnoremap <silent> <SID>[unite-no-quite]S :<C-U>Unite -no-quite -buffer-name=source source<CR>
 nnoremap <silent> <SID>[unite-no-quite]q :<C-U>Unite -no-quite -buffer-name=qf qf<CR>
 " }}}
 
