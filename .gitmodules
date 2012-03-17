@@ -186,7 +186,7 @@
 	url = git://github.com/h1mesuke/textobj-wiw.git
 [submodule "_vim/bundle/Vim-Tomorrow-Theme"]
 	path = _vim/bundle/Vim-Tomorrow-Theme
-	url = git://github.com/chriskempson/Vim-Tomorrow-Theme.git
+	url = git://github.com/chriskempson/vim-tomorrow-theme.git
 [submodule "_vim/bundle/molokai"]
 	path = _vim/bundle/molokai
 	url = git://github.com/tomasr/molokai.git
