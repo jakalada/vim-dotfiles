@@ -674,8 +674,8 @@ let g:vimfiler_tree_closed_icon = ' ▸'
 let g:vimfiler_file_icon = ' -'
 let g:vimfiler_marked_file_icon = ' *'
 
-nnoremap <silent> <leader>a :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quite<CR>
-nnoremap <silent> <leader>A :<C-U>VimFiler<CR>
+nnoremap <silent> <leader>e :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quite<CR>
+nnoremap <silent> <leader>E :<C-U>VimFiler<CR>
 
 " ---------------------
 " PLUGIN: unite.vim {{{2
