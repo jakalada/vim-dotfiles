@@ -63,6 +63,6 @@ let b:undo_ftplugin .= '
 \ | setlocal softtabstop<
 \ | setlocal keywordprg<
 \ | setlocal shiftround<
-\ | nunmap <buffer> =
-\ | nunmap <buffer> -
+\ | nunmap <buffer> 1
+\ | nunmap <buffer> 2
 \'
