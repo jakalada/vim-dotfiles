@@ -322,6 +322,11 @@ set foldopen=block,quickfix,search,tag,undo
 
 " NOTE: IBusで日本語入力に切り替えるたびにスペースが挿入されてしまう
 inoremap <C-Space> <Nop>
+noremap <C-Space> <Nop>
+noremap! <C-Space> <Nop>
+xnoremap <C-Space> <Nop>
+snoremap <C-Space> <Nop>
+lnoremap <C-Space> <Nop>
 
 noremap <C-J> <Esc>
 noremap! <C-J> <Esc>
