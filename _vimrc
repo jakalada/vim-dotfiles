@@ -323,6 +323,12 @@ set foldopen=block,quickfix,search,tag,undo
 " NOTE: IBusで日本語入力に切り替えるたびにスペースが挿入されてしまう
 inoremap <C-Space> <Nop>
 
+noremap <C-J> <Esc>
+noremap! <C-J> <Esc>
+xnoremap <C-J> <Esc>
+snoremap <C-J> <Esc>
+lnoremap <C-J> <Esc>
+
 " ----------
 " Leader {{{2
 " ----------
@@ -342,8 +348,6 @@ xnoremap \ <Nop>
 
 noremap j gj
 noremap k gk
-noremap <C-J> <C-E>
-noremap <C-K> <C-Y>
 
 noremap L g_
 noremap H ^
@@ -371,9 +375,6 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 " -------------
 " mapmode-i {{{2
 " -------------
-inoremap <C-K> <Esc>O
-inoremap <C-J> <Esc>o
-
 inoremap <silent> <C-L> <Right>
 inoremap <silent> <C-H> <Left>
 
