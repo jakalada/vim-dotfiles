@@ -6,8 +6,8 @@ setlocal shiftround
 
 setlocal foldmethod=manual
 
-nnoremap <buffer> 1 "=repeat('=', strdisplaywidth(getline("."))) . "\n"<CR>p
-nnoremap <buffer> 2 "=repeat('-', strdisplaywidth(getline("."))) . "\n"<CR>p
+nnoremap <buffer> 1 "=repeat('=',<Space>strdisplaywidth(getline(".")))<Space>.<Space>"\n"<CR>p
+nnoremap <buffer> 2 "=repeat('-',<Space>strdisplaywidth(getline(".")))<Space>.<Space>"\n"<CR>p
 
 " 見出しの下線を自動補完する {{{
 augroup MyMarkdown
@@ -63,6 +63,6 @@ let b:undo_ftplugin .= '
 \ | setlocal softtabstop<
 \ | setlocal keywordprg<
 \ | setlocal shiftround<
-\ | nunmap <buffer> 1
-\ | nunmap <buffer> 2
+\ | execute "nunmap <buffer> 1"
+\ | execute "nunmap <buffer> 2"
 \'

@@ -8,8 +8,8 @@ setlocal foldmethod=indent
 
 " for xmpfilter in rcodetools "{{{
 " plain annotations
-nnoremap <buffer> <silent> <LocalLeader>x V!xmpfilter -a<CR>
-vnoremap <buffer> <silent> <LocalLeader>x !xmpfilter -a<CR>
+nnoremap <buffer> <silent> <LocalLeader>x V!xmpfilter<Space>-a<CR>
+vnoremap <buffer> <silent> <LocalLeader>x !xmpfilter<Space>-a<CR>
 
 "" Test::Unit assertions; use -s to generate RSpec expectations instead
 "map <silent> <S-F10> !xmpfilter -u<cr>
@@ -47,6 +47,6 @@ let b:undo_ftplugin .= '
 \ | setlocal softtabstop<
 \ | setlocal shiftround<
 \ | setlocal foldmethod<
-\ | vunmap <buffer> <LocalLeader>x
-\ | nunmap <buffer> <LocalLeader>x
+\ | execute "vunmap <buffer> <LocalLeader>x"
+\ | execute "nunmap <buffer> <LocalLeader>x"
 \'
