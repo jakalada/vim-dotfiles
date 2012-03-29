@@ -109,9 +109,6 @@
 [submodule "_vim/bundle/vim-visualstar"]
 	path = _vim/bundle/vim-visualstar
 	url = git://github.com/thinca/vim-visualstar.git
-[submodule "_vim/bundle/Align"]
-	path = _vim/bundle/Align
-	url = git://github.com/vim-scripts/Align.git
 [submodule "_vim/bundle/vim-textobj-fold"]
 	path = _vim/bundle/vim-textobj-fold
 	url = git://github.com/kana/vim-textobj-fold.git
