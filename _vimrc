@@ -197,7 +197,7 @@ if s:isgui
   set mouse=a
   set mousehide
   set mousefocus
-  set visualbell
+  set novisualbell
   set guicursor+=a:blinkon0
   let loaded_matchparen = 1
 else
