@@ -831,7 +831,6 @@ let g:neocomplcache_dictionary_filetype_lists = {
 endif
 
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_disable_auto_complete = 1
 let g:neocomplcache_snippets_dir = expand('~/.vim/snippets')
 
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
