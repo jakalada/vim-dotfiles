@@ -285,7 +285,7 @@ set linespace=3
 
 set nonumber
 
-set showcmd
+set noshowcmd
 
 set noshowmode
 
