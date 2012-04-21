@@ -214,3 +214,6 @@
 [submodule "_vim/bundle/vim-editvar"]
 	path = _vim/bundle/vim-editvar
 	url = git://github.com/thinca/vim-editvar.git
+[submodule "_vim/bundle/color-h2u"]
+	path = _vim/bundle/color-h2u
+	url = git://gist.github.com/187578.git
