@@ -690,8 +690,8 @@ let g:vimfiler_tree_closed_icon = ' ▸'
 let g:vimfiler_file_icon = ' -'
 let g:vimfiler_marked_file_icon = ' *'
 
-nnoremap <silent> <leader>e :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quite<CR>
-nnoremap <silent> <leader>E :<C-U>VimFiler<CR>
+nnoremap <silent> <leader>E :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quite<CR>
+nnoremap <silent> <leader>e :<C-U>VimFiler<CR>
 
 " ---------------------
 " PLUGIN: unite.vim {{{2
@@ -844,8 +844,6 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_snippets_dir = expand('~/.vim/snippets')
 
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
-inoremap <expr><C-N> neocomplcache#start_manual_complete()
-inoremap <expr><C-P> neocomplcache#start_manual_complete()
 imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
 inoremap <expr><C-C> neocomplcache#complete_common_string()
 
