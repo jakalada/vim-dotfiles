@@ -332,13 +332,15 @@ snoremap <C-Space> <Nop>
 lnoremap <C-Space> <Nop>
 
 noremap <C-J> <Esc>
-noremap! <C-J> <Esc>
+inoremap <C-J> <Esc>
+cnoremap <C-J> <C-C>
 xnoremap <C-J> <Esc>
 snoremap <C-J> <Esc>
 lnoremap <C-J> <Esc>
 
 noremap <C-K> <Esc>
-noremap! <C-K> <Esc>
+inoremap <C-K> <Esc>
+cnoremap <C-K> <C-C>
 xnoremap <C-K> <Esc>
 snoremap <C-K> <Esc>
 lnoremap <C-K> <Esc>
