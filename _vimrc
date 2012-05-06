@@ -854,6 +854,7 @@ endif
 
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_snippets_dir = expand('~/.vim/snippets')
+let g:neocomplcache_lock_iminsert = 1
 
 nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
 imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
