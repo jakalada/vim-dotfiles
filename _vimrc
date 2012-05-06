@@ -339,7 +339,7 @@ snoremap <C-J> <Esc>
 lnoremap <C-J> <Esc>
 
 noremap <C-K> <Esc>
-inoremap <C-K> <Esc>
+inoremap <C-K> <Esc>l
 cnoremap <C-K> <C-C>
 xnoremap <C-K> <Esc>
 snoremap <C-K> <Esc>
@@ -399,6 +399,13 @@ inoremap <silent> <F7> <Esc>gUiwea
 " --------------
 " mapmode-ic {{{2
 " --------------
+
+" --------------
+" mapmode-o {{{2
+" --------------
+
+onoremap / t
+onoremap ? T
 
 " ============================
 " SECTION: 少し大きい設定 {{{1
@@ -542,6 +549,7 @@ nmap <leader>h <SID>(command-line-enter-help)
 
 MyAutocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() " {{{
+  inoremap <expr><CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
   startinsert!
 endfunction " }}}
 
