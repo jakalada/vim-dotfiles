@@ -651,7 +651,9 @@ let g:quickrun_config["CSyntaxCheck_c"] = {
 function! s:syntax_check_for_filetype()
   let filetypes = split(&filetype, ',')
   if index(filetypes, 'ruby') >= 0
-    execute ':QuickRun RubySyntaxCheck_ruby'
+    if expand('%:t') !~# '_steps.rb$'
+      execute ':QuickRun RubySyntaxCheck_ruby'
+    endif
   elseif index(filetypes, 'c') >= 0
     execute ':QuickRun CSyntaxCheck_c'
   endif
