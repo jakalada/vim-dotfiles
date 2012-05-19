@@ -896,8 +896,11 @@ let g:changelog_username = "Hideki Hamada (jakalada)"
 
 nmap s ys
 nmap S yS
+
 nmap ss yss
 nmap SS ySS
+
+vmap s S
 
 " -------------------------
 " PLUGIN: quickrun.vim {{{2
