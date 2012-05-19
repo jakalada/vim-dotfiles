@@ -217,3 +217,6 @@
 [submodule "_vim/bundle/color-h2u"]
 	path = _vim/bundle/color-h2u
 	url = git://gist.github.com/187578.git
+[submodule "_vim/bundle/vim-tabpagecd"]
+	path = _vim/bundle/vim-tabpagecd
+	url = https://github.com/kana/vim-tabpagecd.git
