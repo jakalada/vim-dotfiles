@@ -959,7 +959,7 @@ if s:isgui
 else
   " NOTE: Use '* for Poweline' font in terminal.
   "       Read *Powerline-symbols-fancy* in help.
-  let g:Powerline_symbols = 'fancy'
+  let g:Powerline_symbols = 'compatible'
 endif
 
 " }}}1
