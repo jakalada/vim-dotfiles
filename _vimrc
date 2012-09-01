@@ -12,6 +12,8 @@ let s:iswin = has('win32') || has('win64')
 
 let s:isgui = has("gui_running")
 
+let s:ismacunix = has("macunix")
+
 if s:iswin
   " For Windows {{{
   language message en
@@ -195,9 +197,15 @@ let g:is_bash = 1
 if s:isgui
   colorscheme h2u_dark
 
+  if s:ismacunix
+    set guifont=Osaka-Mono:h18
+  elseif s:iswin
+    set guifont=Ricty\ Discord\ 13.5
+  else
+    set guifont=Ricty\ Discord\ 13.5
+  endif
+
   set guioptions=aciM
-  set guifont=Ricty\ Discord\ 13.5
-  " set guifont=Osaka-Mono\ 13.5
   set mouse=a
   set mousehide
   set mousefocus
