@@ -295,7 +295,7 @@ nnoremap <script> O <SID>[nohlsearch]O
 
 set linespace=3
 
-set nonumber
+set number
 
 set noshowcmd
 
