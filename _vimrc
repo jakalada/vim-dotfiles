@@ -104,29 +104,6 @@ endif
 " SECTION: Functions {{{1
 " =============================================
 
-" statullineの設定に使用する
-function! StringPart(str, start, len)
-  let bend = byteidx(a:str, a:start + a:len) - byteidx(a:str, a:start)
-  if bend < 0
-    return strpart(a:str, byteidx(a:str, a:start))
-  else
-    return strpart(a:str, byteidx(a:str, a:start), bend)
-  endif
-endfunction
-
-function! SnipMid(str, len, mask) " {{{
-  if a:len >= strchars(a:str)
-    return a:str
-  elseif a:len <= strchars(a:mask)
-    return a:mask
-  endif
-
-  let len_head = (a:len - strchars(a:mask)) / 2
-  let len_tail = a:len - strchars(a:mask) - len_head
-  return (len_head > 0 ? StringPart(a:str, 0, len_head) : '') . a:mask . (len_tail > 0 ? StringPart(a:str, strchars(a:str) - len_tail, strchars(a:str))  : '')
-endfunction
-" }}}
-
 " =============================================
 " SECTION: Encoding {{{1
 " =============================================
