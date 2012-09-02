@@ -868,10 +868,10 @@ nmap $ <SID>[window]
 nnoremap <Tab> <C-W>w
 nnoremap <S-Tab> <C-W>W
 
-nmap <SID>[window]sj <SID>(split-to-j)
-nmap <SID>[window]sk <SID>(split-to-k)
-nmap <SID>[window]sh <SID>(split-to-h)
-nmap <SID>[window]sl <SID>(split-to-l)
+nmap <SID>[window]j <SID>(split-to-j)
+nmap <SID>[window]k <SID>(split-to-k)
+nmap <SID>[window]h <SID>(split-to-h)
+nmap <SID>[window]l <SID>(split-to-l)
 
 nnoremap <silent> <SID>(split-to-j) :<C-U>execute 'belowright' (v:count == 0 ? '' : v:count) 'split'<CR>
 nnoremap <silent> <SID>(split-to-k) :<C-U>execute 'aboveleft'  (v:count == 0 ? '' : v:count) 'split'<CR>
