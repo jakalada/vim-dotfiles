@@ -376,6 +376,9 @@ noremap k gk
 noremap L g_
 noremap H ^
 
+noremap <C-H> <C-U>
+noremap <C-L> <C-D>
+
 " -------------
 " mapmode-n {{{2
 " -------------
