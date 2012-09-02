@@ -1,4 +1,8 @@
+" jakalada's vimrc
+
+" =============================================
 " SECTION: Initialize {{{1
+" =============================================
 
 " .vimrcの再読み込み時にオプションを初期化する {{{
 " 設定されたruntimepathが初期化されないようにする
@@ -56,9 +60,9 @@ filetype indent on
 "call singleton#enable()
 " }}}
 
-" ======================
+" =============================================
 " SECTION: Commands {{{1
-" ======================
+" =============================================
 
 " .vimrcの再読み込み時に.vimrc内で設定されたautocmdを初期化する
 " MyAutocmdを使用することで漏れなく初期化できる
@@ -96,9 +100,9 @@ else
 endif
 " }}}
 
-" =======================
+" =============================================
 " SECTION: Functions {{{1
-" =======================
+" =============================================
 
 " statullineの設定に使用する
 function! StringPart(str, start, len)
@@ -123,9 +127,9 @@ function! SnipMid(str, len, mask) " {{{
 endfunction
 " }}}
 
-" ======================
+" =============================================
 " SECTION: Encoding {{{1
-" ======================
+" =============================================
 
 " fileencodingの設定 {{{
 set fileencodings=iso-2022-jp-3,iso-2022-jp,euc-jisx0213,euc-jp,utf-8,ucs-bom,euc-jp,eucjp-ms,cp932
@@ -151,9 +155,9 @@ set fileformats=unix,dos,mac
 "East Asian Width Class Ambiguous な文字をASCII文字の2倍の幅で扱う
 set ambiwidth=double
 
-" ====================
+" =============================================
 " SECTION: Syntax {{{1
-" ====================
+" =============================================
 
 syntax enable
 
@@ -192,9 +196,9 @@ let g:vimsyntax_noerror = 1
 " ft-sh-syntax
 let g:is_bash = 1
 
-" =====================
+" =============================================
 " SECTION: Options {{{1
-" =====================
+" =============================================
 
 if s:isgui
   colorscheme h2u_dark
@@ -330,9 +334,9 @@ set nomodeline
 
 set foldopen=block,quickfix,search,tag,undo
 
-" ==========================
+" =============================================
 " SECTION: Key-mappings {{{1
-" ==========================
+" =============================================
 
 " NOTE: IBusで日本語入力に切り替えるたびにスペースが挿入されてしまう
 noremap <C-Space> <Nop>
@@ -355,9 +359,9 @@ xnoremap <C-K> <Esc>
 snoremap <C-K> <Esc>
 lnoremap <C-K> <Esc>
 
-" ----------
+" ---------------------------------------------
 " Leader {{{2
-" ----------
+" ---------------------------------------------
 
 let mapleader = ' '
 let g:mapleader = ' '
@@ -368,9 +372,9 @@ xnoremap <Space> <Nop>
 nnoremap \ <Nop>
 xnoremap \ <Nop>
 
-" ---------------
+" ---------------------------------------------
 " mapmode-nvo {{{2
-" ---------------
+" ---------------------------------------------
 
 noremap j gj
 noremap k gk
@@ -381,9 +385,9 @@ noremap H ^
 noremap <C-H> <C-U>
 noremap <C-L> <C-D>
 
-" -------------
+" ---------------------------------------------
 " mapmode-n {{{2
-" -------------
+" ---------------------------------------------
 nnoremap <Leader>k <C-^>
 
 nnoremap <Backspace> <C-O>
@@ -401,306 +405,50 @@ nnoremap <C-Backspace> <C-^>
 
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" -------------
+" ---------------------------------------------
 " mapmode-i {{{2
-" -------------
+" ---------------------------------------------
 inoremap <silent> <C-L> <Right>
 inoremap <silent> <C-H> <Left>
 
 inoremap <silent> <F7> <Esc>gUiwea
 
-" --------------
+" ---------------------------------------------
 " mapmode-ic {{{2
-" --------------
+" ---------------------------------------------
 
-" --------------
+" ---------------------------------------------
 " mapmode-o {{{2
-" --------------
+" ---------------------------------------------
 
 onoremap / t
 onoremap ? T
 
-" ============================
-" SECTION: 少し大きい設定 {{{1
-" ============================
-
-" ---------------
-" 折りたたみ {{{2
-" ---------------
-
-" キーマッピング {{{
-nnoremap <SID>[fold] <Nop>
-xnoremap <SID>[fold] <Nop>
-nmap z <SID>[fold]
-xmap z <SID>[fold]
-
-noremap <SID>[fold]g [z
-noremap <SID>[fold]G ]z
-noremap <SID>[fold]j zj
-noremap <SID>[fold]k zk
-
-noremap <SID>[fold]l zo
-noremap <SID>[fold]L zO
-noremap <SID>[fold]h zc
-noremap <SID>[fold]H zC
-noremap <SID>[fold]t za
-noremap <SID>[fold]T zA
-
-noremap <SID>[fold]M zM
-noremap <SID>[fold]m zm
-noremap <SID>[fold]R zR
-noremap <SID>[fold]r zr
-" }}}
-
-" 表示 {{{
-set foldtext=getline(v:foldstart)
-" }}}
-
-" ---------------
-" タブページ {{{2
-" ---------------
-
-" キーバインド {{{
-nnoremap <SID>[tab] <Nop>
-nmap t <SID>[tab]
-
-nnoremap <SID>[tabnew] <Nop>
-nmap T <SID>[tabnew]
-
-nnoremap <silent> <SID>[tab]l :<C-U>tabnext<CR>
-nnoremap <silent> <SID>[tab]h :<C-U>tabprev<CR>
-nnoremap <silent> <SID>[tab]q :<C-U>tabclose<CR>
-nnoremap <silent> <SID>[tab]t :<C-U>tabnew<CR>
-
-nnoremap <silent> <SID>[tabnew]n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
-nnoremap <silent> <SID>[tabnew]v :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
-nnoremap <silent> <SID>[tabnew]c :<C-U>execute 'tabnew \| lcd ' . $DROPBOXDIR . '/Notes/cheat/filetypes/' . &filetype<CR>
-" }}}
-
-" 表示 {{{
-" via http://d.hatena.ne.jp/thinca/20111204/1322932585
-set showtabline=2
-set tabline=%!MakeTabLine()
-
-function! s:tabpage_label(n)
-  " t:title と言う変数があったらそれを使う
-  let title = gettabvar(a:n, 'title')
-  if title !=# ''
-    return ' #' . title . ' '
-  endif
-
-  " タブページ内のバッファのリスト
-  let bufnrs = tabpagebuflist(a:n)
-
-  " カレントタブページかどうかでハイライトを切り替える
-  let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
-
-  " タブページ内に変更ありのバッファがあったら '+' を付ける
-  let mod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? ' [+]' : ''
-
-  " カレントバッファ
-  let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
-  let fname = bufname(curbufnr)
-  if fname ==# ''
-    let fname = '[No Name]'
-  else
-    let fname = fnamemodify(fname, ':t')
-  end
-
-  let label = mod . ' ' . fname . ' '
-
-  return '%' . a:n . 'T' . hi . label . '%T%#TabLineFill#'
-endfunction
-
-function! MakeTabLine()
-  let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
-  let sep = ' : '
-  let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
-  "let info = '(' . fnamemodify(getcwd(), ':~') . ') ' " 好きな情報を入れる
-  let info = ''
-  return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
-endfunction
-" }}}
-
-" ---------------
-" ウィンドウ {{{2
-" ---------------
-
-nnoremap <SID>[window] <Nop>
-nmap $ <SID>[window]
-
-nnoremap <Tab> <C-W>w
-nnoremap <S-Tab> <C-W>W
-
-nmap <SID>[window]sj <SID>(split-to-j)
-nmap <SID>[window]sk <SID>(split-to-k)
-nmap <SID>[window]sh <SID>(split-to-h)
-nmap <SID>[window]sl <SID>(split-to-l)
-
-nnoremap <silent> <SID>(split-to-j) :<C-U>execute 'belowright' (v:count == 0 ? '' : v:count) 'split'<CR>
-nnoremap <silent> <SID>(split-to-k) :<C-U>execute 'aboveleft'  (v:count == 0 ? '' : v:count) 'split'<CR>
-nnoremap <silent> <SID>(split-to-h) :<C-U>execute 'topleft'    (v:count == 0 ? '' : v:count) 'vsplit'<CR>
-nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '' : v:count) 'vsplit'<CR>
-
-" -----------------------------
-" コマンドラインウィンドウ {{{2
-" -----------------------------
-
-nnoremap <silent> <SID>(command-line-enter) q:
-xnoremap <silent> <SID>(command-line-enter) q:
-nnoremap <silent> <SID>(command-line-enter-help) q:help<Space>
-
-nnoremap ; <Nop>
-xnoremap ; <Nop>
-
-nmap ; <SID>(command-line-enter)
-xmap ; <SID>(command-line-enter)
-
-nnoremap <leader>h <Nop>
-
-nmap <leader>h <SID>(command-line-enter-help)
-
-MyAutocmd CmdwinEnter * call s:init_cmdwin()
-function! s:init_cmdwin() " {{{
-  inoremap <expr><CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
-  startinsert!
-endfunction " }}}
-
-" ---------------------------------
-" 空行を追加と削除を容易にする {{{2
-" ---------------------------------
-
-function! AddEmptyLineBelow() " {{{
-  call append(line("."), "")
-endfunction " }}}
-
-function! AddEmptyLineAbove() " {{{
-  let l:scrolloffsave = &scrolloff
-  " Avoid jerky scrolling with ^E at top of window
-  set scrolloff=0
-  call append(line(".") - 1, "")
-  if winline() != winheight(0)
-    silent normal! <C-E>
-  end
-  let &scrolloff = l:scrolloffsave
-endfunction " }}}
-
-function! DelEmptyLineBelow() " {{{
-  if line(".") == line("$")
-    return
-  end
-  let l:line = getline(line(".") + 1)
-  if l:line =~ '^\s*$'
-    let l:colsave = col(".")
-    .+1d
-    ''
-    call cursor(line("."), l:colsave)
-  end
-endfunction " }}}
-
-function! DelEmptyLineAbove() " {{{
-  if line(".") == 1
-    return
-  end
-  let l:line = getline(line(".") - 1)
-  if l:line =~ '^\s*$'
-    let l:colsave = col(".")
-    .-1d
-    silent normal! <C-Y>
-    call cursor(line("."), l:colsave)
-  end
-endfunction " }}}
-
-noremap <silent> Dj :call DelEmptyLineBelow()<CR>
-noremap <silent> Dk :call DelEmptyLineAbove()<CR>
-noremap <silent> Aj :call AddEmptyLineBelow()<CR>
-noremap <silent> Ak :call AddEmptyLineAbove()<CR>
-
-" --------------------------------------------------------
-" Vimで静的にシンタックスチェックを行なう {{{2
-" via http://d.hatena.ne.jp/osyo-manga/20110921/1316605254
-" --------------------------------------------------------
-
-
-" for vim-hier {{{
-highlight qf_error_ucurl gui=underline guifg=yellow guibg=NONE
-highlight qf_error_ucurl cterm=underline ctermfg=yellow ctermbg=NONE
-let g:hier_highlight_group_qf  = "qf_error_ucurl"
-" }}}
-
-" outputter/quickfixをquickrunに登録 {{{
-let s:silent_quickfix = quickrun#outputter#quickfix#new()
-function! s:silent_quickfix.finish(session)
-    call call(quickrun#outputter#quickfix#new().finish, [a:session], self)
-    :cclose
-    :HierUpdate
-    :QuickfixStatusEnable
-endfunction
-call quickrun#register_outputter("silent_quickfix", s:silent_quickfix)
-" }}}
-
-let g:quickrun_config = get(g:, 'quickrun_config', {})
-
-" for ruby {{{
-let g:quickrun_config["RubySyntaxCheck_ruby"] = {
-    \ "exec"      : "%c %o %s:p ",
-    \ "command"   : "ruby",
-    \ "cmdopt"    : "-cw",
-    \ "outputter" : "silent_quickfix",
-    \ "runner"    : "vimproc"
-\ }
-" }}}
-
-" for c {{{
-let g:quickrun_config["CSyntaxCheck_c"] = {
-    \ "exec"      : "%c %o %s:p ",
-    \ "command"   : "gcc",
-    \ "cmdopt"    : "-Wall -Wextra -pedantic -fsyntax-only",
-    \ "outputter" : "silent_quickfix",
-    \ "runner"    : "vimproc"
-\ }
-" }}}
-
-function! s:syntax_check_for_filetype()
-  let filetypes = split(&filetype, ',')
-  if index(filetypes, 'ruby') >= 0
-    if expand('%:t') !~# '_steps.rb$'
-      execute ':QuickRun RubySyntaxCheck_ruby'
-    endif
-  elseif index(filetypes, 'c') >= 0
-    execute ':QuickRun CSyntaxCheck_c'
-  endif
-endfunction
-
-MyAutocmd BufWritePost * call s:syntax_check_for_filetype()
-MyAutocmd FileType * :HierClear
-" }}}
-
-" ======================
+" =============================================
 " SECTION: Plugins {{{1
-" ======================
+" =============================================
 
-" ----------------------
+" ---------------------------------------------
 " PLUGIN: vim-toggle {{{2
-" ----------------------
+" ---------------------------------------------
 
 nmap - <Plug>ToggleN
 
-" ------------------------
+" ---------------------------------------------
 " PLUGIN: matchit.vim {{{2
-" ------------------------
+" ---------------------------------------------
 
 runtime macros/matchit.vim
 
-" --------------------
+" ---------------------------------------------
 " PLUGIN: caw.vim {{{2
-" --------------------
+" ---------------------------------------------
 
 nmap gcc <Plug>(caw:wrap:toggle)
 
-" -------------------------
+" ---------------------------------------------
 " PLUGIN: vimfiler.vim {{{2
-" -------------------------
+" ---------------------------------------------
 
 let g:vimfiler_as_default_explorer = 1
 
@@ -718,9 +466,9 @@ let g:vimfiler_marked_file_icon = ' *'
 nnoremap <silent> <leader>E :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quite<CR>
 nnoremap <silent> <leader>e :<C-U>VimFiler<CR>
 
-" ---------------------
+" ---------------------------------------------
 " PLUGIN: unite.vim {{{2
-" ----------------------
+" ---------------------------------------------
 
 " unite-variables
 let g:unite_split_rule = 'botright'
@@ -805,9 +553,9 @@ endfunction
 nnoremap <silent> <SID>[unite]g :<C-u>Unite menu:fugitive<CR>
 " }}}
 
-" ----------------
+" ---------------------------------------------
 " PLUGIN: altr {{{2
-" ----------------
+" ---------------------------------------------
 
 nmap <Leader>n  <Plug>(altr-forward)
 nmap <Leader>p  <Plug>(altr-back)
@@ -816,9 +564,9 @@ call altr#define('spec/%_spec.rb', 'lib/%.rb')
 call altr#define('src/lib/*/%.coffee', 'spec/*/%_spec.coffee')
 call altr#define('src/lib/%.coffee', 'spec/%_spec.coffee')
 
-" -----------------------
+" ---------------------------------------------
 " PLUGIN: unite-neco {{{2
-" -----------------------
+" ---------------------------------------------
 
 let s:unite_source = {'name': 'neco'}
 
@@ -840,23 +588,23 @@ function! s:unite_source.gather_candidates(args, context)
 endfunction
 call unite#define_source(s:unite_source)
 
-" -----------------------
+" ---------------------------------------------
 " PLUGIN: rsense.vim {{{2
-" -----------------------
+" ---------------------------------------------
 
 " let g:rsenseHome = expand('$RSENSE_HOME')
 " let g:rsenseUseOmniFunc = 1
 
-" --------------------
+" ---------------------------------------------
 " PLUGIN: vimshell {{{2
-" --------------------
+" ---------------------------------------------
 
 let g:vimshell_prompt = '$ '
 let g:vimshell_user_prompt = '"[" . getcwd() ."]"'
 
-" -----------------------------
+" ---------------------------------------------
 " PLUGIN: neocomplcache.vim {{{2
-" -----------------------------
+" ---------------------------------------------
 
 if !exists('g:neocomplcache_dictionary_filetype_lists')
 let g:neocomplcache_dictionary_filetype_lists = {
@@ -873,9 +621,9 @@ nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
 imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
 inoremap <expr><C-C> neocomplcache#complete_common_string()
 
-" --------------------
+" ---------------------------------------------
 " PLUGIN: vim-ref {{{2
-" --------------------
+" ---------------------------------------------
 
 if s:iswin
   let g:ref_pydoc_cmd = 'pydoc.bat'
@@ -895,17 +643,17 @@ function! s:initialize_ref_viewer()
   setlocal nonumber
 endfunction
 
-" --------------------------
+" ---------------------------------------------
 " PLUGIN: changelog.vim {{{2
-" --------------------------
+" ---------------------------------------------
 
 MyAutocmd BufNewFile,BufRead *.changelog setf changelog
 let g:changelog_timeformat = "%Y-%m-%d"
 let g:changelog_username = "Hideki Hamada (jakalada)"
 
-" ------------------------
+" ---------------------------------------------
 " PLUGIN: surround.vim {{{2
-" ------------------------
+" ---------------------------------------------
 
 nmap s ys
 nmap S yS
@@ -915,9 +663,9 @@ nmap SS ySS
 
 vmap s S
 
-" -------------------------
+" ---------------------------------------------
 " PLUGIN: quickrun.vim {{{2
-" -------------------------
+" ---------------------------------------------
 
 let g:quickrun_config = get(g:, 'quickrun_config', {})
 let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
@@ -926,21 +674,21 @@ let g:quickrun_config['markdown'] = {
 \ 'exec': '%c %s'
 \ }
 
-" ------------------------------
+" ---------------------------------------------
 " PLUGIN: vim-coffee-script {{{2
-" ------------------------------
+" ---------------------------------------------
 
-" ------------------------------
+" ---------------------------------------------
 " PLUGIN: tagbar  {{{2
-" ------------------------------
+" ---------------------------------------------
 
 let g:tagbar_sort = 0
 
 nnoremap <silent> <Leader>t :<C-U>TagbarToggle<CR>
 
-" ------------------------------
+" ---------------------------------------------
 " PLUGIN: open-browser.vim  {{{2
-" ------------------------------
+" ---------------------------------------------
 
 if !exists('g:openbrowser_open_commands')
   let g:openbrowser_open_commands = ['google-chrome', 'firefox']
@@ -962,9 +710,9 @@ endif
 nmap <Leader>o <Plug>(openbrowser-smart-search)
 vmap <Leader>o <Plug>(openbrowser-smart-search)
 
-" ----------------------
+" ---------------------------------------------
 " PLUGIN: Powerline {{{2
-" ----------------------
+" ---------------------------------------------
 
 let g:Powerline_cache_file = ''
 if s:isgui
@@ -974,6 +722,264 @@ else
   "       Read *Powerline-symbols-fancy* in help.
   let g:Powerline_symbols = 'compatible'
 endif
+
+" =============================================
+" SECTION: Misc {{{1
+" =============================================
+
+" ---------------------------------------------
+" Vimで静的にシンタックスチェックを行なう {{{2
+" ---------------------------------------------
+
+" via http://d.hatena.ne.jp/osyo-manga/20110921/1316605254
+
+" for vim-hier {{{
+highlight qf_error_ucurl gui=underline guifg=yellow guibg=NONE
+highlight qf_error_ucurl cterm=underline ctermfg=yellow ctermbg=NONE
+let g:hier_highlight_group_qf  = "qf_error_ucurl"
+" }}}
+
+" outputter/quickfixをquickrunに登録 {{{
+let s:silent_quickfix = quickrun#outputter#quickfix#new()
+function! s:silent_quickfix.finish(session)
+    call call(quickrun#outputter#quickfix#new().finish, [a:session], self)
+    :cclose
+    :HierUpdate
+    :QuickfixStatusEnable
+endfunction
+call quickrun#register_outputter("silent_quickfix", s:silent_quickfix)
+" }}}
+
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+
+" for ruby {{{
+let g:quickrun_config["RubySyntaxCheck_ruby"] = {
+    \ "exec"      : "%c %o %s:p ",
+    \ "command"   : "ruby",
+    \ "cmdopt"    : "-cw",
+    \ "outputter" : "silent_quickfix",
+    \ "runner"    : "vimproc"
+\ }
+" }}}
+
+" for c {{{
+let g:quickrun_config["CSyntaxCheck_c"] = {
+    \ "exec"      : "%c %o %s:p ",
+    \ "command"   : "gcc",
+    \ "cmdopt"    : "-Wall -Wextra -pedantic -fsyntax-only",
+    \ "outputter" : "silent_quickfix",
+    \ "runner"    : "vimproc"
+\ }
+" }}}
+
+function! s:syntax_check_for_filetype()
+  let filetypes = split(&filetype, ',')
+  if index(filetypes, 'ruby') >= 0
+    if expand('%:t') !~# '_steps.rb$'
+      execute ':QuickRun RubySyntaxCheck_ruby'
+    endif
+  elseif index(filetypes, 'c') >= 0
+    execute ':QuickRun CSyntaxCheck_c'
+  endif
+endfunction
+
+MyAutocmd BufWritePost * call s:syntax_check_for_filetype()
+MyAutocmd FileType * :HierClear
+
+
+" ---------------------------------------------
+" 折りたたみ {{{2
+" ---------------------------------------------
+
+" キーマッピング {{{
+nnoremap <SID>[fold] <Nop>
+xnoremap <SID>[fold] <Nop>
+nmap z <SID>[fold]
+xmap z <SID>[fold]
+
+noremap <SID>[fold]g [z
+noremap <SID>[fold]G ]z
+noremap <SID>[fold]j zj
+noremap <SID>[fold]k zk
+
+noremap <SID>[fold]l zo
+noremap <SID>[fold]L zO
+noremap <SID>[fold]h zc
+noremap <SID>[fold]H zC
+noremap <SID>[fold]t za
+noremap <SID>[fold]T zA
+
+noremap <SID>[fold]M zM
+noremap <SID>[fold]m zm
+noremap <SID>[fold]R zR
+noremap <SID>[fold]r zr
+" }}}
+
+" 表示 {{{
+set foldtext=getline(v:foldstart)
+" }}}
+
+" ---------------------------------------------
+" タブページ {{{2
+" ---------------------------------------------
+
+" キーバインド {{{
+nnoremap <SID>[tab] <Nop>
+nmap t <SID>[tab]
+
+nnoremap <SID>[tabnew] <Nop>
+nmap T <SID>[tabnew]
+
+nnoremap <silent> <SID>[tab]l :<C-U>tabnext<CR>
+nnoremap <silent> <SID>[tab]h :<C-U>tabprev<CR>
+nnoremap <silent> <SID>[tab]q :<C-U>tabclose<CR>
+nnoremap <silent> <SID>[tab]t :<C-U>tabnew<CR>
+
+nnoremap <silent> <SID>[tabnew]n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
+nnoremap <silent> <SID>[tabnew]v :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
+nnoremap <silent> <SID>[tabnew]c :<C-U>execute 'tabnew \| lcd ' . $DROPBOXDIR . '/Notes/cheat/filetypes/' . &filetype<CR>
+" }}}
+
+" 表示 {{{
+" via http://d.hatena.ne.jp/thinca/20111204/1322932585
+set showtabline=2
+set tabline=%!MakeTabLine()
+
+function! s:tabpage_label(n)
+  " t:title と言う変数があったらそれを使う
+  let title = gettabvar(a:n, 'title')
+  if title !=# ''
+    return ' #' . title . ' '
+  endif
+
+  " タブページ内のバッファのリスト
+  let bufnrs = tabpagebuflist(a:n)
+
+  " カレントタブページかどうかでハイライトを切り替える
+  let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
+
+  " タブページ内に変更ありのバッファがあったら '+' を付ける
+  let mod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? ' [+]' : ''
+
+  " カレントバッファ
+  let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
+  let fname = bufname(curbufnr)
+  if fname ==# ''
+    let fname = '[No Name]'
+  else
+    let fname = fnamemodify(fname, ':t')
+  end
+
+  let label = mod . ' ' . fname . ' '
+
+  return '%' . a:n . 'T' . hi . label . '%T%#TabLineFill#'
+endfunction
+
+function! MakeTabLine()
+  let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
+  let sep = ' : '
+  let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
+  "let info = '(' . fnamemodify(getcwd(), ':~') . ') ' " 好きな情報を入れる
+  let info = ''
+  return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
+endfunction
+" }}}
+
+" ---------------------------------------------
+" ウィンドウ {{{2
+" ---------------------------------------------
+
+nnoremap <SID>[window] <Nop>
+nmap $ <SID>[window]
+
+nnoremap <Tab> <C-W>w
+nnoremap <S-Tab> <C-W>W
+
+nmap <SID>[window]sj <SID>(split-to-j)
+nmap <SID>[window]sk <SID>(split-to-k)
+nmap <SID>[window]sh <SID>(split-to-h)
+nmap <SID>[window]sl <SID>(split-to-l)
+
+nnoremap <silent> <SID>(split-to-j) :<C-U>execute 'belowright' (v:count == 0 ? '' : v:count) 'split'<CR>
+nnoremap <silent> <SID>(split-to-k) :<C-U>execute 'aboveleft'  (v:count == 0 ? '' : v:count) 'split'<CR>
+nnoremap <silent> <SID>(split-to-h) :<C-U>execute 'topleft'    (v:count == 0 ? '' : v:count) 'vsplit'<CR>
+nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '' : v:count) 'vsplit'<CR>
+
+" ---------------------------------------------
+" コマンドラインウィンドウ {{{2
+" ---------------------------------------------
+
+nnoremap <silent> <SID>(command-line-enter) q:
+xnoremap <silent> <SID>(command-line-enter) q:
+nnoremap <silent> <SID>(command-line-enter-help) q:help<Space>
+
+nnoremap ; <Nop>
+xnoremap ; <Nop>
+
+nmap ; <SID>(command-line-enter)
+xmap ; <SID>(command-line-enter)
+
+nnoremap <leader>h <Nop>
+
+nmap <leader>h <SID>(command-line-enter-help)
+
+MyAutocmd CmdwinEnter * call s:init_cmdwin()
+function! s:init_cmdwin() " {{{
+  inoremap <expr><CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
+  startinsert!
+endfunction " }}}
+
+" ---------------------------------------------
+" 空行を追加と削除を容易にする {{{2
+" ---------------------------------------------
+
+function! AddEmptyLineBelow() " {{{
+  call append(line("."), "")
+endfunction " }}}
+
+function! AddEmptyLineAbove() " {{{
+  let l:scrolloffsave = &scrolloff
+  " Avoid jerky scrolling with ^E at top of window
+  set scrolloff=0
+  call append(line(".") - 1, "")
+  if winline() != winheight(0)
+    silent normal! <C-E>
+  end
+  let &scrolloff = l:scrolloffsave
+endfunction " }}}
+
+function! DelEmptyLineBelow() " {{{
+  if line(".") == line("$")
+    return
+  end
+  let l:line = getline(line(".") + 1)
+  if l:line =~ '^\s*$'
+    let l:colsave = col(".")
+    .+1d
+    ''
+    call cursor(line("."), l:colsave)
+  end
+endfunction " }}}
+
+function! DelEmptyLineAbove() " {{{
+  if line(".") == 1
+    return
+  end
+  let l:line = getline(line(".") - 1)
+  if l:line =~ '^\s*$'
+    let l:colsave = col(".")
+    .-1d
+    silent normal! <C-Y>
+    call cursor(line("."), l:colsave)
+  end
+endfunction " }}}
+
+noremap <silent> Dj :call DelEmptyLineBelow()<CR>
+noremap <silent> Dk :call DelEmptyLineAbove()<CR>
+noremap <silent> Aj :call AddEmptyLineBelow()<CR>
+noremap <silent> Ak :call AddEmptyLineAbove()<CR>
+
+" }}}2
 
 " }}}1
 
