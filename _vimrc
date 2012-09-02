@@ -64,9 +64,8 @@ filetype indent on
 " SECTION: Commands {{{1
 " =============================================
 
-" .vimrcの再読み込み時に.vimrc内で設定されたautocmdを初期化する
+" .vimrcの再読み込み時に.vimrc内で設定されたautocmdを初期化する {{{
 " MyAutocmdを使用することで漏れなく初期化できる
-" {{{
 augroup vimrc
     autocmd!
 augroup END
@@ -77,16 +76,14 @@ command!
 \   autocmd<bang> vimrc <args>
 " }}}
 
-" 定義されているマッピングを調べるコマンドを定義する
-" {{{
+" 定義されているマッピングを調べるコマンドを定義する {{{
 command!
 \   -nargs=* -complete=mapping
 \   AllMaps
 \   map <args> | map! <args> | lmap <args>
 " }}}
 
-" For rails.vim
- " {{{
+" For rails.vim {{{
 if s:iswin
   command!
 \   -bar -nargs=1
