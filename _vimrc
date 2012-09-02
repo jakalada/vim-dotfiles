@@ -8,16 +8,19 @@ let &runtimepath = s:tmp
 unlet s:tmp
 " }}}
 
+" featureの状態を取得 {{{
+let s:iswin32 = has('win32')
+let s:iswin64 = has('win64')
 let s:iswin = has('win32') || has('win64')
 
 let s:isgui = has("gui_running")
 
 let s:ismacunix = has("macunix")
+" }}}
 
+" vimで扱うディレクトリのパスを設定 {{{
 if s:iswin
   " For Windows {{{
-  language message en
-
   " すでに読み込まれているファイル名には影響がないので注意する
   set shellslash
 
@@ -29,8 +32,6 @@ if s:iswin
   " }}}
 else
   " For Linux {{{
-  language message C
-
   let $DOTVIMDIR = expand('~/.vim')
 
   let $DROPBOXDIR = expand('~/Dropbox')
@@ -38,6 +39,7 @@ else
   let $VIMCONFIGDIR = expand('~/project/vim-dotfiles')
   " }}}
 endif
+" }}}
 
 " pathogen.vim {{{
 filetype off
