@@ -223,3 +223,6 @@
 [submodule "_vim/bundle/vim-smartinput"]
 	path = _vim/bundle/vim-smartinput
 	url = git://github.com/kana/vim-smartinput.git
+[submodule "_vim/bundle/vim-quickhl"]
+	path = _vim/bundle/vim-quickhl
+	url = git://github.com/t9md/vim-quickhl.git
