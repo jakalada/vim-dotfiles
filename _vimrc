@@ -697,6 +697,16 @@ else
   let g:Powerline_symbols = 'compatible'
 endif
 
+" ---------------------------------------------
+" PLUGIN: quickhl.vim {{{2
+" ---------------------------------------------
+
+nmap <Space>m <Plug>(quickhl-toggle)
+xmap <Space>m <Plug>(quickhl-toggle)
+nmap <Space>M <Plug>(quickhl-reset)
+xmap <Space>M <Plug>(quickhl-reset)
+nmap <Space>j <Plug>(quickhl-match)
+
 " =============================================
 " SECTION: Misc {{{1
 " =============================================
