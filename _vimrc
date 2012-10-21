@@ -588,12 +588,23 @@ let g:neocomplcache_dictionary_filetype_lists = {
 endif
 
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_snippets_dir = expand('~/.vim/snippets')
 let g:neocomplcache_lock_iminsert = 1
 
-nnoremap <silent> <leader>.s :<C-U>NeoComplCacheEditSnippets<CR>
-imap <expr><C-O> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-N>"
 inoremap <expr><C-C> neocomplcache#complete_common_string()
+
+" ---------------------------------------------
+" PLUGIN: neosnippet {{{2
+" ---------------------------------------------
+
+let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
+
+nnoremap <silent> <leader>.s :<C-U>NeoSnippetEdit<CR>
+imap <expr><TAB> neosnippet#expandable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
 
 " ---------------------------------------------
 " PLUGIN: vim-ref {{{2
