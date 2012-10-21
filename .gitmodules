@@ -223,3 +223,6 @@
 [submodule "_vim/bundle/vim-quickhl"]
 	path = _vim/bundle/vim-quickhl
 	url = git://github.com/t9md/vim-quickhl.git
+[submodule "_vim/bundle/neosnippet"]
+	path = _vim/bundle/neosnippet
+	url = git://github.com/Shougo/neosnippet.git
