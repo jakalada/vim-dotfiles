@@ -202,9 +202,6 @@
 [submodule "_vim/bundle/vim-gf-user"]
 	path = _vim/bundle/vim-gf-user
 	url = git://github.com/kana/vim-gf-user.git
-[submodule "_vim/bundle/vim-singleton"]
-	path = _vim/bundle/vim-singleton
-	url = git://github.com/thinca/vim-singleton.git
 [submodule "_vim/bundle/vinarise"]
 	path = _vim/bundle/vinarise
 	url = git://github.com/Shougo/vinarise.git
