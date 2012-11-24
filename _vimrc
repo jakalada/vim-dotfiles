@@ -232,6 +232,9 @@ if has('virtualedit')
   set virtualedit=block,insert
 endif
 
+" TODO: ヘルプでオプションの詳細を確認してカスタマイズ
+set formatoptions+=mM
+
 set scrolloff=10
 
 set helplang=ja
