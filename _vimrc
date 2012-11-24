@@ -175,7 +175,7 @@ let g:is_bash = 1
 " =============================================
 
 if s:isgui
-  colorscheme h2u_dark
+  colorscheme hickop
 
   if s:ismacunix
     set guifont=Osaka-Mono:h18
