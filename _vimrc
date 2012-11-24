@@ -726,7 +726,7 @@ nmap <Space>j <Plug>(quickhl-match)
 " Vimで静的にシンタックスチェックを行なう {{{2
 " ---------------------------------------------
 
-" via http://d.hatena.ne.jp/osyo-manga/20110921/1316605254
+" REF: http://d.hatena.ne.jp/osyo-manga/20110921/1316605254
 
 " for vim-hier {{{
 highlight qf_error_ucurl gui=underline guifg=yellow guibg=NONE
@@ -835,7 +835,7 @@ nnoremap <silent> <SID>[tabnew]v :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
 " }}}
 
 " 表示 {{{
-" via http://d.hatena.ne.jp/thinca/20111204/1322932585
+" REF: http://d.hatena.ne.jp/thinca/20111204/1322932585
 set showtabline=2
 set tabline=%!MakeTabLine()
 
