@@ -594,6 +594,7 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_lock_iminsert = 1
 
 inoremap <expr><C-C> neocomplcache#complete_common_string()
+inoremap <expr><C-O>  neocomplcache#start_manual_complete()
 
 " ---------------------------------------------
 " PLUGIN: neosnippet {{{2
@@ -616,8 +617,6 @@ smap <expr><TAB> neosnippet#expandable() ?
 if s:iswin
   let g:ref_pydoc_cmd = 'pydoc.bat'
   let g:ref_refe_encoding = 'cp932'
-else
-  let g:ref_refe_encoding = 'euc-jp'
 endif
 
 let g:ref_detect_filetype = {
