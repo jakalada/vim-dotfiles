@@ -226,3 +226,6 @@
 [submodule "_vim/bundle/vim-submode"]
 	path = _vim/bundle/vim-submode
 	url = git://github.com/kana/vim-submode.git
+[submodule "_vim/bundle/VOoM"]
+	path = _vim/bundle/VOoM
+	url = git://github.com/vim-scripts/VOoM.git
