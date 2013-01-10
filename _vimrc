@@ -178,7 +178,8 @@ if s:isgui
   colorscheme hickop
 
   if s:ismacunix
-    set guifont=Osaka-Mono:h18
+    " set guifont=Osaka-Mono:h18
+    set guifont=Ricty:h20
   elseif s:iswin
     set guifont=Ricty\ Discord\ 13.5
   else
