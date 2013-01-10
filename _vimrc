@@ -982,6 +982,7 @@ nmap <leader>h <SID>(command-line-enter-help)
 
 MyAutocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() " {{{
+  nnoremap <silent> q :<C-U>quit<CR>
   inoremap <expr><CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
   startinsert!
 endfunction " }}}
