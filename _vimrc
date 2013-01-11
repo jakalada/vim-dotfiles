@@ -49,6 +49,7 @@ else
 endif
 " }}}
 
+" NeoBundle {{{
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 
@@ -57,7 +58,6 @@ if has('vim_starting')
   NeoBundleFetch 'Shougo/neobundle.vim'
 
   NeoBundle 'Shougo/vimproc'
-  NeoBundle 'tpope/vim-pathogen.git'
   NeoBundle 'tyru/current-func-info.vim.git'
   NeoBundle 'Shougo/unite.vim.git'
   NeoBundle 'Shougo/neocomplcache.git'
@@ -135,6 +135,7 @@ if has('vim_starting')
 
   NeoBundleCheck
 endif
+" }}}
 
 filetype plugin indent on
 
