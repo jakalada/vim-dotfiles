@@ -52,89 +52,105 @@ endif
 " NeoBundle {{{
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
-
-  call neobundle#rc(expand('~/.vim/bundle'))
-
-  NeoBundleFetch 'Shougo/neobundle.vim'
-
-  NeoBundle 'Shougo/vimproc'
-  NeoBundle 'tyru/current-func-info.vim.git'
-  NeoBundle 'Shougo/unite.vim.git'
-  NeoBundle 'Shougo/neocomplcache.git'
-  NeoBundle 'thinca/vim-quickrun.git'
-  NeoBundle 'thinca/vim-ref.git'
-  NeoBundle 'tsukkee/unite-help.git'
-  NeoBundle 'h1mesuke/unite-outline.git'
-  NeoBundle 'ujihisa/unite-colorscheme.git'
-  NeoBundle 'ujihisa/unite-font.git'
-  NeoBundle 'ujihisa/unite-locate.git'
-  NeoBundle 'tacroe/unite-mark.git'
-  NeoBundle 'sgur/unite-git_grep.git'
-  NeoBundle 'thinca/vim-unite-history.git'
-  NeoBundle 'tpope/vim-surround.git'
-  NeoBundle 'Shougo/vimshell.git'
-  NeoBundle 'Shougo/vimproc.git'
-  NeoBundle 'vim-scripts/Textile-for-VIM.git'
-  NeoBundle 'tpope/vim-rails.git'
-  NeoBundle 'tyru/caw.vim.git'
-  NeoBundle 'Shougo/vimfiler.git'
-  NeoBundle 'kana/vim-metarw.git'
-  NeoBundle 'kana/vim-metarw-git.git'
-  NeoBundle 'tpope/vim-markdown.git'
-  NeoBundle 'kana/vim-smartchr.git'
-  NeoBundle 'tpope/vim-fugitive.git'
-  NeoBundle 'kchmck/vim-coffee-script.git'
-  NeoBundle 'tyru/open-browser.vim.git'
-  NeoBundle 'tyru/savemap.vim.git'
-  NeoBundle 'tyru/vice.vim.git'
-  NeoBundle 'leshill/vim-json.git'
-  NeoBundle 'kana/vim-altr.git'
-  NeoBundle 'pangloss/vim-javascript.git'
-  NeoBundle 'hallettj/jslint.vim.git'
-  NeoBundle 'tyru/pacman.vim.git'
-  NeoBundle 'thinca/vim-visualstar.git'
-  NeoBundle 'kana/vim-textobj-fold.git'
-  NeoBundle 'kana/vim-textobj-lastpat.git'
-  NeoBundle 'kana/vim-textobj-syntax.git'
-  NeoBundle 'kana/vim-textobj-indent.git'
-  NeoBundle 'kana/vim-textobj-user.git'
-  NeoBundle 'vim-ruby/vim-ruby.git'
-  NeoBundle 'mattn/calendar-vim.git'
-  NeoBundle 'taku-o/vim-toggle.git'
-  NeoBundle 'tsukkee/unite-tag.git'
-  NeoBundle 'sgur/unite-qf.git'
-  NeoBundle 'tungd/unite-session.git'
-  NeoBundle 'basyura/unite-rails.git'
-  NeoBundle 'vim-jp/vimdoc-ja.git'
-  NeoBundle 'Shougo/unite-build.git'
-  NeoBundle 'mattn/learn-vimscript.git'
-  NeoBundle 'choplin/unite-vim_hacks.git'
-  NeoBundle 'thinca/vim-openbuf.git'
-  NeoBundle 'mattn/webapi-vim.git'
-  NeoBundle 'h1mesuke/vim-alignta.git'
-  NeoBundle 'dannyob/quickfixstatus.git'
-  NeoBundle 'jceb/vim-hier.git'
-  NeoBundle 'h1mesuke/textobj-wiw.git'
-  NeoBundle 'chriskempson/vim-tomorrow-theme.git'
-  NeoBundle 'tomasr/molokai.git'
-  NeoBundle 'Lokaltog/vim-powerline.git'
-  NeoBundle 'Lokaltog/vim-distinguished.git'
-  NeoBundle 'majutsushi/tagbar.git'
-  NeoBundle 'thinca/vim-localrc.git'
-  NeoBundle 'kana/vim-textobj-line.git'
-  NeoBundle 'kana/vim-gf-user.git'
-  NeoBundle 'Shougo/vinarise.git'
-  NeoBundle 'thinca/vim-editvar.git'
-  NeoBundle 'kana/vim-tabpagecd.git'
-  NeoBundle 'kana/vim-smartinput.git'
-  NeoBundle 't9md/vim-quickhl.git'
-  NeoBundle 'Shougo/neosnippet.git'
-  NeoBundle 'hickop/vim-hickop-colors.git'
-  NeoBundle 'kana/vim-submode.git'
-  NeoBundle 'vim-scripts/VOoM.git'
-
-  NeoBundleCheck
 endif
+
+call neobundle#rc(expand('~/.vim/bundle'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vinarise'
+NeoBundle 'dannyob/quickfixstatus'
+NeoBundle 'h1mesuke/vim-alignta'
+NeoBundle 'hallettj/jslint.vim'
+NeoBundle 'jceb/vim-hier'
+NeoBundle 'kana/vim-altr'
+NeoBundle 'kana/vim-gf-user'
+NeoBundle 'kana/vim-metarw'
+NeoBundle 'kana/vim-metarw-git'
+NeoBundle 'kana/vim-smartchr'
+NeoBundle 'kana/vim-smartinput'
+NeoBundle 'kana/vim-submode'
+NeoBundle 'kana/vim-tabpagecd'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'mattn/calendar-vim'
+NeoBundle 'mattn/learn-vimscript'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 't9md/vim-quickhl'
+NeoBundle 'taku-o/vim-toggle'
+NeoBundle 'thinca/vim-editvar'
+NeoBundle 'thinca/vim-localrc'
+NeoBundle 'thinca/vim-openbuf'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'thinca/vim-visualstar'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tyru/caw.vim'
+NeoBundle 'tyru/current-func-info.vim'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'tyru/savemap.vim'
+NeoBundle 'tyru/vice.vim'
+NeoBundle 'vim-jp/vimdoc-ja'
+NeoBundle 'vim-scripts/VOoM'
+
+" colorscheme {{{
+NeoBundle 'Lokaltog/vim-distinguished'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
+NeoBundle 'hickop/vim-hickop-colors'
+NeoBundle 'tomasr/molokai'
+" }}}
+
+" filetype {{{
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'leshill/vim-json'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'vim-scripts/Textile-for-VIM'
+" }}}
+
+" textobj {{{
+NeoBundle 'kana/vim-textobj-user'
+
+NeoBundle 'h1mesuke/textobj-wiw'
+NeoBundle 'kana/vim-textobj-fold'
+NeoBundle 'kana/vim-textobj-indent'
+NeoBundle 'kana/vim-textobj-lastpat'
+NeoBundle 'kana/vim-textobj-line'
+NeoBundle 'kana/vim-textobj-syntax'
+" }}}
+
+" unite {{{
+NeoBundle 'Shougo/unite.vim'
+
+NeoBundle 'Shougo/unite-build'
+NeoBundle 'basyura/unite-rails'
+NeoBundle 'choplin/unite-vim_hacks'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'sgur/unite-git_grep'
+NeoBundle 'sgur/unite-qf'
+NeoBundle 'tacroe/unite-mark'
+NeoBundle 'thinca/vim-unite-history'
+NeoBundle 'tsukkee/unite-help'
+NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'tungd/unite-session'
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'ujihisa/unite-font'
+NeoBundle 'ujihisa/unite-locate'
+" }}}
+
+" game {{{
+NeoBundle 'tyru/pacman.vim'
+" }}}
+
+NeoBundleCheck
 " }}}
 
 filetype plugin indent on
