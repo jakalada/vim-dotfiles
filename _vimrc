@@ -394,7 +394,7 @@ set listchars=tab:>-,trail:-
 
 set fillchars=vert:\ ,fold:\ ,diff:\ 
 
-set showbreak=↪
+let &showbreak = '> '
 
 set wrap
 
@@ -456,6 +456,9 @@ noremap H ^
 
 noremap <C-H> <C-U>
 noremap <C-L> <C-D>
+
+noremap n nzz
+noremap N Nzz
 
 " ---------------------------------------------
 " mapmode-n {{{2
@@ -522,18 +525,23 @@ nmap gcc <Plug>(caw:wrap:toggle)
 " PLUGIN: vimfiler.vim {{{2
 " ---------------------------------------------
 
+" 削除時にゴミ箱に移動したい場合
+" windows: vimprocプラグインをインストール
+"   linux: trash-cliをインストール
+"     osx: rmtrashをインストール
+"     etc: オプションで直接コマンドを指定する
+
 let g:vimfiler_as_default_explorer = 1
-
+let g:vimfiler_safe_mode_by_default = 0
 let g:vimfiler_split_action = "split"
-let g:vimfiler_time_format = "%Y/%m/%d %H:%M"
-let g:unite_kind_file_delete_file_command = 'trash-put $srcs'
-let g:unite_kind_file_delete_directory_command = 'trash-put -rf $srcs'
 
-let g:vimfiler_tree_leaf_icon = '  '
-let g:vimfiler_tree_opened_icon = ' ▾'
-let g:vimfiler_tree_closed_icon = ' ▸'
-let g:vimfiler_file_icon = ' -'
-let g:vimfiler_marked_file_icon = ' *'
+let g:vimfiler_time_format        = "%Y/%m/%d %H:%M"
+let g:vimfiler_tree_leaf_icon     = ' '   " default: '|'
+let g:vimfiler_tree_opened_icon   = '-'   " default: '-'
+let g:vimfiler_tree_closed_icon   = '+'   " default: '+'
+let g:vimfiler_readonly_file_icon = '!'   " deafult: 'X'
+let g:vimfiler_file_icon          = '-'   " default: '-'
+let g:vimfiler_marked_file_icon   = '*'   " default: '*'
 
 nnoremap <silent> <leader>E :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quite<CR>
 nnoremap <silent> <leader>e :<C-U>VimFiler<CR>
