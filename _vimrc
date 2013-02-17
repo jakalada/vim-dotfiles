@@ -59,6 +59,7 @@ call neobundle#rc(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'Shougo/junkfile.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimfiler'
@@ -73,7 +74,7 @@ NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-metarw'
 NeoBundle 'kana/vim-metarw-git'
 NeoBundle 'kana/vim-smartchr'
-NeoBundle 'kana/vim-smartinput'
+"NeoBundle 'kana/vim-smartinput'
 NeoBundle 'kana/vim-submode'
 NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'majutsushi/tagbar'
@@ -98,6 +99,7 @@ NeoBundle 'tyru/savemap.vim'
 NeoBundle 'tyru/vice.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'vim-scripts/VOoM'
+NeoBundle 'zef/vim-cycle'
 
 " colorscheme {{{
 NeoBundle 'Lokaltog/vim-distinguished'
@@ -149,7 +151,6 @@ NeoBundle 'ujihisa/unite-locate'
 NeoBundle 'tyru/pacman.vim'
 " }}}
 
-NeoBundleCheck
 " }}}
 
 filetype plugin indent on
@@ -273,7 +274,7 @@ if s:isgui
 
   if s:ismacunix
     " set guifont=Osaka-Mono:h18
-    set guifont=Ricty:h20
+    set guifont=Ricty:h18
   elseif s:iswin
     set guifont=Ricty\ Discord\ 13.5
   else
@@ -287,6 +288,7 @@ if s:isgui
   set novisualbell
   set guicursor+=a:blinkon0
   let loaded_matchparen = 1
+
 else
   set t_Co=256
   colorscheme distinguished
@@ -519,7 +521,7 @@ runtime macros/matchit.vim
 " PLUGIN: caw.vim {{{2
 " ---------------------------------------------
 
-nmap gcc <Plug>(caw:wrap:toggle)
+nmap <C-p> <Plug>(caw:wrap:toggle)
 
 " ---------------------------------------------
 " PLUGIN: vimfiler.vim {{{2
@@ -531,11 +533,12 @@ nmap gcc <Plug>(caw:wrap:toggle)
 "     osx: rmtrashをインストール
 "     etc: オプションで直接コマンドを指定する
 
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_safe_mode_by_default = 0
-let g:vimfiler_split_action = "split"
+let g:vimfiler_as_default_explorer = 1    " explorerとして使用する
+let g:vimfiler_safe_mode_by_default = 0   " セーフモードをオフにする
+let g:vimfiler_split_action = "split"     " 忘れた
 
-let g:vimfiler_time_format        = "%Y/%m/%d %H:%M"
+let g:vimfiler_time_format        = "%Y/%m/%d %H:%M"  " 例: 2013/01/01 00:00
+
 let g:vimfiler_tree_leaf_icon     = ' '   " default: '|'
 let g:vimfiler_tree_opened_icon   = '-'   " default: '-'
 let g:vimfiler_tree_closed_icon   = '+'   " default: '+'
@@ -546,6 +549,72 @@ let g:vimfiler_marked_file_icon   = '*'   " default: '*'
 nnoremap <silent> <leader>E :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quite<CR>
 nnoremap <silent> <leader>e :<C-U>VimFiler<CR>
 
+let g:vimfiler_no_default_key_mappings = 1 " デフォルトのマッピングを無効
+MyAutocmd Filetype vimfiler call s:init_vimfiler()
+function! s:init_vimfiler() " {{{
+  vmap <buffer> '               <Plug>(vimfiler_toggle_mark_selected_lines)
+
+  nmap <buffer> <Tab>           <Plug>(vimfiler_switch_to_other_window)
+  nmap <buffer> j               <Plug>(vimfiler_loop_cursor_down)
+  nmap <buffer> k               <Plug>(vimfiler_loop_cursor_up)
+  nmap <buffer> gg              <Plug>(vimfiler_cursor_top)
+  " nmap <buffer> <C-l>         <Plug>(vimfiler_redraw_screen)
+  nmap <buffer> '               <Plug>(vimfiler_toggle_mark_current_line)
+  "nmap <buffer> <S-Space>      <Plug>(vimfiler_toggle_mark_current_line_up)
+  " nmap <buffer> *             <Plug>(vimfiler_toggle_mark_all_lines)
+  nmap <buffer> "               <Plug>(vimfiler_clear_mark_all_lines)
+  nmap <buffer> c               <Plug>(vimfiler_copy_file)
+  nmap <buffer> m               <Plug>(vimfiler_move_file)
+  nmap <buffer> d               <Plug>(vimfiler_delete_file)
+  nmap <buffer> Cc              <Plug>(vimfiler_clipboard_copy_file)
+  nmap <buffer> Cm              <Plug>(vimfiler_clipboard_move_file)
+  nmap <buffer> Cp              <Plug>(vimfiler_clipboard_paste)
+  nmap <buffer> r               <Plug>(vimfiler_rename_file)
+  nmap <buffer> K               <Plug>(vimfiler_make_directory)
+  nmap <buffer> N               <Plug>(vimfiler_new_file)
+  nmap <buffer> <Enter>               <Plug>(vimfiler_execute)
+  nmap <buffer> l               <Plug>(vimfiler_smart_l)
+  nmap <buffer> X               <Plug>(vimfiler_execute_system_associated)
+  nmap <buffer> h               <Plug>(vimfiler_smart_h)
+  nmap <buffer> L               <Plug>(vimfiler_switch_to_drive)
+  nmap <buffer> ~               <Plug>(vimfiler_switch_to_home_directory)
+  nmap <buffer> \               <Plug>(vimfiler_switch_to_root_directory)
+  nmap <buffer> <C-j>           <Plug>(vimfiler_switch_to_history_directory)
+  nmap <buffer> <BS>            <Plug>(vimfiler_switch_to_parent_directory)
+  nmap <buffer> .               <Plug>(vimfiler_toggle_visible_dot_files)
+  " nmap <buffer> H             <Plug>(vimfiler_popup_shell)
+  nmap <buffer> e               <Plug>(vimfiler_edit_file)
+  nmap <buffer> E               <Plug>(vimfiler_split_edit_file)
+  nmap <buffer> B               <Plug>(vimfiler_edit_binary_file)
+  nmap <buffer> ge              <Plug>(vimfiler_execute_external_filer)
+  " nmap <buffer> <RightMouse>  <Plug>(vimfiler_execute_external_filer)
+  nmap <buffer> !               <Plug>(vimfiler_execute_shell_command)
+  nmap <buffer> q               <Plug>(vimfiler_hide)
+  nmap <buffer> Q               <Plug>(vimfiler_exit)
+  " nmap <buffer> -             <Plug>(vimfiler_close)
+  nmap <buffer> ?               <Plug>(vimfiler_help)
+  " nmap <buffer> v             <Plug>(vimfiler_preview_file)
+  " nmap <buffer> o             <Plug>(vimfiler_sync_with_current_vimfiler)
+  " nmap <buffer> O             <Plug>(vimfiler_open_file_in_another_vimfiler)
+  " nmap <buffer> <C-g>         <Plug>(vimfiler_print_filename)
+  " nmap <buffer> g<C-g>        <Plug>(vimfiler_toggle_maximize_window)
+  nmap <buffer> yy              <Plug>(vimfiler_yank_full_path)
+  nmap <buffer> gm              <Plug>(vimfiler_set_current_mask)
+  nmap <buffer> gr              <Plug>(vimfiler_grep)
+  nmap <buffer> gf              <Plug>(vimfiler_find)
+  nmap <buffer> gs              <Plug>(vimfiler_select_sort_type)
+  " nmap <buffer> <C-v>         <Plug>(vimfiler_switch_vim_buffer_mode)
+  nmap <buffer> gc              <Plug>(vimfiler_cd_vim_current_dir)
+  " nmap <buffer> gs            <Plug>(vimfiler_toggle_safe_mode)
+  " nmap <buffer> gS            <Plug>(vimfiler_toggle_simple_mode)
+  nmap <buffer> a               <Plug>(vimfiler_choose_action)
+  " nmap <buffer> Y             <Plug>(vimfiler_pushd)
+  " nmap <buffer> P             <Plug>(vimfiler_popd)
+  nmap <buffer> zr              <Plug>(vimfiler_expand_tree)
+  nmap <buffer> zR              <Plug>(vimfiler_expand_tree_recursive)
+  nmap <buffer> i               <Plug>(vimfiler_cd_input_directory)
+  " nmap <buffer> <2-LeftMouse> <Plug> (vimfiler_double_click)
+endfunction " }}}
 " ---------------------------------------------
 " PLUGIN: unite.vim {{{2
 " ---------------------------------------------
@@ -631,6 +700,10 @@ function g:unite_source_menu_menus.fugitive.map(key, value)
 endfunction
 
 nnoremap <silent> <SID>[unite]g :<C-u>Unite menu:fugitive<CR>
+" }}}
+
+" unite-junkfile {{{
+nnoremap <silent> <SID>[unite]j :<C-u>Unite -start-insert junkfile/new junkfile<CR>
 " }}}
 
 " ---------------------------------------------
@@ -758,11 +831,21 @@ vmap s S
 " ---------------------------------------------
 
 let g:quickrun_config = get(g:, 'quickrun_config', {})
-let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
+let g:quickrun_config._ = {'runner' : 'vimproc'}
+
+"RSpec
+let g:quickrun_config['ruby.rspec'] = {
+      \'command': 'bundle exec rspec',
+      \'exec': '%c %s'
+      \}
+
+" Markdown
 let g:quickrun_config['markdown'] = {
-\ 'command': 'kramdown',
-\ 'exec': '%c %s'
-\ }
+      \'command':  'redcarpet',
+      \'cmdopt':   '--parse-fenced-code-blocks --parse-tables',
+      \'exec':     '%c %o %s',
+      \'outputter/buffer/filetype': 'html'
+      \}
 
 " ---------------------------------------------
 " PLUGIN: vim-coffee-script {{{2
@@ -808,66 +891,6 @@ nmap <Space>j <Plug>(quickhl-match)
 " =============================================
 " SECTION: Misc {{{1
 " =============================================
-
-" ---------------------------------------------
-" Vimで静的にシンタックスチェックを行なう {{{2
-" ---------------------------------------------
-
-" REF: http://d.hatena.ne.jp/osyo-manga/20110921/1316605254
-
-" for vim-hier {{{
-highlight qf_error_ucurl gui=underline guifg=yellow guibg=NONE
-highlight qf_error_ucurl cterm=underline ctermfg=yellow ctermbg=NONE
-let g:hier_highlight_group_qf  = "qf_error_ucurl"
-" }}}
-
-" outputter/quickfixをquickrunに登録 {{{
-let s:silent_quickfix = quickrun#outputter#quickfix#new()
-function! s:silent_quickfix.finish(session)
-    call call(quickrun#outputter#quickfix#new().finish, [a:session], self)
-    :cclose
-    :HierUpdate
-    :QuickfixStatusEnable
-endfunction
-call quickrun#register_outputter("silent_quickfix", s:silent_quickfix)
-" }}}
-
-let g:quickrun_config = get(g:, 'quickrun_config', {})
-
-" for ruby {{{
-let g:quickrun_config["RubySyntaxCheck_ruby"] = {
-    \ "exec"      : "%c %o %s:p ",
-    \ "command"   : "ruby",
-    \ "cmdopt"    : "-cw",
-    \ "outputter" : "silent_quickfix",
-    \ "runner"    : "vimproc"
-\ }
-" }}}
-
-" for c {{{
-let g:quickrun_config["CSyntaxCheck_c"] = {
-    \ "exec"      : "%c %o %s:p ",
-    \ "command"   : "gcc",
-    \ "cmdopt"    : "-Wall -Wextra -pedantic -fsyntax-only",
-    \ "outputter" : "silent_quickfix",
-    \ "runner"    : "vimproc"
-\ }
-" }}}
-
-function! s:syntax_check_for_filetype()
-  let filetypes = split(&filetype, ',')
-  if index(filetypes, 'ruby') >= 0
-    if expand('%:t') !~# '_steps.rb$'
-      execute ':QuickRun RubySyntaxCheck_ruby'
-    endif
-  elseif index(filetypes, 'c') >= 0
-    execute ':QuickRun CSyntaxCheck_c'
-  endif
-endfunction
-
-MyAutocmd BufWritePost * call s:syntax_check_for_filetype()
-MyAutocmd FileType * :HierClear
-
 
 " ---------------------------------------------
 " 折りたたみ {{{2
@@ -1006,8 +1029,8 @@ nmap <leader>h <SID>(command-line-enter-help)
 
 MyAutocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() " {{{
-  nnoremap <silent> q :<C-U>quit<CR>
-  inoremap <expr><CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
+  nnoremap <buffer> <silent> q :<C-U>quit<CR>
+  inoremap <buffer> <expr><CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
   startinsert!
 endfunction " }}}
 
