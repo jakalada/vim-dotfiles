@@ -115,6 +115,7 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'vim-scripts/Textile-for-VIM'
+NeoBundle 'kingbin/vim-arduino'
 " }}}
 
 " textobj {{{
