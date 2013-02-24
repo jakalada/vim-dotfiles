@@ -633,10 +633,10 @@ xnoremap <SID>[unite] <Nop>
 nmap f <SID>[unite]
 xmap f <SID>[unite]
 
-nnoremap <SID>[unite-no-quite] <Nop>
-xnoremap <SID>[unite-no-quite] <Nop>
-nmap F <SID>[unite-no-quite]
-xmap F <SID>[unite-no-quite]
+nnoremap <SID>[unite-no-quit] <Nop>
+xnoremap <SID>[unite-no-quit] <Nop>
+nmap F <SID>[unite-no-quit]
+xmap F <SID>[unite-no-quit]
 
 nnoremap <silent> <SID>[unite]<Space> :<C-U>UniteResume<CR>
 
@@ -657,21 +657,21 @@ nnoremap <silent> <SID>[unite]s :<C-U>Unite -buffer-name=snippet snippet<CR>
 nnoremap <silent> <SID>[unite]S :<C-U>Unite -buffer-name=source source<CR>
 nnoremap <silent> <SID>[unite]q :<C-U>Unite -buffer-name=qf qf<CR>
 
-nnoremap <silent> <SID>[unite-no-quite]F :<C-U>Unite -no-quite -keep-focus -buffer-name=files bookmark directory_mru file_mru<CR>
-nnoremap <silent> <SID>[unite-no-quite]f :<C-U>Unite -no-quite -keep-focus -buffer-name=files file<CR>
-nnoremap <silent> <SID>[unite-no-quite]b :<C-U>Unite -no-quite -keep-focus -buffer-name=buffer_tab buffer_tab<CR>
-nnoremap <silent> <SID>[unite-no-quite]B :<C-U>Unite -no-quite -keep-focus -buffer-name=buffer buffer<CR>
-nnoremap <silent> <SID>[unite-no-quite]r :<C-U>Unite -no-quite -keep-focus -buffer-name=register register<CR>
-nnoremap <silent> <SID>[unite-no-quite]t :<C-U>Unite -no-quite -keep-focus -buffer-name=tab tab:no-current<CR>
-nnoremap <silent> <SID>[unite-no-quite]w :<C-U>Unite -no-quite -keep-focus -buffer-name=window window:no-current<CR>
-nnoremap <silent> <SID>[unite-no-quite]o :<C-U>Unite -no-quite -keep-focus -buffer-name=outline outline<CR>
-nnoremap <silent> <SID>[unite-no-quite]m :<C-U>Unite -no-quite -keep-focus -buffer-name=mark mark<CR>
-nnoremap <silent> <SID>[unite-no-quite]h :<C-U>Unite -no-quite -keep-focus -buffer-name=help help<CR>
-nnoremap <silent> <SID>[unite-no-quite]H :<C-U>Unite -no-quite -keep-focus -buffer-name=refe -input=ref source<CR>
-nnoremap <silent> <SID>[unite-no-quite]R :<C-U>Unite -no-quite -keep-focus -buffer-name=rails -input=rails source<CR>
-nnoremap <silent> <SID>[unite-no-quite]s :<C-U>Unite -no-quite -keep-focus -buffer-name=snippet snippet<CR>
-nnoremap <silent> <SID>[unite-no-quite]S :<C-U>Unite -no-quite -keep-focus -buffer-name=source source<CR>
-nnoremap <silent> <SID>[unite-no-quite]q :<C-U>Unite -no-quite -keep-focus -buffer-name=qf qf<CR>
+nnoremap <silent> <SID>[unite-no-quit]F :<C-U>Unite -no-quit -keep-focus -buffer-name=files bookmark directory_mru file_mru<CR>
+nnoremap <silent> <SID>[unite-no-quit]f :<C-U>Unite -no-quit -keep-focus -buffer-name=files file<CR>
+nnoremap <silent> <SID>[unite-no-quit]b :<C-U>Unite -no-quit -keep-focus -buffer-name=buffer_tab buffer_tab<CR>
+nnoremap <silent> <SID>[unite-no-quit]B :<C-U>Unite -no-quit -keep-focus -buffer-name=buffer buffer<CR>
+nnoremap <silent> <SID>[unite-no-quit]r :<C-U>Unite -no-quit -keep-focus -buffer-name=register register<CR>
+nnoremap <silent> <SID>[unite-no-quit]t :<C-U>Unite -no-quit -keep-focus -buffer-name=tab tab:no-current<CR>
+nnoremap <silent> <SID>[unite-no-quit]w :<C-U>Unite -no-quit -keep-focus -buffer-name=window window:no-current<CR>
+nnoremap <silent> <SID>[unite-no-quit]o :<C-U>Unite -no-quit -keep-focus -buffer-name=outline outline<CR>
+nnoremap <silent> <SID>[unite-no-quit]m :<C-U>Unite -no-quit -keep-focus -buffer-name=mark mark<CR>
+nnoremap <silent> <SID>[unite-no-quit]h :<C-U>Unite -no-quit -keep-focus -buffer-name=help help<CR>
+nnoremap <silent> <SID>[unite-no-quit]H :<C-U>Unite -no-quit -keep-focus -buffer-name=refe -input=ref source<CR>
+nnoremap <silent> <SID>[unite-no-quit]R :<C-U>Unite -no-quit -keep-focus -buffer-name=rails -input=rails source<CR>
+nnoremap <silent> <SID>[unite-no-quit]s :<C-U>Unite -no-quit -keep-focus -buffer-name=snippet snippet<CR>
+nnoremap <silent> <SID>[unite-no-quit]S :<C-U>Unite -no-quit -keep-focus -buffer-name=source source<CR>
+nnoremap <silent> <SID>[unite-no-quit]q :<C-U>Unite -no-quit -keep-focus -buffer-name=qf qf<CR>
 " }}}
 
 " unite-line " {{{
