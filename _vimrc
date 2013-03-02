@@ -1048,7 +1048,7 @@ nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '
 nnoremap <silent> <SID>(command-line-enter) q:
 xnoremap <silent> <SID>(command-line-enter) q:
 nnoremap <silent> <SID>(command-line-enter-help) q:help<Space>
-nnoremap <silent> <SID>(command-line-enter-setlocal-filetype) q:setfiletype
+nnoremap <silent> <SID>(command-line-enter-setlocal-filetype) q:setfiletype<Space>
 
 nnoremap ; <Nop>
 xnoremap ; <Nop>
