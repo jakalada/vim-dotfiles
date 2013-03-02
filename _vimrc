@@ -58,12 +58,20 @@ call neobundle#rc(expand('~/.vim/bundle'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'Shougo/vimproc', {
+      \'build' : {
+      \    'windows' : 'make -f make_mingw32.mak',
+      \    'cygwin' : 'make -f make_cygwin.mak',
+      \    'mac' : 'make -f make_mac.mak',
+      \    'unix' : 'make -f make_unix.mak',
+      \  },
+      \}
+
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Shougo/junkfile.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vinarise'
 NeoBundle 'dannyob/quickfixstatus'
@@ -330,8 +338,8 @@ if has('virtualedit')
   set virtualedit=block,insert
 endif
 
-" TODO: ヘルプでオプションの詳細を確認してカスタマイズ
-set formatoptions+=mM
+set formatoptions+=mM " マルチバイト文字の扱いを自然にする
+set formatoptions-=ro " コメント行で改行した次行を非コメント行にする
 
 set scrolloff=10
 
@@ -460,9 +468,6 @@ noremap H ^
 noremap <C-H> <C-U>
 noremap <C-L> <C-D>
 
-noremap n nzz
-noremap N Nzz
-
 " ---------------------------------------------
 " mapmode-n {{{2
 " ---------------------------------------------
@@ -483,6 +488,21 @@ nnoremap <C-Backspace> <C-^>
 
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
+nnoremap > >>
+nnoremap < <<
+
+nnoremap n nzz
+nnoremap N Nzz
+
+" ---------------------------------------------
+" mapmode-v {{{2
+" ---------------------------------------------
+vnoremap > >gv
+vnoremap < <gv
+
+vnoremap ) t)
+noremap ( t(
+
 " ---------------------------------------------
 " mapmode-i {{{2
 " ---------------------------------------------
@@ -498,9 +518,11 @@ inoremap <silent> <F7> <Esc>gUiwea
 " ---------------------------------------------
 " mapmode-o {{{2
 " ---------------------------------------------
-
 onoremap / t
 onoremap ? T
+
+onoremap ) t)
+onoremap ( t(
 
 " =============================================
 " SECTION: Plugins {{{1
@@ -611,8 +633,10 @@ function! s:init_vimfiler() " {{{
   nmap <buffer> a               <Plug>(vimfiler_choose_action)
   " nmap <buffer> Y             <Plug>(vimfiler_pushd)
   " nmap <buffer> P             <Plug>(vimfiler_popd)
-  nmap <buffer> zr              <Plug>(vimfiler_expand_tree)
-  nmap <buffer> zR              <Plug>(vimfiler_expand_tree_recursive)
+  nmap <buffer> zl              <Plug>(vimfiler_expand_tree)
+  nmap <buffer> zL              <Plug>(vimfiler_expand_tree_recursive)
+  nmap <buffer> zh              <Plug>(vimfiler_expand_tree)
+  nmap <buffer> zH              <Plug>(vimfiler_expand_tree_recursive)
   nmap <buffer> i               <Plug>(vimfiler_cd_input_directory)
   " nmap <buffer> <2-LeftMouse> <Plug> (vimfiler_double_click)
 endfunction " }}}
@@ -770,8 +794,8 @@ endif
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_lock_iminsert = 1
 
-inoremap <expr><C-C> neocomplcache#complete_common_string()
-inoremap <expr><C-O>  neocomplcache#start_manual_complete()
+inoremap <expr> <C-C> neocomplcache#complete_common_string()
+inoremap <expr> <C-O>  neocomplcache#start_manual_complete()
 
 " ---------------------------------------------
 " PLUGIN: neosnippet {{{2
@@ -780,10 +804,10 @@ inoremap <expr><C-O>  neocomplcache#start_manual_complete()
 let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
 
 nnoremap <silent> <leader>.s :<C-U>NeoSnippetEdit<CR>
-imap <expr><TAB> neosnippet#expandable() ?
+imap <expr> <TAB> neosnippet#expandable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable() ?
+smap <expr> <TAB> neosnippet#expandable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: "\<TAB>"
 
@@ -888,6 +912,13 @@ xmap <Space>m <Plug>(quickhl-toggle)
 nmap <Space>M <Plug>(quickhl-reset)
 xmap <Space>M <Plug>(quickhl-reset)
 nmap <Space>j <Plug>(quickhl-match)
+
+" ---------------------------------------------
+" PLUGIN: Alignta {{{2
+" ---------------------------------------------
+vnoremap aa :Alignta
+vnoremap a= :Alignta =<CR>
+vnoremap a+ :Alignta +<CR>
 
 " =============================================
 " SECTION: Misc {{{1
@@ -995,7 +1026,7 @@ endfunction
 " ---------------------------------------------
 
 nnoremap <SID>[window] <Nop>
-nmap $ <SID>[window]
+nmap <Leader>w <SID>[window]
 
 nnoremap <Tab> <C-W>w
 nnoremap <S-Tab> <C-W>W
@@ -1017,6 +1048,7 @@ nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '
 nnoremap <silent> <SID>(command-line-enter) q:
 xnoremap <silent> <SID>(command-line-enter) q:
 nnoremap <silent> <SID>(command-line-enter-help) q:help<Space>
+nnoremap <silent> <SID>(command-line-enter-setlocal-filetype) q:setfiletype
 
 nnoremap ; <Nop>
 xnoremap ; <Nop>
@@ -1025,13 +1057,15 @@ nmap ; <SID>(command-line-enter)
 xmap ; <SID>(command-line-enter)
 
 nnoremap <leader>h <Nop>
+nnoremap <leader>f <Nop>
 
 nmap <leader>h <SID>(command-line-enter-help)
+nmap <leader>f <SID>(command-line-enter-setlocal-filetype)
 
 MyAutocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() " {{{
-  nnoremap <buffer> <silent> q :<C-U>quit<CR>
-  inoremap <buffer> <expr><CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
+  nnoremap <buffer><silent> q :<C-U>quit<CR>
+  inoremap <buffer><expr> <CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
   startinsert!
 endfunction " }}}
 
