@@ -284,7 +284,7 @@ if s:isgui
 
   if s:ismacunix
     " set guifont=Osaka-Mono:h18
-    set guifont=Ricty:h18
+    set guifont=Ricty:h17
   elseif s:iswin
     set guifont=Ricty\ Discord\ 13.5
   else
