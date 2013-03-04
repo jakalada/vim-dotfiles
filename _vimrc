@@ -89,6 +89,7 @@ NeoBundle 'majutsushi/tagbar'
 NeoBundle 'mattn/calendar-vim'
 NeoBundle 'mattn/learn-vimscript'
 NeoBundle 'mattn/webapi-vim'
+NeoBundle 'supermomonga/shiraseru.vim', {'depends' : 'Shougo/vimproc'}
 NeoBundle 't9md/vim-quickhl'
 NeoBundle 'taku-o/vim-toggle'
 NeoBundle 'thinca/vim-editvar'
