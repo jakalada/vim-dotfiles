@@ -570,8 +570,8 @@ let g:vimfiler_readonly_file_icon = '!'   " deafult: 'X'
 let g:vimfiler_file_icon          = '-'   " default: '-'
 let g:vimfiler_marked_file_icon   = '*'   " default: '*'
 
-nnoremap <silent> <leader>E :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quite<CR>
-nnoremap <silent> <leader>e :<C-U>VimFiler<CR>
+nnoremap <silent> <leader>e :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+nnoremap <silent> <leader>E :<C-U>VimFiler<CR>
 
 let g:vimfiler_no_default_key_mappings = 1 " デフォルトのマッピングを無効
 MyAutocmd Filetype vimfiler call s:init_vimfiler()
@@ -646,8 +646,8 @@ endfunction " }}}
 " ---------------------------------------------
 
 " unite-variables
-"let g:unite_split_rule = 'botright'
-"let g:unite_enable_split_vertically = 1
+let g:unite_split_rule = 'botright'
+let g:unite_enable_split_vertically = 1
 let g:unite_winwidth = 60
 
 " unite-source-variables
@@ -702,7 +702,7 @@ nnoremap <silent> <SID>[unite-no-quit]q :<C-U>Unite -no-quit -keep-focus -buffer
 
 " unite-line " {{{
 nnoremap <silent> <SID>[unite]l :<C-U>UniteWithCursorWord -buffer-name=line line<CR>
-nnoremap <silent> <SID>[unite-no-quite]l :<C-U>UniteWithCursorWord -no-quite -buffer-name=line line<CR>
+nnoremap <silent> <SID>[unite-no-quite]l :<C-U>UniteWithCursorWord -no-quit -buffer-name=line line<CR>
 " }}}
 
 " unite-menu {{{
