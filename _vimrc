@@ -173,7 +173,7 @@ filetype plugin indent on
 " .vimrcの再読み込み時に.vimrc内で設定されたautocmdを初期化する {{{
 " MyAutocmdを使用することで漏れなく初期化できる
 augroup vimrc
-    autocmd!
+  autocmd!
 augroup END
 
 command!
@@ -340,8 +340,12 @@ if has('virtualedit')
   set virtualedit=block,insert
 endif
 
-set formatoptions+=mM " マルチバイト文字の扱いを自然にする
-set formatoptions-=ro " コメント行で改行した次行を非コメント行にする
+" マルチバイト文字の扱いを自然にする
+set formatoptions+=m
+set formatoptions+=M
+" コメント行で改行した次行を非コメント行にする
+set formatoptions-=r
+set formatoptions-=o
 
 set scrolloff=10
 
@@ -403,9 +407,9 @@ if has('conceal')
 endif
 
 set list
-set listchars=tab:>-,trail:-
+let &listchars = 'tab:>-,trail:-'
 
-set fillchars=vert:\ ,fold:\ ,diff:\ 
+let &fillchars = 'vert: ,fold: ,diff: '
 
 let &showbreak = '> '
 
@@ -478,7 +482,7 @@ nnoremap <Leader>k <C-^>
 nnoremap <Backspace> <C-O>
 nnoremap <S-Backspace> <C-I>
 
-nnoremap <silent> <leader><leader> :<C-U>write<CR>
+nnoremap <silent> <Leader><Leader> :<C-U>write<CR>
 
 nnoremap <C-Up> <C-A>
 nnoremap <C-Down> <C-X>
@@ -489,9 +493,6 @@ nnoremap <silent> q :<C-U>close<CR>
 nnoremap <C-Backspace> <C-^>
 
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-nnoremap > >>
-nnoremap < <<
 
 nnoremap n nzz
 nnoremap N Nzz
@@ -571,8 +572,8 @@ let g:vimfiler_readonly_file_icon = '!'   " deafult: 'X'
 let g:vimfiler_file_icon          = '-'   " default: '-'
 let g:vimfiler_marked_file_icon   = '*'   " default: '*'
 
-nnoremap <silent> <leader>e :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
-nnoremap <silent> <leader>E :<C-U>VimFiler<CR>
+nnoremap <silent> <Leader>e :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+nnoremap <silent> <Leader>E :<C-U>VimFiler<CR>
 
 let g:vimfiler_no_default_key_mappings = 1 " デフォルトのマッピングを無効
 MyAutocmd Filetype vimfiler call s:init_vimfiler()
@@ -794,7 +795,6 @@ let g:neocomplcache_dictionary_filetype_lists = {
 endif
 
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_lock_iminsert = 1
 
 inoremap <expr> <C-C> neocomplcache#complete_common_string()
 inoremap <expr> <C-O>  neocomplcache#start_manual_complete()
@@ -805,7 +805,7 @@ inoremap <expr> <C-O>  neocomplcache#start_manual_complete()
 
 let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
 
-nnoremap <silent> <leader>.s :<C-U>NeoSnippetEdit<CR>
+nnoremap <silent> <Leader>.s :<C-U>NeoSnippetEdit<CR>
 imap <expr> <TAB> neosnippet#expandable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -1085,7 +1085,7 @@ function! AddEmptyLineAbove() " {{{
   set scrolloff=0
   call append(line(".") - 1, "")
   if winline() != winheight(0)
-    silent normal! <C-E>
+    execute 'normal!' "\<C-E>"
   end
   let &scrolloff = l:scrolloffsave
 endfunction " }}}
@@ -1111,7 +1111,7 @@ function! DelEmptyLineAbove() " {{{
   if l:line =~ '^\s*$'
     let l:colsave = col(".")
     .-1d
-    silent normal! <C-Y>
+    execute 'normal!' "\<C-Y>"
     call cursor(line("."), l:colsave)
   end
 endfunction " }}}

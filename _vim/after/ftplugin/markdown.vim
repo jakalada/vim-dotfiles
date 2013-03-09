@@ -1,3 +1,4 @@
+setlocal smartindent autoindent
 setlocal smarttab expandtab
 setlocal tabstop=4
 setlocal shiftwidth=4
@@ -5,6 +6,11 @@ setlocal softtabstop=4
 setlocal shiftround
 
 setlocal foldmethod=manual
+
+setlocal formatoptions+=m
+setlocal formatoptions+=M
+setlocal formatoptions-=r
+setlocal formatoptions-=o
 
 nnoremap <buffer> 1 "=repeat('=',<Space>strdisplaywidth(getline(".")))<Space>.<Space>"\n"<CR>p
 nnoremap <buffer> 2 "=repeat('-',<Space>strdisplaywidth(getline(".")))<Space>.<Space>"\n"<CR>p
@@ -57,12 +63,13 @@ if !exists('b:undo_ftplugin')
 endif
 
 let b:undo_ftplugin .= '
-\ | setlocal smartindent< autoindent< smarttab< expandtab<
+\ | setlocal smartindent< autoindent<
+\ | setlocal smarttab< expandtab<
 \ | setlocal tabstop<
 \ | setlocal shiftwidth<
 \ | setlocal softtabstop<
-\ | setlocal keywordprg<
 \ | setlocal shiftround<
+\ | setlocal formatoptions<
 \ | execute "nunmap <buffer> 1"
 \ | execute "nunmap <buffer> 2"
 \'

@@ -1,9 +1,16 @@
-setlocal smartindent autoindent smarttab expandtab
+setlocal smartindent autoindent
+setlocal smarttab expandtab
 setlocal tabstop=4
 setlocal shiftwidth=4
 setlocal softtabstop=4
 setlocal shiftround
+
 setlocal completeopt-=preview
+
+setlocal formatoptions+=m
+setlocal formatoptions+=M
+setlocal formatoptions-=r
+setlocal formatoptions-=o
 
 if has('path_extra')
   setlocal tags+=~/.tags/c/systags
@@ -14,11 +21,13 @@ if !exists('b:undo_ftplugin')
 endif
 
 let b:undo_ftplugin .= '
-\ | setlocal smartindent< autoindent< smarttab< expandtab<
+\ | setlocal smartindent< autoindent<
+\ | setlocal smarttab< expandtab<
 \ | setlocal tabstop<
 \ | setlocal shiftwidth<
 \ | setlocal softtabstop<
 \ | setlocal shiftround<
-\ | setlocal tags-=~/.tags/c/systags
-\ | setlocal completeopt+=preview
+\ | setlocal completeopt<
+\ | setlocal formatoptions<
+\ | setlocal tags<
 \'
