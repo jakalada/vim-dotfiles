@@ -54,6 +54,7 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
+filetype off
 call neobundle#rc(expand('~/.vim/bundle'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -77,6 +78,7 @@ NeoBundle 'Shougo/vinarise'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'h1mesuke/vim-alignta'
+NeoBundle 'itchyny/thumbnail.vim'
 NeoBundle 'jceb/vim-hier'
 NeoBundle 'kana/vim-altr'
 NeoBundle 'kana/vim-gf-user'
@@ -90,6 +92,7 @@ NeoBundle 'majutsushi/tagbar'
 NeoBundle 'mattn/calendar-vim'
 NeoBundle 'mattn/learn-vimscript'
 NeoBundle 'mattn/webapi-vim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'supermomonga/shiraseru.vim', {'depends' : 'Shougo/vimproc'}
 NeoBundle 't9md/vim-quickhl'
 NeoBundle 'taku-o/vim-toggle'
@@ -137,6 +140,7 @@ NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-lastpat'
 NeoBundle 'kana/vim-textobj-line'
 NeoBundle 'kana/vim-textobj-syntax'
+NeoBundle 'osyo-manga/vim-textobj-multiblock'
 " }}}
 
 " unite {{{
@@ -282,6 +286,7 @@ let g:is_bash = 1
 
 if s:isgui
   colorscheme hickop
+  highlight ColorColumn guibg=#444444
 
   if s:ismacunix
     " set guifont=Osaka-Mono:h18
@@ -290,6 +295,11 @@ if s:isgui
     set guifont=Ricty\ Discord\ 13.5
   else
     set guifont=Ricty\ Discord\ 13.5
+  endif
+
+  if s:ismacunix
+    MyAutocmd FocusGained * set transparency=3
+    MyAutocmd FocusLost * set transparency=10
   endif
 
   set guioptions=aciM
@@ -351,7 +361,7 @@ set scrolloff=10
 
 set helplang=ja
 
-MyAutocmd WinEnter * checktime
+"MyAutocmd WinEnter * checktime
 set autoread
 
 set showfulltag
@@ -421,7 +431,7 @@ set laststatus=2
 
 set nomodeline
 
-set foldopen=block,quickfix,search,tag,undo
+set completeopt-=preview
 
 " =============================================
 " SECTION: Key-mappings {{{1
@@ -504,7 +514,10 @@ vnoremap > >gv
 vnoremap < <gv
 
 vnoremap ) t)
-noremap ( t(
+vnoremap ( t(
+
+vnoremap q <Nop>
+vnoremap qq <Nop>
 
 " ---------------------------------------------
 " mapmode-i {{{2
@@ -806,12 +819,10 @@ inoremap <expr> <C-O>  neocomplcache#start_manual_complete()
 let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
 
 nnoremap <silent> <Leader>.s :<C-U>NeoSnippetEdit<CR>
-imap <expr> <TAB> neosnippet#expandable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr> <TAB> neosnippet#expandable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " ---------------------------------------------
 " PLUGIN: vim-ref {{{2
@@ -921,6 +932,34 @@ nmap <Space>j <Plug>(quickhl-match)
 vnoremap aa :Alignta
 vnoremap a= :Alignta =<CR>
 vnoremap a+ :Alignta +<CR>
+
+" ---------------------------------------------
+" PLUGIN:  indent-guides {{{2
+" ---------------------------------------------
+let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_indent_levels = 10
+let g:indent_guides_auto_colors = 1
+let g:indent_guides_color_change_percent = 10
+let g:indent_guides_exclude_filetypes = ['help', 'unite', 'vimfiler']
+
+" ---------------------------------------------
+" PLUGIN:  textobj-multiblock {{{2
+" ---------------------------------------------
+omap a; <Plug>(textobj-multiblock-a)
+omap i; <Plug>(textobj-multiblock-i)
+vmap a; <Plug>(textobj-multiblock-a)
+vmap i; <Plug>(textobj-multiblock-i)
+
+let g:textobj_multiblock_blocks = [
+      \[ '(', ')' ],
+      \[ '[', ']' ],
+      \[ '{', '}' ],
+      \[ '<', '>' ],
+      \[ '"', '"' ],
+      \[ "'", "'" ],
+      \[ '`', '`' ],
+      \[ '<', '>' ]
+      \]
 
 " =============================================
 " SECTION: Misc {{{1
@@ -1069,6 +1108,17 @@ function! s:init_cmdwin() " {{{
   nnoremap <buffer><silent> q :<C-U>quit<CR>
   inoremap <buffer><expr> <CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
   startinsert!
+endfunction " }}}
+
+" ---------------------------------------------
+" 現在行のインデントをハイライトする {{{2
+" ---------------------------------------------
+
+MyAutocmd CursorMoved * call s:hilight_indent()
+MyAutocmd CursorMovedI * call s:hilight_indent()
+function! s:hilight_indent() "{{{
+  let n = indent(line('.'))
+  let &l:colorcolumn = join(range(1,n), ',')
 endfunction " }}}
 
 " ---------------------------------------------
