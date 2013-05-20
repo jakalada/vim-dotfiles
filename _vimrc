@@ -1,179 +1,176 @@
 " jakalada's vimrc
 
-" =============================================
-" SECTION: Initialize {{{1
-" =============================================
-
+" Initialize {{{1
 set nocompatible
+scriptencoding utf-8
 
-if !has('vim_starting')
-  " .vimrcの再読み込み時にオプションを初期化する {{{
-  " 設定されたruntimepathが初期化されないようにする
-  let s:tmp = &runtimepath
-  set all&
-  let &runtimepath = s:tmp
-  unlet s:tmp
-  " }}}
-endif
-
-" featureの状態を取得 {{{
 let s:iswin32 = has('win32')
 let s:iswin64 = has('win64')
 let s:iswin = has('win32') || has('win64')
-
 let s:isgui = has("gui_running")
-
 let s:ismacunix = has("macunix")
-" }}}
 
-" vimで扱うディレクトリのパスを設定 {{{
 if s:iswin
-  " For Windows {{{
-  " すでに読み込まれているファイル名には影響がないので注意する
   set shellslash
-
   let $DOTVIMDIR = expand('~/vimfiles')
-
   let $DROPBOXDIR = expand('~/Dropbox')
-
   let $VIMCONFIGDIR = expand('~/project/vim-dotfiles')
-  " }}}
 else
-  " For Linux {{{
   let $DOTVIMDIR = expand('~/.vim')
-
   let $DROPBOXDIR = expand('~/Dropbox')
-
   let $VIMCONFIGDIR = expand('~/project/vim-dotfiles')
-  " }}}
 endif
-" }}}
 
-" NeoBundle {{{
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+
+" NeoBundle {{{1
+let $VIMBUNDLEDIR = $DOTVIMDIR . '/bundle'
+let $NEOBUNDLEPATH = $VIMBUNDLEDIR . '/neobundle.vim'
+
+function! s:bundled(bundle)
+  if !isdirectory($VIMBUNDLEDIR)
+    return 0
+  endif
+
+  if stridx(&runtimepath, $NEOBUNDLEPATH) == -1
+    return 0
+  endif
+
+  if a:bundle ==# 'neobundle.vim'
+    return 1
+  else
+    return neobundle#is_installed(a:bundle)
+  endif
+endfunction
 
 filetype off
-call neobundle#rc(expand('~/.vim/bundle'))
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+if isdirectory($NEOBUNDLEPATH)
+  set runtimepath+=$NEOBUNDLEPATH
+endif
 
-NeoBundle 'Shougo/vimproc', {
-      \'build' : {
-      \    'windows' : 'make -f make_mingw32.mak',
-      \    'cygwin' : 'make -f make_cygwin.mak',
-      \    'mac' : 'make -f make_mac.mak',
-      \    'unix' : 'make -f make_unix.mak',
-      \  },
-      \}
+if s:bundled('neobundle.vim')
+  call neobundle#rc($VIMBUNDLEDIR)
 
-NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'Shougo/junkfile.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vinarise'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'dannyob/quickfixstatus'
-NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'itchyny/thumbnail.vim'
-NeoBundle 'jceb/vim-hier'
-NeoBundle 'kana/vim-altr'
-NeoBundle 'kana/vim-gf-user'
-NeoBundle 'kana/vim-metarw'
-NeoBundle 'kana/vim-metarw-git'
-NeoBundle 'kana/vim-smartchr'
-"NeoBundle 'kana/vim-smartinput'
-NeoBundle 'kana/vim-submode'
-NeoBundle 'kana/vim-tabpagecd'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'mattn/calendar-vim'
-NeoBundle 'mattn/learn-vimscript'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'supermomonga/shiraseru.vim', {'depends' : 'Shougo/vimproc'}
-NeoBundle 't9md/vim-quickhl'
-NeoBundle 'taku-o/vim-toggle'
-NeoBundle 'thinca/vim-editvar'
-NeoBundle 'thinca/vim-localrc'
-NeoBundle 'thinca/vim-openbuf'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'thinca/vim-visualstar'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tyru/caw.vim'
-NeoBundle 'tyru/current-func-info.vim'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'tyru/savemap.vim'
-NeoBundle 'tyru/vice.vim'
-NeoBundle 'vim-jp/vimdoc-ja'
-NeoBundle 'vim-scripts/VOoM'
-NeoBundle 'zef/vim-cycle'
+  NeoBundleFetch 'Shougo/neobundle.vim'
 
-" colorscheme {{{
-NeoBundle 'Lokaltog/vim-distinguished'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
-NeoBundle 'hickop/vim-hickop-colors'
-NeoBundle 'tomasr/molokai'
-" }}}
+  NeoBundle 'Shougo/vimproc', {
+        \'build' : {
+        \    'windows' : 'make -f make_mingw32.mak',
+        \    'cygwin' : 'make -f make_cygwin.mak',
+        \    'mac' : 'make -f make_mac.mak',
+        \    'unix' : 'make -f make_unix.mak',
+        \  },
+        \}
 
-" filetype {{{
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'leshill/vim-json'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'vim-scripts/Textile-for-VIM'
-NeoBundle 'kingbin/vim-arduino'
-" }}}
+  NeoBundle 'Lokaltog/vim-powerline'
+  NeoBundle 'Shougo/junkfile.vim'
+  NeoBundle 'Shougo/neocomplcache'
+  NeoBundle 'Shougo/neosnippet'
+  NeoBundle 'Shougo/vimfiler'
+  NeoBundle 'Shougo/vimshell'
+  NeoBundle 'Shougo/vinarise'
+  NeoBundle 'airblade/vim-gitgutter'
+  NeoBundle 'airblade/vim-rooter'
+  NeoBundle 'dannyob/quickfixstatus'
+  NeoBundle 'h1mesuke/vim-alignta'
+  NeoBundle 'itchyny/thumbnail.vim'
+  NeoBundle 'jceb/vim-hier'
+  NeoBundle 'kana/vim-altr'
+  NeoBundle 'kana/vim-gf-user'
+  NeoBundle 'kana/vim-metarw'
+  NeoBundle 'kana/vim-metarw-git'
+  NeoBundle 'kana/vim-smartchr'
+  "NeoBundle 'kana/vim-smartinput'
+  NeoBundle 'kana/vim-submode'
+  NeoBundle 'kana/vim-tabpagecd'
+  NeoBundle 'majutsushi/tagbar'
+  NeoBundle 'mattn/calendar-vim'
+  NeoBundle 'mattn/learn-vimscript'
+  NeoBundle 'mattn/webapi-vim'
+  NeoBundle 'nathanaelkane/vim-indent-guides'
+  NeoBundle 'supermomonga/shiraseru.vim', {'depends' : 'Shougo/vimproc'}
+  NeoBundle 't9md/vim-quickhl'
+  NeoBundle 'taku-o/vim-toggle'
+  NeoBundle 'thinca/vim-editvar'
+  NeoBundle 'thinca/vim-localrc'
+  NeoBundle 'thinca/vim-openbuf'
+  NeoBundle 'thinca/vim-quickrun'
+  NeoBundle 'thinca/vim-ref'
+  NeoBundle 'thinca/vim-visualstar'
+  NeoBundle 'tpope/vim-fugitive'
+  NeoBundle 'tpope/vim-rails'
+  NeoBundle 'tpope/vim-repeat'
+  NeoBundle 'tpope/vim-surround'
+  NeoBundle 'tyru/caw.vim'
+  NeoBundle 'tyru/current-func-info.vim'
+  NeoBundle 'tyru/open-browser.vim'
+  NeoBundle 'tyru/savemap.vim'
+  NeoBundle 'tyru/vice.vim'
+  NeoBundle 'vim-jp/vimdoc-ja'
+  NeoBundle 'vim-scripts/VOoM'
+  NeoBundle 'zef/vim-cycle'
 
-" textobj {{{
-NeoBundle 'kana/vim-textobj-user'
+  " colorscheme {{{
+  NeoBundle 'Lokaltog/vim-distinguished'
+  NeoBundle 'chriskempson/vim-tomorrow-theme'
+  NeoBundle 'hickop/vim-hickop-colors'
+  NeoBundle 'tomasr/molokai'
+  NeoBundle 'hail2u/h2u_colorscheme'
+  " }}}
 
-NeoBundle 'h1mesuke/textobj-wiw'
-NeoBundle 'kana/vim-textobj-fold'
-NeoBundle 'kana/vim-textobj-indent'
-NeoBundle 'kana/vim-textobj-lastpat'
-NeoBundle 'kana/vim-textobj-line'
-NeoBundle 'kana/vim-textobj-syntax'
-NeoBundle 'osyo-manga/vim-textobj-multiblock'
-" }}}
+  " filetype {{{
+  NeoBundle 'kchmck/vim-coffee-script'
+  NeoBundle 'leshill/vim-json'
+  NeoBundle 'pangloss/vim-javascript'
+  NeoBundle 'tpope/vim-markdown'
+  NeoBundle 'vim-ruby/vim-ruby'
+  NeoBundle 'vim-scripts/Textile-for-VIM'
+  NeoBundle 'kingbin/vim-arduino'
+  " }}}
 
-" unite {{{
-NeoBundle 'Shougo/unite.vim'
+  " textobj {{{
+  NeoBundle 'kana/vim-textobj-user'
 
-NeoBundle 'Shougo/unite-build'
-NeoBundle 'basyura/unite-rails'
-NeoBundle 'choplin/unite-vim_hacks'
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'sgur/unite-git_grep'
-NeoBundle 'sgur/unite-qf'
-NeoBundle 'tacroe/unite-mark'
-NeoBundle 'thinca/vim-unite-history'
-NeoBundle 'tsukkee/unite-help'
-NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'tungd/unite-session'
-NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'ujihisa/unite-font'
-NeoBundle 'ujihisa/unite-locate'
-" }}}
+  NeoBundle 'h1mesuke/textobj-wiw'
+  NeoBundle 'kana/vim-textobj-fold'
+  NeoBundle 'kana/vim-textobj-indent'
+  NeoBundle 'kana/vim-textobj-lastpat'
+  NeoBundle 'kana/vim-textobj-line'
+  NeoBundle 'kana/vim-textobj-syntax'
+  NeoBundle 'osyo-manga/vim-textobj-multiblock'
+  " }}}
 
-" game {{{
-NeoBundle 'tyru/pacman.vim'
-" }}}
+  " unite {{{
+  NeoBundle 'Shougo/unite.vim'
 
-" }}}
+  NeoBundle 'Shougo/unite-build'
+  NeoBundle 'Shougo/unite-outline'
+  NeoBundle 'basyura/unite-rails'
+  NeoBundle 'choplin/unite-vim_hacks'
+  NeoBundle 'sgur/unite-git_grep'
+  NeoBundle 'sgur/unite-qf'
+  NeoBundle 'tacroe/unite-mark'
+  NeoBundle 'thinca/vim-unite-history'
+  NeoBundle 'tsukkee/unite-help'
+  NeoBundle 'tsukkee/unite-tag'
+  NeoBundle 'tungd/unite-session'
+  NeoBundle 'ujihisa/unite-colorscheme'
+  NeoBundle 'ujihisa/unite-font'
+  NeoBundle 'ujihisa/unite-locate'
+  " }}}
+
+  " game {{{
+  NeoBundle 'tyru/pacman.vim'
+  " }}}
+
+  " Installation check.
+  NeoBundleCheck
+endif
 
 filetype plugin indent on
 
-" =============================================
-" SECTION: Commands {{{1
-" =============================================
 
+" Commands {{{1
 " .vimrcの再読み込み時に.vimrc内で設定されたautocmdを初期化する {{{
 " MyAutocmdを使用することで漏れなく初期化できる
 augroup vimrc
@@ -207,14 +204,10 @@ else
 endif
 " }}}
 
-" =============================================
-" SECTION: Functions {{{1
-" =============================================
+" Functions {{{1
 
-" =============================================
-" SECTION: Encoding {{{1
-" =============================================
 
+" Encoding {{{1
 " fileencodingの設定 {{{
 set fileencodings=iso-2022-jp-3,iso-2022-jp,euc-jisx0213,euc-jp,utf-8,ucs-bom,euc-jp,eucjp-ms,cp932
 set encoding=utf-8
@@ -239,15 +232,9 @@ set fileformats=unix,dos,mac
 "East Asian Width Class Ambiguous な文字をASCII文字の2倍の幅で扱う
 set ambiwidth=double
 
-" =============================================
-" SECTION: Syntax {{{1
-" =============================================
 
+" Syntax {{{1
 syntax enable
-
-MyAutocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
-MyAutocmd BufWinEnter,BufNewFile *_spec.coffee set filetype=coffee.jasmine
-MyAutocmd BufWinEnter,BufNewFile *_spec.coffee set filetype=coffee.vows
 
 " ft-ruby-syntax
 let ruby_operators = 1
@@ -280,36 +267,27 @@ let g:vimsyntax_noerror = 1
 " ft-sh-syntax
 let g:is_bash = 1
 
-" =============================================
-" SECTION: Options {{{1
-" =============================================
 
+" Options {{{1
 if s:isgui
-  colorscheme hickop
-  highlight ColorColumn guibg=#444444
+  colorscheme h2u_dark
+  highlight ColorColumn guibg=#333333
 
   if s:ismacunix
-    " set guifont=Osaka-Mono:h18
     set guifont=Ricty:h17
   elseif s:iswin
-    set guifont=Ricty\ Discord\ 13.5
+    set guifont=Inconsolata:h13:cSHIFTJIS
   else
     set guifont=Ricty\ Discord\ 13.5
   endif
 
-  if s:ismacunix
-    MyAutocmd FocusGained * set transparency=3
-    MyAutocmd FocusLost * set transparency=10
-  endif
-
-  set guioptions=aciM
+  set guioptions=ciM
   set mouse=a
   set mousehide
   set mousefocus
   set novisualbell
   set guicursor+=a:blinkon0
   let loaded_matchparen = 1
-
 else
   set t_Co=256
   colorscheme distinguished
@@ -340,10 +318,10 @@ setlocal iskeyword+=-
 
 set hidden
 
+set backupdir=.,~/tmp
 set directory-=.
 if v:version >= 703
   set undofile
-  let &undodir=&directory
 endif
 
 if has('virtualedit')
@@ -361,8 +339,10 @@ set scrolloff=10
 
 set helplang=ja
 
-"MyAutocmd WinEnter * checktime
+MyAutocmd WinEnter * checktime
 set autoread
+
+set clipboard=unnamed
 
 set showfulltag
 set notagbsearch
@@ -423,7 +403,7 @@ let &fillchars = 'vert: ,fold: ,diff: '
 
 let &showbreak = '> '
 
-set wrap
+set nowrap
 
 set textwidth=0
 
@@ -433,17 +413,16 @@ set nomodeline
 
 set completeopt-=preview
 
-" =============================================
-" SECTION: Key-mappings {{{1
-" =============================================
-
-" NOTE: IBusで日本語入力に切り替えるたびにスペースが挿入されてしまう
+" Mappings {{{1
+" IBusで日本語入力に切り替えるたびにスペースが挿入されてしまうのを防ぐ {{{2
 noremap <C-Space> <Nop>
 noremap! <C-Space> <Nop>
 xnoremap <C-Space> <Nop>
 snoremap <C-Space> <Nop>
 lnoremap <C-Space> <Nop>
 
+
+" <C-J>と<C-K>を各モードでエスケープにマッピング {{{2
 noremap <C-J> <Esc>
 inoremap <C-J> <Esc>
 cnoremap <C-J> <C-C>
@@ -452,29 +431,19 @@ snoremap <C-J> <Esc>
 lnoremap <C-J> <Esc>
 
 noremap <C-K> <Esc>
-inoremap <C-K> <Esc>l
+inoremap <C-K> <Esc>
 cnoremap <C-K> <C-C>
 xnoremap <C-K> <Esc>
 snoremap <C-K> <Esc>
 lnoremap <C-K> <Esc>
 
-" ---------------------------------------------
+
 " Leader {{{2
-" ---------------------------------------------
-
 let mapleader = ' '
-let g:mapleader = ' '
-let g:maplocalleader = '\'
+let maplocalleader = '\'
 
-nnoremap <Space> <Nop>
-xnoremap <Space> <Nop>
-nnoremap \ <Nop>
-xnoremap \ <Nop>
 
-" ---------------------------------------------
 " mapmode-nvo {{{2
-" ---------------------------------------------
-
 noremap j gj
 noremap k gk
 
@@ -484,9 +453,8 @@ noremap H ^
 noremap <C-H> <C-U>
 noremap <C-L> <C-D>
 
-" ---------------------------------------------
+
 " mapmode-n {{{2
-" ---------------------------------------------
 nnoremap <Leader>k <C-^>
 
 nnoremap <Backspace> <C-O>
@@ -507,9 +475,8 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 nnoremap n nzz
 nnoremap N Nzz
 
-" ---------------------------------------------
+
 " mapmode-v {{{2
-" ---------------------------------------------
 vnoremap > >gv
 vnoremap < <gv
 
@@ -519,357 +486,362 @@ vnoremap ( t(
 vnoremap q <Nop>
 vnoremap qq <Nop>
 
-" ---------------------------------------------
+vnoremap <expr> I  <SID>force_blockwise_visual('I')
+vnoremap <expr> A  <SID>force_blockwise_visual('A')
+function! s:force_blockwise_visual(next_key)
+  if mode() ==# 'v'
+    return "\<C-v>" . a:next_key
+  elseif mode() ==# 'V'
+    return "\<C-v>0o$" . a:next_key
+  else  " mode() ==# "\<C-v>"
+    return a:next_key
+  endif
+endfunction
+
+
 " mapmode-i {{{2
-" ---------------------------------------------
 inoremap <silent> <C-L> <Right>
 inoremap <silent> <C-H> <Left>
 
 inoremap <silent> <F7> <Esc>gUiwea
 
-" ---------------------------------------------
-" mapmode-ic {{{2
-" ---------------------------------------------
 
-" ---------------------------------------------
+" mapmode-ic {{{2
+
+
 " mapmode-o {{{2
-" ---------------------------------------------
 onoremap / t
 onoremap ? T
 
 onoremap ) t)
 onoremap ( t(
 
-" =============================================
-" SECTION: Plugins {{{1
-" =============================================
 
-" ---------------------------------------------
-" PLUGIN: vim-toggle {{{2
-" ---------------------------------------------
+" Plugins {{{1
+" vim-toggle {{{2
+if s:bundled('vim-toggle')
+  nmap - <Plug>ToggleN
+endif
 
-nmap - <Plug>ToggleN
 
-" ---------------------------------------------
-" PLUGIN: matchit.vim {{{2
-" ---------------------------------------------
-
+" matchit.vim {{{2
 runtime macros/matchit.vim
 
-" ---------------------------------------------
-" PLUGIN: caw.vim {{{2
-" ---------------------------------------------
 
-nmap <C-p> <Plug>(caw:wrap:toggle)
+" caw.vim " {{{2
+if s:bundled('caw.vim')
+  nmap <C-p> <Plug>(caw:wrap:toggle)
+endif
 
-" ---------------------------------------------
-" PLUGIN: vimfiler.vim {{{2
-" ---------------------------------------------
 
-" 削除時にゴミ箱に移動したい場合
-" windows: vimprocプラグインをインストール
-"   linux: trash-cliをインストール
-"     osx: rmtrashをインストール
-"     etc: オプションで直接コマンドを指定する
+" vimfiler {{{2
+if s:bundled('vimfiler')
+  " 削除時にゴミ箱に移動したい場合
+  " windows: vimprocプラグインをインストール
+  "   linux: trash-cliをインストール
+  "     osx: rmtrashをインストール
+  "     etc: オプションで直接コマンドを指定する
+  let g:vimfiler_as_default_explorer = 1    " explorerとして使用する
+  let g:vimfiler_safe_mode_by_default = 0   " セーフモードをオフにする
+  let g:vimfiler_split_action = "split"     " 忘れた
 
-let g:vimfiler_as_default_explorer = 1    " explorerとして使用する
-let g:vimfiler_safe_mode_by_default = 0   " セーフモードをオフにする
-let g:vimfiler_split_action = "split"     " 忘れた
+  let g:vimfiler_time_format        = "%Y/%m/%d %H:%M"  " 例: 2013/01/01 00:00
 
-let g:vimfiler_time_format        = "%Y/%m/%d %H:%M"  " 例: 2013/01/01 00:00
+  let g:vimfiler_tree_leaf_icon     = ' '   " default: '|'
+  let g:vimfiler_tree_opened_icon   = '-'   " default: '-'
+  let g:vimfiler_tree_closed_icon   = '+'   " default: '+'
+  let g:vimfiler_readonly_file_icon = '!'   " deafult: 'X'
+  let g:vimfiler_file_icon          = '-'   " default: '-'
+  let g:vimfiler_marked_file_icon   = '*'   " default: '*'
 
-let g:vimfiler_tree_leaf_icon     = ' '   " default: '|'
-let g:vimfiler_tree_opened_icon   = '-'   " default: '-'
-let g:vimfiler_tree_closed_icon   = '+'   " default: '+'
-let g:vimfiler_readonly_file_icon = '!'   " deafult: 'X'
-let g:vimfiler_file_icon          = '-'   " default: '-'
-let g:vimfiler_marked_file_icon   = '*'   " default: '*'
+  nnoremap <silent> <Leader>e :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+  nnoremap <silent> <Leader>E :<C-U>VimFiler<CR>
 
-nnoremap <silent> <Leader>e :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
-nnoremap <silent> <Leader>E :<C-U>VimFiler<CR>
+  let g:vimfiler_no_default_key_mappings = 1 " デフォルトのマッピングを無効
+  MyAutocmd Filetype vimfiler call s:init_vimfiler()
+  function! s:init_vimfiler() " {{{
+    setlocal nonumber
+    vmap <buffer> '               <Plug>(vimfiler_toggle_mark_selected_lines)
 
-let g:vimfiler_no_default_key_mappings = 1 " デフォルトのマッピングを無効
-MyAutocmd Filetype vimfiler call s:init_vimfiler()
-function! s:init_vimfiler() " {{{
-  vmap <buffer> '               <Plug>(vimfiler_toggle_mark_selected_lines)
+    nmap <buffer> <Tab>           <Plug>(vimfiler_switch_to_other_window)
+    nmap <buffer> j               <Plug>(vimfiler_loop_cursor_down)
+    nmap <buffer> k               <Plug>(vimfiler_loop_cursor_up)
+    nmap <buffer> gg              <Plug>(vimfiler_cursor_top)
+    " nmap <buffer> <C-l>         <Plug>(vimfiler_redraw_screen)
+    nmap <buffer> '               <Plug>(vimfiler_toggle_mark_current_line)
+    "nmap <buffer> <S-Space>      <Plug>(vimfiler_toggle_mark_current_line_up)
+    " nmap <buffer> *             <Plug>(vimfiler_toggle_mark_all_lines)
+    nmap <buffer> "               <Plug>(vimfiler_clear_mark_all_lines)
+    nmap <buffer> c               <Plug>(vimfiler_copy_file)
+    nmap <buffer> m               <Plug>(vimfiler_move_file)
+    nmap <buffer> d               <Plug>(vimfiler_delete_file)
+    nmap <buffer> Cc              <Plug>(vimfiler_clipboard_copy_file)
+    nmap <buffer> Cm              <Plug>(vimfiler_clipboard_move_file)
+    nmap <buffer> Cp              <Plug>(vimfiler_clipboard_paste)
+    nmap <buffer> r               <Plug>(vimfiler_rename_file)
+    nmap <buffer> K               <Plug>(vimfiler_make_directory)
+    nmap <buffer> N               <Plug>(vimfiler_new_file)
+    nmap <buffer> <Enter>               <Plug>(vimfiler_execute)
+    nmap <buffer> l               <Plug>(vimfiler_smart_l)
+    nmap <buffer> X               <Plug>(vimfiler_execute_system_associated)
+    nmap <buffer> h               <Plug>(vimfiler_smart_h)
+    nmap <buffer> L               <Plug>(vimfiler_switch_to_drive)
+    nmap <buffer> ~               <Plug>(vimfiler_switch_to_home_directory)
+    nmap <buffer> \               <Plug>(vimfiler_switch_to_root_directory)
+    nmap <buffer> <C-j>           <Plug>(vimfiler_switch_to_history_directory)
+    nmap <buffer> <BS>            <Plug>(vimfiler_switch_to_parent_directory)
+    nmap <buffer> .               <Plug>(vimfiler_toggle_visible_dot_files)
+    " nmap <buffer> H             <Plug>(vimfiler_popup_shell)
+    nmap <buffer> e               <Plug>(vimfiler_edit_file)
+    nmap <buffer> E               <Plug>(vimfiler_split_edit_file)
+    nmap <buffer> B               <Plug>(vimfiler_edit_binary_file)
+    nmap <buffer> ge              <Plug>(vimfiler_execute_external_filer)
+    " nmap <buffer> <RightMouse>  <Plug>(vimfiler_execute_external_filer)
+    nmap <buffer> !               <Plug>(vimfiler_execute_shell_command)
+    nmap <buffer> q               <Plug>(vimfiler_hide)
+    nmap <buffer> Q               <Plug>(vimfiler_exit)
+    " nmap <buffer> -             <Plug>(vimfiler_close)
+    nmap <buffer> ?               <Plug>(vimfiler_help)
+    " nmap <buffer> v             <Plug>(vimfiler_preview_file)
+    " nmap <buffer> o             <Plug>(vimfiler_sync_with_current_vimfiler)
+    " nmap <buffer> O             <Plug>(vimfiler_open_file_in_another_vimfiler)
+    " nmap <buffer> <C-g>         <Plug>(vimfiler_print_filename)
+    " nmap <buffer> g<C-g>        <Plug>(vimfiler_toggle_maximize_window)
+    nmap <buffer> yy              <Plug>(vimfiler_yank_full_path)
+    nmap <buffer> gm              <Plug>(vimfiler_set_current_mask)
+    nmap <buffer> gr              <Plug>(vimfiler_grep)
+    nmap <buffer> gf              <Plug>(vimfiler_find)
+    nmap <buffer> gs              <Plug>(vimfiler_select_sort_type)
+    " nmap <buffer> <C-v>         <Plug>(vimfiler_switch_vim_buffer_mode)
+    nmap <buffer> gc              <Plug>(vimfiler_cd_vim_current_dir)
+    " nmap <buffer> gs            <Plug>(vimfiler_toggle_safe_mode)
+    " nmap <buffer> gS            <Plug>(vimfiler_toggle_simple_mode)
+    nmap <buffer> a               <Plug>(vimfiler_choose_action)
+    " nmap <buffer> Y             <Plug>(vimfiler_pushd)
+    " nmap <buffer> P             <Plug>(vimfiler_popd)
+    nmap <buffer> zl              <Plug>(vimfiler_expand_tree)
+    nmap <buffer> zL              <Plug>(vimfiler_expand_tree_recursive)
+    nmap <buffer> zh              <Plug>(vimfiler_expand_tree)
+    nmap <buffer> zH              <Plug>(vimfiler_expand_tree_recursive)
+    nmap <buffer> i               <Plug>(vimfiler_cd_input_directory)
+    " nmap <buffer> <2-LeftMouse> <Plug> (vimfiler_double_click)
+  endfunction " }}}
+endif
 
-  nmap <buffer> <Tab>           <Plug>(vimfiler_switch_to_other_window)
-  nmap <buffer> j               <Plug>(vimfiler_loop_cursor_down)
-  nmap <buffer> k               <Plug>(vimfiler_loop_cursor_up)
-  nmap <buffer> gg              <Plug>(vimfiler_cursor_top)
-  " nmap <buffer> <C-l>         <Plug>(vimfiler_redraw_screen)
-  nmap <buffer> '               <Plug>(vimfiler_toggle_mark_current_line)
-  "nmap <buffer> <S-Space>      <Plug>(vimfiler_toggle_mark_current_line_up)
-  " nmap <buffer> *             <Plug>(vimfiler_toggle_mark_all_lines)
-  nmap <buffer> "               <Plug>(vimfiler_clear_mark_all_lines)
-  nmap <buffer> c               <Plug>(vimfiler_copy_file)
-  nmap <buffer> m               <Plug>(vimfiler_move_file)
-  nmap <buffer> d               <Plug>(vimfiler_delete_file)
-  nmap <buffer> Cc              <Plug>(vimfiler_clipboard_copy_file)
-  nmap <buffer> Cm              <Plug>(vimfiler_clipboard_move_file)
-  nmap <buffer> Cp              <Plug>(vimfiler_clipboard_paste)
-  nmap <buffer> r               <Plug>(vimfiler_rename_file)
-  nmap <buffer> K               <Plug>(vimfiler_make_directory)
-  nmap <buffer> N               <Plug>(vimfiler_new_file)
-  nmap <buffer> <Enter>               <Plug>(vimfiler_execute)
-  nmap <buffer> l               <Plug>(vimfiler_smart_l)
-  nmap <buffer> X               <Plug>(vimfiler_execute_system_associated)
-  nmap <buffer> h               <Plug>(vimfiler_smart_h)
-  nmap <buffer> L               <Plug>(vimfiler_switch_to_drive)
-  nmap <buffer> ~               <Plug>(vimfiler_switch_to_home_directory)
-  nmap <buffer> \               <Plug>(vimfiler_switch_to_root_directory)
-  nmap <buffer> <C-j>           <Plug>(vimfiler_switch_to_history_directory)
-  nmap <buffer> <BS>            <Plug>(vimfiler_switch_to_parent_directory)
-  nmap <buffer> .               <Plug>(vimfiler_toggle_visible_dot_files)
-  " nmap <buffer> H             <Plug>(vimfiler_popup_shell)
-  nmap <buffer> e               <Plug>(vimfiler_edit_file)
-  nmap <buffer> E               <Plug>(vimfiler_split_edit_file)
-  nmap <buffer> B               <Plug>(vimfiler_edit_binary_file)
-  nmap <buffer> ge              <Plug>(vimfiler_execute_external_filer)
-  " nmap <buffer> <RightMouse>  <Plug>(vimfiler_execute_external_filer)
-  nmap <buffer> !               <Plug>(vimfiler_execute_shell_command)
-  nmap <buffer> q               <Plug>(vimfiler_hide)
-  nmap <buffer> Q               <Plug>(vimfiler_exit)
-  " nmap <buffer> -             <Plug>(vimfiler_close)
-  nmap <buffer> ?               <Plug>(vimfiler_help)
-  " nmap <buffer> v             <Plug>(vimfiler_preview_file)
-  " nmap <buffer> o             <Plug>(vimfiler_sync_with_current_vimfiler)
-  " nmap <buffer> O             <Plug>(vimfiler_open_file_in_another_vimfiler)
-  " nmap <buffer> <C-g>         <Plug>(vimfiler_print_filename)
-  " nmap <buffer> g<C-g>        <Plug>(vimfiler_toggle_maximize_window)
-  nmap <buffer> yy              <Plug>(vimfiler_yank_full_path)
-  nmap <buffer> gm              <Plug>(vimfiler_set_current_mask)
-  nmap <buffer> gr              <Plug>(vimfiler_grep)
-  nmap <buffer> gf              <Plug>(vimfiler_find)
-  nmap <buffer> gs              <Plug>(vimfiler_select_sort_type)
-  " nmap <buffer> <C-v>         <Plug>(vimfiler_switch_vim_buffer_mode)
-  nmap <buffer> gc              <Plug>(vimfiler_cd_vim_current_dir)
-  " nmap <buffer> gs            <Plug>(vimfiler_toggle_safe_mode)
-  " nmap <buffer> gS            <Plug>(vimfiler_toggle_simple_mode)
-  nmap <buffer> a               <Plug>(vimfiler_choose_action)
-  " nmap <buffer> Y             <Plug>(vimfiler_pushd)
-  " nmap <buffer> P             <Plug>(vimfiler_popd)
-  nmap <buffer> zl              <Plug>(vimfiler_expand_tree)
-  nmap <buffer> zL              <Plug>(vimfiler_expand_tree_recursive)
-  nmap <buffer> zh              <Plug>(vimfiler_expand_tree)
-  nmap <buffer> zH              <Plug>(vimfiler_expand_tree_recursive)
-  nmap <buffer> i               <Plug>(vimfiler_cd_input_directory)
-  " nmap <buffer> <2-LeftMouse> <Plug> (vimfiler_double_click)
-endfunction " }}}
-" ---------------------------------------------
-" PLUGIN: unite.vim {{{2
-" ---------------------------------------------
+" unite.vim {{{2
+if s:bundled('unite.vim')
+  " unite-variables
+  let g:unite_split_rule = 'botright'
+  let g:unite_enable_split_vertically = 1
+  let g:unite_winwidth = 60
 
-" unite-variables
-let g:unite_split_rule = 'botright'
-let g:unite_enable_split_vertically = 1
-let g:unite_winwidth = 60
+  " unite-source-variables
+  let g:unite_source_file_mru_time_format = '(%F %R)'
+  let g:unite_source_grep_max_candidates = 1000
 
-" unite-source-variables
-let g:unite_source_file_mru_time_format = '(%F %R)'
-let g:unite_source_grep_max_candidates = 1000
+  nnoremap <SID>[unite] <Nop>
+  xnoremap <SID>[unite] <Nop>
+  nmap f <SID>[unite]
+  xmap f <SID>[unite]
 
-nnoremap <SID>[unite] <Nop>
-xnoremap <SID>[unite] <Nop>
-nmap f <SID>[unite]
-xmap f <SID>[unite]
+  nnoremap <SID>[unite-no-quit] <Nop>
+  xnoremap <SID>[unite-no-quit] <Nop>
+  nmap F <SID>[unite-no-quit]
+  xmap F <SID>[unite-no-quit]
 
-nnoremap <SID>[unite-no-quit] <Nop>
-xnoremap <SID>[unite-no-quit] <Nop>
-nmap F <SID>[unite-no-quit]
-xmap F <SID>[unite-no-quit]
+  nnoremap <silent> <SID>[unite]<Space> :<C-U>UniteResume<CR>
 
-nnoremap <silent> <SID>[unite]<Space> :<C-U>UniteResume<CR>
+  nnoremap <silent> <SID>[unite]F :<C-U>Unite -buffer-name=files bookmark directory_mru file_mru<CR>
+  nnoremap <silent> <SID>[unite]f :<C-U>Unite -buffer-name=files file<CR>
+  nnoremap <silent> <SID>[unite]b :<C-U>Unite -buffer-name=buffer_tab buffer_tab<CR>
+  nnoremap <silent> <SID>[unite]B :<C-U>Unite -buffer-name=buffer buffer<CR>
+  nnoremap <silent> <SID>[unite]r :<C-U>Unite -buffer-name=register register<CR>
+  nnoremap <silent> <SID>[unite]t :<C-U>Unite -buffer-name=tab tab:no-current<CR>
+  nnoremap <silent> <SID>[unite]w :<C-U>Unite -buffer-name=window window:no-current<CR>
+  nnoremap <silent> <SID>[unite]o :<C-U>Unite -buffer-name=outline outline<CR>
+  nnoremap <silent> <SID>[unite]m :<C-U>Unite -buffer-name=mark mark<CR>
+  nnoremap <silent> <SID>[unite]h :<C-U>Unite -buffer-name=help help<CR>
+  nnoremap <silent> <SID>[unite]H :<C-U>Unite -buffer-name=refe -input=ref source<CR>
+  nnoremap <silent> <SID>[unite]R :<C-U>Unite -buffer-name=rails -input=rails source<CR>
+  nnoremap <silent> <SID>[unite]s :<C-U>Unite -buffer-name=snippet snippet<CR>
+  nnoremap <silent> <SID>[unite]S :<C-U>Unite -buffer-name=source source<CR>
+  nnoremap <silent> <SID>[unite]q :<C-U>Unite -buffer-name=qf qf<CR>
 
-" simple key mappings {{{
-nnoremap <silent> <SID>[unite]F :<C-U>Unite -buffer-name=files bookmark directory_mru file_mru<CR>
-nnoremap <silent> <SID>[unite]f :<C-U>Unite -buffer-name=files file<CR>
-nnoremap <silent> <SID>[unite]b :<C-U>Unite -buffer-name=buffer_tab buffer_tab<CR>
-nnoremap <silent> <SID>[unite]B :<C-U>Unite -buffer-name=buffer buffer<CR>
-nnoremap <silent> <SID>[unite]r :<C-U>Unite -buffer-name=register register<CR>
-nnoremap <silent> <SID>[unite]t :<C-U>Unite -buffer-name=tab tab:no-current<CR>
-nnoremap <silent> <SID>[unite]w :<C-U>Unite -buffer-name=window window:no-current<CR>
-nnoremap <silent> <SID>[unite]o :<C-U>Unite -buffer-name=outline outline<CR>
-nnoremap <silent> <SID>[unite]m :<C-U>Unite -buffer-name=mark mark<CR>
-nnoremap <silent> <SID>[unite]h :<C-U>Unite -buffer-name=help help<CR>
-nnoremap <silent> <SID>[unite]H :<C-U>Unite -buffer-name=refe -input=ref source<CR>
-nnoremap <silent> <SID>[unite]R :<C-U>Unite -buffer-name=rails -input=rails source<CR>
-nnoremap <silent> <SID>[unite]s :<C-U>Unite -buffer-name=snippet snippet<CR>
-nnoremap <silent> <SID>[unite]S :<C-U>Unite -buffer-name=source source<CR>
-nnoremap <silent> <SID>[unite]q :<C-U>Unite -buffer-name=qf qf<CR>
+  nnoremap <silent> <SID>[unite-no-quit]F :<C-U>Unite -no-quit -keep-focus -buffer-name=files bookmark directory_mru file_mru<CR>
+  nnoremap <silent> <SID>[unite-no-quit]f :<C-U>Unite -no-quit -keep-focus -buffer-name=files file<CR>
+  nnoremap <silent> <SID>[unite-no-quit]b :<C-U>Unite -no-quit -keep-focus -buffer-name=buffer_tab buffer_tab<CR>
+  nnoremap <silent> <SID>[unite-no-quit]B :<C-U>Unite -no-quit -keep-focus -buffer-name=buffer buffer<CR>
+  nnoremap <silent> <SID>[unite-no-quit]r :<C-U>Unite -no-quit -keep-focus -buffer-name=register register<CR>
+  nnoremap <silent> <SID>[unite-no-quit]t :<C-U>Unite -no-quit -keep-focus -buffer-name=tab tab:no-current<CR>
+  nnoremap <silent> <SID>[unite-no-quit]w :<C-U>Unite -no-quit -keep-focus -buffer-name=window window:no-current<CR>
+  nnoremap <silent> <SID>[unite-no-quit]o :<C-U>Unite -no-quit -keep-focus -buffer-name=outline outline<CR>
+  nnoremap <silent> <SID>[unite-no-quit]m :<C-U>Unite -no-quit -keep-focus -buffer-name=mark mark<CR>
+  nnoremap <silent> <SID>[unite-no-quit]h :<C-U>Unite -no-quit -keep-focus -buffer-name=help help<CR>
+  nnoremap <silent> <SID>[unite-no-quit]H :<C-U>Unite -no-quit -keep-focus -buffer-name=refe -input=ref source<CR>
+  nnoremap <silent> <SID>[unite-no-quit]R :<C-U>Unite -no-quit -keep-focus -buffer-name=rails -input=rails source<CR>
+  nnoremap <silent> <SID>[unite-no-quit]s :<C-U>Unite -no-quit -keep-focus -buffer-name=snippet snippet<CR>
+  nnoremap <silent> <SID>[unite-no-quit]S :<C-U>Unite -no-quit -keep-focus -buffer-name=source source<CR>
+  nnoremap <silent> <SID>[unite-no-quit]q :<C-U>Unite -no-quit -keep-focus -buffer-name=qf qf<CR>
+endif
 
-nnoremap <silent> <SID>[unite-no-quit]F :<C-U>Unite -no-quit -keep-focus -buffer-name=files bookmark directory_mru file_mru<CR>
-nnoremap <silent> <SID>[unite-no-quit]f :<C-U>Unite -no-quit -keep-focus -buffer-name=files file<CR>
-nnoremap <silent> <SID>[unite-no-quit]b :<C-U>Unite -no-quit -keep-focus -buffer-name=buffer_tab buffer_tab<CR>
-nnoremap <silent> <SID>[unite-no-quit]B :<C-U>Unite -no-quit -keep-focus -buffer-name=buffer buffer<CR>
-nnoremap <silent> <SID>[unite-no-quit]r :<C-U>Unite -no-quit -keep-focus -buffer-name=register register<CR>
-nnoremap <silent> <SID>[unite-no-quit]t :<C-U>Unite -no-quit -keep-focus -buffer-name=tab tab:no-current<CR>
-nnoremap <silent> <SID>[unite-no-quit]w :<C-U>Unite -no-quit -keep-focus -buffer-name=window window:no-current<CR>
-nnoremap <silent> <SID>[unite-no-quit]o :<C-U>Unite -no-quit -keep-focus -buffer-name=outline outline<CR>
-nnoremap <silent> <SID>[unite-no-quit]m :<C-U>Unite -no-quit -keep-focus -buffer-name=mark mark<CR>
-nnoremap <silent> <SID>[unite-no-quit]h :<C-U>Unite -no-quit -keep-focus -buffer-name=help help<CR>
-nnoremap <silent> <SID>[unite-no-quit]H :<C-U>Unite -no-quit -keep-focus -buffer-name=refe -input=ref source<CR>
-nnoremap <silent> <SID>[unite-no-quit]R :<C-U>Unite -no-quit -keep-focus -buffer-name=rails -input=rails source<CR>
-nnoremap <silent> <SID>[unite-no-quit]s :<C-U>Unite -no-quit -keep-focus -buffer-name=snippet snippet<CR>
-nnoremap <silent> <SID>[unite-no-quit]S :<C-U>Unite -no-quit -keep-focus -buffer-name=source source<CR>
-nnoremap <silent> <SID>[unite-no-quit]q :<C-U>Unite -no-quit -keep-focus -buffer-name=qf qf<CR>
-" }}}
 
-" unite-line " {{{
-nnoremap <silent> <SID>[unite]l :<C-U>UniteWithCursorWord -buffer-name=line line<CR>
-nnoremap <silent> <SID>[unite-no-quite]l :<C-U>UniteWithCursorWord -no-quit -buffer-name=line line<CR>
-" }}}
+" unite-line {{{2
+if s:bundled('unite.vim')
+  nnoremap <silent> <SID>[unite]l :<C-U>UniteWithCursorWord -buffer-name=line line<CR>
+  nnoremap <silent> <SID>[unite-no-quite]l :<C-U>UniteWithCursorWord -no-quit -buffer-name=line line<CR>
+endif
 
-" unite-menu {{{
-let g:unite_source_menu_menus = {}
-let g:unite_source_menu_menus.fugitive = {
-      \     'description' : 'fugitive menu',
-      \ }
-let g:unite_source_menu_menus.fugitive.candidates = {
-      \       'add'      : 'Gwrite',
-      \       'blame'      : 'Gblame',
-      \       'diff'      : 'Gdiff',
-      \       'commit'      : 'Gcommit',
-      \       'status'      : 'Gstatus',
-      \       'rm'      : 'Gremove',
-      \     }
-function g:unite_source_menu_menus.fugitive.map(key, value)
-  return {
-        \       'word' : a:key, 'kind' : 'command',
-        \       'action__command' : a:value,
+
+" unite-menu {{{2
+if s:bundled('unite.vim')
+  let g:unite_source_menu_menus = {}
+  let g:unite_source_menu_menus.fugitive = {
+        \     'description' : 'fugitive menu',
+        \ }
+  let g:unite_source_menu_menus.fugitive.candidates = {
+        \       'add'      : 'Gwrite',
+        \       'blame'      : 'Gblame',
+        \       'diff'      : 'Gdiff',
+        \       'commit'      : 'Gcommit',
+        \       'status'      : 'Gstatus',
+        \       'rm'      : 'Gremove',
         \     }
-endfunction
+  function g:unite_source_menu_menus.fugitive.map(key, value)
+    return {
+          \       'word' : a:key, 'kind' : 'command',
+          \       'action__command' : a:value,
+          \     }
+  endfunction
 
-nnoremap <silent> <SID>[unite]g :<C-u>Unite menu:fugitive<CR>
-" }}}
+  nnoremap <silent> <SID>[unite]g :<C-u>Unite menu:fugitive<CR>
+endif
 
-" unite-junkfile {{{
-nnoremap <silent> <SID>[unite]j :<C-u>Unite -start-insert junkfile/new junkfile<CR>
-" }}}
 
-" ---------------------------------------------
-" PLUGIN: altr {{{2
-" ---------------------------------------------
+" unite-junkfile {{{2
+if s:bundled('unite.vim') && s:bundled('junkfile.vim')
+  nnoremap <silent> <SID>[unite]j :<C-u>Unite -start-insert junkfile/new junkfile<CR>
+endif
 
-nmap <Leader>n  <Plug>(altr-forward)
-nmap <Leader>p  <Plug>(altr-back)
 
-call altr#define('spec/%_spec.rb', 'lib/%.rb')
-call altr#define('src/lib/*/%.coffee', 'spec/*/%_spec.coffee')
-call altr#define('src/lib/%.coffee', 'spec/%_spec.coffee')
+" altr {{{2
+if s:bundled('vim-altr')
+  nmap <Leader>n  <Plug>(altr-forward)
+  nmap <Leader>p  <Plug>(altr-back)
 
-" ---------------------------------------------
-" PLUGIN: unite-neco {{{2
-" ---------------------------------------------
+  call altr#define('spec/%_spec.rb', 'lib/%.rb')
+  call altr#define('src/lib/*/%.coffee', 'spec/*/%_spec.coffee')
+  call altr#define('src/lib/%.coffee', 'spec/%_spec.coffee')
+endif
 
-let s:unite_source = {'name': 'neco'}
 
-function! s:unite_source.gather_candidates(args, context)
-  let necos = [
-        \ "~(-'_'-) goes right",
-        \ "~(-'_'-) goes right and left",
-        \ "~(-'_'-) goes right quickly",
-        \ "~(-'_'-) goes right then smile",
-        \ "~(-'_'-)  -8(*'_'*) go right and left",
-        \ "(=' .' ) ~w",
-        \ ]
-  return map(necos, '{
-        \ "word": v:val,
-        \ "source": "neco",
-        \ "kind": "command",
-        \ "action__command": "Neco " . v:key,
-        \ }')
-endfunction
-call unite#define_source(s:unite_source)
+" unite-neco {{{2
+if s:bundled('unite.vim')
+  let s:unite_source = {'name': 'neco'}
 
-" ---------------------------------------------
-" PLUGIN: rsense.vim {{{2
-" ---------------------------------------------
+  function! s:unite_source.gather_candidates(args, context)
+    let necos = [
+          \ "~(-'_'-) goes right",
+          \ "~(-'_'-) goes right and left",
+          \ "~(-'_'-) goes right quickly",
+          \ "~(-'_'-) goes right then smile",
+          \ "~(-'_'-)  -8(*'_'*) go right and left",
+          \ "(=' .' ) ~w",
+          \ ]
+    return map(necos, '{
+          \ "word": v:val,
+          \ "source": "neco",
+          \ "kind": "command",
+          \ "action__command": "Neco " . v:key,
+          \ }')
+  endfunction
+  call unite#define_source(s:unite_source)
+endif
 
+
+" rsense.vim {{{2
 " let g:rsenseHome = expand('$RSENSE_HOME')
 " let g:rsenseUseOmniFunc = 1
 
-" ---------------------------------------------
-" PLUGIN: vimshell {{{2
-" ---------------------------------------------
 
-let g:vimshell_prompt = '$ '
-let g:vimshell_user_prompt = '"[" . getcwd() ."]"'
-
-" ---------------------------------------------
-" PLUGIN: neocomplcache.vim {{{2
-" ---------------------------------------------
-
-if !exists('g:neocomplcache_dictionary_filetype_lists')
-let g:neocomplcache_dictionary_filetype_lists = {
-      \ 'jasmine': expand('~/.vim/dict/jasmine.dict'),
-      \ 'vows': expand('~/.vim/dict/vows.dict')
-      \}
+" vimshell {{{2
+if s:bundled('vimshell')
+  let g:vimshell_prompt = '$ '
+  let g:vimshell_user_prompt = '"[" . getcwd() ."]"'
 endif
 
-let g:neocomplcache_enable_at_startup = 1
 
-inoremap <expr> <C-C> neocomplcache#complete_common_string()
-inoremap <expr> <C-O>  neocomplcache#start_manual_complete()
+" neocomplcache.vim {{{2
+if s:bundled('neocomplcache')
+  if !exists('g:neocomplcache_dictionary_filetype_lists')
+  let g:neocomplcache_dictionary_filetype_lists = {
+        \ 'jasmine': expand('~/.vim/dict/jasmine.dict'),
+        \ 'vows': expand('~/.vim/dict/vows.dict')
+        \}
+  endif
 
-" ---------------------------------------------
-" PLUGIN: neosnippet {{{2
-" ---------------------------------------------
+  let g:neocomplcache_enable_at_startup = 1
 
-let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
-
-nnoremap <silent> <Leader>.s :<C-U>NeoSnippetEdit<CR>
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" ---------------------------------------------
-" PLUGIN: vim-ref {{{2
-" ---------------------------------------------
-
-if s:iswin
-  let g:ref_pydoc_cmd = 'pydoc.bat'
-  let g:ref_refe_encoding = 'cp932'
+  inoremap <expr> <C-C> neocomplcache#complete_common_string()
+  inoremap <expr> <C-O>  neocomplcache#start_manual_complete()
 endif
 
-let g:ref_detect_filetype = {
-      \ 'c': 'man', 'clojure': 'clojure', 'perl': 'perldoc', 'php': 'phpmanual', 'ruby': 'refe', 'erlang': 'erlang', 'python': 'pydoc'
-      \}
 
-MyAutocmd FileType ref call s:initialize_ref_viewer()
-function! s:initialize_ref_viewer()
-  nmap <buffer> <Backspace> <Plug>(ref-back)
-  nmap <buffer> <S-Backspace> <Plug>(ref-forward)
-  setlocal nonumber
-endfunction
+" neosnippet {{{2
+if s:bundled('neosnippet')
+  let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
 
-" ---------------------------------------------
-" PLUGIN: changelog.vim {{{2
-" ---------------------------------------------
+  nnoremap <silent> <Leader>.s :<C-U>NeoSnippetEdit<CR>
+  imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+endif
 
-MyAutocmd BufNewFile,BufRead *.changelog setf changelog
+
+" vim-ref {{{2
+if s:bundled('vim-ref')
+  if s:iswin
+    let g:ref_pydoc_cmd = 'pydoc.bat'
+    let g:ref_refe_encoding = 'cp932'
+  endif
+
+  let g:ref_detect_filetype = {
+        \ 'c': 'man', 'clojure': 'clojure', 'perl': 'perldoc', 'php': 'phpmanual', 'ruby': 'refe', 'erlang': 'erlang', 'python': 'pydoc'
+        \}
+
+  MyAutocmd FileType ref call s:initialize_ref_viewer()
+  function! s:initialize_ref_viewer()
+    nmap <buffer> <Backspace> <Plug>(ref-back)
+    nmap <buffer> <S-Backspace> <Plug>(ref-forward)
+    setlocal nonumber
+  endfunction
+endif
+
+
+" changelog.vim {{{2
+MyAutocmd BufNewFile,BufRead *.changelog setfiletype changelog
 let g:changelog_timeformat = "%Y-%m-%d"
 let g:changelog_username = "Hideki Hamada (jakalada)"
 
-" ---------------------------------------------
-" PLUGIN: surround.vim {{{2
-" ---------------------------------------------
 
-nmap s ys
-nmap S yS
+" surround.vim {{{2
+if s:bundled('vim-surround')
+  nmap s ys
+  nmap S yS
 
-nmap ss yss
-nmap SS ySS
+  nmap ss yss
+  nmap SS ySS
 
-vmap s S
+  vmap s S
+endif
 
-" ---------------------------------------------
-" PLUGIN: quickrun.vim {{{2
-" ---------------------------------------------
 
-let g:quickrun_config = get(g:, 'quickrun_config', {})
-let g:quickrun_config._ = {'runner' : 'vimproc'}
+" quickrun.vim {{{2
+if s:bundled('vim-quickrun')
+  let g:quickrun_config = get(g:, 'quickrun_config', {})
+  let g:quickrun_config._ = {'runner' : 'vimproc'}
+endif
+
 
 "RSpec
 let g:quickrun_config['ruby.rspec'] = {
@@ -885,91 +857,103 @@ let g:quickrun_config['markdown'] = {
       \'outputter/buffer/filetype': 'html'
       \}
 
-" ---------------------------------------------
-" PLUGIN: vim-coffee-script {{{2
-" ---------------------------------------------
 
-" ---------------------------------------------
-" PLUGIN: tagbar  {{{2
-" ---------------------------------------------
-
-let g:tagbar_sort = 0
-
-nnoremap <silent> <Leader>t :<C-U>TagbarToggle<CR>
-
-" ---------------------------------------------
-" PLUGIN: open-browser.vim  {{{2
-" ---------------------------------------------
-
-nmap <Leader>o <Plug>(openbrowser-smart-search)
-vmap <Leader>o <Plug>(openbrowser-smart-search)
-
-" ---------------------------------------------
-" PLUGIN: Powerline {{{2
-" ---------------------------------------------
-
-if s:isgui
-  let g:Powerline_symbols = 'compatible'
-else
-  " NOTE: Use '* for Poweline' font in terminal.
-  "       Read *Powerline-symbols-fancy* in help.
-  let g:Powerline_symbols = 'compatible'
+" vim-coffee-script {{{2
+if s:bundled('vim-coffee-script')
 endif
 
-" ---------------------------------------------
-" PLUGIN: quickhl.vim {{{2
-" ---------------------------------------------
+" tagbar {{{2
+if s:bundled('tagbar')
+  let g:tagbar_sort = 0
 
-nmap <Space>m <Plug>(quickhl-toggle)
-xmap <Space>m <Plug>(quickhl-toggle)
-nmap <Space>M <Plug>(quickhl-reset)
-xmap <Space>M <Plug>(quickhl-reset)
-nmap <Space>j <Plug>(quickhl-match)
+  nnoremap <silent> <Leader>t :<C-U>TagbarToggle<CR>
+endif
 
-" ---------------------------------------------
-" PLUGIN: Alignta {{{2
-" ---------------------------------------------
-vnoremap aa :Alignta
-vnoremap a= :Alignta =<CR>
-vnoremap a+ :Alignta +<CR>
 
-" ---------------------------------------------
-" PLUGIN:  indent-guides {{{2
-" ---------------------------------------------
-let g:indent_guides_enable_on_vim_startup = 0
-let g:indent_guides_indent_levels = 10
-let g:indent_guides_auto_colors = 1
-let g:indent_guides_color_change_percent = 10
-let g:indent_guides_exclude_filetypes = ['help', 'unite', 'vimfiler']
+" open-browser.vim  {{{2
+if s:bundled('open-browser.vim')
+  nmap <C-O> <Plug>(openbrowser-smart-search)
+  vmap <C-O> <Plug>(openbrowser-smart-search)
+endif
 
-" ---------------------------------------------
-" PLUGIN:  textobj-multiblock {{{2
-" ---------------------------------------------
-omap a; <Plug>(textobj-multiblock-a)
-omap i; <Plug>(textobj-multiblock-i)
-vmap a; <Plug>(textobj-multiblock-a)
-vmap i; <Plug>(textobj-multiblock-i)
 
-let g:textobj_multiblock_blocks = [
-      \[ '(', ')' ],
-      \[ '[', ']' ],
-      \[ '{', '}' ],
-      \[ '<', '>' ],
-      \[ '"', '"' ],
-      \[ "'", "'" ],
-      \[ '`', '`' ],
-      \[ '<', '>' ]
-      \]
+" Powerline {{{2
+if s:bundled('vim-powerline')
+  if s:isgui
+    let g:Powerline_symbols = 'compatible'
+  else
+    " NOTE: Use '* for Poweline' font in terminal.
+    "       Read *Powerline-symbols-fancy* in help.
+    let g:Powerline_symbols = 'compatible'
+  endif
 
-" =============================================
-" SECTION: Misc {{{1
-" =============================================
+  let g:Powerline_stl_path_style = 'relative'
 
-" ---------------------------------------------
+  let g:Powerline_mode_n = '  N  '
+  let g:Powerline_mode_i = '  I  '
+  let g:Powerline_mode_R = '  R  '
+  let g:Powerline_mode_v = '  v  '
+  let g:Powerline_mode_V = '  V  '
+  let g:Powerline_mode_cv = '  cv '
+  let g:Powerline_mode_s  = '  s  '
+  let g:Powerline_mode_S = '  S  '
+  let g:Powerline_mode_cs = '  cs '
+endif
+
+
+" quickhl.vim {{{2
+if s:bundled('vim-quickhl')
+  nmap <Space>m <Plug>(quickhl-toggle)
+  xmap <Space>m <Plug>(quickhl-toggle)
+  nmap <Space>M <Plug>(quickhl-reset)
+  xmap <Space>M <Plug>(quickhl-reset)
+  nmap <Space>j <Plug>(quickhl-match)
+endif
+
+
+" Alignta {{{2
+if s:bundled('vim-alignta')
+  vnoremap aa :Alignta
+  vnoremap a= :Alignta =<CR>
+  vnoremap a+ :Alignta +<CR>
+endif
+
+
+" textobj-multiblock {{{2
+if s:bundled('vim-textobj-multiblock')
+  omap a; <Plug>(textobj-multiblock-a)
+  omap i; <Plug>(textobj-multiblock-i)
+  vmap a; <Plug>(textobj-multiblock-a)
+  vmap i; <Plug>(textobj-multiblock-i)
+
+  let g:textobj_multiblock_blocks = [
+        \[ '(', ')' ],
+        \[ '[', ']' ],
+        \[ '{', '}' ],
+        \[ '<', '>' ],
+        \[ '"', '"' ],
+        \[ "'", "'" ],
+        \[ '`', '`' ],
+        \[ '<', '>' ]
+        \]
+endif
+
+
+" gitgutter {{{2
+if s:bundled('vim-gitgutter')
+  let g:gitgutter_enabled = 0
+  nnoremap <Space>gg  :<C-u>GitGutterToggle<CR>
+endif
+
+
+" rooter {{{2
+if s:bundled('vim-rooter')
+  let g:rooter_use_lcd = 1
+endif
+
+
+" Misc {{{1
 " 折りたたみ {{{2
-" ---------------------------------------------
-
-" キーマッピング {{{
 nnoremap <SID>[fold] <Nop>
 xnoremap <SID>[fold] <Nop>
 nmap z <SID>[fold]
@@ -991,17 +975,11 @@ noremap <SID>[fold]M zM
 noremap <SID>[fold]m zm
 noremap <SID>[fold]R zR
 noremap <SID>[fold]r zr
-" }}}
 
-" 表示 {{{
 set foldtext=getline(v:foldstart)
-" }}}
 
-" ---------------------------------------------
+
 " タブページ {{{2
-" ---------------------------------------------
-
-" キーバインド {{{
 nnoremap <SID>[tab] <Nop>
 nmap t <SID>[tab]
 
@@ -1015,19 +993,12 @@ nnoremap <silent> <SID>[tab]t :<C-U>tabnew<CR>
 
 nnoremap <silent> <SID>[tabnew]n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
 nnoremap <silent> <SID>[tabnew]v :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
-" }}}
 
-" 表示 {{{
 " REF: http://d.hatena.ne.jp/thinca/20111204/1322932585
 set showtabline=2
 set tabline=%!MakeTabLine()
 
 function! s:tabpage_label(n)
-  " t:title と言う変数があったらそれを使う
-  let title = gettabvar(a:n, 'title')
-  if title !=# ''
-    return ' #' . title . ' '
-  endif
 
   " タブページ内のバッファのリスト
   let bufnrs = tabpagebuflist(a:n)
@@ -1038,16 +1009,24 @@ function! s:tabpage_label(n)
   " タブページ内に変更ありのバッファがあったら '+' を付ける
   let mod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? ' [+]' : ''
 
-  " カレントバッファ
-  let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
-  let fname = bufname(curbufnr)
-  if fname ==# ''
-    let fname = '[No Name]'
-  else
-    let fname = fnamemodify(fname, ':t')
-  end
+  let label = ''
 
-  let label = mod . ' ' . fname . ' '
+  let title = gettabvar(a:n, 'title')
+  if title !=# ''
+    " t:titleと言う変数があればその内容を使用
+    let label = ' #' . title . ' '
+  else
+    " t:titleと言う変数がなければカレントバッファ名を使用
+    let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
+    let fname = bufname(curbufnr)
+    if fname ==# ''
+      let fname = '[No Name]'
+    else
+      let fname = fnamemodify(fname, ':t')
+    end
+
+    let label = mod . ' ' . fname . ' '
+  endif
 
   return '%' . a:n . 'T' . hi . label . '%T%#TabLineFill#'
 endfunction
@@ -1062,10 +1041,8 @@ function! MakeTabLine()
 endfunction
 " }}}
 
-" ---------------------------------------------
-" ウィンドウ {{{2
-" ---------------------------------------------
 
+" ウィンドウ {{{2
 nnoremap <SID>[window] <Nop>
 nmap <Leader>w <SID>[window]
 
@@ -1082,10 +1059,8 @@ nnoremap <silent> <SID>(split-to-k) :<C-U>execute 'aboveleft'  (v:count == 0 ? '
 nnoremap <silent> <SID>(split-to-h) :<C-U>execute 'topleft'    (v:count == 0 ? '' : v:count) 'vsplit'<CR>
 nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '' : v:count) 'vsplit'<CR>
 
-" ---------------------------------------------
-" コマンドラインウィンドウ {{{2
-" ---------------------------------------------
 
+" コマンドラインウィンドウ {{{2
 nnoremap <silent> <SID>(command-line-enter) q:
 xnoremap <silent> <SID>(command-line-enter) q:
 nnoremap <silent> <SID>(command-line-enter-help) q:help<Space>
@@ -1107,71 +1082,35 @@ MyAutocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() " {{{
   nnoremap <buffer><silent> q :<C-U>quit<CR>
   inoremap <buffer><expr> <CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
+  nnoremap <buffer> ; <Nop>
   startinsert!
 endfunction " }}}
 
-" ---------------------------------------------
-" 現在行のインデントをハイライトする {{{2
-" ---------------------------------------------
 
+" 現在行のインデントをハイライトする {{{2
 MyAutocmd CursorMoved * call s:hilight_indent()
 MyAutocmd CursorMovedI * call s:hilight_indent()
 function! s:hilight_indent() "{{{
   let n = indent(line('.'))
-  let &l:colorcolumn = join(range(1,n), ',')
+  if n >= &tabstop
+    let &l:colorcolumn = join(range(&tabstop, n, &tabstop), ',')
+  else
+    let &l:colorcolumn = ''
+  endif
 endfunction " }}}
 
-" ---------------------------------------------
+
 " 空行を追加と削除を容易にする {{{2
-" ---------------------------------------------
+nnoremap <silent> <Leader>o   :<C-u>for i in range(1, v:count1) \| call append(line('.'),   '') \| endfor \| silent! call repeat#set("<Leader>o", v:count1)<CR>
+nnoremap <silent> <Leader>O   :<C-u>for i in range(1, v:count1) \| call append(line('.')-1, '') \| endfor \| silent! call repeat#set("<Leader>O", v:count1)<CR>
 
-function! AddEmptyLineBelow() " {{{
-  call append(line("."), "")
-endfunction " }}}
 
-function! AddEmptyLineAbove() " {{{
-  let l:scrolloffsave = &scrolloff
-  " Avoid jerky scrolling with ^E at top of window
-  set scrolloff=0
-  call append(line(".") - 1, "")
-  if winline() != winheight(0)
-    execute 'normal!' "\<C-E>"
-  end
-  let &scrolloff = l:scrolloffsave
-endfunction " }}}
+" 最後に編集した位置に移動する {{{2
+autocmd BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
 
-function! DelEmptyLineBelow() " {{{
-  if line(".") == line("$")
-    return
-  end
-  let l:line = getline(line(".") + 1)
-  if l:line =~ '^\s*$'
-    let l:colsave = col(".")
-    .+1d
-    ''
-    call cursor(line("."), l:colsave)
-  end
-endfunction " }}}
-
-function! DelEmptyLineAbove() " {{{
-  if line(".") == 1
-    return
-  end
-  let l:line = getline(line(".") - 1)
-  if l:line =~ '^\s*$'
-    let l:colsave = col(".")
-    .-1d
-    execute 'normal!' "\<C-Y>"
-    call cursor(line("."), l:colsave)
-  end
-endfunction " }}}
-
-noremap <silent> Dj :call DelEmptyLineBelow()<CR>
-noremap <silent> Dk :call DelEmptyLineAbove()<CR>
-noremap <silent> Aj :call AddEmptyLineBelow()<CR>
-noremap <silent> Ak :call AddEmptyLineAbove()<CR>
-
-" }}}2
 
 " }}}1
 
