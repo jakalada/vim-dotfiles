@@ -111,11 +111,13 @@ if s:bundled('neobundle.vim')
   NeoBundle 'zef/vim-cycle'
 
   " colorscheme {{{
-  NeoBundle 'Lokaltog/vim-distinguished'
   NeoBundle 'chriskempson/vim-tomorrow-theme'
-  NeoBundle 'hickop/vim-hickop-colors'
-  NeoBundle 'tomasr/molokai'
   NeoBundle 'hail2u/h2u_colorscheme'
+  NeoBundle 'hickop/vim-hickop-colors'
+  NeoBundle 'junegunn/seoul256.vim'
+  NeoBundle 'Lokaltog/vim-distinguished'
+  NeoBundle 'nanotech/jellybeans.vim'
+  NeoBundle 'tomasr/molokai'
   " }}}
 
   " filetype {{{
@@ -123,6 +125,7 @@ if s:bundled('neobundle.vim')
   NeoBundle 'leshill/vim-json'
   NeoBundle 'pangloss/vim-javascript'
   NeoBundle 'tpope/vim-markdown'
+  NeoBundle 'tpope/vim-haml'
   NeoBundle 'vim-ruby/vim-ruby'
   NeoBundle 'vim-scripts/Textile-for-VIM'
   NeoBundle 'kingbin/vim-arduino'
@@ -270,7 +273,7 @@ let g:is_bash = 1
 
 " Options {{{1
 if s:isgui
-  colorscheme h2u_dark
+  colorscheme jellybeans
   highlight ColorColumn guibg=#333333
 
   if s:ismacunix
@@ -318,10 +321,11 @@ setlocal iskeyword+=-
 
 set hidden
 
-set backupdir=.,~/tmp
+set backupdir=~/tmp
 set directory-=.
 if v:version >= 703
   set undofile
+  setl undodir=~/tmp
 endif
 
 if has('virtualedit')
@@ -530,7 +534,9 @@ runtime macros/matchit.vim
 
 " caw.vim " {{{2
 if s:bundled('caw.vim')
-  nmap <C-p> <Plug>(caw:wrap:toggle)
+  let g:caw_no_default_keymappings = 1
+  nmap <C-P> <Plug>(caw:wrap:toggle)
+  vmap <C-P> <Plug>(caw:wrap:toggle)
 endif
 
 
@@ -767,6 +773,8 @@ endif
 if s:bundled('vimshell')
   let g:vimshell_prompt = '$ '
   let g:vimshell_user_prompt = '"[" . getcwd() ."]"'
+
+  nnoremap <Leader>s :<C-U>VimShell<CR>
 endif
 
 
