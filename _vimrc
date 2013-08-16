@@ -62,10 +62,11 @@ if s:bundled('neobundle.vim')
         \  },
         \}
 
-  NeoBundle 'Lokaltog/vim-powerline'
+  NeoBundle 'bling/vim-airline'
   NeoBundle 'Shougo/junkfile.vim'
   NeoBundle 'Shougo/neocomplcache'
   NeoBundle 'Shougo/neosnippet'
+  NeoBundle 'Shougo/neocomplete'
   NeoBundle 'Shougo/vimfiler'
   NeoBundle 'Shougo/vimshell'
   NeoBundle 'Shougo/vinarise'
@@ -407,7 +408,7 @@ let &fillchars = 'vert: ,fold: ,diff: '
 
 let &showbreak = '> '
 
-set nowrap
+set wrap
 
 set textwidth=0
 
@@ -644,6 +645,9 @@ if s:bundled('unite.vim')
   " unite-source-variables
   let g:unite_source_file_mru_time_format = '(%F %R)'
   let g:unite_source_grep_max_candidates = 1000
+  let g:unite_source_file_mru_long_limit = 1000
+  let g:unite_source_file_mru_limit = 200
+  let g:unite_source_directory_mru_long_limit = 1000
 
   nnoremap <SID>[unite] <Nop>
   xnoremap <SID>[unite] <Nop>
@@ -777,16 +781,16 @@ if s:bundled('vimshell')
   nnoremap <Leader>s :<C-U>VimShell<CR>
 endif
 
+" neocomplete.vim {{{2
+if s:bundled('neocomplcache') && (v:version >= 704 || (v:version == 703 && has('patch885')))
+  let g:neocomplete#enable_at_startup = 1
+
+  inoremap <expr> <C-C>  neocomplete#complete_common_string()
+  inoremap <expr> <C-O>  neocomplete#start_manual_complete()
+endif
 
 " neocomplcache.vim {{{2
-if s:bundled('neocomplcache')
-  if !exists('g:neocomplcache_dictionary_filetype_lists')
-  let g:neocomplcache_dictionary_filetype_lists = {
-        \ 'jasmine': expand('~/.vim/dict/jasmine.dict'),
-        \ 'vows': expand('~/.vim/dict/vows.dict')
-        \}
-  endif
-
+if s:bundled('neocomplcache') && (v:version <= 702 || (v:version == 703 && !has('patch885')))
   let g:neocomplcache_enable_at_startup = 1
 
   inoremap <expr> <C-C> neocomplcache#complete_common_string()
@@ -882,30 +886,6 @@ endif
 if s:bundled('open-browser.vim')
   nmap <C-O> <Plug>(openbrowser-smart-search)
   vmap <C-O> <Plug>(openbrowser-smart-search)
-endif
-
-
-" Powerline {{{2
-if s:bundled('vim-powerline')
-  if s:isgui
-    let g:Powerline_symbols = 'compatible'
-  else
-    " NOTE: Use '* for Poweline' font in terminal.
-    "       Read *Powerline-symbols-fancy* in help.
-    let g:Powerline_symbols = 'compatible'
-  endif
-
-  let g:Powerline_stl_path_style = 'relative'
-
-  let g:Powerline_mode_n = '  N  '
-  let g:Powerline_mode_i = '  I  '
-  let g:Powerline_mode_R = '  R  '
-  let g:Powerline_mode_v = '  v  '
-  let g:Powerline_mode_V = '  V  '
-  let g:Powerline_mode_cv = '  cv '
-  let g:Powerline_mode_s  = '  s  '
-  let g:Powerline_mode_S = '  S  '
-  let g:Powerline_mode_cs = '  cs '
 endif
 
 
