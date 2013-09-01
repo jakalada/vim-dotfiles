@@ -939,6 +939,11 @@ if s:bundled('vim-rooter')
   let g:rooter_use_lcd = 1
 endif
 
+" vim-airline {{{2
+if s:bundled('vim-airline')
+  let g:airline_theme='wombat'
+endif
+
 
 " Misc {{{1
 " 折りたたみ {{{2
