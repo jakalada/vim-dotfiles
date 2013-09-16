@@ -304,14 +304,11 @@ set pumheight=10
 set nocursorline
 set cmdheight=2
 
-set autoindent
-set smartindent
-
-set smarttab
-set expandtab
-set softtabstop=2
-
+set smartindent autoindent
+set smarttab expandtab
+set tabstop=2
 set shiftwidth=2
+set softtabstop=2
 set shiftround
 
 set backspace=indent,eol,start
@@ -1034,7 +1031,6 @@ function! MakeTabLine()
   let info = ''
   return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
 endfunction
-" }}}
 
 
 " ウィンドウ {{{2

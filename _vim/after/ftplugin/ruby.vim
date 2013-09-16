@@ -6,6 +6,7 @@ setlocal softtabstop=2
 setlocal shiftround
 
 setlocal foldmethod=indent
+setlocal foldlevel=100
 
 setlocal formatoptions+=m
 setlocal formatoptions+=M
@@ -55,6 +56,7 @@ let b:undo_ftplugin .= '
 \ | setlocal shiftround<
 \ | setlocal foldmethod<
 \ | setlocal formatoptions<
+\ | setlocal foldlevel<
 \ | execute "vunmap <buffer> <LocalLeader>x"
 \ | execute "nunmap <buffer> <LocalLeader>x"
 \'
