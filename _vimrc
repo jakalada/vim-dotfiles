@@ -418,6 +418,56 @@ set nomodeline
 set completeopt-=preview
 
 " Mappings {{{1
+
+" MacVimのメニューに登録されているショーットカットを無効化 " {{{2
+if s:ismacunix && s:isgui
+  let s:macmenus = [
+        \  'File.New Window',
+        \  'File.New Window',
+        \  'File.New Tab',
+        \  'File.Open...',
+        \  'File.Split-Open...',
+        \  'File.Open Tab...',
+        \  'File.Open Recent',
+        \  'File.Close Window',
+        \  'File.Close',
+        \  'File.Save',
+        \  'File.Save All',
+        \  'File.Save As...',
+        \  'File.Print',
+        \  'Edit.Undo',
+        \  'Edit.Redo',
+        \  'Edit.Cut',
+        \  'Edit.Copy',
+        \  'Edit.Paste',
+        \  'Edit.Select All',
+        \  'Edit.Find.Find...',
+        \  'Edit.Find.Find Next',
+        \  'Edit.Find.Find Previous',
+        \  'Edit.Font.Bigger',
+        \  'Edit.Font.Smaller',
+        \  'Edit.Special Characters...',
+        \  'Tools.Make',
+        \  'Tools.List Errors',
+        \  'Tools.Next Error',
+        \  'Tools.Previous Error',
+        \  'Tools.Older List',
+        \  'Tools.Newer List',
+        \  'Tools.Spelling.To Next error',
+        \  'Tools.Spelling.Suggest Corrections',
+        \  'Window.Select Previous Tab',
+        \  'Window.Select Next Tab',
+        \  'Window.Minimize',
+        \  'Window.Minimize All',
+        \  'Window.Zoom',
+        \  'Window.Zoom All',
+        \  'Window.Toggle Full Screen Mode'
+        \]
+  for s in s:macmenus
+    execute 'macmenu ' . substitute(escape(s, ' '), '\.\.\.', '\\.\\.\\.', 'g') . ' key=<Nop>'
+  endfor
+endif
+
 " IBusで日本語入力に切り替えるたびにスペースが挿入されてしまうのを防ぐ {{{2
 noremap <C-Space> <Nop>
 noremap! <C-Space> <Nop>
@@ -445,7 +495,6 @@ lnoremap <C-K> <Esc>
 " Leader {{{2
 let mapleader = ' '
 let maplocalleader = '\'
-
 
 " mapmode-nvo {{{2
 noremap j gj
