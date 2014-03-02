@@ -584,7 +584,7 @@ runtime macros/matchit.vim
 " caw.vim " {{{2
 if s:bundled('caw.vim')
   let g:caw_no_default_keymappings = 1
-  nmap <C-P> <Plug>(caw:wrap:toggle)gv=
+  nmap <C-P> <Plug>(caw:wrap:toggle)
   vmap <C-P> <Plug>(caw:wrap:toggle)gv=
 endif
 
