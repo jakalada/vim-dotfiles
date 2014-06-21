@@ -66,6 +66,7 @@ if s:bundled('neobundle.vim')
   NeoBundle 'Shougo/junkfile.vim'
   NeoBundle 'Shougo/neocomplcache'
   NeoBundle 'Shougo/neosnippet'
+  NeoBundle 'Shougo/neosnippet-snippets'
   NeoBundle 'Shougo/neocomplete'
   NeoBundle 'Shougo/vimfiler'
   NeoBundle 'Shougo/vimshell'
@@ -90,6 +91,7 @@ if s:bundled('neobundle.vim')
   NeoBundle 'mattn/learn-vimscript'
   NeoBundle 'mattn/webapi-vim'
   NeoBundle 'nathanaelkane/vim-indent-guides'
+  NeoBundle 'scrooloose/syntastic'
   NeoBundle 'supermomonga/shiraseru.vim', {'depends' : 'Shougo/vimproc'}
   NeoBundle 't9md/vim-quickhl'
   NeoBundle 'taku-o/vim-toggle'
@@ -99,6 +101,7 @@ if s:bundled('neobundle.vim')
   NeoBundle 'thinca/vim-quickrun'
   NeoBundle 'thinca/vim-ref'
   NeoBundle 'thinca/vim-visualstar'
+  NeoBundle 'tpope/vim-endwise'
   NeoBundle 'tpope/vim-fugitive'
   NeoBundle 'tpope/vim-rails'
   NeoBundle 'tpope/vim-repeat'
@@ -125,6 +128,7 @@ if s:bundled('neobundle.vim')
   " filetype {{{
   NeoBundle 'kchmck/vim-coffee-script'
   NeoBundle 'leshill/vim-json'
+  NeoBundle 'othree/html5.vim'
   NeoBundle 'pangloss/vim-javascript'
   NeoBundle 'slim-template/vim-slim'
   NeoBundle 'tpope/vim-markdown'
@@ -184,29 +188,29 @@ augroup vimrc
 augroup END
 
 command!
-\   -bang -nargs=*
-\   MyAutocmd
-\   autocmd<bang> vimrc <args>
+      \   -bang -nargs=*
+      \   MyAutocmd
+      \   autocmd<bang> vimrc <args>
 " }}}
 
 " 定義されているマッピングを調べるコマンドを定義する {{{
 command!
-\   -nargs=* -complete=mapping
-\   AllMaps
-\   map <args> | map! <args> | lmap <args>
+      \   -nargs=* -complete=mapping
+      \   AllMaps
+      \   map <args> | map! <args> | lmap <args>
 " }}}
 
 " For rails.vim {{{
 if s:iswin
   command!
-\   -bar -nargs=1
-\   OpenURL
-\   :!start cmd /cstart /b <args>
+        \   -bar -nargs=1
+        \   OpenURL
+        \   :!start cmd /cstart /b <args>
 else
   command!
-\   -bar -nargs=1
-\   OpenURL
-\   :VimProcBang firefox <args>
+        \   -bar -nargs=1
+        \   OpenURL
+        \   :VimProcBang firefox <args>
 endif
 " }}}
 
@@ -220,9 +224,9 @@ set encoding=utf-8
 
 " マルチバイト文字が含まれていない場合はencodingの値を使用する
 MyAutocmd BufReadPost *
-\   if &modifiable && !search('[^\x00-\x7F]', 'cnw')
-\ |   setlocal fileencoding=
-\ | endif
+      \   if &modifiable && !search('[^\x00-\x7F]', 'cnw')
+      \ |   setlocal fileencoding=
+      \ | endif
 " }}}
 
 " fileformatの設定 {{{
@@ -830,7 +834,7 @@ if s:bundled('vimshell')
 endif
 
 " neocomplete.vim {{{2
-if s:bundled('neocomplcache') && (v:version >= 704 || (v:version == 703 && has('patch885')))
+if s:bundled('neocomplcache') && (v:version <= 702 || (v:version == 703 && !has('patch885')))
   let g:neocomplete#enable_at_startup = 1
 
   inoremap <expr> <C-C>  neocomplete#complete_common_string()
@@ -838,8 +842,29 @@ if s:bundled('neocomplcache') && (v:version >= 704 || (v:version == 703 && has('
 endif
 
 " neocomplcache.vim {{{2
-if s:bundled('neocomplcache') && (v:version <= 702 || (v:version == 703 && !has('patch885')))
+if s:bundled('neocomplcache') && (v:version <= 704 || (v:version == 703 && has('patch885')))
   let g:neocomplcache_enable_at_startup = 1
+  let g:neocomplcache_enable_smart_case = 1
+  let g:neocomplcache_min_keyword_length = 3
+
+  if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+  endif
+  let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+  if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+  endif
+  if !exists('g:neocomplcache_force_omni_patterns')
+    let g:neocomplcache_force_omni_patterns = {}
+  endif
+  let g:neocomplcache_omni_patterns.php =
+        \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+  let g:neocomplcache_omni_patterns.c =
+        \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+  let g:neocomplcache_omni_patterns.cpp =
+        \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+  let g:neocomplcache_force_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
   inoremap <expr> <C-C> neocomplcache#complete_common_string()
   inoremap <expr> <C-O>  neocomplcache#start_manual_complete()
@@ -852,9 +877,9 @@ if s:bundled('neosnippet')
 
   nnoremap <silent> <Leader>.s :<C-U>NeoSnippetEdit<CR>
   imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
   smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 endif
 
 
@@ -989,7 +1014,8 @@ endif
 
 " vim-airline {{{2
 if s:bundled('vim-airline')
-  let g:airline_theme='wombat'
+  let g:airline_theme = 'wombat'
+  let g:airline#extensions#syntastic#enabled = 1
 endif
 
 
@@ -1147,10 +1173,18 @@ nnoremap <silent> <Leader>O   :<C-u>for i in range(1, v:count1) \| call append(l
 
 " 最後に編集した位置に移動する {{{2
 autocmd BufReadPost *
-  \ if line("'\"") > 1 && line("'\"") <= line("$") |
-  \   exe "normal! g`\"" |
-  \ endif
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 
+" カーソル位置を移動せずにファイル全体を整形する {{{2
+" http://kannokanno.hatenablog.com/entry/2014/03/16/160109
+function! s:format_file()
+  let view = winsaveview()
+  normal gg=G
+  silent call winrestview(view)
+endfunction
+nnoremap <C-F> :call <SID>format_file()<CR>
 
 " }}}1
 
