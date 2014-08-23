@@ -64,10 +64,6 @@ if s:bundled('neobundle.vim')
 
   NeoBundle 'bling/vim-airline'
   NeoBundle 'Shougo/junkfile.vim'
-  NeoBundle 'Shougo/neocomplcache'
-  NeoBundle 'Shougo/neosnippet'
-  NeoBundle 'Shougo/neosnippet-snippets'
-  NeoBundle 'Shougo/neocomplete'
   NeoBundle 'Shougo/vimfiler'
   NeoBundle 'Shougo/vimshell'
   NeoBundle 'Shougo/vinarise'
@@ -75,6 +71,7 @@ if s:bundled('neobundle.vim')
   NeoBundle 'airblade/vim-rooter'
   NeoBundle 'dannyob/quickfixstatus'
   NeoBundle 'h1mesuke/vim-alignta'
+  NeoBundle 'hail2u/vim-tabcom'
   NeoBundle 'itchyny/thumbnail.vim'
   NeoBundle 'jceb/vim-hier'
   NeoBundle 'kana/vim-altr'
@@ -284,7 +281,7 @@ if s:isgui
   highlight ColorColumn guibg=#333333
 
   if s:ismacunix
-    set guifont=Ricty:h17
+    set guifont=Ricty\ Diminished:h17
   elseif s:iswin
     set guifont=Inconsolata:h13:cSHIFTJIS
   else
