@@ -289,7 +289,7 @@ if s:isgui
   elseif s:iswin
     set guifont=Inconsolata:h13:cSHIFTJIS
   else
-    set guifont=Ricty\ Discord\ 13.5
+    set guifont=Ricty\ Diminished\ 13.5
   endif
 
   set guioptions=ciM
