@@ -76,7 +76,6 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'airblade/vim-rooter'
 NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'hail2u/vim-tabcom'
 NeoBundle 'itchyny/thumbnail.vim'
 NeoBundle 'jceb/vim-hier'
 NeoBundle 'kana/vim-altr'
@@ -1101,7 +1100,7 @@ endfunction
 
 function! MakeTabLine()
   let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
-  let sep = ' : '
+  let sep = ' '
   let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
   "let info = '(' . fnamemodify(getcwd(), ':~') . ') ' " 好きな情報を入れる
   let info = ''
