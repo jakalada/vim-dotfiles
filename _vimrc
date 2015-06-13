@@ -69,6 +69,7 @@ NeoBundle 'Shougo/vimproc', {
 
 NeoBundle 'bling/vim-airline'
 NeoBundle 'Shougo/junkfile.vim'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vinarise'
