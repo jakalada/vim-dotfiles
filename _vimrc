@@ -20,11 +20,11 @@ if s:iswin
   set shellslash
   let $DOTVIMDIR = expand('~/vimfiles')
   let $DROPBOXDIR = expand('~/Dropbox')
-  let $VIMCONFIGDIR = expand('~/project/vim-dotfiles')
+  let $VIMCONFIGDIR = expand('~/git/vim-dotfiles')
 else
   let $DOTVIMDIR = expand('~/.vim')
   let $DROPBOXDIR = expand('~/Dropbox')
-  let $VIMCONFIGDIR = expand('~/project/vim-dotfiles')
+  let $VIMCONFIGDIR = expand('~/git/vim-dotfiles')
 endif
 
 
