@@ -374,7 +374,6 @@ nnoremap <script> / <SID>[nohlsearch]/
 nnoremap <script> ? <SID>[nohlsearch]?
 
 nnoremap <script> v <SID>[nohlsearch]v
-nnoremap <script> <C-V> <SID>[nohlsearch]<C-V>
 nnoremap <script> V <SID>[nohlsearch]V
 
 nnoremap <script> i <SID>[nohlsearch]i
@@ -1019,6 +1018,8 @@ if s:bundled('vim-airline')
   let g:airline#extensions#syntastic#enabled = 1
 endif
 
+" syntastic {{{2
+let g:syntastic_ignore_files = ['\m^/usr/include/', '\m\c\.h$', '\m\c\.cpp$',' \m\c\.c$']
 
 " Misc {{{1
 " 折りたたみ {{{2
