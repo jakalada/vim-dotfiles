@@ -282,8 +282,8 @@ let g:is_bash = 1
 
 " Options {{{1
 if s:isgui
-  colorscheme jellybeans
-  highlight ColorColumn guibg=#333333
+  let g:seoul256_background = 233
+  colorscheme seoul256
 
   if s:ismacunix
     set guifont=Ricty\ Diminished:h17
@@ -311,7 +311,8 @@ if s:isgui
   let loaded_matchparen = 1
 else
   set t_Co=256
-  colorscheme distinguished
+  let g:seoul256_background = 234
+  colorscheme seoul256
 endif
 
 set pumheight=10
@@ -997,8 +998,9 @@ endif
 
 " vim-airline {{{2
 if s:bundled('vim-airline')
-  let g:airline_theme = 'wombat'
-  let g:airline#extensions#syntastic#enabled = 1
+  let g:airline_left_sep=''
+  let g:airline_right_sep=''
+  let g:airline_theme='molokai'
 endif
 
 " syntastic {{{2
@@ -1091,7 +1093,6 @@ function! MakeTabLine()
   let info = ''
   return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
 endfunction
-
 
 " ウィンドウ {{{2
 nnoremap <SID>[window] <Nop>
