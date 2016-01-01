@@ -73,6 +73,7 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vinarise'
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'airblade/vim-rooter'
 NeoBundle 'dannyob/quickfixstatus'
@@ -834,42 +835,13 @@ if s:bundled('vimshell')
 endif
 
 " neocomplete.vim {{{2
-if s:bundled('neocomplcache') && (v:version <= 702 || (v:version == 703 && !has('patch885')))
+if s:bundled('neocomplete')
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+
   let g:neocomplete#enable_at_startup = 1
 
-  inoremap <expr> <C-C>  neocomplete#complete_common_string()
-  inoremap <expr> <C-O>  neocomplete#start_manual_complete()
+  inoremap <expr><C-O>  neocomplete#start_manual_complete()
 endif
-
-" neocomplcache.vim {{{2
-if s:bundled('neocomplcache') && (v:version <= 704 || (v:version == 703 && has('patch885')))
-  let g:neocomplcache_enable_at_startup = 1
-  let g:neocomplcache_enable_smart_case = 1
-  let g:neocomplcache_min_keyword_length = 3
-
-  if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-  endif
-  let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-  if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-  endif
-  if !exists('g:neocomplcache_force_omni_patterns')
-    let g:neocomplcache_force_omni_patterns = {}
-  endif
-  let g:neocomplcache_omni_patterns.php =
-        \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-  let g:neocomplcache_omni_patterns.c =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-  let g:neocomplcache_omni_patterns.cpp =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-  let g:neocomplcache_force_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-
-  inoremap <expr> <C-C> neocomplcache#complete_common_string()
-  inoremap <expr> <C-O>  neocomplcache#start_manual_complete()
-endif
-
 
 " neosnippet {{{2
 if s:bundled('neosnippet')
@@ -888,6 +860,8 @@ if s:bundled('vim-ref')
   if s:iswin
     let g:ref_pydoc_cmd = 'pydoc.bat'
     let g:ref_refe_encoding = 'cp932'
+  else
+    let g:ref_pydoc_cmd = 'python3 -m pydoc'
   endif
 
   let g:ref_detect_filetype = {
