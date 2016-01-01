@@ -289,10 +289,19 @@ if s:isgui
     set guifont=Ricty\ Diminished:h17
   elseif s:iswin
     set guifont=Inconsolata:h13:cSHIFTJIS
+
+    " ref. http://qiita.com/janus_wel/items/86082f69190f40df09e8
+    if has('gui_running')
+        let &termencoding = &encoding
+        set encoding=utf-8
+    else
+        set encoding=cp932
+    endif
   else
     set guifont=Ricty\ Diminished\ 13.5
   endif
 
+  set linespace=3
   set guioptions=ciM
   set mouse=a
   set mousehide
@@ -352,7 +361,9 @@ set helplang=ja
 MyAutocmd WinEnter * checktime
 set autoread
 
-set clipboard=unnamed
+if s:isgui || has('xterm_clipboard')
+  set clipboard=unnamed
+endif
 
 set showfulltag
 set notagbsearch
@@ -386,8 +397,6 @@ nnoremap <script> A <SID>[nohlsearch]A
 nnoremap <script> o <SID>[nohlsearch]o
 nnoremap <script> O <SID>[nohlsearch]O
 " }}}
-
-set linespace=3
 
 set number
 
