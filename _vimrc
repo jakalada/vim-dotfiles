@@ -611,20 +611,21 @@ if s:bundled('vimfiler')
   "   linux: trash-cliをインストール
   "     osx: rmtrashをインストール
   "     etc: オプションで直接コマンドを指定する
-  let g:vimfiler_as_default_explorer = 1    " explorerとして使用する
-  let g:vimfiler_safe_mode_by_default = 0   " セーフモードをオフにする
-  let g:vimfiler_split_action = "split"     " 忘れた
+  call vimfiler#custom#profile('default', 'context', {
+        \   'explorer' : 0,
+        \   'safe' : 0,
+        \   'split' : 'split'
+        \ })
 
   let g:vimfiler_time_format        = "%Y/%m/%d %H:%M"  " 例: 2013/01/01 00:00
-
   let g:vimfiler_tree_leaf_icon     = ' '   " default: '|'
   let g:vimfiler_tree_opened_icon   = '-'   " default: '-'
   let g:vimfiler_tree_closed_icon   = '+'   " default: '+'
   let g:vimfiler_readonly_file_icon = '!'   " deafult: 'X'
-  let g:vimfiler_file_icon          = '-'   " default: '-'
+  let g:vimfiler_file_icon          = ' '   " default: ' '
   let g:vimfiler_marked_file_icon   = '*'   " default: '*'
 
-  nnoremap <silent> <Leader>e :<C-U>VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+  nnoremap <silent> <Leader>e :<C-U>VimFilerCurrentDir -split -simple -winwidth=35 -toggle -no-quit<CR>
   nnoremap <silent> <Leader>E :<C-U>VimFiler<CR>
 
   let g:vimfiler_no_default_key_mappings = 1 " デフォルトのマッピングを無効
