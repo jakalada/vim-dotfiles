@@ -17,8 +17,8 @@ endif
 let s:iswin32 = has('win32')
 let s:iswin64 = has('win64')
 let s:iswin = has('win32') || has('win64')
-let s:isgui = has("gui_running")
-let s:ismacunix = has("macunix")
+let s:isgui = has('gui_running')
+let s:ismacunix = has('macunix')
 
 if s:iswin
   set shellslash
@@ -226,7 +226,6 @@ endif
 " Encoding {{{1
 " fileencodingの設定 {{{
 set fileencodings=iso-2022-jp-3,iso-2022-jp,euc-jisx0213,euc-jp,utf-8,ucs-bom,euc-jp,eucjp-ms,cp932
-set encoding=utf-8
 
 " マルチバイト文字が含まれていない場合はencodingの値を使用する
 MyAutocmd BufReadPost *
@@ -253,12 +252,12 @@ set ambiwidth=double
 syntax enable
 
 " ft-ruby-syntax
-let ruby_operators = 1
+let g:ruby_operators = 1
 
 " NOTE: ファイルタイプがvimのときでも`set foldmethod=syntax`されてしまう
 " let ruby_fold = 1
 
-let ruby_no_comment_fold = 1
+let g:ruby_no_comment_fold = 1
 " let g:rubycomplete_buffer_loading = 1
 " let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
@@ -293,14 +292,6 @@ if s:isgui
     set guifont=Ricty\ Diminished:h17
   elseif s:iswin
     set guifont=Inconsolata:h13:cSHIFTJIS
-
-    " ref. http://qiita.com/janus_wel/items/86082f69190f40df09e8
-    if has('gui_running')
-        let &termencoding = &encoding
-        set encoding=utf-8
-    else
-        set encoding=cp932
-    endif
   else
     set guifont=Ricty\ Diminished\ 13.5
   endif
@@ -312,7 +303,7 @@ if s:isgui
   set mousefocus
   set novisualbell
   set guicursor+=a:blinkon0
-  let loaded_matchparen = 1
+  let g:loaded_matchparen = 1
 else
   set t_Co=256
   let g:seoul256_background = 234
@@ -482,8 +473,8 @@ if s:ismacunix && s:isgui
         \  'Window.Zoom All',
         \  'Window.Toggle Full Screen Mode'
         \]
-  for s in s:macmenus
-    execute 'macmenu ' . substitute(escape(s, ' '), '\.\.\.', '\\.\\.\\.', 'g') . ' key=<Nop>'
+  for s:menu in s:macmenus
+    execute 'macmenu ' . substitute(escape(s:menu, ' '), '\.\.\.', '\\.\\.\\.', 'g') . ' key=<Nop>'
   endfor
 endif
 
@@ -512,8 +503,8 @@ lnoremap <C-K> <Esc>
 
 
 " Leader {{{2
-let mapleader = ' '
-let maplocalleader = '\'
+let g:mapleader = ' '
+let g:maplocalleader = '\'
 
 " mapmode-nvo {{{2
 noremap j gj
@@ -621,7 +612,7 @@ if s:bundled('vimfiler')
         \   'split' : 'split'
         \ })
 
-  let g:vimfiler_time_format        = "%Y/%m/%d %H:%M"  " 例: 2013/01/01 00:00
+  let g:vimfiler_time_format        = '%Y/%m/%d %H:%M'  " 例: 2013/01/01 00:00
   let g:vimfiler_tree_leaf_icon     = ' '   " default: '|'
   let g:vimfiler_tree_opened_icon   = '-'   " default: '-'
   let g:vimfiler_tree_closed_icon   = '+'   " default: '+'
@@ -817,7 +808,7 @@ if s:bundled('unite.vim')
   let s:unite_source = {'name': 'neco'}
 
   function! s:unite_source.gather_candidates(args, context)
-    let necos = [
+    let l:necos = [
           \ "~(-'_'-) goes right",
           \ "~(-'_'-) goes right and left",
           \ "~(-'_'-) goes right quickly",
@@ -825,12 +816,12 @@ if s:bundled('unite.vim')
           \ "~(-'_'-)  -8(*'_'*) go right and left",
           \ "(=' .' ) ~w",
           \ ]
-    return map(necos, '{
-          \ "word": v:val,
-          \ "source": "neco",
-          \ "kind": "command",
-          \ "action__command": "Neco " . v:key,
-          \ }')
+    return map(l:necos, "{
+          \ 'word': v:val,
+          \ 'source': 'neco',
+          \ 'kind': 'command',
+          \ 'action__command': 'Neco ' . v:key,
+          \ }")
   endfunction
   call unite#define_source(s:unite_source)
 endif
@@ -894,8 +885,8 @@ endif
 
 " changelog.vim {{{2
 MyAutocmd BufNewFile,BufRead *.changelog setfiletype changelog
-let g:changelog_timeformat = "%Y-%m-%d"
-let g:changelog_username = "Hideki Hamada (jakalada)"
+let g:changelog_timeformat = '%Y-%m-%d'
+let g:changelog_username = 'Hideki Hamada (jakalada)'
 
 
 " surround.vim {{{2
@@ -1060,43 +1051,43 @@ set tabline=%!MakeTabLine()
 function! s:tabpage_label(n)
 
   " タブページ内のバッファのリスト
-  let bufnrs = tabpagebuflist(a:n)
+  let l:bufnrs = tabpagebuflist(a:n)
 
   " カレントタブページかどうかでハイライトを切り替える
-  let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
+  let l:hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
 
   " タブページ内に変更ありのバッファがあったら '+' を付ける
-  let mod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? ' [+]' : ''
+  let l:mod = len(filter(copy(l:bufnrs), "getbufvar(v:val, '&modified')")) ? ' [+]' : ''
 
-  let label = ''
+  let l:label = ''
 
-  let title = gettabvar(a:n, 'title')
-  if title !=# ''
+  let l:title = gettabvar(a:n, 'title')
+  if l:title !=# ''
     " t:titleと言う変数があればその内容を使用
-    let label = ' #' . title . ' '
+    let l:label = ' #' . l:title . ' '
   else
     " t:titleと言う変数がなければカレントバッファ名を使用
-    let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
-    let fname = bufname(curbufnr)
-    if fname ==# ''
-      let fname = '[No Name]'
+    let l:curbufnr = l:bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
+    let l:fname = bufname(l:curbufnr)
+    if l:fname ==# ''
+      let l:fname = '[No Name]'
     else
-      let fname = fnamemodify(fname, ':t')
+      let l:fname = fnamemodify(l:fname, ':t')
     end
 
-    let label = mod . ' ' . fname . ' '
+    let l:label = l:mod . ' ' . l:fname . ' '
   endif
 
-  return '%' . a:n . 'T' . hi . label . '%T%#TabLineFill#'
+  return '%' . a:n . 'T' . l:hi . l:label . '%T%#TabLineFill#'
 endfunction
 
 function! MakeTabLine()
-  let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
-  let sep = ' '
-  let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
+  let l:titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
+  let l:sep = ' '
+  let l:tabpages = join(l:titles, l:sep) . l:sep . '%#TabLineFill#%T'
   "let info = '(' . fnamemodify(getcwd(), ':~') . ') ' " 好きな情報を入れる
-  let info = ''
-  return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
+  let l:info = ''
+  return l:tabpages . '%=' . l:info  " タブリストを左に、情報を右に表示
 endfunction
 
 " ウィンドウ {{{2
@@ -1148,9 +1139,9 @@ endfunction " }}}
 MyAutocmd CursorMoved * call s:hilight_indent()
 MyAutocmd CursorMovedI * call s:hilight_indent()
 function! s:hilight_indent() "{{{
-  let n = indent(line('.'))
-  if n >= &tabstop
-    let &l:colorcolumn = join(range(&tabstop, n, &tabstop), ',')
+  let l:n = indent(line('.'))
+  if l:n >= &tabstop
+    let &l:colorcolumn = join(range(&tabstop, l:n, &tabstop), ',')
   else
     let &l:colorcolumn = ''
   endif
@@ -1171,9 +1162,9 @@ MyAutocmd BufReadPost *
 " カーソル位置を移動せずにファイル全体を整形する {{{2
 " http://kannokanno.hatenablog.com/entry/2014/03/16/160109
 function! s:format_file()
-  let view = winsaveview()
-  normal gg=G
-  silent call winrestview(view)
+  let l:view = winsaveview()
+  exe 'normal gg=G'
+  silent call winrestview(l:view)
 endfunction
 nnoremap <C-F> :call <SID>format_file()<CR>
 
