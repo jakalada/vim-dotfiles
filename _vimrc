@@ -6,7 +6,11 @@
 if !1 | finish | endif
 
 if has('vim_starting')
-  set nocompatible
+  if has('win32') || has('win64')
+    set encoding=cp932
+  else
+    set encoding=utf-8
+  endif
   scriptencoding utf-8
 endif
 
@@ -847,7 +851,7 @@ endif
 
 " neocomplete.vim {{{2
 if s:bundled('neocomplete')
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  MyAutocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 
   let g:neocomplete#enable_at_startup = 1
 
@@ -1159,7 +1163,7 @@ nnoremap <silent> <Leader>O   :<C-u>for i in range(1, v:count1) \| call append(l
 
 
 " 最後に編集した位置に移動する {{{2
-autocmd BufReadPost *
+MyAutocmd BufReadPost *
       \ if line("'\"") > 1 && line("'\"") <= line("$") |
       \   exe "normal! g`\"" |
       \ endif
