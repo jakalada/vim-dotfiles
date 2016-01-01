@@ -609,7 +609,8 @@ if s:bundled('vimfiler')
   call vimfiler#custom#profile('default', 'context', {
         \   'explorer' : 0,
         \   'safe' : 0,
-        \   'split' : 'split'
+        \   'split' : 'split',
+        \   'auto_cd' : 1
         \ })
 
   let g:vimfiler_time_format        = '%Y/%m/%d %H:%M'  " 例: 2013/01/01 00:00
