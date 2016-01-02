@@ -953,7 +953,6 @@ if s:bundled('vim-quickhl')
 
   nmap <Leader>j <Plug>(quickhl-cword-toggle)
   nmap <Leader>] <Plug>(quickhl-tag-toggle)
-  map J <Plug>(operator-quickhl-manual-this-motion)
 endif
 
 
@@ -1172,6 +1171,21 @@ function! s:format_file()
   silent call winrestview(l:view)
 endfunction
 nnoremap <C-F> :call <SID>format_file()<CR>
+
+" ファイルタイプごとチートシートの参照・記述をサポートする {{{2
+let g:filetype_cheat_dir = $DROPBOXDIR . '/Notes/FileTypes'
+
+function! s:open_cheat_file(...)
+  if len(a:000) > 0
+    let l:cheat_file_path = g:filetype_cheat_dir . '/' . a:1 . '.md'
+    execute 'split ' . l:cheat_file_path
+  else
+    let l:cheat_file_path = g:filetype_cheat_dir . '/' . &l:filetype . '.md'
+    execute 'split ' . l:cheat_file_path
+  endif
+endfunction
+command! -nargs=? OpenCheatFile :call s:open_cheat_file(<f-args>)
+
 
 " }}}1
 
