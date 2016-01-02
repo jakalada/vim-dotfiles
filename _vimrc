@@ -1178,10 +1178,10 @@ let g:filetype_cheat_dir = $DROPBOXDIR . '/Notes/FileTypes'
 function! s:open_cheat_file(...)
   if len(a:000) > 0
     let l:cheat_file_path = g:filetype_cheat_dir . '/' . a:1 . '.md'
-    execute 'split ' . l:cheat_file_path
+    execute 'vsplit ' . l:cheat_file_path
   else
     let l:cheat_file_path = g:filetype_cheat_dir . '/' . &l:filetype . '.md'
-    execute 'split ' . l:cheat_file_path
+    execute 'vsplit ' . l:cheat_file_path
   endif
 endfunction
 command! -nargs=? OpenCheatFile :call s:open_cheat_file(<f-args>)
