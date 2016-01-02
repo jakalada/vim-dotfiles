@@ -88,6 +88,7 @@ NeoBundle 'kana/vim-altr'
 NeoBundle 'kana/vim-gf-user'
 NeoBundle 'kana/vim-metarw'
 NeoBundle 'kana/vim-metarw-git'
+NeoBundle 'kana/vim-operator-user'
 NeoBundle 'kana/vim-smartchr'
 "NeoBundle 'kana/vim-smartinput'
 NeoBundle 'kana/vim-submode'
@@ -945,11 +946,14 @@ endif
 
 " quickhl.vim {{{2
 if s:bundled('vim-quickhl')
-  nmap <Space>m <Plug>(quickhl-toggle)
-  xmap <Space>m <Plug>(quickhl-toggle)
-  nmap <Space>M <Plug>(quickhl-reset)
-  xmap <Space>M <Plug>(quickhl-reset)
-  nmap <Space>j <Plug>(quickhl-match)
+  nmap <Leader>m <Plug>(quickhl-manual-this)
+  xmap <Leader>m <Plug>(quickhl-manual-this)
+  nmap <Leader>M <Plug>(quickhl-manual-reset)
+  xmap <Leader>M <Plug>(quickhl-manual-reset)
+
+  nmap <Leader>j <Plug>(quickhl-cword-toggle)
+  nmap <Leader>] <Plug>(quickhl-tag-toggle)
+  map J <Plug>(operator-quickhl-manual-this-motion)
 endif
 
 
