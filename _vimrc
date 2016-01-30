@@ -134,12 +134,13 @@ NeoBundle 'tomasr/molokai'
 " }}}
 
 " filetype {{{
+NeoBundle 'godlygeek/tabular'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'leshill/vim-json'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'slim-template/vim-slim'
-NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'vim-scripts/Textile-for-VIM'
@@ -611,7 +612,7 @@ if s:bundled('vimfiler')
         \   'explorer' : 0,
         \   'safe' : 0,
         \   'split' : 'split',
-        \   'auto_cd' : 1
+        \   'auto_cd' : 0
         \ })
 
   let g:vimfiler_time_format        = '%Y/%m/%d %H:%M'  " 例: 2013/01/01 00:00
@@ -623,7 +624,7 @@ if s:bundled('vimfiler')
   let g:vimfiler_marked_file_icon   = '*'   " default: '*'
 
   nnoremap <silent> <Leader>e :<C-U>VimFilerCurrentDir -split -simple -winwidth=35 -toggle -no-quit<CR>
-  nnoremap <silent> <Leader>E :<C-U>VimFiler<CR>
+  nnoremap <silent> <Leader>E :<C-U>VimFilerCurrentDir<CR>
 
   let g:vimfiler_no_default_key_mappings = 1 " デフォルトのマッピングを無効
   MyAutocmd Filetype vimfiler call s:init_vimfiler()
@@ -1029,6 +1030,17 @@ noremap <SID>[fold]M zM
 noremap <SID>[fold]m zm
 noremap <SID>[fold]R zR
 noremap <SID>[fold]r zr
+
+noremap <silent> <SID>[fold]0 :<C-U>setl foldlevel=0<CR>
+noremap <silent> <SID>[fold]1 :<C-U>setl foldlevel=1<CR>
+noremap <silent> <SID>[fold]2 :<C-U>setl foldlevel=2<CR>
+noremap <silent> <SID>[fold]3 :<C-U>setl foldlevel=3<CR>
+noremap <silent> <SID>[fold]4 :<C-U>setl foldlevel=4<CR>
+noremap <silent> <SID>[fold]5 :<C-U>setl foldlevel=5<CR>
+noremap <silent> <SID>[fold]6 :<C-U>setl foldlevel=6<CR>
+noremap <silent> <SID>[fold]7 :<C-U>setl foldlevel=7<CR>
+noremap <silent> <SID>[fold]8 :<C-U>setl foldlevel=8<CR>
+noremap <silent> <SID>[fold]9 :<C-U>setl foldlevel=9<CR>
 
 set foldtext=getline(v:foldstart)
 
