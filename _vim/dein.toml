@@ -54,6 +54,9 @@ repo = 'h1mesuke/vim-alignta'
 repo = 'itchyny/thumbnail.vim'
 
 [[plugins]]
+repo = 'itchyny/vim-parenmatch'
+
+[[plugins]]
 repo = 'jceb/vim-hier'
 
 [[plugins]]
