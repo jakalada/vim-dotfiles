@@ -33,6 +33,8 @@ endif
 
 " dein.vim {{{1
 " REF: http://qiita.com/delphinus35/items/00ff2c0ba972c6e41542
+let g:dein#install_progress_type = 'title'
+
 " プラグインが実際にインストールされるディレクトリ
 let s:dein_dir = expand('~/.cache/dein')
 
@@ -843,6 +845,7 @@ let g:airline_theme = 'bubblegum'
 
 " syntastic {{{2
 let g:syntastic_ignore_files = ['\m^/usr/include/', '\m\c\.h$', '\m\c\.cpp$',' \m\c\.c$']
+
 
 " Misc {{{1
 " 折りたたみ {{{2
