@@ -1,0 +1,298 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+
+  [plugins.build]
+  windows = 'tools\\update-dll-mingw'
+  cygwin  = 'make -f make_cygwin.mak'
+  mac     = 'make -f make_mac.mak'
+  linux   = 'make'
+  unix    = 'gmake'
+
+[[plugins]]
+repo = 'bling/vim-airline'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+repo = 'Shougo/junkfile.vim'
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/vimfiler'
+
+[[plugins]]
+repo = 'Shougo/vimshell'
+
+[[plugins]]
+repo = 'Shougo/vinarise'
+
+[[plugins]]
+repo = 'Shougo/neocomplete'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'airblade/vim-rooter'
+
+[[plugins]]
+repo = 'dannyob/quickfixstatus'
+
+[[plugins]]
+repo = 'godlygeek/tabular'
+
+[[plugins]]
+repo = 'h1mesuke/vim-alignta'
+
+[[plugins]]
+repo = 'itchyny/thumbnail.vim'
+
+[[plugins]]
+repo = 'jceb/vim-hier'
+
+[[plugins]]
+repo = 'kana/vim-altr'
+
+[[plugins]]
+repo = 'kana/vim-gf-user'
+
+[[plugins]]
+repo = 'kana/vim-metarw'
+
+[[plugins]]
+repo = 'kana/vim-metarw-git'
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'kana/vim-smartchr'
+
+[[plugins]]
+repo = 'kana/vim-submode'
+
+[[plugins]]
+repo = 'kana/vim-tabpagecd'
+
+[[plugins]]
+repo = 'kannokanno/previm'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+
+[[plugins]]
+repo = 'mattn/calendar-vim'
+
+[[plugins]]
+repo = 'mattn/learn-vimscript'
+
+[[plugins]]
+repo = 'mattn/webapi-vim'
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+
+[[plugins]]
+repo = 'supermomonga/shiraseru.vim'
+
+[[plugins]]
+repo = 't9md/vim-quickhl'
+
+[[plugins]]
+repo = 'taku-o/vim-toggle'
+
+[[plugins]]
+repo = 'thinca/vim-editvar'
+
+[[plugins]]
+repo = 'thinca/vim-localrc'
+
+[[plugins]]
+repo = 'thinca/vim-openbuf'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+
+[[plugins]]
+repo = 'thinca/vim-visualstar'
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tyru/caw.vim'
+
+[[plugins]]
+repo = 'tyru/current-func-info.vim'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
+repo = 'tyru/savemap.vim'
+
+[[plugins]]
+repo = 'tyru/vice.vim'
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repo = 'vim-scripts/VOoM'
+
+[[plugins]]
+repo = 'zef/vim-cycle'
+
+[[plugins]]
+repo = 'chriskempson/vim-tomorrow-theme'
+
+[[plugins]]
+repo = 'hail2u/h2u_colorscheme'
+
+[[plugins]]
+repo = 'hickop/vim-hickop-colors'
+
+[[plugins]]
+repo = 'junegunn/seoul256.vim'
+
+[[plugins]]
+repo = 'Lokaltog/vim-distinguished'
+
+[[plugins]]
+repo = 'nanotech/jellybeans.vim'
+
+[[plugins]]
+repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'godlygeek/tabular'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+
+[[plugins]]
+repo = 'leshill/vim-json'
+
+[[plugins]]
+repo = 'othree/html5.vim'
+
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+
+[[plugins]]
+repo = 'slim-template/vim-slim'
+
+[[plugins]]
+repo = 'tpope/vim-haml'
+
+[[plugins]]
+repo = 'vim-ruby/vim-ruby'
+
+[[plugins]]
+repo = 'vim-scripts/Textile-for-VIM'
+
+[[plugins]]
+repo = 'kingbin/vim-arduino'
+
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+
+[[plugins]]
+repo = 'h1mesuke/textobj-wiw'
+
+[[plugins]]
+repo = 'kana/vim-textobj-fold'
+
+[[plugins]]
+repo = 'kana/vim-textobj-indent'
+
+[[plugins]]
+repo = 'kana/vim-textobj-lastpat'
+
+[[plugins]]
+repo = 'kana/vim-textobj-line'
+
+[[plugins]]
+repo = 'kana/vim-textobj-syntax'
+
+[[plugins]]
+repo = 'osyo-manga/vim-textobj-multiblock'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'Shougo/unite-build'
+
+[[plugins]]
+repo = 'Shougo/unite-outline'
+
+[[plugins]]
+repo = 'basyura/unite-rails'
+
+[[plugins]]
+repo = 'choplin/unite-vim_hacks'
+
+[[plugins]]
+repo = 'sgur/unite-git_grep'
+
+[[plugins]]
+repo = 'sgur/unite-qf'
+
+[[plugins]]
+repo = 'tacroe/unite-mark'
+
+[[plugins]]
+repo = 'thinca/vim-unite-history'
+
+[[plugins]]
+repo = 'tsukkee/unite-help'
+
+[[plugins]]
+repo = 'tsukkee/unite-tag'
+
+[[plugins]]
+repo = 'tungd/unite-session'
+
+[[plugins]]
+repo = 'ujihisa/unite-colorscheme'
+
+[[plugins]]
+repo = 'ujihisa/unite-font'
+
+[[plugins]]
+repo = 'ujihisa/unite-locate'
+
+[[plugins]]
+repo = 'tyru/pacman.vim'
+
