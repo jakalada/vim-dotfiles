@@ -67,6 +67,11 @@ endif
 " もし、未インストールものものがあったらインストール
 if has('vim_starting') && dein#check_install()
   call dein#install()
+
+  " インストールするものがあった後の起動でエラーが頻発するので
+  " セットアップを行わない
+  " (手動でVimを再起動する)
+  finish
 endif
 
 " Commands {{{1
