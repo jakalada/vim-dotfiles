@@ -36,6 +36,12 @@ repo = 'Shougo/vinarise'
 repo = 'Shougo/neocomplete'
 
 [[plugins]]
+repo = 'Shougo/neosnippet'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
 repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
