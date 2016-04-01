@@ -12,6 +12,9 @@ setlocal formatoptions+=M
 setlocal formatoptions-=r
 setlocal formatoptions-=o
 
+syntax sync fromstart
+setlocal foldmethod=syntax
+
 if has('path_extra')
   setlocal tags+=~/.tags/c/systags
 endif

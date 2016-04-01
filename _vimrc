@@ -135,42 +135,6 @@ set fileformats=unix,dos,mac
 "East Asian Width Class Ambiguous な文字をASCII文字の2倍の幅で扱う
 set ambiwidth=double
 
-
-" Syntax {{{1
-syntax enable
-
-" ft-ruby-syntax
-let g:ruby_operators = 1
-
-" NOTE: ファイルタイプがvimのときでも`set foldmethod=syntax`されてしまう
-" let ruby_fold = 1
-
-let g:ruby_no_comment_fold = 1
-" let g:rubycomplete_buffer_loading = 1
-" let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
-
-" ft-java-syntax
-let g:java_highlight_functions = 'style'
-let g:java_highlight_all = 1
-let g:java_allow_cpp_keywords = 1
-
-" ft-php-syntax
-let g:php_folding = 1
-
-" ft-python-syntax
-let g:python_highlight_all = 1
-
-" ft-xml-syntax
-let g:xml_syntax_folding = 1
-
-" ft-vim-syntax
-let g:vimsyntax_noerror = 1
-
-" ft-sh-syntax
-let g:is_bash = 1
-
-
 " Options {{{1
 if s:isgui
   let g:seoul256_background = 233
@@ -467,6 +431,143 @@ onoremap ? T
 onoremap ) t)
 onoremap ( t(
 
+" File Type Plugins {{{1
+" c.vim {{{2
+let g:c_gnu = 1
+let g:c_comment_strings = 1
+let g:c_space_errors = 1
+" let g:c_no_trail_space_error = 1
+" let g:c_no_tab_space_error = 1
+" let g:c_no_bracket_error = 1
+" let g:c_no_curly_error = 1
+let g:c_curly_error = 1
+" let g:c_no_ansi = 1
+let g:c_ansi_typedefs = 1
+let g:c_ansi_constants  = 1
+" let g:c_no_utf = 1
+" let g:c_syntax_for_h = 1
+let g:c_no_if0 = 1
+" let g:c_no_cformat = 1
+" let g:c_no_c99 = 1
+" let g:c_no_c11
+" let g:c_no_comment_fold = 1
+" let g:c_no_if0_fold = 1
+" let g:c_minlines = 100
+
+" coffee.vim {{{2
+" REF: https://github.com/kchmck/vim-coffee-script
+" helpファイルがないのでREADMEを参照する
+" let g:coffee_indent_keep_current = 1
+" let g:coffee_compiler = '/usr/bin/coffee'
+" let g:coffee_make_options = '--bare'
+" let g:coffee_cake = '/opt/bin/cake'
+" let g:coffee_cake_options = 'build'
+" let g:coffee_linter = '/opt/bin/coffeelint'
+" let g:coffee_lint_options = '-f lint.json'
+" let g:coffee_compile_vert = 1
+" let g:coffee_watch_vert = 1
+" let g:coffee_run_vert = 1
+
+" cpp.vim {{{2
+" c.vimの変数も採用される
+" let g:cpp_no_cpp11 = 1
+" let g:cpp_no_cpp14 = 1
+
+" csh.vim {{{2
+let g:filetype_csh = 'tcsh'
+
+" html.vim {{{2
+" let g:html_no_rendering = 1
+" let g:html_wrong_comments = 1
+
+" java.vim {{{2
+" let g:java_mark_braces_in_parens_as_errors = 1
+let g:java_highlight_java_lang_ids = 1
+let g:java_highlight_functions = 'style'
+let g:java_highlight_debug = 1
+" let g:java_ignore_javadoc = 1
+let g:java_javascript = 1
+let g:java_css = 1
+let g:java_vb = 1
+" let g:java_minlines = 50
+
+" javascript.vim {{{2
+" REF: https://github.com/pangloss/vim-javascript
+" helpファイルがないのでREADMEを参照する
+let g:javascript_enable_domhtmlcss = 1
+" let g:javascript_ignore_javaScriptdoc = 1
+" let g:javascript_conceal_function   = "ƒ"
+" let g:javascript_conceal_null       = "ø"
+" let g:javascript_conceal_this       = "@"
+" let g:javascript_conceal_return     = "⇚"
+" let g:javascript_conceal_undefined  = "¿"
+" let g:javascript_conceal_NaN        = "ℕ"
+" let g:javascript_conceal_prototype  = "¶"
+" let g:javascript_conceal_static     = "•"
+" let g:javascript_conceal_super      = "Ω"
+
+" json.vim {{{2
+" REF: https://github.com/elzr/vim-json
+" helpファイルがないのでREADMEを参照する
+" let g:vim_json_syntax_conceal = 0
+" let g:vim_json_syntax_concealcursor = 1
+
+" markdown.vim {{{2
+" let g:vim_markdown_folding_disabled = 1
+" let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_folding_level = 3
+" let g:vim_markdown_no_default_key_mappings = 1
+" let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_emphasis_multiline = 0
+let g:vim_markdown_conceal = 0
+" let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini']
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
+let g:vim_markdown_new_list_item_indent = 2
+
+" php.vim {{{2
+let g:php_sql_query = 1
+let g:php_baselib = 1
+let g:php_htmlInStrings = 1
+" let g:php_oldStyle = 1
+let g:php_asp_tags = 1
+" let g:php_noShortTags = 1
+let g:php_parent_error_close = 1
+let g:php_parent_error_open = 1
+let g:php_folding = 1
+" let g:php_sync_method = x
+
+" python.vim {{{2
+let g:python_highlight_all = 1
+
+" ruby.vim {{{2
+let g:ruby_operators = 1
+let g:ruby_space_errors = 1
+" let g:ruby_no_trail_space_error = 1
+" let g:ruby_no_tab_space_error = 1
+let g:ruby_fold = 1
+" let g:ruby_no_expensive = 1
+" let g:ruby_minlines = 100
+" let g:ruby_spellcheck_strings = 1
+
+" sh.vim {{{2
+let g:is_bash = 1
+let g:sh_fold_enabled = 7
+" let g:sh_minlines = 500
+" let g:sh_maxlines = 100
+
+" vim.vim {{{2
+" let g:vimsyn_minlines = 50
+" let g:vimsyn_maxlines = 50
+let g:vimsyn_embed = 0
+let g:vimsyn_folding = 0
+let g:vimsyntax_noerror = 1
+
+" xml.vim{{{2
+" let g:xml_namespace_transparent=1
+let g:xml_syntax_folding = 1
 
 " Plugins {{{1
 " vim-toggle {{{2

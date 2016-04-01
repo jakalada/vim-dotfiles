@@ -10,6 +10,8 @@ setlocal formatoptions+=M
 setlocal formatoptions-=r
 setlocal formatoptions-=o
 
+let b:javascript_fold = 1
+
 if !exists('b:undo_ftplugin')
   let b:undo_ftplugin = ''
 endif
