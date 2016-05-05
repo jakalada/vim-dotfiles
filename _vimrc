@@ -5,6 +5,9 @@
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
+filetype off
+filetype plugin indent off
+
 if has('vim_starting')
   if has('win32') || has('win64')
     set encoding=cp932
@@ -67,12 +70,10 @@ endif
 " もし、未インストールものものがあったらインストール
 if has('vim_starting') && dein#check_install()
   call dein#install()
-
-  " インストールするものがあった後の起動でエラーが頻発するので
-  " セットアップを行わない
-  " (手動でVimを再起動する)
-  finish
 endif
+
+filetype plugin indent on
+syntax enable
 
 " Commands {{{1
 " .vimrcの再読み込み時に.vimrc内で設定されたautocmdを初期化する {{{
