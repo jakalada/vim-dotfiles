@@ -45,7 +45,7 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
-repo = 'airblade/vim-rooter'
+repo = 'altercation/vim-colors-solarized'
 
 [[plugins]]
 repo = 'dannyob/quickfixstatus'
