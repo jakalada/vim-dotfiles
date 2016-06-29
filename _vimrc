@@ -138,11 +138,11 @@ set ambiwidth=double
 
 " Options {{{1
 if s:isgui
-  let g:seoul256_background = 233
-  colorscheme seoul256
+  set background=light
+  colorscheme solarized
 
   if s:ismacunix
-    set guifont=Ricty\ Diminished:h17
+    set guifont=Ricty\ Diminished:h16
   elseif s:iswin
     set guifont=Inconsolata:h13:cSHIFTJIS
   else
@@ -941,14 +941,14 @@ let g:textobj_multiblock_blocks = [
 let g:gitgutter_enabled = 0
 nnoremap <Space>gg  :<C-u>GitGutterToggle<CR>
 
-
-" rooter {{{2
-let g:rooter_use_lcd = 1
-
 " vim-airline {{{2
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline_theme = 'bubblegum'
+if s:isgui
+  let g:airline_theme = 'solarized'
+else
+  let g:airline_theme = 'bubblegum'
+endif
 
 " syntastic {{{2
 let g:syntastic_ignore_files = ['\m^/usr/include/', '\m\c\.h$', '\m\c\.cpp$',' \m\c\.c$']
