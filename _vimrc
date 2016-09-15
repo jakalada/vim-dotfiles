@@ -1100,6 +1100,7 @@ function! s:init_cmdwin() " {{{
   nnoremap <buffer><silent> q :<C-U>quit<CR>
   inoremap <buffer><expr> <CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
   nnoremap <buffer> ; <Nop>
+  setl nonumber
   startinsert!
 endfunction " }}}
 
