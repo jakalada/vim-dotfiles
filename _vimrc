@@ -5,7 +5,6 @@
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
-filetype off
 filetype plugin indent off
 
 if has('vim_starting')
@@ -166,7 +165,7 @@ endif
 set pumheight=10
 
 set nocursorline
-set cmdheight=2
+set cmdheight=1
 
 set smartindent autoindent
 set smarttab expandtab
@@ -193,20 +192,18 @@ if v:version >= 703
 endif
 
 if has('virtualedit')
-  set virtualedit=block,insert
+  set virtualedit=block
 endif
 
 " マルチバイト文字の扱いを自然にする
 set formatoptions+=m
 set formatoptions+=M
-" コメント行で改行した次行を非コメント行にする
-set formatoptions-=r
-set formatoptions-=o
 
 set scrolloff=10
 
 set helplang=ja
 
+" REF: http://vim-jp.org/vim-users-jp/2011/03/12/Hack-206.html
 MyAutocmd WinEnter * checktime
 set autoread
 
@@ -230,19 +227,12 @@ set wrapscan
 set hlsearch
 
 nnoremap <silent> <SID>[nohlsearch] :<C-U>nohlsearch<CR>
-
-nnoremap <script> / <SID>[nohlsearch]/
-nnoremap <script> ? <SID>[nohlsearch]?
-
 nnoremap <script> v <SID>[nohlsearch]v
 nnoremap <script> V <SID>[nohlsearch]V
-
 nnoremap <script> i <SID>[nohlsearch]i
 nnoremap <script> I <SID>[nohlsearch]I
-
 nnoremap <script> a <SID>[nohlsearch]a
 nnoremap <script> A <SID>[nohlsearch]A
-
 nnoremap <script> o <SID>[nohlsearch]o
 nnoremap <script> O <SID>[nohlsearch]O
 " }}}
@@ -340,14 +330,18 @@ lnoremap <C-Space> <Nop>
 
 
 " <C-J>と<C-K>を各モードでエスケープにマッピング {{{2
-noremap <C-J> <Esc>
+nnoremap <silent> <C-J> <Esc>:<C-U>nohlsearch<CR>
+vnoremap <C-J> <Esc>
+onoremap <C-J> <Esc>
 inoremap <C-J> <Esc>
 cnoremap <C-J> <C-C>
 xnoremap <C-J> <Esc>
 snoremap <C-J> <Esc>
 lnoremap <C-J> <Esc>
 
-noremap <C-K> <Esc>
+nnoremap <silent> <C-K> <Esc>:<C-U>nohlsearch<CR>
+vnoremap <C-K> <Esc>
+onoremap <C-K> <Esc>
 inoremap <C-K> <Esc>
 cnoremap <C-K> <C-C>
 xnoremap <C-K> <Esc>
@@ -384,8 +378,6 @@ nnoremap <C-Down> <C-X>
 nnoremap Q q
 nnoremap <silent> q :<C-U>close<CR>
 
-nnoremap <C-Backspace> <C-^>
-
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 nnoremap n nzz
@@ -402,6 +394,7 @@ vnoremap ( t(
 vnoremap q <Nop>
 vnoremap qq <Nop>
 
+" REF: http://labs.timedia.co.jp/2012/10/vim-more-useful-blockwise-insertion.html
 vnoremap <expr> I  <SID>force_blockwise_visual('I')
 vnoremap <expr> A  <SID>force_blockwise_visual('A')
 function! s:force_blockwise_visual(next_key)
@@ -420,9 +413,6 @@ inoremap <silent> <C-L> <Right>
 inoremap <silent> <C-H> <Left>
 
 inoremap <silent> <F7> <Esc>gUiwea
-
-
-" mapmode-ic {{{2
 
 
 " mapmode-o {{{2
@@ -576,13 +566,12 @@ nmap - <Plug>ToggleN
 
 
 " matchit.vim {{{2
-runtime macros/matchit.vim
-
+let loaded_matchit = 1
 
 " caw.vim " {{{2
 let g:caw_no_default_keymappings = 1
-nmap <C-P> <Plug>(caw:wrap:toggle)
-vmap <C-P> <Plug>(caw:wrap:toggle)gv=
+nmap <C-P> <Plug>(caw:hatpos:toggle)
+vmap <C-P> <Plug>(caw:hatpos:toggle)
 
 
 " vimfiler {{{2
@@ -606,77 +595,14 @@ let g:vimfiler_readonly_file_icon = '!'   " deafult: 'X'
 let g:vimfiler_file_icon          = ' '   " default: ' '
 let g:vimfiler_marked_file_icon   = '*'   " default: '*'
 
-nnoremap <silent> <Leader>e :<C-U>VimFilerCurrentDir -split -simple -winwidth=35 -toggle -no-quit<CR>
-nnoremap <silent> <Leader>E :<C-U>VimFilerCurrentDir<CR>
+let g:vimfiler_force_overwrite_statusline = 0
 
-let g:vimfiler_no_default_key_mappings = 1 " デフォルトのマッピングを無効
+nnoremap <silent> <Leader>e :<C-U>VimFilerExplorer -toggle<CR>
+nnoremap <silent> <Leader>E :<C-U>VimFilerCurrentDir -toggle<CR>
+
 MyAutocmd Filetype vimfiler call s:init_vimfiler()
 function! s:init_vimfiler() " {{{
   setlocal nonumber
-  vmap <buffer> '               <Plug>(vimfiler_toggle_mark_selected_lines)
-
-  nmap <buffer> <Tab>           <Plug>(vimfiler_switch_to_other_window)
-  nmap <buffer> j               <Plug>(vimfiler_loop_cursor_down)
-  nmap <buffer> k               <Plug>(vimfiler_loop_cursor_up)
-  nmap <buffer> gg              <Plug>(vimfiler_cursor_top)
-  " nmap <buffer> <C-l>         <Plug>(vimfiler_redraw_screen)
-  nmap <buffer> '               <Plug>(vimfiler_toggle_mark_current_line)
-  "nmap <buffer> <S-Space>      <Plug>(vimfiler_toggle_mark_current_line_up)
-  " nmap <buffer> *             <Plug>(vimfiler_toggle_mark_all_lines)
-  nmap <buffer> "               <Plug>(vimfiler_clear_mark_all_lines)
-  nmap <buffer> c               <Plug>(vimfiler_copy_file)
-  nmap <buffer> m               <Plug>(vimfiler_move_file)
-  nmap <buffer> d               <Plug>(vimfiler_delete_file)
-  nmap <buffer> Cc              <Plug>(vimfiler_clipboard_copy_file)
-  nmap <buffer> Cm              <Plug>(vimfiler_clipboard_move_file)
-  nmap <buffer> Cp              <Plug>(vimfiler_clipboard_paste)
-  nmap <buffer> r               <Plug>(vimfiler_rename_file)
-  nmap <buffer> K               <Plug>(vimfiler_make_directory)
-  nmap <buffer> N               <Plug>(vimfiler_new_file)
-  nmap <buffer> <Enter>               <Plug>(vimfiler_execute)
-  nmap <buffer> l               <Plug>(vimfiler_smart_l)
-  nmap <buffer> X               <Plug>(vimfiler_execute_system_associated)
-  nmap <buffer> h               <Plug>(vimfiler_smart_h)
-  nmap <buffer> L               <Plug>(vimfiler_switch_to_drive)
-  nmap <buffer> ~               <Plug>(vimfiler_switch_to_home_directory)
-  nmap <buffer> \               <Plug>(vimfiler_switch_to_root_directory)
-  nmap <buffer> <C-j>           <Plug>(vimfiler_switch_to_history_directory)
-  nmap <buffer> <BS>            <Plug>(vimfiler_switch_to_parent_directory)
-  nmap <buffer> .               <Plug>(vimfiler_toggle_visible_dot_files)
-  " nmap <buffer> H             <Plug>(vimfiler_popup_shell)
-  nmap <buffer> e               <Plug>(vimfiler_edit_file)
-  nmap <buffer> E               <Plug>(vimfiler_split_edit_file)
-  nmap <buffer> B               <Plug>(vimfiler_edit_binary_file)
-  nmap <buffer> ge              <Plug>(vimfiler_execute_external_filer)
-  " nmap <buffer> <RightMouse>  <Plug>(vimfiler_execute_external_filer)
-  nmap <buffer> !               <Plug>(vimfiler_execute_shell_command)
-  nmap <buffer> q               <Plug>(vimfiler_hide)
-  nmap <buffer> Q               <Plug>(vimfiler_exit)
-  " nmap <buffer> -             <Plug>(vimfiler_close)
-  nmap <buffer> ?               <Plug>(vimfiler_help)
-  " nmap <buffer> v             <Plug>(vimfiler_preview_file)
-  " nmap <buffer> o             <Plug>(vimfiler_sync_with_current_vimfiler)
-  " nmap <buffer> O             <Plug>(vimfiler_open_file_in_another_vimfiler)
-  " nmap <buffer> <C-g>         <Plug>(vimfiler_print_filename)
-  " nmap <buffer> g<C-g>        <Plug>(vimfiler_toggle_maximize_window)
-  nmap <buffer> yy              <Plug>(vimfiler_yank_full_path)
-  nmap <buffer> gm              <Plug>(vimfiler_set_current_mask)
-  nmap <buffer> gr              <Plug>(vimfiler_grep)
-  nmap <buffer> gf              <Plug>(vimfiler_find)
-  nmap <buffer> gs              <Plug>(vimfiler_select_sort_type)
-  " nmap <buffer> <C-v>         <Plug>(vimfiler_switch_vim_buffer_mode)
-  nmap <buffer> cd              <Plug>(vimfiler_cd_vim_current_dir)
-  " nmap <buffer> gs            <Plug>(vimfiler_toggle_safe_mode)
-  " nmap <buffer> gS            <Plug>(vimfiler_toggle_simple_mode)
-  nmap <buffer> a               <Plug>(vimfiler_choose_action)
-  " nmap <buffer> Y             <Plug>(vimfiler_pushd)
-  " nmap <buffer> P             <Plug>(vimfiler_popd)
-  nmap <buffer> zl              <Plug>(vimfiler_expand_tree)
-  nmap <buffer> zL              <Plug>(vimfiler_expand_tree_recursive)
-  nmap <buffer> zh              <Plug>(vimfiler_expand_tree)
-  nmap <buffer> zH              <Plug>(vimfiler_expand_tree_recursive)
-  nmap <buffer> i               <Plug>(vimfiler_cd_input_directory)
-  " nmap <buffer> <2-LeftMouse> <Plug> (vimfiler_double_click)
 endfunction " }}}
 
 " unite.vim {{{2
@@ -704,42 +630,26 @@ xmap F <SID>[unite-no-quit]
 
 nnoremap <silent> <SID>[unite]<Space> :<C-U>UniteResume<CR>
 
-nnoremap <silent> <SID>[unite]F :<C-U>Unite -buffer-name=files bookmark directory_mru file_mru<CR>
-nnoremap <silent> <SID>[unite]f :<C-U>Unite -buffer-name=files file<CR>
-nnoremap <silent> <SID>[unite]b :<C-U>Unite -buffer-name=buffer_tab buffer_tab<CR>
-nnoremap <silent> <SID>[unite]B :<C-U>Unite -buffer-name=buffer buffer<CR>
+nnoremap <silent> <SID>[unite]f :<C-U>Unite -buffer-name=buffer_tab buffer_tab<CR>
+nnoremap <silent> <SID>[unite]F :<C-U>Unite -buffer-name=buffer buffer<CR>
 nnoremap <silent> <SID>[unite]r :<C-U>Unite -buffer-name=register register<CR>
 nnoremap <silent> <SID>[unite]t :<C-U>Unite -buffer-name=tab tab:no-current<CR>
-nnoremap <silent> <SID>[unite]w :<C-U>Unite -buffer-name=window window:no-current<CR>
 nnoremap <silent> <SID>[unite]o :<C-U>Unite -buffer-name=outline outline<CR>
 nnoremap <silent> <SID>[unite]m :<C-U>Unite -buffer-name=mark mark<CR>
-nnoremap <silent> <SID>[unite]h :<C-U>Unite -buffer-name=help help<CR>
-nnoremap <silent> <SID>[unite]H :<C-U>Unite -buffer-name=refe -input=ref source<CR>
-nnoremap <silent> <SID>[unite]R :<C-U>Unite -buffer-name=rails -input=rails source<CR>
-nnoremap <silent> <SID>[unite]s :<C-U>Unite -buffer-name=snippet snippet<CR>
 nnoremap <silent> <SID>[unite]S :<C-U>Unite -buffer-name=source source<CR>
-nnoremap <silent> <SID>[unite]q :<C-U>Unite -buffer-name=qf qf<CR>
 
-nnoremap <silent> <SID>[unite-no-quit]F :<C-U>Unite -no-quit -keep-focus -buffer-name=files bookmark directory_mru file_mru<CR>
-nnoremap <silent> <SID>[unite-no-quit]f :<C-U>Unite -no-quit -keep-focus -buffer-name=files file<CR>
-nnoremap <silent> <SID>[unite-no-quit]b :<C-U>Unite -no-quit -keep-focus -buffer-name=buffer_tab buffer_tab<CR>
-nnoremap <silent> <SID>[unite-no-quit]B :<C-U>Unite -no-quit -keep-focus -buffer-name=buffer buffer<CR>
+nnoremap <silent> <SID>[unite-no-quit]f :<C-U>Unite -no-quit -keep-focus -buffer-name=buffer_tab buffer_tab<CR>
+nnoremap <silent> <SID>[unite-no-quit]F :<C-U>Unite -no-quit -keep-focus -buffer-name=buffer buffer<CR>
 nnoremap <silent> <SID>[unite-no-quit]r :<C-U>Unite -no-quit -keep-focus -buffer-name=register register<CR>
 nnoremap <silent> <SID>[unite-no-quit]t :<C-U>Unite -no-quit -keep-focus -buffer-name=tab tab:no-current<CR>
-nnoremap <silent> <SID>[unite-no-quit]w :<C-U>Unite -no-quit -keep-focus -buffer-name=window window:no-current<CR>
 nnoremap <silent> <SID>[unite-no-quit]o :<C-U>Unite -no-quit -keep-focus -buffer-name=outline outline<CR>
 nnoremap <silent> <SID>[unite-no-quit]m :<C-U>Unite -no-quit -keep-focus -buffer-name=mark mark<CR>
-nnoremap <silent> <SID>[unite-no-quit]h :<C-U>Unite -no-quit -keep-focus -buffer-name=help help<CR>
-nnoremap <silent> <SID>[unite-no-quit]H :<C-U>Unite -no-quit -keep-focus -buffer-name=refe -input=ref source<CR>
-nnoremap <silent> <SID>[unite-no-quit]R :<C-U>Unite -no-quit -keep-focus -buffer-name=rails -input=rails source<CR>
-nnoremap <silent> <SID>[unite-no-quit]s :<C-U>Unite -no-quit -keep-focus -buffer-name=snippet snippet<CR>
 nnoremap <silent> <SID>[unite-no-quit]S :<C-U>Unite -no-quit -keep-focus -buffer-name=source source<CR>
-nnoremap <silent> <SID>[unite-no-quit]q :<C-U>Unite -no-quit -keep-focus -buffer-name=qf qf<CR>
 
 
 " unite-line {{{2
 nnoremap <silent> <SID>[unite]l :<C-U>UniteWithCursorWord -buffer-name=line line<CR>
-nnoremap <silent> <SID>[unite-no-quite]l :<C-U>UniteWithCursorWord -no-quit -buffer-name=line line<CR>
+nnoremap <silent> <SID>[unite-no-quit]l :<C-U>UniteWithCursorWord -no-quit -buffer-name=line line<CR>
 
 
 " unite-menu {{{2
@@ -776,6 +686,7 @@ nmap <Leader>p  <Plug>(altr-back)
 call altr#define('spec/%_spec.rb', 'lib/%.rb')
 call altr#define('src/lib/*/%.coffee', 'spec/*/%_spec.coffee')
 call altr#define('src/lib/%.coffee', 'spec/%_spec.coffee')
+call altr#define('src/%.c', 'include/%.h')
 
 
 " unite-neco {{{2
@@ -798,11 +709,6 @@ function! s:unite_source.gather_candidates(args, context)
         \ }")
 endfunction
 call unite#define_source(s:unite_source)
-
-
-" rsense.vim {{{2
-" let g:rsenseHome = expand('$RSENSE_HOME')
-" let g:rsenseUseOmniFunc = 1
 
 
 " vimshell {{{2
@@ -855,16 +761,6 @@ let g:changelog_timeformat = '%Y-%m-%d'
 let g:changelog_username = 'Hideki Hamada (jakalada)'
 
 
-" surround.vim {{{2
-nmap s ys
-nmap S yS
-
-nmap ss yss
-nmap SS ySS
-
-vmap s S
-
-
 " quickrun.vim {{{2
 let g:quickrun_config = get(g:, 'quickrun_config', {})
 let g:quickrun_config._ = {
@@ -894,7 +790,6 @@ let g:quickrun_config['markdown'] = {
 
 " tagbar {{{2
 let g:tagbar_sort = 0
-
 nnoremap <silent> <Leader>t :<C-U>TagbarToggle<CR>
 
 
@@ -941,14 +836,10 @@ let g:textobj_multiblock_blocks = [
 let g:gitgutter_enabled = 0
 nnoremap <Space>gg  :<C-u>GitGutterToggle<CR>
 
-" vim-airline {{{2
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-if s:isgui
-  let g:airline_theme = 'solarized'
-else
-  let g:airline_theme = 'bubblegum'
-endif
+" lightline {{{2
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ }
 
 " syntastic {{{2
 let g:syntastic_ignore_files = ['\m^/usr/include/', '\m\c\.h$', '\m\c\.cpp$',' \m\c\.c$']
@@ -958,7 +849,7 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 
 " Misc {{{1
 " 折りたたみ {{{2
@@ -1013,51 +904,7 @@ nnoremap <silent> <SID>[tab]t :<C-U>tabnew<CR>
 nnoremap <silent> <SID>[tabnew]n :<C-U>tabnew \| lcd $DROPBOXDIR/Notes<CR>
 nnoremap <silent> <SID>[tabnew]v :<C-U>tabnew \| lcd $VIMCONFIGDIR<CR>
 
-" REF: http://d.hatena.ne.jp/thinca/20111204/1322932585
 set showtabline=2
-set tabline=%!MakeTabLine()
-
-function! s:tabpage_label(n)
-
-  " タブページ内のバッファのリスト
-  let l:bufnrs = tabpagebuflist(a:n)
-
-  " カレントタブページかどうかでハイライトを切り替える
-  let l:hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
-
-  " タブページ内に変更ありのバッファがあったら '+' を付ける
-  let l:mod = len(filter(copy(l:bufnrs), "getbufvar(v:val, '&modified')")) ? ' [+]' : ''
-
-  let l:label = ''
-
-  let l:title = gettabvar(a:n, 'title')
-  if l:title !=# ''
-    " t:titleと言う変数があればその内容を使用
-    let l:label = ' #' . l:title . ' '
-  else
-    " t:titleと言う変数がなければカレントバッファ名を使用
-    let l:curbufnr = l:bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
-    let l:fname = bufname(l:curbufnr)
-    if l:fname ==# ''
-      let l:fname = '[No Name]'
-    else
-      let l:fname = fnamemodify(l:fname, ':t')
-    end
-
-    let l:label = l:mod . ' ' . l:fname . ' '
-  endif
-
-  return '%' . a:n . 'T' . l:hi . l:label . '%T%#TabLineFill#'
-endfunction
-
-function! MakeTabLine()
-  let l:titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
-  let l:sep = ' '
-  let l:tabpages = join(l:titles, l:sep) . l:sep . '%#TabLineFill#%T'
-  "let info = '(' . fnamemodify(getcwd(), ':~') . ') ' " 好きな情報を入れる
-  let l:info = ''
-  return l:tabpages . '%=' . l:info  " タブリストを左に、情報を右に表示
-endfunction
 
 " ウィンドウ {{{2
 nnoremap <SID>[window] <Nop>
@@ -1081,9 +928,7 @@ nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '
 nnoremap <silent> ; q:
 xnoremap <silent> ; q:
 nnoremap <silent> / q/
-xnoremap <silent> / q/
 nnoremap <silent> ? q?
-xnoremap <silent> ? q?
 
 MyAutocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() " {{{
@@ -1109,6 +954,7 @@ endfunction " }}}
 
 
 " 空行を追加と削除を容易にする {{{2
+" REF: http://deris.hatenablog.jp/entry/20130404/1365086716
 nnoremap <silent> <Leader>o   :<C-u>for i in range(1, v:count1) \| call append(line('.'),   '') \| endfor \| silent! call repeat#set("<Leader>o", v:count1)<CR>
 nnoremap <silent> <Leader>O   :<C-u>for i in range(1, v:count1) \| call append(line('.')-1, '') \| endfor \| silent! call repeat#set("<Leader>O", v:count1)<CR>
 
@@ -1127,20 +973,6 @@ function! s:format_file()
   silent call winrestview(l:view)
 endfunction
 nnoremap <C-F> :call <SID>format_file()<CR>
-
-" ファイルタイプごとチートシートの参照・記述をサポートする {{{2
-let g:filetype_cheat_dir = $DROPBOXDIR . '/Notes/FileTypes'
-
-function! s:open_cheat_file(...)
-  if len(a:000) > 0
-    let l:cheat_file_path = g:filetype_cheat_dir . '/' . a:1 . '.md'
-    execute 'vsplit ' . l:cheat_file_path
-  else
-    let l:cheat_file_path = g:filetype_cheat_dir . '/' . &l:filetype . '.md'
-    execute 'vsplit ' . l:cheat_file_path
-  endif
-endfunction
-command! -nargs=? OpenCheatFile :call s:open_cheat_file(<f-args>)
 
 
 " }}}1

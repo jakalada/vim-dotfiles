@@ -5,13 +5,6 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/vimproc.vim'
 build = 'make'
 
-
-[[plugins]]
-repo = 'bling/vim-airline'
-
-[[plugins]]
-repo = 'vim-airline/vim-airline-themes'
-
 [[plugins]]
 repo = 'Shougo/junkfile.vim'
 
@@ -50,6 +43,9 @@ repo = 'godlygeek/tabular'
 
 [[plugins]]
 repo = 'h1mesuke/vim-alignta'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
 
 [[plugins]]
 repo = 'itchyny/thumbnail.vim'
