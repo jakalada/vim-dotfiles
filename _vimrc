@@ -1078,29 +1078,19 @@ nnoremap <silent> <SID>(split-to-l) :<C-U>execute 'botright'   (v:count == 0 ? '
 
 
 " コマンドラインウィンドウ {{{2
-nnoremap <silent> <SID>(command-line-enter) q:
-xnoremap <silent> <SID>(command-line-enter) q:
-nnoremap <silent> <SID>(command-line-enter-help) q:help<Space>
-nnoremap <silent> <SID>(command-line-enter-setlocal-filetype) q:setfiletype<Space>
-
-nnoremap ; <Nop>
-xnoremap ; <Nop>
-
-nmap ; <SID>(command-line-enter)
-xmap ; <SID>(command-line-enter)
-
-nnoremap <leader>h <Nop>
-nnoremap <leader>f <Nop>
-
-nmap <leader>h <SID>(command-line-enter-help)
-nmap <leader>f <SID>(command-line-enter-setlocal-filetype)
+nnoremap <silent> ; q:
+xnoremap <silent> ; q:
+nnoremap <silent> / q/
+xnoremap <silent> / q/
+nnoremap <silent> ? q?
+xnoremap <silent> ? q?
 
 MyAutocmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin() " {{{
   nnoremap <buffer><silent> q :<C-U>quit<CR>
   inoremap <buffer><expr> <CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
   nnoremap <buffer> ; <Nop>
-  setl nonumber
+  setlocal nonumber
   startinsert!
 endfunction " }}}
 
