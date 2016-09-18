@@ -249,6 +249,9 @@ repo = 'kana/vim-textobj-syntax'
 repo = 'osyo-manga/vim-textobj-multiblock'
 
 [[plugins]]
+repo = 'Shougo/tabpagebuffer.vim'
+
+[[plugins]]
 repo = 'Shougo/unite.vim'
 
 [[plugins]]
