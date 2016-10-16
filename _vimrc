@@ -33,43 +33,111 @@ else
   let $VIMCONFIGDIR = expand('~/git/vim-dotfiles')
 endif
 
-" dein.vim {{{1
-" REF: http://qiita.com/delphinus35/items/00ff2c0ba972c6e41542
-let g:dein#install_progress_type = 'title'
+" vim-plug {{{1
+call plug#begin('~/.vim/plugged')
 
-" プラグインが実際にインストールされるディレクトリ
-let s:dein_dir = expand('~/.cache/dein')
+Plug 'airblade/vim-gitgutter'
+Plug 'altercation/vim-colors-solarized'
+Plug 'basyura/unite-rails'
+Plug 'cespare/vim-toml'
+Plug 'choplin/unite-vim_hacks'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'dannyob/quickfixstatus'
+Plug 'elzr/vim-json'
+Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
+Plug 'h1mesuke/textobj-wiw'
+Plug 'h1mesuke/vim-alignta'
+Plug 'hail2u/h2u_colorscheme'
+Plug 'hickop/vim-hickop-colors'
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/thumbnail.vim'
+Plug 'itchyny/vim-parenmatch'
+Plug 'jceb/vim-hier'
+Plug 'junegunn/seoul256.vim'
+Plug 'kana/vim-altr'
+Plug 'kana/vim-gf-user'
+Plug 'kana/vim-metarw'
+Plug 'kana/vim-metarw-git'
+Plug 'kana/vim-operator-user'
+Plug 'kana/vim-smartchr'
+Plug 'kana/vim-submode'
+Plug 'kana/vim-tabpagecd'
+Plug 'kana/vim-textobj-fold'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-lastpat'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-syntax'
+Plug 'kana/vim-textobj-user'
+Plug 'kannokanno/previm'
+Plug 'kchmck/vim-coffee-script'
+Plug 'kingbin/vim-arduino'
+Plug 'Konfekt/FastFold'
+Plug 'Lokaltog/vim-distinguished'
+Plug 'majutsushi/tagbar'
+Plug 'mattn/calendar-vim'
+Plug 'mattn/learn-vimscript'
+Plug 'mattn/webapi-vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'osyo-manga/vim-textobj-multiblock'
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'plasticboy/vim-markdown'
+Plug 'scrooloose/syntastic'
+Plug 'sgur/unite-git_grep'
+Plug 'sgur/unite-qf'
+Plug 'Shougo/dein.vim'
+Plug 'Shougo/junkfile.vim'
+Plug 'Shougo/neocomplete'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/tabpagebuffer.vim'
+Plug 'Shougo/unite-outline'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimfiler'
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'Shougo/vimshell'
+Plug 'Shougo/vinarise'
+Plug 'slim-template/vim-slim'
+Plug 'supermomonga/shiraseru.vim'
+Plug 't9md/vim-quickhl'
+Plug 'tacroe/unite-mark'
+Plug 'taku-o/vim-toggle'
+Plug 'thinca/vim-editvar'
+Plug 'thinca/vim-localrc'
+Plug 'thinca/vim-openbuf'
+Plug 'thinca/vim-quickrun'
+Plug 'thinca/vim-ref'
+Plug 'thinca/vim-unite-history'
+Plug 'thinca/vim-visualstar'
+Plug 'tomasr/molokai'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-haml'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tsukkee/unite-help'
+Plug 'tsukkee/unite-tag'
+Plug 'tungd/unite-session'
+Plug 'tyru/caw.vim'
+Plug 'tyru/current-func-info.vim'
+Plug 'tyru/open-browser.vim'
+Plug 'tyru/pacman.vim'
+Plug 'tyru/savemap.vim'
+Plug 'tyru/vice.vim'
+Plug 'ujihisa/unite-colorscheme'
+Plug 'ujihisa/unite-font'
+Plug 'ujihisa/unite-locate'
+Plug 'vim-jp/vimdoc-ja'
+Plug 'vim-ruby/vim-ruby'
+Plug 'vim-scripts/Textile-for-VIM'
+Plug 'vim-scripts/VOoM'
+Plug 'zef/vim-cycle'
 
-" dein.vim 本体
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-
-" dein.vim がなければ github から落としてくる
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-endif
-
-" 設定開始
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-
-  " プラグインリストを収めた TOML ファイル
-  let s:toml_path = $DOTVIMDIR . '/dein.toml'
-
-  " TOML を読み込み、キャッシュしておく
-  call dein#load_toml(s:toml_path, {'lazy': 0})
-
-  " 設定終了
-  call dein#end()
-  call dein#save_state()
-endif
-
-" もし、未インストールものものがあったらインストール
-if has('vim_starting') && dein#check_install()
-  call dein#install()
-endif
+call plug#end()
 
 filetype plugin indent on
 syntax enable
