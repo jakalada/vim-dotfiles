@@ -5,8 +5,6 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal shiftround
 
-setlocal foldmethod=manual
-
 setlocal formatoptions+=m
 setlocal formatoptions+=M
 setlocal formatoptions-=r

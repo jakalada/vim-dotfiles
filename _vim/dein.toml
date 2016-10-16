@@ -246,6 +246,9 @@ repo = 'kana/vim-textobj-line'
 repo = 'kana/vim-textobj-syntax'
 
 [[plugins]]
+repo = 'Konfekt/FastFold'
+
+[[plugins]]
 repo = 'osyo-manga/vim-textobj-multiblock'
 
 [[plugins]]

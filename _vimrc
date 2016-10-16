@@ -843,6 +843,8 @@ let g:lightline = {
 
 " syntastic {{{2
 let g:syntastic_ignore_files = ['\m^/usr/include/', '\m\c\.h$', '\m\c\.cpp$',' \m\c\.c$']
+let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_eruby_checkers = ['']
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -850,6 +852,9 @@ let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
+
+" markdown {{{2
+let g:vim_markdown_folding_level = 2
 
 " Misc {{{1
 " 折りたたみ {{{2
