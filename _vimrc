@@ -1043,6 +1043,19 @@ endfunction
 nnoremap <C-F> :call <SID>format_file()<CR>
 
 
+" vimrcに列挙しているプラグインのGithubのページを開く
+function! s:open_github_page()
+  let current_line = getline('.')
+  let pattern = 'Plug ''\(.\{-}\)'''
+  let m = matchlist(current_line, pattern)
+  if len(m) >= 1
+    silent call openbrowser#open('https://github.com/' . m[1])
+  else
+    echo 'no match'
+  endif
+endfunction
+nnoremap <expr> <C-G>  <SID>open_github_page()
+
 " }}}1
 
 set secure  " must be written at the last.  see :help 'secure'.
