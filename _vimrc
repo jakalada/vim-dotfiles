@@ -901,8 +901,8 @@ let g:textobj_multiblock_blocks = [
 
 
 " gitgutter {{{2
-let g:gitgutter_enabled = 0
-nnoremap <Space>gg  :<C-u>GitGutterToggle<CR>
+let g:gitgutter_enabled = 1
+nnoremap <Leader>gg  :<C-u>GitGutterToggle<CR>
 
 " lightline {{{2
 let g:lightline = {
