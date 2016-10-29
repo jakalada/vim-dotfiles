@@ -38,12 +38,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
-Plug 'basyura/unite-rails'
 Plug 'cespare/vim-toml'
-Plug 'choplin/unite-vim_hacks'
-Plug 'chriskempson/vim-tomorrow-theme'
-Plug 'dannyob/quickfixstatus'
-Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'godlygeek/tabular'
 Plug 'h1mesuke/textobj-wiw'
@@ -318,7 +313,7 @@ set report=0
 set noequalalways
 
 if has('conceal')
-  set conceallevel=2
+  set conceallevel=0
 endif
 
 set list
