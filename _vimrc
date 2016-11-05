@@ -198,6 +198,8 @@ set pumheight=10
 set nocursorline
 set cmdheight=1
 
+set breakindent
+
 set smartindent autoindent
 set smarttab expandtab
 set tabstop=2
