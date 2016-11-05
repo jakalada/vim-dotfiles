@@ -59,6 +59,7 @@ Plug 'kana/vim-textobj-syntax'
 Plug 'kana/vim-textobj-user'
 Plug 'kannokanno/previm'
 Plug 'kchmck/vim-coffee-script'
+Plug 'Konfekt/FastFold'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/calendar-vim'
 Plug 'mattn/webapi-vim'
@@ -406,7 +407,7 @@ nnoremap <C-Up> <C-A>
 nnoremap <C-Down> <C-X>
 
 nnoremap Q q
-nnoremap <silent> q :<C-U>close<CR>
+nnoremap <silent> q :<C-U>tabclose<CR>
 
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
@@ -617,14 +618,8 @@ call vimfiler#custom#profile('default', 'context', {
       \   'auto_cd' : 0
       \ })
 
+let g:vimfiler_ignore_pattern = '\(^\.\|\~$\|\.pyc$\|\.[oad]$\|^__pycache__$\)'
 let g:vimfiler_time_format        = '%Y/%m/%d %H:%M'  " 例: 2013/01/01 00:00
-let g:vimfiler_tree_leaf_icon     = ' '   " default: '|'
-let g:vimfiler_tree_opened_icon   = '-'   " default: '-'
-let g:vimfiler_tree_closed_icon   = '+'   " default: '+'
-let g:vimfiler_readonly_file_icon = '!'   " deafult: 'X'
-let g:vimfiler_file_icon          = ' '   " default: ' '
-let g:vimfiler_marked_file_icon   = '*'   " default: '*'
-
 let g:vimfiler_force_overwrite_statusline = 0
 
 nnoremap <silent> <Leader>e :<C-U>VimFilerExplorer -toggle<CR>
@@ -872,7 +867,6 @@ let g:lightline = {
       \ }
 
 " syntastic {{{2
-let g:syntastic_ignore_files = ['\m^/usr/include/', '\m\c\.h$', '\m\c\.cpp$',' \m\c\.c$']
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_eruby_checkers = ['']
 set statusline+=%#warningmsg#
@@ -882,6 +876,7 @@ let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
+let g:syntastic_python_checkers = ['flake8']
 
 " markdown {{{2
 let g:vim_markdown_folding_level = 2
