@@ -39,6 +39,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'cespare/vim-toml'
+Plug 'cohama/agit.vim'
 Plug 'godlygeek/tabular'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/thumbnail.vim'
@@ -61,6 +62,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kannokanno/previm'
 Plug 'kchmck/vim-coffee-script'
 Plug 'Konfekt/FastFold'
+Plug 'lambdalisue/vim-gita'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/calendar-vim'
 Plug 'mattn/webapi-vim'
@@ -86,6 +88,7 @@ Plug 't9md/vim-quickhl'
 Plug 'tacroe/unite-mark'
 Plug 'taku-o/vim-toggle'
 Plug 'thinca/vim-editvar'
+Plug 'thinca/vim-prettyprint'
 Plug 'thinca/vim-quickrun'
 Plug 'thinca/vim-ref'
 Plug 'thinca/vim-visualstar'
@@ -681,27 +684,6 @@ nnoremap <silent> <SID>[unite-no-quit]l :<C-U>UniteWithCursorWord -no-quit -buff
 
 
 " unite-menu {{{2
-let g:unite_source_menu_menus = {}
-let g:unite_source_menu_menus.fugitive = {
-      \     'description' : 'fugitive menu',
-      \ }
-let g:unite_source_menu_menus.fugitive.candidates = {
-      \       'add'      : 'Gwrite',
-      \       'blame'      : 'Gblame',
-      \       'diff'      : 'Gdiff',
-      \       'commit'      : 'Gcommit',
-      \       'status'      : 'Gstatus',
-      \       'rm'      : 'Gremove',
-      \     }
-function g:unite_source_menu_menus.fugitive.map(key, value)
-  return {
-        \       'word' : a:key, 'kind' : 'command',
-        \       'action__command' : a:value,
-        \     }
-endfunction
-
-nnoremap <silent> <SID>[unite]g :<C-u>Unite menu:fugitive<CR>
-
 
 " unite-junkfile {{{2
 nnoremap <silent> <SID>[unite]j :<C-u>Unite -start-insert junkfile/new junkfile<CR>
