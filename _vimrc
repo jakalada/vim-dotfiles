@@ -866,8 +866,13 @@ let g:syntastic_python_checkers = ['flake8']
 " markdown {{{2
 let g:vim_markdown_folding_level = 2
 
-" vim-slime {{2
+" vim-slime {{{2
 let g:slime_target = "tmux"
+
+" vim-indent-guides {{{2
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 1
+let g:indent_guides_color_change_percent = 4
 
 " Misc {{{1
 " 折りたたみ {{{2
@@ -958,17 +963,6 @@ function! s:init_cmdwin() " {{{
 endfunction " }}}
 
 
-" 現在行のインデントをハイライトする {{{2
-MyAutocmd CursorMoved * call s:hilight_indent()
-MyAutocmd CursorMovedI * call s:hilight_indent()
-function! s:hilight_indent() "{{{
-  let l:n = indent(line('.'))
-  if l:n >= &tabstop
-    let &l:colorcolumn = join(range(&tabstop, l:n, &tabstop), ',')
-  else
-    let &l:colorcolumn = ''
-  endif
-endfunction " }}}
 
 
 " 空行を追加と削除を容易にする {{{2
