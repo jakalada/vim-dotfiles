@@ -413,7 +413,7 @@ nnoremap <C-Up> <C-A>
 nnoremap <C-Down> <C-X>
 
 nnoremap Q q
-nnoremap <silent> q :<C-U>tabclose<CR>
+nnoremap <silent> q :<C-U>close<CR>
 
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
