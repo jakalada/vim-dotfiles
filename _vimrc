@@ -221,7 +221,7 @@ set backupdir=~/tmp
 set directory-=.
 if v:version >= 703
   set undofile
-  setl undodir=~/tmp
+  set undodir=~/tmp
 endif
 
 if has('virtualedit')
@@ -245,7 +245,7 @@ if s:isgui || has('xterm_clipboard')
 endif
 
 set showfulltag
-set notagbsearch
+set tagbsearch
 
 if has('unix')
   set nofsync
@@ -270,7 +270,7 @@ nnoremap <script> o <SID>[nohlsearch]o
 nnoremap <script> O <SID>[nohlsearch]O
 " }}}
 
-set number
+set nonumber
 
 set noshowcmd
 
