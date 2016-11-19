@@ -189,8 +189,8 @@ if s:isgui
   set guicursor+=a:blinkon0
 else
   set t_Co=256
-  let g:seoul256_background = 234
-  colorscheme seoul256
+  let g:solarized_termcolors = 256
+  colorscheme solarized
 endif
 
 set pumheight=10
