@@ -43,6 +43,7 @@ Plug 'godlygeek/tabular'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/thumbnail.vim'
 Plug 'junegunn/seoul256.vim'
+Plug 'jpalardy/vim-slime'
 Plug 'kana/vim-altr'
 Plug 'kana/vim-gf-user'
 Plug 'kana/vim-metarw'
@@ -882,6 +883,9 @@ let g:syntastic_python_checkers = ['flake8']
 
 " markdown {{{2
 let g:vim_markdown_folding_level = 2
+
+" vim-slime {{2
+let g:slime_target = "tmux"
 
 " Misc {{{1
 " 折りたたみ {{{2
