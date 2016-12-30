@@ -67,6 +67,7 @@ Plug 'majutsushi/tagbar'
 Plug 'mattn/calendar-vim'
 Plug 'mattn/webapi-vim'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'osyo-manga/vim-textobj-multiblock'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
@@ -174,10 +175,10 @@ set ambiwidth=double
 " Options {{{1
 if s:isgui
   set background=light
-  colorscheme solarized
+  colorscheme PaperColor
 
   if s:ismacunix
-    set guifont=Ricty\ Diminished:h16
+    set guifont=Source\ Code\ Pro\ Medium:h13
   elseif s:iswin
     set guifont=Inconsolata:h13:cSHIFTJIS
   else
@@ -193,8 +194,8 @@ if s:isgui
   set guicursor+=a:blinkon0
 else
   set t_Co=256
-  let g:solarized_termcolors = 256
-  colorscheme solarized
+  set background=dark
+  colorscheme PaperColor
 endif
 
 set pumheight=10
@@ -847,9 +848,15 @@ let g:gitgutter_enabled = 1
 nnoremap <Leader>gg  :<C-u>GitGutterToggle<CR>
 
 " lightline {{{2
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ }
+if s:isgui
+  let g:lightline = {
+        \ 'colorscheme': 'PaperColor',
+        \ }
+else
+  let g:lightline = {
+        \ 'colorscheme': 'PaperColor',
+        \ }
+endif
 
 " syntastic {{{2
 let g:syntastic_ruby_checkers = ['rubocop']
