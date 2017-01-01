@@ -185,7 +185,7 @@ if s:isgui
     set guifont=Ricty\ Diminished\ 13.5
   endif
 
-  set linespace=3
+  set linespace=0
   set guioptions=ciM
   set mouse=a
   set mousehide
