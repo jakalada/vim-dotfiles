@@ -93,6 +93,7 @@ Plug 'thinca/vim-prettyprint'
 Plug 'thinca/vim-quickrun'
 Plug 'thinca/vim-ref'
 Plug 'thinca/vim-visualstar'
+Plug 'thinca/vim-zenspace'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
@@ -173,6 +174,13 @@ set fileformats=unix,dos,mac
 set ambiwidth=double
 
 " Options {{{1
+
+" for vim-zenspace plugin
+augroup vimrc-zenspace
+  autocmd!
+  autocmd ColorScheme * highlight ZenSpace ctermbg=DarkGray guibg=LightGray
+augroup END
+
 if s:isgui
   set background=light
   colorscheme PaperColor
