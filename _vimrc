@@ -62,7 +62,6 @@ Plug 'kana/vim-textobj-syntax'
 Plug 'kana/vim-textobj-user'
 Plug 'kannokanno/previm'
 Plug 'kchmck/vim-coffee-script'
-Plug 'Konfekt/FastFold'
 Plug 'lambdalisue/vim-gita'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/calendar-vim'
@@ -113,6 +112,7 @@ call plug#end()
 
 filetype plugin indent on
 syntax enable
+syntax sync fromstart
 
 " Commands {{{1
 " .vimrcの再読み込み時に.vimrc内で設定されたautocmdを初期化する {{{

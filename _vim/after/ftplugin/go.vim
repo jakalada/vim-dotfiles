@@ -1,13 +1,10 @@
 setlocal smartindent
 setlocal autoindent
-
-setlocal smarttab
-setlocal expandtab
-
-setlocal tabstop=2
-setlocal shiftwidth=2
-setlocal softtabstop=2
-
+setlocal nosmarttab
+setlocal noexpandtab
+setlocal tabstop=4
+setlocal shiftwidth=4
+setlocal softtabstop=4
 setlocal shiftround
 
 setlocal foldmethod=syntax
@@ -17,8 +14,6 @@ setlocal formatoptions+=m
 setlocal formatoptions+=M
 setlocal formatoptions+=r
 setlocal formatoptions+=o
-
-setlocal completeopt-=preview
 
 if !exists('b:undo_ftplugin')
   let b:undo_ftplugin = ''
@@ -36,5 +31,4 @@ let b:undo_ftplugin .= '
 \ | setlocal foldmethod<
 \ | setlocal foldlevel<
 \ | setlocal formatoptions<
-\ | setlocal completeopt<
 \'
