@@ -72,6 +72,7 @@ Plug 'osyo-manga/vim-textobj-multiblock'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
+Plug 'rhysd/vim-clang-format'
 Plug 'scrooloose/syntastic'
 Plug 'Shougo/junkfile.vim'
 Plug 'Shougo/neocomplete'
@@ -229,6 +230,8 @@ setlocal matchpairs+=<:>
 setlocal iskeyword+=-
 
 set hidden
+
+set foldlevelstart=99
 
 set backupdir=~/tmp
 set directory-=.
@@ -888,6 +891,10 @@ let g:slime_target = "tmux"
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 1
 let g:indent_guides_color_change_percent = 4
+
+" vim-clang-format {{{2
+let g:clang_format#auto_format = 0
+let g:clang_format#code_style = 'google'
 
 " Misc {{{1
 " 折りたたみ {{{2
