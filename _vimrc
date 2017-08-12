@@ -40,12 +40,15 @@ Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'cespare/vim-toml'
 Plug 'cohama/agit.vim'
+Plug 'cohama/lexima.vim'
 Plug 'godlygeek/tabular'
 Plug 'dag/vim-fish'
+Plug 'fatih/vim-go'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/thumbnail.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'jpalardy/vim-slime'
+Plug 'kamwitsta/flatwhite-vim'
 Plug 'kana/vim-altr'
 Plug 'kana/vim-gf-user'
 Plug 'kana/vim-metarw'
@@ -185,10 +188,10 @@ augroup END
 
 if s:isgui
   set background=light
-  colorscheme PaperColor
+  colorscheme flatwhite
 
   if s:ismacunix
-    set guifont=Source\ Code\ Pro\ Medium:h13
+    set guifont=Source\ Code\ Pro\ Lite:h11
   elseif s:iswin
     set guifont=Inconsolata:h13:cSHIFTJIS
   else
@@ -463,6 +466,8 @@ inoremap <silent> <C-L> <Right>
 inoremap <silent> <C-H> <Left>
 
 inoremap <silent> <F7> <Esc>gUiwea
+
+inoremap <C-CR> <Esc>o
 
 
 " mapmode-o {{{2
@@ -862,7 +867,7 @@ nnoremap <Leader>gg  :<C-u>GitGutterToggle<CR>
 " lightline {{{2
 if s:isgui
   let g:lightline = {
-        \ 'colorscheme': 'PaperColor',
+        \ 'colorscheme': 'solarized',
         \ }
 else
   let g:lightline = {
@@ -896,6 +901,9 @@ let g:indent_guides_color_change_percent = 4
 " vim-clang-format {{{2
 let g:clang_format#auto_format = 0
 let g:clang_format#code_style = 'google'
+
+" vim-go {{{2
+let g:go_fmt_command = "goimports"
 
 " Misc {{{1
 " 折りたたみ {{{2
