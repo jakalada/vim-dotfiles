@@ -180,6 +180,8 @@ set fileformats=unix,dos,mac
 "East Asian Width Class Ambiguous な文字をASCII文字の2倍の幅で扱う
 set ambiwidth=double
 
+set emoji
+
 " Options {{{1
 
 " for vim-zenspace plugin
