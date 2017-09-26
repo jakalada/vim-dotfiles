@@ -34,7 +34,7 @@ else
 endif
 
 " vim-plug {{{1
-call plug#begin('~/.vim/plugged')
+call plug#begin($DOTVIMDIR . '/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
