@@ -195,7 +195,8 @@ if s:isgui
   if s:ismacunix
     set guifont=Source\ Code\ Pro\ Lite:h11
   elseif s:iswin
-    set guifont=Source_Code_Pro:h10:cANSI:qDRAFT
+    set renderoptions=type:directx,renmode:5
+    set guifont=Ricty_Diminished:h11:cANSI:qDRAFT:qANTIALIASED
   else
     set guifont=Ricty\ Diminished\ 13.5
   endif
