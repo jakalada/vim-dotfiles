@@ -9,7 +9,7 @@ filetype plugin indent off
 
 if has('vim_starting')
   if has('win32') || has('win64')
-    set encoding=cp932
+    set encoding=utf-8
   else
     set encoding=utf-8
   endif
@@ -86,7 +86,9 @@ Plug 'Shougo/tabpagebuffer.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler'
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
+if !s:iswin
+  Plug 'Shougo/vimproc.vim', {'do': 'make'}
+endif
 Plug 'Shougo/vinarise'
 Plug 'slim-template/vim-slim'
 Plug 't9md/vim-quickhl'
@@ -193,7 +195,7 @@ if s:isgui
   if s:ismacunix
     set guifont=Source\ Code\ Pro\ Lite:h11
   elseif s:iswin
-    set guifont=Inconsolata:h13:cSHIFTJIS
+    set guifont=Source_Code_Pro:h10:cANSI:qDRAFT
   else
     set guifont=Ricty\ Diminished\ 13.5
   endif
@@ -210,6 +212,10 @@ else
   set background=dark
   colorscheme PaperColor
 endif
+
+set noimcmdline
+set iminsert=0
+set imsearch=0
 
 set pumheight=10
 
@@ -795,11 +801,24 @@ let g:quickrun_config._ = {
       \'runner' : 'vimproc',
       \"runner/vimproc/updatetime" : 10
       \}
-let g:quickrun_config.python = {
-      \'command': 'python3',
-      \'hook/eval/template': 'print(%s)'
-      \}
 
+" Python
+if s:ismacunix
+  let g:quickrun_config.python = {
+        \'command': 'python3',
+        \'hook/eval/template': 'print(%s)'
+        \}
+elseif s:iswin
+  let g:quickrun_config.python = {
+        \'command': 'python',
+        \'hook/eval/template': 'print(%s)'
+        \}
+else
+  let g:quickrun_config.python = {
+        \'command': 'python3',
+        \'hook/eval/template': 'print(%s)'
+        \}
+endif
 
 "RSpec
 let g:quickrun_config['ruby.rspec'] = {
