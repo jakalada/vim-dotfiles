@@ -192,7 +192,7 @@ augroup END
 
 if s:isgui
   set background=light
-  colorscheme flatwhite
+  colorscheme PaperColor
 
   if s:ismacunix
     set guifont=Source\ Code\ Pro\ Lite:h11
@@ -889,7 +889,7 @@ nnoremap <Leader>gg  :<C-u>GitGutterToggle<CR>
 " lightline {{{2
 if s:isgui
   let g:lightline = {
-        \ 'colorscheme': 'solarized',
+        \ 'colorscheme': 'PaperColor',
         \ }
 else
   let g:lightline = {
