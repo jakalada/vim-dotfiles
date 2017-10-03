@@ -71,6 +71,7 @@ Plug 'mattn/calendar-vim'
 Plug 'mattn/webapi-vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'OmniSharp/omnisharp-vim', {'do': 'msbuild server/OmniSharp.sln'}
 Plug 'osyo-manga/vim-textobj-multiblock'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
@@ -100,6 +101,7 @@ Plug 'thinca/vim-quickrun'
 Plug 'thinca/vim-ref'
 Plug 'thinca/vim-visualstar'
 Plug 'thinca/vim-zenspace'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
@@ -651,7 +653,7 @@ call vimfiler#custom#profile('default', 'context', {
       \   'auto_cd' : 0
       \ })
 
-let g:vimfiler_ignore_pattern = '\(^\.\|\~$\|\.pyc$\|\.[oad]$\|^__pycache__$\)'
+let g:vimfiler_ignore_pattern = '\(^\.\|\~$\|\.pyc$\|\.[oad]$\|^__pycache__$\|\.cs\.meta$\)'
 let g:vimfiler_time_format        = '%Y/%m/%d %H:%M'  " 例: 2013/01/01 00:00
 let g:vimfiler_force_overwrite_statusline = 0
 
@@ -755,15 +757,26 @@ let g:vimshell_user_prompt = '"[" . getcwd() ."]"'
 nnoremap <Leader>s :<C-U>VimShell<CR>
 
 " neocomplete.vim {{{2
-MyAutocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#min_keyword_length = 3
 
-inoremap <expr><C-O>  neocomplete#start_manual_complete()
+MyAutocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+MyAutocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+MyAutocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+MyAutocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+MyAutocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns._ = '\h\w*'
+
+inoremap <C-O> <C-X><C-O>
+inoremap <expr><CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
 
 " neosnippet {{{2
-let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
+let g:neosnippet#snippets_directory = $DOTVIMDIR . '/snippets'
 
 nnoremap <silent> <Leader>.s :<C-U>NeoSnippetEdit<CR>
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
