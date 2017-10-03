@@ -653,7 +653,7 @@ call vimfiler#custom#profile('default', 'context', {
       \   'auto_cd' : 0
       \ })
 
-let g:vimfiler_ignore_pattern = '\(^\.\|\~$\|\.pyc$\|\.[oad]$\|^__pycache__$\|\.cs\.meta$\)'
+let g:vimfiler_ignore_pattern = '\(^\.\|\~$\|\.pyc$\|\.[oad]$\|^__pycache__$\|\.meta$\)'
 let g:vimfiler_time_format        = '%Y/%m/%d %H:%M'  " 例: 2013/01/01 00:00
 let g:vimfiler_force_overwrite_statusline = 0
 
