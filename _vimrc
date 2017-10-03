@@ -940,6 +940,10 @@ let g:clang_format#code_style = 'google'
 " vim-go {{{2
 let g:go_fmt_command = "goimports"
 
+" omnisharp-vim {{{2
+let g:OmniSharp_server_type='v1'
+let g:omnicomplete_fetch_documentation=1
+
 " Misc {{{1
 " 折りたたみ {{{2
 nnoremap <SID>[fold] <Nop>
