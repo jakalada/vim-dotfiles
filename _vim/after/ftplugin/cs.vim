@@ -22,7 +22,7 @@ setlocal completeopt-=preview
 
 augroup MyFileTypePluginCs
   autocmd!
-  autocmd MyFileTypePluginCs BufWrite <buffer> OmniSharpFixUsings
+  " autocmd MyFileTypePluginCs BufWrite <buffer> OmniSharpFixUsings
   autocmd MyFileTypePluginCs BufWrite <buffer> OmniSharpCodeFormat
 augroup END
 

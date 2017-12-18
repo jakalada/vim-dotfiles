@@ -39,6 +39,7 @@ call plug#begin($DOTVIMDIR . '/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'cespare/vim-toml'
+Plug 'cocopon/iceberg.vim'
 Plug 'cohama/agit.vim'
 Plug 'cohama/lexima.vim'
 Plug 'godlygeek/tabular'
@@ -46,8 +47,10 @@ Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/thumbnail.vim'
-Plug 'junegunn/seoul256.vim'
+Plug 'joonty/vdebug'
 Plug 'jpalardy/vim-slime'
+Plug 'junegunn/seoul256.vim'
+Plug 'justinmk/vim-dirvish'
 Plug 'kamwitsta/flatwhite-vim'
 Plug 'kana/vim-altr'
 Plug 'kana/vim-gf-user'
@@ -69,6 +72,7 @@ Plug 'lambdalisue/vim-gita'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/calendar-vim'
 Plug 'mattn/webapi-vim'
+Plug 'maximbaz/lightline-ale'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'OmniSharp/omnisharp-vim', {'do': 'msbuild server/OmniSharp.sln'}
@@ -77,7 +81,6 @@ Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
 Plug 'rhysd/vim-clang-format'
-Plug 'scrooloose/syntastic'
 Plug 'Shougo/junkfile.vim'
 Plug 'Shougo/neocomplete'
 Plug 'Shougo/neomru.vim'
@@ -114,6 +117,7 @@ Plug 'ujihisa/unite-font'
 Plug 'ujihisa/unite-locate'
 Plug 'vim-jp/vimdoc-ja'
 Plug 'vim-ruby/vim-ruby'
+Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -196,6 +200,9 @@ if s:isgui
   set background=light
   colorscheme PaperColor
 
+  " バッファの最終行移行の~を見えなくする(背景色と文字色にカラースキームの背景色を指定)
+  highlight EndOfBuffer guibg=bg guifg=bg
+
   if s:ismacunix
     set guifont=Source\ Code\ Pro\ Lite:h11
   elseif s:iswin
@@ -205,7 +212,7 @@ if s:isgui
     set guifont=Ricty\ Diminished\ 13.5
   endif
 
-  set linespace=0
+  set linespace=4
   set guioptions=ciM
   set mouse=a
   set mousehide
@@ -226,6 +233,8 @@ set pumheight=10
 
 set nocursorline
 set cmdheight=1
+
+set signcolumn=yes
 
 set breakindent
 
@@ -301,7 +310,7 @@ nnoremap <script> o <SID>[nohlsearch]o
 nnoremap <script> O <SID>[nohlsearch]O
 " }}}
 
-set nonumber
+set number
 
 set noshowcmd
 
@@ -320,7 +329,7 @@ endif
 set list
 let &listchars = 'tab:>-,trail:-'
 
-let &fillchars = 'vert: ,fold: ,diff: '
+let &fillchars = 'vert: ,fold: ,diff:-'
 
 let &showbreak = '> '
 
@@ -910,17 +919,16 @@ else
         \ }
 endif
 
-" syntastic {{{2
-let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_eruby_checkers = ['']
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-let g:syntastic_python_checkers = ['flake8']
+let g:lightline.component_expand = {
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \ }
+let g:lightline.active = { 'right': [[ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ],  ['linter_errors', 'linter_warnings', 'linter_ok' ] ] }
 
 " markdown {{{2
 let g:vim_markdown_folding_level = 2
@@ -943,6 +951,10 @@ let g:go_fmt_command = "goimports"
 " omnisharp-vim {{{2
 let g:OmniSharp_server_type='v1'
 let g:omnicomplete_fetch_documentation=1
+let g:OmniSharp_selector_ui='unite'
+
+" ale {{{2
+let g:ale_fix_on_save = 1
 
 " Misc {{{1
 " 折りたたみ {{{2
