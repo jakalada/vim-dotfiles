@@ -231,7 +231,7 @@ set imsearch=0
 
 set pumheight=10
 
-set nocursorline
+set cursorline
 set cmdheight=1
 
 set signcolumn=yes
