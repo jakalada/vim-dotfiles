@@ -75,7 +75,7 @@ Plug 'mattn/webapi-vim'
 Plug 'maximbaz/lightline-ale'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'OmniSharp/omnisharp-vim', {'do': 'msbuild server/OmniSharp.sln'}
+" Plug 'OmniSharp/omnisharp-vim', {'do': 'msbuild server/OmniSharp.sln'}
 Plug 'osyo-manga/vim-textobj-multiblock'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
@@ -774,7 +774,7 @@ MyAutocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 MyAutocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 MyAutocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 MyAutocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-MyAutocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+" MyAutocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
@@ -950,9 +950,9 @@ let g:clang_format#code_style = 'google'
 let g:go_fmt_command = "goimports"
 
 " omnisharp-vim {{{2
-let g:OmniSharp_server_type='v1'
-let g:omnicomplete_fetch_documentation=1
-let g:OmniSharp_selector_ui='unite'
+" let g:OmniSharp_server_type='v1'
+" let g:omnicomplete_fetch_documentation=1
+" let g:OmniSharp_selector_ui='unite'
 
 " ale {{{2
 let g:ale_fix_on_save = 1
