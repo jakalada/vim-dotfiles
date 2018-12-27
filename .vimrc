@@ -67,7 +67,6 @@ Plug 'cohama/lexima.vim'      " 囲み文字の自動入力
 Plug 'godlygeek/tabular'      " コード整形
 Plug 'kana/vim-smartchr'      " 例: smartchr#loop(' = ', ' == ', '=')
 Plug 'taku-o/vim-toggle'      " 例: true -> false -> true
-Plug 'tpope/vim-endwise'      " 囲み文字の自動入力
 Plug 'tpope/vim-surround'     " 囲み文字に入力補助
 Plug 'tyru/caw.vim'           " コメントアウト
 
