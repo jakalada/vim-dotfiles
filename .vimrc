@@ -230,21 +230,25 @@ set emoji
 
 " Options {{{1
 
-" for vim-zenspace plugin
-augroup vimrc-zenspace
-  autocmd!
-  autocmd ColorScheme * highlight ZenSpace ctermbg=DarkGray guibg=LightGray
-augroup END
-
 if s:isgui
+  let g:PaperColor_Theme_Options = {
+        \   'language': {
+        \     'python': {
+        \       'highlight_builtins' : 1
+        \     },
+        \     'cpp': {
+        \       'highlight_standard_library': 1
+        \     },
+        \     'c': {
+        \       'highlight_builtins' : 1
+        \     }
+        \   }
+        \ }
   set background=light
   colorscheme PaperColor
 
-  " バッファの最終行移行の~を見えなくする(背景色と文字色にカラースキームの背景色を指定)
-  highlight EndOfBuffer guibg=bg guifg=bg
-
   if s:ismacunix
-    set guifont=Source\ Code\ Pro\ Lite:h11
+    set guifont=SourceCodePro-Regular:h13
   elseif s:iswin
     set renderoptions=type:directx,renmode:5
     set guifont=Ricty_Diminished:h11:cANSI:qDRAFT:qANTIALIASED
@@ -252,7 +256,7 @@ if s:isgui
     set guifont=Ricty\ Diminished\ 13.5
   endif
 
-  set linespace=4
+  set linespace=8
   set guioptions=ciM
   set mouse=a
   set mousehide
@@ -260,8 +264,7 @@ if s:isgui
   set novisualbell
   set guicursor+=a:blinkon0
 else
-  set t_Co=256
-  set background=dark
+  set background=light
   colorscheme PaperColor
 endif
 
