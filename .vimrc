@@ -36,88 +36,128 @@ endif
 " vim-plug {{{1
 call plug#begin($DOTVIMDIR . '/plugged')
 
-Plug 'airblade/vim-gitgutter'
+" Colorscheme {{{2
 Plug 'altercation/vim-colors-solarized'
-Plug 'cespare/vim-toml'
 Plug 'cocopon/iceberg.vim'
-Plug 'cohama/agit.vim'
-Plug 'cohama/lexima.vim'
-Plug 'godlygeek/tabular'
+Plug 'junegunn/seoul256.vim'
+Plug 'kamwitsta/flatwhite-vim'
+Plug 'NLKNguyen/papercolor-theme'
+
+" Syntax {{{2
+Plug 'cespare/vim-toml'
 Plug 'dag/vim-fish'
 Plug 'fatih/vim-go'
-Plug 'itchyny/lightline.vim'
-Plug 'itchyny/thumbnail.vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'plasticboy/vim-markdown'
+Plug 'slim-template/vim-slim'
+Plug 'tpope/vim-haml'
+Plug 'tpope/vim-rails'            " 多機能
+Plug 'udalov/kotlin-vim'
+Plug 'vim-ruby/vim-ruby'
+
+" Git {{{2
+Plug 'airblade/vim-gitgutter'
+Plug 'cohama/agit.vim'
+Plug 'lambdalisue/vim-gita'
+
+" 入力補助 {{{2
+Plug 'cohama/lexima.vim'      " 囲み文字の自動入力
+Plug 'godlygeek/tabular'      " コード整形
+Plug 'kana/vim-smartchr'      " 例: smartchr#loop(' = ', ' == ', '=')
+Plug 'taku-o/vim-toggle'      " 例: true -> false -> true
+Plug 'tpope/vim-endwise'      " 囲み文字の自動入力
+Plug 'tpope/vim-surround'     " 囲み文字に入力補助
+Plug 'tyru/caw.vim'           " コメントアウト
+
+" シンタックスチェック {{{2
+Plug 'w0rp/ale'
+
+" 補完 {{{2
+" Plug 'OmniSharp/omnisharp-vim', {'do': 'msbuild server/OmniSharp.sln'}
+Plug 'Shougo/neocomplete'
+
+" フォーマッター {{{2
+Plug 'rhysd/vim-clang-format'
+
+" スニペット {{{2
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+
+" 移動 {{{2
+Plug 'kana/vim-altr'          " ユーザー定義の代替ファイル
+Plug 'kana/vim-gf-user'       " ユーザー定義のgf
+Plug 'thinca/vim-visualstar'  " *で選択中の文字列を検索
+
+" UI {{2
+Plug 'itchyny/thumbnail.vim'           " バッファのサムネイル表示
+Plug 'justinmk/vim-dirvish'            " ファイラ
+Plug 'Shougo/vimfiler'                 " ファイラ
+Plug 'kannokanno/previm'               " Markdownのプレビュー表示
+Plug 'majutsushi/tagbar'               " タグのサイドバー表示
+Plug 'mattn/calendar-vim'              " カレンダー表示
+Plug 'nathanaelkane/vim-indent-guides' " インデント表示
+Plug 'Shougo/vinarise'                 " バイナリエディタ
+Plug 'thinca/vim-editvar'              " 変数の値を別バッファで編集
+
+" コンソール連携 {{{2
 Plug 'jpalardy/vim-slime'
-Plug 'junegunn/seoul256.vim'
-Plug 'justinmk/vim-dirvish'
-Plug 'kamwitsta/flatwhite-vim'
-Plug 'kana/vim-altr'
-Plug 'kana/vim-gf-user'
+
+" Vimスクリプトライブラリ {{{2
+Plug 'mattn/webapi-vim'                     " Web API
+if !s:iswin
+  Plug 'Shougo/vimproc.vim', {'do': 'make'} " 非同期処理
+endif
+Plug 'tpope/vim-dispatch'                   " 非同期処理
+
+" そのほか {{{2
+Plug 'kana/vim-tabpagecd'       " タブページごとにカレントディレクトリを設定する
+Plug 'Shougo/junkfile.vim'      " 日時を名前にしたファイルを作成する
+Plug 'Shougo/tabpagebuffer.vim'
+Plug 't9md/vim-quickhl'         " 指定文字列のハイライト
+Plug 'thinca/vim-zenspace'      " 全角スペースの表示
+Plug 'thinca/vim-prettyprint'   " Vim Script用のpp
+Plug 'thinca/vim-quickrun'      " コード実行
+Plug 'tpope/vim-repeat'         " surroundの挙動もドットで繰り返せるようにする
+Plug 'tyru/open-browser.vim'    " ブラウザでの表示・検索
+Plug 'vim-jp/vimdoc-ja'         " vimdocの和訳版
+
+
+" lightline - ステータスバー {{{2
+Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'   " aleによるシンタックスチェックの結果表示
+
+" Unite {{{2
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/unite-outline'
+Plug 'Shougo/neomru.vim'
+Plug 'tacroe/unite-mark'
+Plug 'ujihisa/unite-colorscheme'
+Plug 'ujihisa/unite-font'
+Plug 'ujihisa/unite-locate'
+
+" ref {{{2
+Plug 'thinca/vim-ref'
+
+" metarw - データソースを抽象化して扱うファイラ {{{2
 Plug 'kana/vim-metarw'
 Plug 'kana/vim-metarw-git'
+
+" operator-user ユーザー定義のオペレータ {{{2
 Plug 'kana/vim-operator-user'
-Plug 'kana/vim-smartchr'
+
+" submode ユーザー定義のモード {{{2
 Plug 'kana/vim-submode'
-Plug 'kana/vim-tabpagecd'
+
+" textobj ユーザー定義のテキストオブジェクト {{{2
+Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-fold'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-lastpat'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-syntax'
-Plug 'kana/vim-textobj-user'
-Plug 'kannokanno/previm'
-Plug 'kchmck/vim-coffee-script'
-Plug 'lambdalisue/vim-gita'
-Plug 'majutsushi/tagbar'
-Plug 'mattn/calendar-vim'
-Plug 'mattn/webapi-vim'
-Plug 'maximbaz/lightline-ale'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'NLKNguyen/papercolor-theme'
-" Plug 'OmniSharp/omnisharp-vim', {'do': 'msbuild server/OmniSharp.sln'}
 Plug 'osyo-manga/vim-textobj-multiblock'
-Plug 'othree/html5.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown'
-Plug 'rhysd/vim-clang-format'
-Plug 'Shougo/junkfile.vim'
-Plug 'Shougo/neocomplete'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/tabpagebuffer.vim'
-Plug 'Shougo/unite-outline'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimfiler'
-if !s:iswin
-  Plug 'Shougo/vimproc.vim', {'do': 'make'}
-endif
-Plug 'Shougo/vinarise'
-Plug 'slim-template/vim-slim'
-Plug 't9md/vim-quickhl'
-Plug 'tacroe/unite-mark'
-Plug 'taku-o/vim-toggle'
-Plug 'thinca/vim-editvar'
-Plug 'thinca/vim-prettyprint'
-Plug 'thinca/vim-quickrun'
-Plug 'thinca/vim-ref'
-Plug 'thinca/vim-visualstar'
-Plug 'thinca/vim-zenspace'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-haml'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tyru/caw.vim'
-Plug 'tyru/open-browser.vim'
-Plug 'udalov/kotlin-vim'
-Plug 'ujihisa/unite-colorscheme'
-Plug 'ujihisa/unite-font'
-Plug 'ujihisa/unite-locate'
-Plug 'vim-jp/vimdoc-ja'
-Plug 'vim-ruby/vim-ruby'
-Plug 'w0rp/ale'
 
 call plug#end()
 
