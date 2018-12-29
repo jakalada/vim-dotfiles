@@ -74,15 +74,10 @@ Plug 'tyru/caw.vim'           " コメントアウト
 Plug 'w0rp/ale'
 
 " 補完 {{{2
-" Plug 'OmniSharp/omnisharp-vim', {'do': 'msbuild server/OmniSharp.sln'}
-Plug 'Shougo/neocomplete'
 
 " フォーマッター {{{2
-Plug 'rhysd/vim-clang-format'
 
 " スニペット {{{2
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
 
 " 移動 {{{2
 Plug 'kana/vim-altr'          " ユーザー定義の代替ファイル
@@ -122,6 +117,12 @@ Plug 'tpope/vim-repeat'         " surroundの挙動もドットで繰り返せ�
 Plug 'tyru/open-browser.vim'    " ブラウザでの表示・検索
 Plug 'vim-jp/vimdoc-ja'         " vimdocの和訳版
 
+" vim-lsp - Language Server Protocol対応 {{{2
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'natebosch/vim-lsc'
 
 " lightline - ステータスバー {{{2
 Plug 'itchyny/lightline.vim'
@@ -386,55 +387,6 @@ set nomodeline
 set completeopt-=preview
 
 " Mappings {{{1
-
-" MacVimのメニューに登録されているショーットカットを無効化 " {{{2
-if s:ismacunix && s:isgui
-  let s:macmenus = [
-        \  'File.New Window',
-        \  'File.New Window',
-        \  'File.New Tab',
-        \  'File.Open...',
-        \  'File.Split-Open...',
-        \  'File.Open Tab...',
-        \  'File.Open Recent',
-        \  'File.Close Window',
-        \  'File.Close',
-        \  'File.Save',
-        \  'File.Save All',
-        \  'File.Save As...',
-        \  'File.Print',
-        \  'Edit.Undo',
-        \  'Edit.Redo',
-        \  'Edit.Cut',
-        \  'Edit.Copy',
-        \  'Edit.Paste',
-        \  'Edit.Select All',
-        \  'Edit.Find.Find...',
-        \  'Edit.Find.Find Next',
-        \  'Edit.Find.Find Previous',
-        \  'Edit.Font.Bigger',
-        \  'Edit.Font.Smaller',
-        \  'Edit.Special Characters...',
-        \  'Tools.Make',
-        \  'Tools.List Errors',
-        \  'Tools.Next Error',
-        \  'Tools.Previous Error',
-        \  'Tools.Older List',
-        \  'Tools.Newer List',
-        \  'Tools.Spelling.To Next error',
-        \  'Tools.Spelling.Suggest Corrections',
-        \  'Window.Select Previous Tab',
-        \  'Window.Select Next Tab',
-        \  'Window.Minimize',
-        \  'Window.Minimize All',
-        \  'Window.Zoom',
-        \  'Window.Zoom All',
-        \  'Window.Toggle Full Screen Mode'
-        \]
-  for s:menu in s:macmenus
-    execute 'macmenu ' . substitute(escape(s:menu, ' '), '\.\.\.', '\\.\\.\\.', 'g') . ' key=<Nop>'
-  endfor
-endif
 
 " IBusで日本語入力に切り替えるたびにスペースが挿入されてしまうのを防ぐ {{{2
 noremap <C-Space> <Nop>
@@ -807,35 +759,6 @@ let g:vimshell_user_prompt = '"[" . getcwd() ."]"'
 
 nnoremap <Leader>s :<C-U>VimShell<CR>
 
-" neocomplete.vim {{{2
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#min_keyword_length = 3
-
-MyAutocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-MyAutocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-MyAutocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-MyAutocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" MyAutocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns._ = '\h\w*'
-
-inoremap <C-O> <C-X><C-O>
-inoremap <expr><CR> pumvisible() ? '<C-Y><CR>' : '<CR>'
-
-" neosnippet {{{2
-let g:neosnippet#snippets_directory = $DOTVIMDIR . '/snippets'
-
-nnoremap <silent> <Leader>.s :<C-U>NeoSnippetEdit<CR>
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-
 " vim-ref {{{2
 if s:iswin
   let g:ref_pydoc_cmd = 'pydoc.bat'
@@ -991,13 +914,99 @@ let g:clang_format#code_style = 'google'
 " vim-go {{{2
 let g:go_fmt_command = "goimports"
 
-" omnisharp-vim {{{2
-" let g:OmniSharp_server_type='v1'
-" let g:omnicomplete_fetch_documentation=1
-" let g:OmniSharp_selector_ui='unite'
-
 " ale {{{2
 let g:ale_fix_on_save = 1
+
+" asynccomplete {{{2
+let g:asyncomplete_smart_completion = 1
+
+" asynccomplete-lsp {{{2
+let g:lsp_async_completion = 1
+
+" vim-lsp {{{2
+let g:lsp_signs_enabled = 1           " enable signs
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+let g:lsp_preview_keep_focus = 0
+
+" For Python
+"   $ pip install python-language-server
+" REF: https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Python
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
+" For clang
+"   $ brew install llvm
+" REF: https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Clangd
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+endif
+
+" For CSS, LESS, Sass
+"   $ npm install -g vscode-css-languageserver-bin
+" REF: https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Css
+if executable('css-languageserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'css-languageserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+        \ 'whitelist': ['css', 'less', 'sass'],
+        \ })
+endif
+
+" For Docker
+"   $ npm install -g dockerfile-language-server-nodejs
+" REF: https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Docker
+if executable('docker-langserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'docker-langserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+        \ 'whitelist': ['dockerfile'],
+        \ })
+endif
+
+" For Go
+"   $ go get -u golang.org/x/tools/cmd/golsp
+" REF: https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Go
+if executable('go-langserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'go-langserver',
+        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
+        \ 'whitelist': ['go'],
+        \ })
+endif
+
+" For Ruby
+"   $ gem install solargraph
+" REF: https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Ruby
+if executable('solargraph')
+    " gem install solargraph
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'solargraph',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+        \ 'initialization_options': {"diagnostics": "true"},
+        \ 'whitelist': ['ruby'],
+        \ })
+endif
+
+" For TypeScript
+"   $ npm install -g typescript typescript-language-server
+" REF: https://github.com/prabirshrestha/vim-lsp/wiki/Servers-TypeScript
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+      \ 'name': 'typescript-language-server',
+      \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+      \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+      \ 'whitelist': ['typescript', 'javascript', 'javascript.jsx']
+      \ })
+endif
 
 " Misc {{{1
 " 折りたたみ {{{2
