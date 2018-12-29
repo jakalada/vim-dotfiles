@@ -36,6 +36,9 @@ endif
 " vim-plug {{{1
 call plug#begin($DOTVIMDIR . '/plugged')
 
+" 依存
+Plug 'godlygeek/tabular'  " for vim-markdown
+
 " Colorscheme {{{2
 Plug 'altercation/vim-colors-solarized'
 Plug 'cocopon/iceberg.vim'
@@ -572,14 +575,14 @@ let g:javascript_enable_domhtmlcss = 1
 " let g:vim_json_syntax_conceal = 0
 " let g:vim_json_syntax_concealcursor = 1
 
-" markdown.vim {{{2
+" vim-markdown {{{2
 " let g:vim_markdown_folding_disabled = 1
 " let g:vim_markdown_folding_style_pythonic = 1
 let g:vim_markdown_folding_level = 6
 " let g:vim_markdown_no_default_key_mappings = 1
-" let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_toc_autofit = 1
 let g:vim_markdown_emphasis_multiline = 0
-let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal = 2
 " let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini']
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
