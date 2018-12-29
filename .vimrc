@@ -91,7 +91,7 @@ Plug 'thinca/vim-visualstar'  " *で選択中の文字列を検索
 Plug 'itchyny/thumbnail.vim'           " バッファのサムネイル表示
 Plug 'justinmk/vim-dirvish'            " ファイラ
 Plug 'Shougo/vimfiler'                 " ファイラ
-Plug 'kannokanno/previm'               " Markdownのプレビュー表示
+Plug 'previm/previm'                   " Markdownのプレビュー表示
 Plug 'majutsushi/tagbar'               " タグのサイドバー表示
 Plug 'mattn/calendar-vim'              " カレンダー表示
 Plug 'nathanaelkane/vim-indent-guides' " インデント表示
@@ -373,7 +373,7 @@ if has('conceal')
 endif
 
 set list
-let &listchars = 'tab:>-,trail:-'
+let &listchars = 'tab:| ,trail:-'
 
 let &fillchars = 'vert: ,fold: ,diff:-'
 
@@ -905,7 +905,7 @@ let g:vim_markdown_folding_level = 2
 let g:slime_target = "tmux"
 
 " vim-indent-guides {{{2
-let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_auto_colors = 1
 let g:indent_guides_color_change_percent = 4
 let g:indent_guides_default_mapping = 0
