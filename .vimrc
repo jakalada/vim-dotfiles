@@ -36,9 +36,6 @@ endif
 " vim-plug {{{1
 call plug#begin($DOTVIMDIR . '/plugged')
 
-" 依存
-Plug 'godlygeek/tabular'  " for vim-markdown
-
 " Colorscheme {{{2
 Plug 'altercation/vim-colors-solarized'
 Plug 'cocopon/iceberg.vim'
@@ -53,7 +50,7 @@ Plug 'fatih/vim-go'
 Plug 'kchmck/vim-coffee-script'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown'
+Plug 'gabrielelana/vim-markdown'
 Plug 'slim-template/vim-slim'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'            " 多機能
@@ -575,20 +572,9 @@ let g:javascript_enable_domhtmlcss = 1
 " let g:vim_json_syntax_conceal = 0
 " let g:vim_json_syntax_concealcursor = 1
 
-" vim-markdown {{{2
-" let g:vim_markdown_folding_disabled = 1
-" let g:vim_markdown_folding_style_pythonic = 1
-let g:vim_markdown_folding_level = 6
-" let g:vim_markdown_no_default_key_mappings = 1
-let g:vim_markdown_toc_autofit = 1
-let g:vim_markdown_emphasis_multiline = 0
-let g:vim_markdown_conceal = 2
-" let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini']
-let g:vim_markdown_math = 1
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_toml_frontmatter = 1
-let g:vim_markdown_json_frontmatter = 1
-let g:vim_markdown_new_list_item_indent = 4
+" gabrielelana/vim-markdown {{{2
+let g:markdown_enable_spell_checking = 0
+let g:markdown_enable_conceal = 1
 
 " php.vim {{{2
 let g:php_sql_query = 1
