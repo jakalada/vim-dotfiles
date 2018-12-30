@@ -1042,8 +1042,8 @@ nmap t <SID>[tab]
 nnoremap <SID>[tabnew] <Nop>
 nmap T <SID>[tabnew]
 
-nnoremap <silent> <SID>[tab]l :<C-U>tabnext<CR>
-nnoremap <silent> <SID>[tab]h :<C-U>tabprev<CR>
+nnoremap <silent> <C-L> :<C-U>tabnext<CR>
+nnoremap <silent> <C-H> :<C-U>tabprev<CR>
 nnoremap <silent> <SID>[tab]q :<C-U>tabclose<CR>
 nnoremap <silent> <SID>[tab]t :<C-U>tabnew<CR>
 
